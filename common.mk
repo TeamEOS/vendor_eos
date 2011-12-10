@@ -17,6 +17,7 @@
 # This file includes all definitions that apply to ALL eos builds
 
 PRODUCT_PACKAGES += \
+    AndroidTerm \
 	SuperUser \
     su
 
