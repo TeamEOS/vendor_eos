@@ -18,7 +18,7 @@
 
 PRODUCT_PACKAGES += \
     AndroidTerm \
-	SuperUser \
+	Superuser \
     su
 
 PRODUCT_PACKAGES += \
