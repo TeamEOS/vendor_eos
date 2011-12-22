@@ -26,4 +26,4 @@ PRODUCT_PACKAGES += \
     HoloSpiral
 
 $(call inherit-product-if-exists, vendor/eos/proprietary/rommanager/rommanager.mk)
-
+$(call inherit-product-if-exists, vendor/eos/overlay/overlay.mk)

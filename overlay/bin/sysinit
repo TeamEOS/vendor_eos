@@ -1,0 +1,17 @@
+#!/system/bin/sh
+
+DIR="/system/etc/init.d";
+FILELIST=`ls /system/etc/init.d`
+
+for FILE in $FILELIST ; do
+        FILENAME=${DIR}/$FILE
+#            executable?  AND real file ? (not directory...)
+        if [ -x $FILENAME -a  -f $FILENAME ] ; then
+		echo Executing $FILENAME
+                /system/bin/logwrapper $FILENAME
+        fi
+done
+
+sync;
+setprop eos.filesystem.ready 1;
+
