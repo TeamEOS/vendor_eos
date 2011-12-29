@@ -19,7 +19,8 @@
 PRODUCT_PACKAGES += \
     AndroidTerm \
 	Superuser \
-    su
+    su \
+    thtt
 
 PRODUCT_PACKAGES += \
     PhaseBeam \
