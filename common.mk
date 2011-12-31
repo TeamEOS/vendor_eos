@@ -20,7 +20,8 @@ PRODUCT_PACKAGES += \
     AndroidTerm \
 	Superuser \
     su \
-    thtt
+    thtt \
+    EosOverclockHelper
 
 PRODUCT_PACKAGES += \
     PhaseBeam \
