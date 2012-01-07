@@ -29,3 +29,4 @@ PRODUCT_PACKAGES += \
 
 $(call inherit-product-if-exists, vendor/eos/proprietary/rommanager/rommanager.mk)
 $(call inherit-product-if-exists, vendor/eos/overlay/overlay.mk)
+DEVICE_PACKAGE_OVERLAYS += vendor/eos/package_overlays
