@@ -37,8 +37,4 @@ $(call inherit-product-if-exists, vendor/eos/proprietary/titaniumbackup/titanium
 $(call inherit-product-if-exists, vendor/eos/overlay/overlay.mk)
 DEVICE_PACKAGE_OVERLAYS += vendor/eos/package_overlays
 
-# Install the pre-built vold binary, licenced under the Apache 2.0 Licence.
-PRODUCT_COPY_FILES += \
-    vendor/eos/proprietary/vold:system/bin/vold
-
 PLATFORM_VERSION := 4.0.3
