@@ -23,6 +23,9 @@ PRODUCT_PACKAGES += \
     thtt \
     EosOverclockHelper \
     busybox \
+    ntfs-3g.probe \
+    ntfsfix \
+    EosStorageHelper
 
 PRODUCT_PACKAGES += \
     PhaseBeam \
