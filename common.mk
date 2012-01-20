@@ -25,6 +25,7 @@ PRODUCT_PACKAGES += \
     busybox \
     ntfs-3g.probe \
     ntfsfix \
+    ntfs-3g \
     EosStorageHelper
 
 PRODUCT_PACKAGES += \
