@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 mkdir -p titaniumbackup
-curl -L http://matrixrewriter.com/android/files/TitaniumBackup_latest.apk -o titaniumbackup/TitaniumBackup.apk
+curl -L http://matrixrewriter.com/android/files/TitaniumBackup_latest.apk -o titaniumbackup/TitaniumBackup.apk &&
 (cat << EOF) > titaniumbackup/titaniumbackup.mk
 # Copyright (C) 2011 Team Eos
 #

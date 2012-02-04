@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 mkdir -p rommanager
-curl -L http://download.clockworkmod.com/recoveries/RomManager.apk -o rommanager/RomManager.apk
+curl -L http://download.clockworkmod.com/recoveries/RomManager.apk -o rommanager/RomManager.apk &&
 (cat << EOF) > rommanager/rommanager.mk
 # Copyright (C) 2011 Team Eos
 #
