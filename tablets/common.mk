@@ -15,7 +15,3 @@
 LOCAL_PATH:= $(call my-dir)
 PRODUCT_COPY_FILES += \
     vendor/eos/tablets/bootanimation.zip:system/media/bootanimation.zip
-
-PRODUCT_PACKAGES += \
-    CSLauncher \
-    CSPanel
