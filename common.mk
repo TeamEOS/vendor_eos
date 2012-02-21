@@ -38,3 +38,20 @@ $(call inherit-product-if-exists, vendor/eos/overlay/overlay.mk)
 DEVICE_PACKAGE_OVERLAYS += vendor/eos/package_overlays
 
 PLATFORM_VERSION := 4.0.3
+
+#### Goo Manager support
+## If EOS_RELEASE is not defined by the user, assume the build is a nightly release.
+## If EOS_RELEASE is defined, use the environment variable EOS_RELEASE_GOOBUILD as the build number.
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.goo.developerid=teameos \
+    ro.goo.board=$(subst full_,,$(TARGET_PRODUCT)) \
+
+ifeq ($(EOS_RELEASE),)
+	PRODUCT_PROPERTY_OVERRIDES += \
+	ro.goo.rom=eosNightlies \
+	ro.goo.version=$(shell date +%s)
+else
+	PRODUCT_PROPERTY_OVERRIDES += \
+	ro.goo.rom=eos \
+	ro.goo.version=$(EOS_RELEASE_GOOBUILD)
+endif
