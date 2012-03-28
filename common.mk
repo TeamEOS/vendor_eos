@@ -37,7 +37,7 @@ $(call inherit-product-if-exists, vendor/eos/proprietary/titaniumbackup/titanium
 $(call inherit-product-if-exists, vendor/eos/overlay/overlay.mk)
 DEVICE_PACKAGE_OVERLAYS += vendor/eos/package_overlays
 
-PLATFORM_VERSION := 4.0.3
+PLATFORM_VERSION := 4.0.4
 
 #### Goo Manager support
 ## If EOS_RELEASE is not defined by the user, assume the build is a nightly release.
