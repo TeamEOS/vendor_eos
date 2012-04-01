@@ -33,6 +33,9 @@ PRODUCT_PACKAGES += \
     PhaseBeam \
     HoloSpiral
 
+PRODUCT_COPY_FILES += \
+    vendor/eos/proprietary/terminalemulator/libjackpal-androidterm3.so:system/lib/libjackpal-androidterm3.so \
+
 $(call inherit-product-if-exists, vendor/eos/proprietary/titaniumbackup/titaniumbackup.mk)
 $(call inherit-product-if-exists, vendor/eos/overlay/overlay.mk)
 DEVICE_PACKAGE_OVERLAYS += vendor/eos/package_overlays
