@@ -18,6 +18,8 @@ mkdir -p titaniumbackup
 # limitations under the License.
 
 PRODUCT_PACKAGES += TitaniumBackup.apk
+PRODUCT_COPY_FILES += \
+    vendor/eos/proprietary/titaniumbackup/lib/armeabi/libtitanium.so:system/lib/libtitanium.so
 EOF
 
 (cat << EOF) > titaniumbackup/Android.mk
@@ -43,3 +45,6 @@ LOCAL_SRC_FILES := TitaniumBackup.apk
 LOCAL_MODULE_TAGS := optional
 include \$(BUILD_PREBUILT)
 EOF
+
+cd titaniumbackup;
+unzip TitaniumBackup.apk lib/armeabi/libtitanium.so
