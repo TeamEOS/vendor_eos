@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 mkdir -p titaniumbackup
-#curl -L http://matrixrewriter.com/android/files/TitaniumBackup_latest.apk -o titaniumbackup/TitaniumBackup.apk &&
+curl -L http://matrixrewriter.com/android/files/TitaniumBackup_latest.apk -o titaniumbackup/TitaniumBackup.apk &&
 (cat << EOF) > titaniumbackup/titaniumbackup.mk
 # Copyright (C) 2011 Team Eos
 #
@@ -47,4 +47,4 @@ include \$(BUILD_PREBUILT)
 EOF
 
 cd titaniumbackup;
-unzip TitaniumBackup.apk lib/armeabi/libtitanium.so
+unzip -o TitaniumBackup.apk lib/armeabi/libtitanium.so
