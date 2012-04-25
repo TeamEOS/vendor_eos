@@ -8,3 +8,4 @@ PRODUCT_COPY_FILES += \
     vendor/eos/overlay/etc/init.d/02overclock:system/etc/init.d/02overclock \
     vendor/eos/overlay/bin/backuptool.functions:system/bin/backuptool.functions \
     vendor/eos/overlay/bin/backuptool.sh:system/bin/backuptool.sh \
+    vendor/eos/overlay/addon.d/99-eos-hosts.sh:system/addon.d/99-eos-hosts.sh \
