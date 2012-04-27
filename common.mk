@@ -45,6 +45,16 @@ PLATFORM_VERSION := 4.0.4
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.eos.majorversion=1
 
+ifeq ($(EOS_RELEASE),)
+    PRODUCT_BUILD_PROP_OVERRIDES += \
+    BUILD_DISPLAY_ID="EOS IMM76D Nightly $(EOS_BUILD_NUMBER) (`(cd $(ANDROID_BUILD_TOP)/.repo/manifests ; git log -1 --pretty=%h versioned.xml)`)"\
+    BUILD_ID=IMM76D
+else
+    PRODUCT_BUILD_PROP_OVERRIDES += \
+    BUILD_DISPLAY_ID="EOS Stable release $(EOS_RELEASE)" \
+    BUILD_ID=IMM76D
+endif
+
 #### Goo Manager support
 ## If EOS_RELEASE is not defined by the user, assume the build is a nightly release.
 ## If EOS_RELEASE is defined, use the environment variable EOS_RELEASE_GOOBUILD as the build number.
