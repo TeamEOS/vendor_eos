@@ -15,3 +15,6 @@
 LOCAL_PATH:= $(call my-dir)
 PRODUCT_COPY_FILES += \
     vendor/eos/phones/720x1280.zip:system/media/bootanimation.zip
+
+PRODUCT_PACKAGES += \
+    Trebuchet
