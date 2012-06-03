@@ -1,0 +1,8 @@
+#!/system/bin/sh
+
+rootrw
+mkdir /eos
+chmod 777 /eos
+ln -s /data/data/com.android.settings/app_eos/uids_mode /eos/uids_mode
+ln -s /data/data/com.android.settings/app_eos/uids_list /eos/uids_list
+rootro
