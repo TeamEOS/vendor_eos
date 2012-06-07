@@ -33,8 +33,15 @@ PRODUCT_PACKAGES += \
     PhaseBeam \
     HoloSpiral
 
+PRODUCT_PACKAGES += \
+    ThemeChooser \
+    ThemeManager
+
 PRODUCT_COPY_FILES += \
     vendor/eos/proprietary/terminalemulator/libjackpal-androidterm3.so:system/lib/libjackpal-androidterm3.so \
+
+PRODUCT_COPY_FILES += \
+    frameworks/base/data/etc/com.tmobile.software.themes.xml:/system/etc/permissions/com.tmobile.software.themes.xml \
 
 #$(call inherit-product-if-exists, vendor/eos/proprietary/titaniumbackup/titaniumbackup.mk)
 $(call inherit-product-if-exists, vendor/eos/overlay/overlay.mk)
