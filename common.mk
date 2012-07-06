@@ -43,6 +43,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/com.tmobile.software.themes.xml:/system/etc/permissions/com.tmobile.software.themes.xml \
 
+#Bring in camera media effects
+$(call inherit-product-if-exists, frameworks/base/data/videos/VideoPackage2.mk)
+
 #$(call inherit-product-if-exists, vendor/eos/proprietary/titaniumbackup/titaniumbackup.mk)
 $(call inherit-product-if-exists, vendor/eos/overlay/overlay.mk)
 DEVICE_PACKAGE_OVERLAYS += vendor/eos/package_overlays
