@@ -20,44 +20,30 @@ PRODUCT_PACKAGES += \
     TerminalEmulator \
 	Superuser \
     su \
-    thtt \
-    EosOverclockHelper \
     busybox \
-    ntfs-3g.probe \
-    ntfsfix \
-    ntfs-3g \
-    EosStorageHelper \
     GooManager
 
 PRODUCT_PACKAGES += \
     PhaseBeam \
     HoloSpiral
 
-PRODUCT_PACKAGES += \
-    ThemeChooser \
-    ThemeManager
-
 PRODUCT_COPY_FILES += \
     vendor/eos/proprietary/terminalemulator/libjackpal-androidterm3.so:system/lib/libjackpal-androidterm3.so \
-
-PRODUCT_COPY_FILES += \
-    frameworks/base/data/etc/com.tmobile.software.themes.xml:/system/etc/permissions/com.tmobile.software.themes.xml \
 
 #Bring in camera media effects
 $(call inherit-product-if-exists, frameworks/base/data/videos/VideoPackage2.mk)
 
-#$(call inherit-product-if-exists, vendor/eos/proprietary/titaniumbackup/titaniumbackup.mk)
 $(call inherit-product-if-exists, vendor/eos/overlay/overlay.mk)
 DEVICE_PACKAGE_OVERLAYS += vendor/eos/package_overlays
 
-PLATFORM_VERSION := 4.0.4
+PLATFORM_VERSION := 4.1.1
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.eos.majorversion=1
+    ro.eos.majorversion=2
 
 ifeq ($(EOS_RELEASE),)
     PRODUCT_BUILD_PROP_OVERRIDES += \
-    BUILD_DISPLAY_ID="EOS IMM76D Nightly $(EOS_BUILD_NUMBER) (`(cd $(ANDROID_BUILD_TOP)/.repo/manifests ; git log -1 --pretty=%h versioned.xml)`)"\
+    BUILD_DISPLAY_ID="EOS JRO03C Nightly $(EOS_BUILD_NUMBER) (`(cd $(ANDROID_BUILD_TOP)/.repo/manifests ; git log -1 --pretty=%h versioned.xml)`)"\
     BUILD_ID=IMM76D
 else
     PRODUCT_BUILD_PROP_OVERRIDES += \
@@ -74,7 +60,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 ifeq ($(EOS_RELEASE),)
 	PRODUCT_PROPERTY_OVERRIDES += \
-	ro.goo.rom=eosNightlies \
+	ro.goo.rom=eosJBNightlies \
 	ro.goo.version=$(shell date +%s)
 else
 	PRODUCT_PROPERTY_OVERRIDES += \
