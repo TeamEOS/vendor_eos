@@ -19,7 +19,8 @@
 PRODUCT_PACKAGES += \
     TerminalEmulator \
 	Superuser \
-    GooManager
+    GooManager \
+    busybox \
 
 PRODUCT_PACKAGES += \
     PhaseBeam \
