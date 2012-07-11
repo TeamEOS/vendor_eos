@@ -21,6 +21,8 @@ PRODUCT_PACKAGES += \
 	Superuser \
     GooManager \
     busybox \
+    thtt \
+    EosOverclockHelper \
 
 PRODUCT_PACKAGES += \
     PhaseBeam \
