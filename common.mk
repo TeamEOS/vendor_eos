@@ -29,7 +29,7 @@ PRODUCT_PACKAGES += \
     HoloSpiral
 
 PRODUCT_COPY_FILES += \
-    vendor/eos/proprietary/terminalemulator/libjackpal-androidterm3.so:system/lib/libjackpal-androidterm3.so \
+    vendor/eos/proprietary/terminalemulator/libjackpal-androidterm4.so:system/lib/libjackpal-androidterm4.so \
     vendor/eos/proprietary/supersu/su:system/xbin/su \
 
 #Bring in camera media effects
