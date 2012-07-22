@@ -1,0 +1,3 @@
+-keep class * extends android.app.Activity {
+  @com.android.camera.OnClickAttr <methods>;
+}
