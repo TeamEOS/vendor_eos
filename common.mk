@@ -28,6 +28,11 @@ PRODUCT_PACKAGES += \
     PhaseBeam \
     HoloSpiral
 
+PRODUCT_PACKAGES += \
+    ThemeChooser \
+    ThemeManager \
+    com.tmobile.themes \
+
 PRODUCT_COPY_FILES += \
     vendor/eos/proprietary/terminalemulator/libjackpal-androidterm4.so:system/lib/libjackpal-androidterm4.so \
     vendor/eos/proprietary/supersu/su:system/xbin/su \
