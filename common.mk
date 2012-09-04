@@ -77,3 +77,5 @@ else
 	ro.goo.rom=eos \
 	ro.goo.version=$(EOS_RELEASE_GOOBUILD)
 endif
+
+$(call inherit-product, vendor/eos/bootanimations/bootanimation.mk)
