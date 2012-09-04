@@ -33,6 +33,9 @@ PRODUCT_PACKAGES += \
     ThemeManager \
     com.tmobile.themes \
 
+PRODUCT_COPY_FILES += \
+    vendor/eos/filesystem_overlay/etc/permissions/com.tmobile.software.themes.xml:system/etc/permissions/com.tmobile.software.themes.xml \
+
 PRODUCT_PACKAGES += \
     fstrim
 
