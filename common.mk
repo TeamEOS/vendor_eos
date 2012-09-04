@@ -43,8 +43,8 @@ PRODUCT_COPY_FILES += \
 #Bring in camera media effects
 $(call inherit-product-if-exists, frameworks/base/data/videos/VideoPackage2.mk)
 
-$(call inherit-product-if-exists, vendor/eos/overlay/overlay.mk)
-DEVICE_PACKAGE_OVERLAYS += vendor/eos/package_overlays
+$(call inherit-product-if-exists, vendor/eos/filesystem_overlay/overlay.mk)
+DEVICE_PACKAGE_OVERLAYS += vendor/eos/resource_overlay
 
 PLATFORM_VERSION := 4.1.1
 
