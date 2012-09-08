@@ -36,3 +36,8 @@ ifeq ($(BOOTANIMATION_RESOLUTION), 800x1280)
 PRODUCT_COPY_FILES += \
     vendor/eos/bootanimations/800x1280.zip:system/media/bootanimation.zip
 endif
+
+ifeq ($(BOOTANIMATION_RESOLUTION), 480x480)
+PRODUCT_COPY_FILES += \
+    vendor/eos/bootanimations/480x480.zip:system/media/bootanimation.zip
+endif
