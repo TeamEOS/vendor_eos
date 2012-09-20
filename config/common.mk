@@ -125,7 +125,6 @@ PRODUCT_PACKAGES += \
     LatinIME \
     SpareParts \
     Superuser \
-    Superuser.apk \
     su
 
 # Optional cfX packages
