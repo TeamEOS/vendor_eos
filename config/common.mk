@@ -124,11 +124,12 @@ PRODUCT_PACKAGES += \
     Superuser \
     su
 
-# Optional CM packages
+# Optional cfX packages
 PRODUCT_PACKAGES += \
     VideoEditor \
     VoiceDialer \
     SoundRecorder \
+    ZeroXBenchmark \
     Basic
 
 # Custom CM packages
