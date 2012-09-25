@@ -95,9 +95,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     vendor/cm/prebuilt/common/bin/modelid_cfg.sh:system/bin/modelid_cfg.sh
 
-PRODUCT_COPY_FILES +=  \
-    vendor/cm/prebuilt/common/apps/Superuser.apk:system/app/Superuser.apk
-
 # Bring in camera effects
 PRODUCT_COPY_FILES +=  \
     vendor/cm/prebuilt/common/media/LMprec_508.emd:system/media/LMprec_508.emd \
