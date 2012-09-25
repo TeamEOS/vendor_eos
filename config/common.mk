@@ -134,6 +134,7 @@ PRODUCT_PACKAGES += \
     VoiceDialer \
     SoundRecorder \
     ZeroXBenchmark \
+    FileManager \
     Basic
 
 # Custom CM packages
