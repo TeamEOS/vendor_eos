@@ -1,0 +1,10 @@
+#!/system/bin/sh
+
+# create ZRAM block device (128M for now, will likely tune), then
+# prepare and enable ZRAM swapspace
+
+echo 134217728 > /sys/block/zram0/disksize && \
+/system/xbin/mkswap /dev/block/zram0 && \
+/system/xbin/swapon /dev/block/zram0
+
+exit $?
