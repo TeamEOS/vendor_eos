@@ -49,7 +49,7 @@ $(call inherit-product-if-exists, frameworks/base/data/videos/VideoPackage2.mk)
 $(call inherit-product-if-exists, vendor/eos/filesystem_overlay/overlay.mk)
 DEVICE_PACKAGE_OVERLAYS += vendor/eos/resource_overlay
 
-PLATFORM_VERSION := 4.1.1
+PLATFORM_VERSION := 4.1.2
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.eos.majorversion=2
