@@ -56,12 +56,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 ifeq ($(EOS_RELEASE),)
     PRODUCT_BUILD_PROP_OVERRIDES += \
-    BUILD_DISPLAY_ID="EOS JRO03L Nightly $(EOS_BUILD_NUMBER) (`(cd $(ANDROID_BUILD_TOP)/.repo/manifests ; git log -1 --pretty=%h versioned.xml)`)"\
-    BUILD_ID=JRO03L
+    BUILD_DISPLAY_ID="EOS JZO54K Nightly $(EOS_BUILD_NUMBER) (`(cd $(ANDROID_BUILD_TOP)/.repo/manifests ; git log -1 --pretty=%h versioned.xml)`)"\
+    BUILD_ID=JZO54K
 else
     PRODUCT_BUILD_PROP_OVERRIDES += \
     BUILD_DISPLAY_ID="EOS Stable release $(EOS_RELEASE)" \
-    BUILD_ID=JRO03L
+    BUILD_ID=JZO54K
 endif
 
 #### Goo Manager support
