@@ -23,23 +23,15 @@ PRODUCT_PACKAGES += \
     busybox \
     thtt \
     EosOverclockHelper \
-
-PRODUCT_PACKAGES += \
     PhaseBeam \
-    HoloSpiral
-
-PRODUCT_PACKAGES += \
+    HoloSpiral \
     ThemeChooser \
     ThemeManager \
     com.tmobile.themes \
+    fstrim \
 
 PRODUCT_COPY_FILES += \
     vendor/eos/filesystem_overlay/etc/permissions/com.tmobile.software.themes.xml:system/etc/permissions/com.tmobile.software.themes.xml \
-
-PRODUCT_PACKAGES += \
-    fstrim
-
-PRODUCT_COPY_FILES += \
     vendor/eos/proprietary/terminalemulator/libjackpal-androidterm4.so:system/lib/libjackpal-androidterm4.so \
     vendor/eos/proprietary/supersu/su:system/xbin/su \
 
