@@ -45,7 +45,7 @@ $(foreach size,$(bootanimation_sizes), $(call check_and_set_bootanimation,$(size
 #UnComment the following for a cm bootanimation [TEMP] 
 #PRODUCT_COPY_FILES += \
 #    vendor/cm/prebuilt/common/bootanimation/$(TARGET_BOOTANIMATION_NAME).zip:system/media/bootanimation.zip
-#endif
+endif
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
@@ -69,9 +69,9 @@ PRODUCT_COPY_FILES += \
     vendor/cm/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit
 
 # CM-specific init file
-PRODUCT_COPY_FILES += \
-    vendor/cm/prebuilt/common/etc/init.local.rc:root/init.cm.rc
-
+#PRODUCT_COPY_FILES += \
+#    vendor/cm/prebuilt/common/etc/init.local.rc:root/init.cm.rc
+#
 # Compcache/Zram support
 PRODUCT_COPY_FILES += \
     vendor/cm/prebuilt/common/bin/compcache:system/bin/compcache \
@@ -135,7 +135,8 @@ PRODUCT_PACKAGES += \
     nano \
     htop \
     powertop \
-    lsof
+    lsof \
+    systembinsh
 
 # Openssh
 PRODUCT_PACKAGES += \
