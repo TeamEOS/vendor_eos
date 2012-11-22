@@ -100,6 +100,7 @@ PRODUCT_COPY_FILES += \
 # Required CM packages
 PRODUCT_PACKAGES += \
     Camera \
+    CFXSettings \
     Development \
     LatinIME \
     Launcher2 \
