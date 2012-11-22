@@ -102,6 +102,7 @@ PRODUCT_PACKAGES += \
     Camera \
     CFXSettings \
     Development \
+    Email \
     LatinIME \
     Launcher2 \
     SpareParts \
