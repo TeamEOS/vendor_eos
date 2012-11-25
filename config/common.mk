@@ -124,9 +124,6 @@ PRODUCT_PACKAGES += \
         ThemeChooser \
         com.tmobile.themes
 
-PRODUCT_COPY_FILES := \
-        frameworks/base/data/etc/com.tmobile.software.themes.xml:/system/etc/permissions/com.tmobile.software.themes.xml
-
 # Custom cfX packages
 PRODUCT_PACKAGES += \
     DSPManager \
