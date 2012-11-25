@@ -97,7 +97,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     vendor/cm/prebuilt/common/etc/mkshrc:system/etc/mkshrc
 
-# Required CM packages
+# Required cfX packages
 PRODUCT_PACKAGES += \
     Camera \
     CFXSettings \
@@ -118,7 +118,16 @@ PRODUCT_PACKAGES += \
     CMFileManager \
     Basic
 
-# Custom CM packages
+# Theme Chooser
+PRODUCT_PACKAGES += \
+        ThemeManager \
+        ThemeChooser \
+        com.tmobile.themes
+
+PRODUCT_COPY_FILES := \
+        frameworks/base/data/etc/com.tmobile.software.themes.xml:/system/etc/permissions/com.tmobile.software.themes.xml
+
+# Custom cfX packages
 PRODUCT_PACKAGES += \
     DSPManager \
     libcyanogen-dsp \
@@ -126,7 +135,7 @@ PRODUCT_PACKAGES += \
     CMWallpapers \
     Apollo
 
-# Extra tools in CM
+# Extra tools in cfX
 PRODUCT_PACKAGES += \
     openvpn \
     e2fsck \
