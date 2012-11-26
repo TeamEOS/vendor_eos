@@ -59,6 +59,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.android.dateformat=MM-dd-yyyy \
     ro.com.android.dataroaming=false
 
+# Proprietary LatinIME Gesture Support
+PRODUCT_COPY_FILES += \
+    vendor/cm/prebuilt/common/lib/libjni_latinime.so:obj/lib/libjni_latinime.so \
+    vendor/cm/prebuilt/common/lib/libjni_latinime.so:system/lib/libjni_latinime.so
+
 # init.d support
 PRODUCT_COPY_FILES += \
     vendor/cm/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
