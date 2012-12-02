@@ -61,7 +61,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 ifeq ($(EOS_RELEASE),)
 	PRODUCT_PROPERTY_OVERRIDES += \
-	ro.goo.rom=eosJBNightlies \
+	ro.goo.rom=eosJB42Nightlies \
 	ro.goo.version=$(shell date +%s)
 else
 	PRODUCT_PROPERTY_OVERRIDES += \
