@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- Eos Values -->
+
+    <string-array name="eos_quick_enabled_preferences">
+        <item>eos_systemui_settings_wifi</item>
+        <item>eos_systemui_settings_bluetooth</item>
+        <item>eos_systemui_settings_gps</item>
+        <item>eos_systemui_settings_autorotate</item>
+        <item>eos_systemui_settings_silent</item>
+        <item>eos_systemui_settings_airplane</item>
+        <item>eos_systemui_settings_notifications</item>
+        <item>eos_systemui_settings_torch</item>
+        <item>eos_systemui_settings_mobiledata</item>
+        <item>eos_systemui_settings_wifitether</item>
+        <item>eos_systemui_settings_usbtether</item>
+        <item>eos_systemui_settings_lte</item>
+    </string-array>
+    <string-array name="eos_quick_enabled_names">
+        <item>Wifi</item>
+        <item>Bluetooth</item>
+        <item>GPS</item>
+        <item>Auto rotate</item>
+        <item>Silent</item>
+        <item>Airplane</item>
+        <item>Notification</item>
+        <item>Torch</item>
+        <item>Mobile data</item>
+        <item>Wifi tether</item>
+        <item>USB tether</item>
+        <item>LTE toggle</item>
+    </string-array>
+
+    <string-array name="eos_panel_enabled_preferences">
+        <item>QS_User</item>
+        <item>QS_Settings</item>
+        <item>QS_Brightness</item>
+        <item>QS_Volume</item>
+        <item>QS_Battery</item>
+        <item>QS_Rotation</item>
+        <item>QS_Airplane</item>
+        <item>QS_Wifi</item>
+        <item>QS_Data</item>
+        <item>QS_BT</item>
+        <item>QS_Screen</item>
+        <item>QS_Ringer</item>
+        <item>QS_Location</item>
+        <item>QS_WifiAp</item>
+        <item>QS_Torch</item>
+    </string-array>
+
+    <string-array name="eos_panel_enabled_names">
+        <item>Avatar</item>
+        <item>Settings</item>
+        <item>Brightness</item>
+        <item>Media Volume</item>
+        <item>Battery</item>
+        <item>Rotation Lock</item>
+        <item>Airplane Mode</item>
+        <item>WiFi</item>
+        <item>Mobile Data</item>
+        <item>Bluetooth</item>
+        <item>Screen Off</item>
+        <item>Ringer Modes</item>
+        <item>GPS</item>
+        <item>WiFi AP</item>
+        <item>Torch</item>
+    </string-array>
+
+    <string-array name="eos_panel_column_names">
+        <item>3 Columns</item>
+        <item>4 Columns</item>
+    </string-array>
+
+    <string-array name="eos_panel_column_values">
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+<string-array name="eos_display_legal_rotation_names">
+        <item>90 Degrees</item>
+        <item>180 Degrees</item>
+        <item>270 Degrees</item>
+    </string-array>
+    <string-array name="eos_clock_am_pm_entries">
+        <item>AM/PM Large text</item>
+        <item>AM/PM Small text</item>
+        <item>Gone</item>
+    </string-array>
+    <string-array name="eos_clock_am_pm_entry_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <string-array name="eos_wifi_regulatory_domain_entries">
+        <item>United States</item>
+        <item>Japan</item>
+        <item>EMEA and Rest of World</item>
+    </string-array>
+    <string-array name="eos_wifi_regulatory_domain_values">
+        <item>US</item>
+        <item>JP</item>
+        <item>EU</item>
+    </string-array>
+    <string-array name="eos_action_dialog_entries">
+        <item>None</item>
+        <item>Take screenshot</item>
+        <item>Kill process</item>
+        <item>Screen off</item>
+        <item>Google Now</item>
+        <item>Hide system bars</item>
+        <item>Power Menu</item>
+        <item>Select Application</item>
+    </string-array>
+    <string-array name="eos_action_dialog_values">
+        <item>none</item>
+        <item>screenshot</item>
+        <item>killcurrent</item>
+        <item>screenoff</item>
+        <item>assist</item>
+        <item>hidebars</item>
+        <item>powermenu</item>
+        <item>app</item>
+    </string-array>
+    <string-array name="eos_system_default_volume_stream">
+        <item>Default</item>
+        <item>Media</item>
+    </string-array>
+    <string-array name="eos_system_default_volume_stream_values">
+        <item>default</item>
+        <item>media</item>
+    </string-array>
+    <string-array name="eos_screenshot_scaling_entries">
+        <item>100%</item>
+        <item>75%</item>
+        <item>50%</item>
+        <item>25%</item>
+    </string-array>
+    <string-array name="eos_screenshot_scaling_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+    <string-array name="eos_logger_mode_entries">
+        <item>Normal (none)</item>
+        <item>Blacklist</item>
+        <item>Whitelist</item>
+    </string-array>
+    <string-array name="eos_logger_mode_values">
+        <item>none</item>
+        <item>blacklist</item>
+        <item>whitelist</item>
+    </string-array>
+
+</resources>

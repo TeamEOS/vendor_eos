@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2010 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:settings="http://schemas.android.com/apk/res/org.eos.controlcenter"
+    android:title="@string/eos_interface_softkey_settings" >
+
+    <PreferenceCategory
+        android:key="eos_interface_softkeys_longpress"
+        android:title="@string/eos_interface_softkeys_longpress" >
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="eos_interface_softkey_enable_feature"
+            android:summary="@string/eos_interface_softkey_enable_feature_summary"
+            android:title="@string/eos_interface_softkey_enable_feature" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="eos_interface_softkeys_back"
+        android:title="@string/eos_interface_softkeys_back" >
+        <org.eos.controlcenter.ActionPreference
+            android:dependency="eos_interface_softkey_enable_feature"
+            android:key="eos_interface_softkey_back_longpress"
+            android:layout="@layout/softkey_longpress_preference"
+            android:summary="@string/eos_interface_softkeys_pref_default_summary"
+            android:title="@string/eos_interface_softkeys_pref_default_title"
+            android:widgetLayout="@layout/softkey_longpress_preference_widget"
+            settings:customSummary="@string/eos_interface_softkeys_custom_pref_summary"
+            settings:targetUri="@string/eos_interface_softkey_back_target_uri" />
+
+        <org.eos.controlcenter.MultiColorPreference
+            android:key="eos_softkey_color_back"
+            android:title="@string/eos_interface_softkey_color"
+            settings:keyIdentifier="0"
+            settings:targetUri2="@string/eos_interface_softkey_multicolor_key_uri" />
+
+        <Preference
+            android:key="eos_interface_softkey_back_default_key_color"
+            android:title="@string/eos_interface_softkey_color_default" />
+
+        <org.eos.controlcenter.MultiColorPreference
+            android:key="eos_softkey_glow_color_back"
+            android:title="@string/eos_interface_softkey_glow_color"
+            settings:keyIdentifier="0"
+            settings:targetUri2="@string/eos_interface_softkey_multicolor_glow_uri" />
+
+        <Preference
+            android:key="eos_interface_softkey_back_default_glow_color"
+            android:title="@string/eos_interface_softkey_glow_color_default" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/eos_interface_softkeys_home" >
+        <org.eos.controlcenter.MultiColorPreference
+            android:key="eos_softkey_color_home"
+            android:title="@string/eos_interface_softkey_color"
+            settings:keyIdentifier="1"
+            settings:targetUri2="@string/eos_interface_softkey_multicolor_key_uri" />
+
+        <Preference
+            android:key="eos_interface_softkey_home_default_key_color"
+            android:title="@string/eos_interface_softkey_color_default" />
+
+        <org.eos.controlcenter.MultiColorPreference
+            android:key="eos_softkey_glow_color_home"
+            android:title="@string/eos_interface_softkey_glow_color"
+            settings:keyIdentifier="1"
+            settings:targetUri2="@string/eos_interface_softkey_multicolor_glow_uri" />
+
+        <Preference
+            android:key="eos_interface_softkey_home_default_glow_color"
+            android:title="@string/eos_interface_softkey_glow_color_default" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="eos_interface_softkeys_recent"
+        android:title="@string/eos_interface_softkeys_recent" >
+        <org.eos.controlcenter.ActionPreference
+            android:dependency="eos_interface_softkey_enable_feature"
+            android:key="eos_interface_softkey_recent_longpress"
+            android:layout="@layout/softkey_longpress_preference"
+            android:summary="@string/eos_interface_softkeys_pref_default_summary"
+            android:title="@string/eos_interface_softkeys_pref_default_title"
+            android:widgetLayout="@layout/softkey_longpress_preference_widget"
+            settings:customSummary="@string/eos_interface_softkeys_custom_pref_summary"
+            settings:targetUri="@string/eos_interface_softkey_recent_target_uri" />
+
+        <org.eos.controlcenter.MultiColorPreference
+            android:key="eos_softkey_color_recent"
+            android:title="@string/eos_interface_softkey_color"
+            settings:keyIdentifier="2"
+            settings:targetUri2="@string/eos_interface_softkey_multicolor_key_uri" />
+
+        <Preference
+            android:key="eos_interface_softkey_recent_default_key_color"
+            android:title="@string/eos_interface_softkey_color_default" />
+
+        <org.eos.controlcenter.MultiColorPreference
+            android:key="eos_softkey_glow_color_recent"
+            android:title="@string/eos_interface_softkey_glow_color"
+            settings:keyIdentifier="2"
+            settings:targetUri2="@string/eos_interface_softkey_multicolor_glow_uri" />
+
+        <Preference
+            android:key="eos_interface_softkey_recent_default_glow_color"
+            android:title="@string/eos_interface_softkey_glow_color_default" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="eos_interface_softkeys_menu"
+        android:title="@string/eos_interface_softkeys_menu" >
+        <org.eos.controlcenter.ActionPreference
+            android:dependency="eos_interface_softkey_enable_feature"
+            android:key="eos_interface_softkey_menu_longpress"
+            android:layout="@layout/softkey_longpress_preference"
+            android:summary="@string/eos_interface_softkeys_pref_default_summary"
+            android:title="@string/eos_interface_softkeys_pref_default_title"
+            android:widgetLayout="@layout/softkey_longpress_preference_widget"
+            settings:customSummary="@string/eos_interface_softkeys_custom_pref_summary"
+            settings:targetUri="@string/eos_interface_softkey_menu_target_uri" />
+
+        <org.eos.controlcenter.MultiColorPreference
+            android:key="eos_softkey_color_menu"
+            android:title="@string/eos_interface_softkey_color"
+            settings:keyIdentifier="3"
+            settings:targetUri2="@string/eos_interface_softkey_multicolor_key_uri" />
+
+        <Preference
+            android:key="eos_interface_softkey_menu_default_key_color"
+            android:title="@string/eos_interface_softkey_color_default" />
+
+        <org.eos.controlcenter.MultiColorPreference
+            android:key="eos_softkey_glow_color_menu"
+            android:title="@string/eos_interface_softkey_glow_color"
+            settings:keyIdentifier="3"
+            settings:targetUri2="@string/eos_interface_softkey_multicolor_glow_uri" />
+
+        <Preference
+            android:key="eos_interface_softkey_menu_default_glow_color"
+            android:title="@string/eos_interface_softkey_glow_color_default" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="eos_interface_softkeys_extra_features"
+        android:title="@string/eos_interface_softkeys_extra_features" >
+        <CheckBoxPreference
+            android:key="eos_interface_softkey_menu_persist"
+            android:summary="@string/eos_interface_softkey_menu_persist_summary"
+            android:title="@string/eos_interface_softkey_menu_persist_title" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

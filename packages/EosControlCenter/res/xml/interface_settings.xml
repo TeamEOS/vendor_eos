@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2012 Team EOS
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
+    android:title="@string/eos_interface" >
+
+    <PreferenceCategory
+        android:key="eos_interface_theme"
+        android:title="@string/eos_interface_theme" >
+        <Preference
+            android:key="eos_interface_theme_pref"
+            android:title="@string/eos_interface_theme_pref_title" >
+            <intent
+                android:action="android.intent.action.MAIN"
+                android:targetClass="com.tmobile.themechooser.ThemeChooser"
+                android:targetPackage="com.tmobile.themechooser" />
+        </Preference>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="eos_interface_statusbar"
+        android:title="@string/eos_interface_statusbar" >
+        <PreferenceScreen
+            android:fragment="org.eos.controlcenter.BatteryActions"
+            android:key="eos_battery_settings"
+            android:title="@string/eos_interface_statusbar_battery_settings" />
+        <PreferenceScreen
+            android:fragment="org.eos.controlcenter.ClockActions"
+            android:key="eos_clock_settings"
+            android:title="@string/eos_interface_statusbar_clock_settings" />
+        <PreferenceScreen
+            android:fragment="org.eos.controlcenter.StatusBarColor"
+            android:key="eos_statbar_color_settings"
+            android:title="@string/eos_interface_statusbar_color" />
+         <PreferenceScreen
+            android:fragment="org.eos.controlcenter.QuickSettingsPanel"
+            android:key="eos_interface_panel_settings"
+            android:title="@string/eos_interface_panel_pref" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="eos_interface_navbar"
+        android:title="@string/eos_interface_navbar" >
+        <PreferenceScreen
+            android:fragment="org.eos.controlcenter.NavigationAreaActions"
+            android:key="eos_navbar_settings"
+            android:title="@string/eos_interface_navbar_appearance" />
+        <PreferenceScreen
+            android:fragment="org.eos.controlcenter.SoftKeyActions"
+            android:key="eos_softkey_settings"
+            android:title="@string/eos_interface_softkey_settings" />
+        <PreferenceScreen
+            android:fragment="org.eos.controlcenter.NavRingActions"
+            android:key="eos_navring_settings"
+            android:summary="@string/eos_interface_navring_settings_summary"
+            android:title="@string/eos_interface_navring_settings" />
+
+        <CheckBoxPreference
+            android:key="eos_interface_navbar_low_profile"
+            android:summary="@string/eos_interface_navbar_low_profile_summary"
+            android:title="@string/eos_interface_navbar_low_profile_title" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="eos_interface_lockscreen"
+        android:title="@string/eos_interface_lockscreen" >
+        <CheckBoxPreference
+            android:key="eos_interface_lockscreen_show_all_widgets"
+            android:summary="@string/eos_interface_lockscreen_show_all_widgets_summary"
+            android:title="@string/eos_interface_lockscreen_show_all_widgets" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="eos_interface_settings"
+        android:title="@string/eos_interface_settings" >
+        <CheckBoxPreference
+            android:key="eos_interface_settings_eos_settings_enabled"
+            android:summary="@string/eos_interface_eos_settings_enable_summary"
+            android:title="@string/eos_interface_eos_settings_enable_title" />
+
+        <org.eos.controlcenter.EosMultiSelectListPreference
+            android:key="eos_interface_eos_quick_enabled"
+            android:summary="@string/eos_interface_eos_settings_summary"
+            android:title="@string/eos_interface_eos_settings_enabled" />
+
+        <CheckBoxPreference
+            android:key="eos_interface_settings_indicator_visibility"
+            android:summary="@string/eos_interface_eos_settings_indicator_visibility_summary"
+            android:title="@string/eos_interface_eos_settings_indicator_visibility_title" />
+
+        <org.eos.controlcenter.ColorPreference
+            android:key="eos_interface_settings_indicator_color"
+            android:title="@string/eos_interface_settings_color_title" />
+
+        <Preference
+            android:key="eos_interface_settings_indicator_color_default"
+            android:title="@string/eos_interface_settings_color_default_title" />
+    </PreferenceCategory>
+
+</PreferenceScreen>
