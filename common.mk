@@ -22,6 +22,9 @@ PRODUCT_PACKAGES += \
     GooManager \
     busybox \
     thtt \
+    ntfs-3g.probe \
+    ntfsfix \
+    ntfs-3g \
     EosOverclockHelper \
     PhaseBeam \
     HoloSpiral \
