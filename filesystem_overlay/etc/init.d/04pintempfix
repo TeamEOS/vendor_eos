@@ -1,0 +1,4 @@
+#!/system/bin/sh
+
+# temp fix for pin/pattern lock freeze/unresponsive 
+rm /data/misc/keystore/.masterkey
