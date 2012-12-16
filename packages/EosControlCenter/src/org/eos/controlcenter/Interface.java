@@ -3,35 +3,26 @@ package org.eos.controlcenter;
 
 import java.util.Arrays;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import org.teameos.jellybean.settings.EOSConstants;
 
-//import com.android.internal.telephony.RILConstants;
-
-import android.content.ContentResolver;
+import android.content.ComponentName;
 import android.content.Context;
-import android.hardware.Camera;
-import android.hardware.Camera.Parameters;
-import android.net.ConnectivityManager;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.preference.CheckBoxPreference;
-import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
-import android.telephony.TelephonyManager;
-import android.util.Log;
 import android.view.IWindowManager;
-
-import com.android.internal.telephony.RILConstants;
 
 public class Interface extends PreferenceFragment implements OnPreferenceChangeListener {
 
@@ -49,6 +40,7 @@ public class Interface extends PreferenceFragment implements OnPreferenceChangeL
     // private CheckBoxPreference mRecentsMemDisplayPreference;
     private CheckBoxPreference mShowAllLockscreenWidgetsPreference;
     private CheckBoxPreference mLowProfileNavBar;
+    private CheckBoxPreference mTabletStyleBar;
     private CheckBoxPreference mEosTogglesEnabled;
     private CheckBoxPreference mHideIndicator;
     private ColorPreference mIndicatorColor;
@@ -80,6 +72,7 @@ public class Interface extends PreferenceFragment implements OnPreferenceChangeL
         // mRecentsMemDisplayPreference = (CheckBoxPreference)
         // findPreference("eos_interface_recents_mem_display");
         mLowProfileNavBar = (CheckBoxPreference) findPreference("eos_interface_navbar_low_profile");
+        mTabletStyleBar = (CheckBoxPreference) findPreference("eos_interface_navbar_tablet_style");
         mHideIndicator = (CheckBoxPreference) findPreference("eos_interface_settings_indicator_visibility");
         mIndicatorColor = (ColorPreference) findPreference("eos_interface_settings_indicator_color");
         mIndicatorDefaultColor = (Preference) findPreference("eos_interface_settings_indicator_color_default");
@@ -96,6 +89,13 @@ public class Interface extends PreferenceFragment implements OnPreferenceChangeL
             mLowProfileNavBar.setChecked(Settings.System.getInt(mContext.getContentResolver(),
                     EOSConstants.SYSTEMUI_BAR_SIZE_MODE, 0) == 1);
             mLowProfileNavBar.setOnPreferenceChangeListener(this);
+        }
+
+        if (mTabletStyleBar != null && mHasNavBar) {
+            mTabletStyleBar.setChecked(Settings.System.getInt(mContext.getContentResolver(),
+                    EOSConstants.SYSTEMUI_USE_HYBRID_STATBAR,
+                    EOSConstants.SYSTEMUI_USE_HYBRID_STATBAR_DEF) == 1);
+            mTabletStyleBar.setOnPreferenceChangeListener(this);
         }
 
         mEosSettingsEnabled = Settings.System.getInt(mContext.getContentResolver(),
@@ -229,6 +229,21 @@ public class Interface extends PreferenceFragment implements OnPreferenceChangeL
             Settings.System.putInt(mContext.getContentResolver(),
                     EOSConstants.SYSTEMUI_BAR_SIZE_MODE,
                     ((Boolean) newValue).booleanValue() ? 1 : 0);
+            return true;
+        } else if (preference.equals(mTabletStyleBar)) {
+            Settings.System.putInt(mContext.getContentResolver(),
+                    EOSConstants.SYSTEMUI_USE_HYBRID_STATBAR,
+                    ((Boolean) newValue).booleanValue() ? 1 : 0);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    // TODO Auto-generated method stub
+                    Intent i = new Intent();
+                    i.setComponent(ComponentName
+                            .unflattenFromString("com.android.systemui/.SystemUIService"));
+                    mContext.startService(i);
+                }
+            }, 250);
             return true;
         } else if (preference.equals(mHideIndicator)) {
             Settings.System.putInt(mContext.getContentResolver(),

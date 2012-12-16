@@ -50,6 +50,8 @@
     <string name="eos_interface_navbar_restore_stock_color">Restore stock color</string>
     <string name="eos_interface_navbar_low_profile_title">Low profile mode</string>
     <string name="eos_interface_navbar_low_profile_summary">A smaller navigation bar</string>
+    <string name="eos_interface_navbar_tablet_style_title">Tablet style bar</string>
+    <string name="eos_interface_navbar_tablet_style_summary">Old school feel, new style win</string>
     <string name="eos_interface_softkey_settings">Softkey Settings</string>
     <string name="eos_interface_softkeys_longpress">Long Press Actions</string>
     <string name="eos_interface_softkey_enable_feature">Enable Long Press feature</string>
