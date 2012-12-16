@@ -27,6 +27,8 @@ public class System extends PreferenceFragment implements OnPreferenceChangeList
 
     private static final String EOS_DEVICE_SETTINGS = "eos_device_settings";
     private static final String EOS_PERFORMANCE_SETTINGS = "eos_performance_settings";
+    private static final String PRIVACY = "eos_privacy_settings";
+    private static final String KEY_SCREENSHOT_FACTOR = "screenshot_scaling";
 
     private boolean hasDeviceSettings;
     private CheckBoxPreference mVolumeKeysSwitch;
@@ -37,31 +39,11 @@ public class System extends PreferenceFragment implements OnPreferenceChangeList
 
     private Context mContext;
     private ContentResolver mResolver;
-    private IWindowManager wm;
-    private boolean mHasNavBar = false;
-    private boolean mHasSystemBar = false;
-    private boolean mHasOnlyStatBar = false;
-
-    private final String PRIVACY = "eos_privacy_settings";
-    private final String PERFORMANCE = "eos_performance_settings";
-    private static final String KEY_SCREENSHOT_FACTOR = "screenshot_scaling";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.system_settings);
-
-        IWindowManager wm = IWindowManager.Stub.asInterface(
-                ServiceManager.getService(Context.WINDOW_SERVICE));
-        try {
-            mHasNavBar = wm.hasNavigationBar();
-            mHasSystemBar = wm.hasSystemNavBar();
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-        // use this to define crespo, just for now
-        if (!mHasNavBar && !mHasSystemBar)
-            mHasOnlyStatBar = true;
 
         mContext = getActivity();
         mResolver = mContext.getContentResolver();
@@ -156,7 +138,7 @@ public class System extends PreferenceFragment implements OnPreferenceChangeList
         if (pref.getKey().equals(PRIVACY)) {
             Main.showFragment("Privacy", new Privacy());
             return true;
-        } else if (pref.getKey().equals(PERFORMANCE)) {
+        } else if (pref.getKey().equals(EOS_PERFORMANCE_SETTINGS)) {
             Main.showFragment("Performance", new Performance());
         }
         return false;

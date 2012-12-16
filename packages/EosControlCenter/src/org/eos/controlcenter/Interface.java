@@ -13,8 +13,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.RemoteException;
-import android.os.ServiceManager;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
@@ -22,7 +20,6 @@ import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
-import android.view.IWindowManager;
 
 public class Interface extends PreferenceFragment implements OnPreferenceChangeListener {
 
@@ -55,14 +52,7 @@ public class Interface extends PreferenceFragment implements OnPreferenceChangeL
         addPreferencesFromResource(R.xml.interface_settings);
 
         mContext = getActivity();
-        IWindowManager mWindowManager = IWindowManager.Stub.asInterface(
-                ServiceManager.getService(Context.WINDOW_SERVICE));
-        try {
-            mHasNavBar = mWindowManager.hasNavigationBar();
-        } catch (RemoteException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        mHasNavBar = Utils.hasNavBar(mContext);
 
         mEosQuickSettingsView = (EosMultiSelectListPreference) findPreference("eos_interface_eos_quick_enabled");
         mEosTogglesEnabled = (CheckBoxPreference) findPreference("eos_interface_settings_eos_settings_enabled");
@@ -82,6 +72,13 @@ public class Interface extends PreferenceFragment implements OnPreferenceChangeL
             PreferenceCategory pc = (PreferenceCategory) ps.findPreference("eos_interface_navbar");
             if (pc != null)
                 ps.removePreference(pc);
+        }
+
+        if (!Utils.isHybridUI(mContext) && mTabletStyleBar != null) {
+            PreferenceScreen ps = this.getPreferenceScreen();
+            PreferenceCategory pc = (PreferenceCategory) ps.findPreference("eos_interface_navbar");
+            if (pc != null)
+                pc.removePreference(mTabletStyleBar);
         }
 
         // will be null on tablets and grouper in tablet mode

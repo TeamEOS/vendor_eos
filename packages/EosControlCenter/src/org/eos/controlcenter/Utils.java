@@ -5,8 +5,14 @@ import android.content.Context;
 import android.hardware.Camera;
 import android.hardware.Camera.Parameters;
 import android.net.ConnectivityManager;
+import android.os.RemoteException;
+import android.os.ServiceManager;
 import android.telephony.TelephonyManager;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
+import android.view.IWindowManager;
+import android.view.WindowManager;
 
 import com.android.internal.telephony.RILConstants;
 
@@ -53,4 +59,21 @@ public final class Utils {
         return tm.getLteOnCdmaMode() == RILConstants.LTE_ON_CDMA_TRUE;
     }
 
+    public static boolean isHybridUI(Context context) {
+        return context.getResources()
+                .getBoolean(com.android.internal.R.bool.config_isHybridUiDevice);
+    }
+
+    public static boolean hasNavBar(Context context) {
+        boolean mHasNavBar = false;
+        IWindowManager mWindowManager = IWindowManager.Stub.asInterface(
+                ServiceManager.getService(Context.WINDOW_SERVICE));
+        try {
+            mHasNavBar = mWindowManager.hasNavigationBar();
+        } catch (RemoteException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return mHasNavBar;
+    }
 }
