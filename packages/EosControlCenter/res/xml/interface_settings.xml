@@ -110,5 +110,17 @@
             android:key="eos_interface_settings_indicator_color_default"
             android:title="@string/eos_interface_settings_color_default_title" />
     </PreferenceCategory>
+    <PreferenceCategory
+        android:key="eos_interface_recents"
+        android:title="@string/eos_interface_recents" >
+        <CheckBoxPreference
+            android:title="@string/eos_interface_recents_killall_button_title"
+            android:summary="@string/eos_interface_recents_killall_button_description"
+            android:key="eos_interface_recents_killall_button" />
+        <CheckBoxPreference
+            android:title="@string/eos_interface_recents_mem_display_title"
+            android:summary="@string/eos_interface_recents_mem_display_description"
+            android:key="eos_interface_recents_mem_display" />
+    </PreferenceCategory>
 
 </PreferenceScreen>

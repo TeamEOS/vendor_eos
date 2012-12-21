@@ -33,8 +33,8 @@ public class Interface extends PreferenceFragment implements OnPreferenceChangeL
 
     private Context mContext;
 
-    // private CheckBoxPreference mRecentsKillallButtonPreference;
-    // private CheckBoxPreference mRecentsMemDisplayPreference;
+    private CheckBoxPreference mRecentsKillallButtonPreference;
+    private CheckBoxPreference mRecentsMemDisplayPreference;
     private CheckBoxPreference mShowAllLockscreenWidgetsPreference;
     private CheckBoxPreference mLowProfileNavBar;
     private CheckBoxPreference mTabletStyleBar;
@@ -57,10 +57,10 @@ public class Interface extends PreferenceFragment implements OnPreferenceChangeL
         mEosQuickSettingsView = (EosMultiSelectListPreference) findPreference("eos_interface_eos_quick_enabled");
         mEosTogglesEnabled = (CheckBoxPreference) findPreference("eos_interface_settings_eos_settings_enabled");
         mShowAllLockscreenWidgetsPreference = (CheckBoxPreference) findPreference("eos_interface_lockscreen_show_all_widgets");
-        // mRecentsKillallButtonPreference = (CheckBoxPreference)
-        // findPreference("eos_interface_recents_killall_button");
-        // mRecentsMemDisplayPreference = (CheckBoxPreference)
-        // findPreference("eos_interface_recents_mem_display");
+        mRecentsKillallButtonPreference = (CheckBoxPreference)
+        findPreference("eos_interface_recents_killall_button");
+        mRecentsMemDisplayPreference = (CheckBoxPreference)
+        findPreference("eos_interface_recents_mem_display");
         mLowProfileNavBar = (CheckBoxPreference) findPreference("eos_interface_navbar_low_profile");
         mTabletStyleBar = (CheckBoxPreference) findPreference("eos_interface_navbar_tablet_style");
         mHideIndicator = (CheckBoxPreference) findPreference("eos_interface_settings_indicator_visibility");
@@ -143,12 +143,10 @@ public class Interface extends PreferenceFragment implements OnPreferenceChangeL
             mIndicatorDefaultColor.setEnabled(mEosSettingsEnabled);
         }
 
-        /**
-         * if (mRecentsKillallButtonPreference != null) {
-         * mRecentsKillallButtonPreference.setOnPreferenceChangeListener(this);
-         * } if (mRecentsMemDisplayPreference != null) {
-         * mRecentsMemDisplayPreference.setOnPreferenceChangeListener(this); }
-         */
+        if (mRecentsKillallButtonPreference != null)
+            mRecentsKillallButtonPreference.setOnPreferenceChangeListener(this);
+        if (mRecentsMemDisplayPreference != null)
+            mRecentsMemDisplayPreference.setOnPreferenceChangeListener(this);
 
         if (mShowAllLockscreenWidgetsPreference != null) {
             mShowAllLockscreenWidgetsPreference.setChecked(Settings.System.getInt(
@@ -201,16 +199,14 @@ public class Interface extends PreferenceFragment implements OnPreferenceChangeL
                     newPreferenceValue.toString());
             return true;
         } else
-        /**
-         * if (preference.equals(mRecentsKillallButtonPreference)) {
-         * Settings.System.putInt(mContext.getContentResolver(),
-         * EOSConstants.SYSTEMUI_RECENTS_KILLALL_BUTTON, ((Boolean)
-         * newValue).booleanValue() ? 1 : 0); return true; } else if
-         * (preference.equals(mRecentsMemDisplayPreference)) {
-         * Settings.System.putInt(mContext.getContentResolver(),
-         * EOSConstants.SYSTEMUI_RECENTS_MEM_DISPLAY, ((Boolean)
-         * newValue).booleanValue() ? 1 : 0); return true; } else
-         */
+        if (preference.equals(mRecentsKillallButtonPreference)) {
+            Settings.System.putInt(mContext.getContentResolver(),
+            EOSConstants.SYSTEMUI_RECENTS_KILLALL_BUTTON, ((Boolean)
+            newValue).booleanValue() ? 1 : 0); return true; } else if
+            (preference.equals(mRecentsMemDisplayPreference)) {
+            Settings.System.putInt(mContext.getContentResolver(),
+            EOSConstants.SYSTEMUI_RECENTS_MEM_DISPLAY, ((Boolean)
+            newValue).booleanValue() ? 1 : 0); return true; } else
         if (preference.equals(mEosTogglesEnabled)) {
             mEosSettingsEnabled = ((Boolean) newValue).booleanValue();
             int val = mEosSettingsEnabled ? 1 : 0;
