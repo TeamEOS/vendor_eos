@@ -32,6 +32,7 @@ public class System extends PreferenceFragment implements OnPreferenceChangeList
 
     private boolean hasDeviceSettings;
     private CheckBoxPreference mVolumeKeysSwitch;
+    private CheckBoxPreference mVolumeKeysMusicControl;
     private ListPreference mWifiChannelsPreference;
     private ListPreference mDefaultVolumeStreamPreference;
     private ListPreference mScreenshotFactor;
@@ -62,6 +63,11 @@ public class System extends PreferenceFragment implements OnPreferenceChangeList
                 EOSConstants.SYSTEM_VOLUME_KEYS_SWITCH_ON_ROTATION,
                 EOSConstants.SYSTEM_VOLUME_KEYS_SWITCH_ON_ROTATION_DEF) == 1);
         mVolumeKeysSwitch.setOnPreferenceChangeListener(this);
+        
+        mVolumeKeysMusicControl = (CheckBoxPreference) findPreference("eos_system_volume_keys_music_control");
+        mVolumeKeysMusicControl.setChecked(Settings.System.getInt(mResolver,
+                EOSConstants.SYSTEM_VOLUME_KEYS_MUSIC_CONTROL, 1) == 1);
+        mVolumeKeysMusicControl.setOnPreferenceChangeListener(this);
 
         mWifiChannelsPreference = (ListPreference) findPreference("eos_wifi_regulatory_domain_selector");
         mWifiChannelsPreference.setOnPreferenceChangeListener(this);
@@ -96,6 +102,11 @@ public class System extends PreferenceFragment implements OnPreferenceChangeList
         if (mVolumeKeysSwitch.equals(preference)) {
             Settings.System.putInt(mContext.getContentResolver(),
                     EOSConstants.SYSTEM_VOLUME_KEYS_SWITCH_ON_ROTATION,
+                    ((Boolean) newValue).booleanValue() ? 1 : 0);
+            return true;
+        } else if (mVolumeKeysMusicControl.equals(preference)) {
+            Settings.System.putInt(mContext.getContentResolver(),
+                    EOSConstants.SYSTEM_VOLUME_KEYS_MUSIC_CONTROL,
                     ((Boolean) newValue).booleanValue() ? 1 : 0);
             return true;
         } else if (mWifiChannelsPreference.equals(preference)) {

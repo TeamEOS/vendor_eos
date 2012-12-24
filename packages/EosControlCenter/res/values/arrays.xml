@@ -35,8 +35,7 @@
     <string-array name="eos_panel_enabled_preferences">
         <item>QS_User</item>
         <item>QS_Settings</item>
-        <item>QS_Brightness</item>
-        <item>QS_Volume</item>
+        <item>QS_Seekbar</item>
         <item>QS_Battery</item>
         <item>QS_Rotation</item>
         <item>QS_Airplane</item>
@@ -53,8 +52,7 @@
     <string-array name="eos_panel_enabled_names">
         <item>Avatar</item>
         <item>Settings</item>
-        <item>Brightness</item>
-        <item>Media Volume</item>
+        <item>Brightness &amp; Volume Seekbars</item>
         <item>Battery</item>
         <item>Rotation Lock</item>
         <item>Airplane Mode</item>
