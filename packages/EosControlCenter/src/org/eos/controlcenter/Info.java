@@ -1,3 +1,4 @@
+
 package org.eos.controlcenter;
 
 import android.os.Bundle;
@@ -12,34 +13,34 @@ public class Info extends PreferenceFragment {
 
     private final String XDA = "xda_thread";
     private final String ROOTZ = "rootz_thread";
-    
+
     private String mDevice;
-    
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.info);
-        
+
         if (!Main.mTwoPane) {
             addPreferencesFromResource(R.xml.rom_links);
             getDevice();
-            
+
             Preference pXda = findPreference(XDA);
             Preference pRootz = findPreference(ROOTZ);
-            
+
             pXda.setSummary("Detected Device: " + mDevice);
             pRootz.setSummary("Detected Device: " + mDevice);
         }
     }
-    
+
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen prefScreen, Preference pref) {
         super.onPreferenceTreeClick(prefScreen, pref);
         if (pref.getKey().equals(XDA)) {
-            //TODO: launch device thread after thread creation
+            // TODO: launch device thread after thread creation
             return true;
         } else if (pref.getKey().equals(ROOTZ)) {
-            //TODO: launch device thread after thread creation
+            // TODO: launch device thread after thread creation
             return true;
         }
         return false;
@@ -60,7 +61,7 @@ public class Info extends PreferenceFragment {
             mBufferedReader.close();
             process.waitFor();
 
-            mDevice = output.toString().trim();		
+            mDevice = output.toString().trim();
         } catch (Exception e) {
         }
     }

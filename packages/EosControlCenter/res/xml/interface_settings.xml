@@ -46,7 +46,7 @@
             android:fragment="org.eos.controlcenter.StatusBarColor"
             android:key="eos_statbar_color_settings"
             android:title="@string/eos_interface_statusbar_color" />
-         <PreferenceScreen
+        <PreferenceScreen
             android:fragment="org.eos.controlcenter.QuickSettingsPanel"
             android:key="eos_interface_panel_settings"
             android:title="@string/eos_interface_panel_pref" />
@@ -67,10 +67,11 @@
             android:key="eos_navring_settings"
             android:summary="@string/eos_interface_navring_settings_summary"
             android:title="@string/eos_interface_navring_settings" />
+
         <CheckBoxPreference
             android:key="eos_interface_navbar_low_profile"
             android:summary="@string/eos_interface_navbar_low_profile_summary"
-            android:title="@string/eos_interface_navbar_low_profile_title" />        
+            android:title="@string/eos_interface_navbar_low_profile_title" />
         <CheckBoxPreference
             android:key="eos_interface_navbar_tablet_style"
             android:summary="@string/eos_interface_navbar_tablet_style_summary"
@@ -114,13 +115,13 @@
         android:key="eos_interface_recents"
         android:title="@string/eos_interface_recents" >
         <CheckBoxPreference
-            android:title="@string/eos_interface_recents_killall_button_title"
+            android:key="eos_interface_recents_killall_button"
             android:summary="@string/eos_interface_recents_killall_button_description"
-            android:key="eos_interface_recents_killall_button" />
+            android:title="@string/eos_interface_recents_killall_button_title" />
         <CheckBoxPreference
-            android:title="@string/eos_interface_recents_mem_display_title"
+            android:key="eos_interface_recents_mem_display"
             android:summary="@string/eos_interface_recents_mem_display_description"
-            android:key="eos_interface_recents_mem_display" />
+            android:title="@string/eos_interface_recents_mem_display_title" />
     </PreferenceCategory>
 
 </PreferenceScreen>

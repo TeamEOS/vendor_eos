@@ -1,10 +1,10 @@
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:text="@+id/TextView01" 
     android:id="@+id/TextView01"
-    android:layout_width="match_parent" 
-    android:layout_height="match_parent" 
-    android:textSize="22sp"
-    android:textColor="@android:color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="5dp"
     android:paddingLeft="5dp"
     android:paddingTop="5dp"
-    android:paddingBottom="5dp" />
+    android:text="@+id/TextView01"
+    android:textColor="@android:color/white"
+    android:textSize="22sp" />

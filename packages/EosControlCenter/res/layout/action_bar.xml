@@ -7,27 +7,27 @@
         android:id="@+id/iconImageView"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"  
-        android:src="@drawable/ic_launcher"
-        android:paddingLeft="3dp"/>
-    
+        android:paddingLeft="3dp"
+        android:src="@drawable/ic_launcher" />
+
     <TextView
         android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_toRightOf="@+id/iconImageView"
         android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/iconImageView"
         android:gravity="center"
-        android:textSize="18sp"
+        android:paddingLeft="5dp"
         android:textColor="@android:color/white"
-        android:paddingLeft="5dp" />
+        android:textSize="18sp" />
 
     <Spinner
         android:id="@+id/navigationSpinner"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true" />
 
 </RelativeLayout>

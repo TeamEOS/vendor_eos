@@ -63,7 +63,7 @@ public class System extends PreferenceFragment implements OnPreferenceChangeList
                 EOSConstants.SYSTEM_VOLUME_KEYS_SWITCH_ON_ROTATION,
                 EOSConstants.SYSTEM_VOLUME_KEYS_SWITCH_ON_ROTATION_DEF) == 1);
         mVolumeKeysSwitch.setOnPreferenceChangeListener(this);
-        
+
         mVolumeKeysMusicControl = (CheckBoxPreference) findPreference("eos_system_volume_keys_music_control");
         mVolumeKeysMusicControl.setChecked(Settings.System.getInt(mResolver,
                 EOSConstants.SYSTEM_VOLUME_KEYS_MUSIC_CONTROL, 1) == 1);

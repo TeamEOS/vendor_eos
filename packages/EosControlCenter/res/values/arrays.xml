@@ -31,7 +31,6 @@
         <item>USB tether</item>
         <item>LTE toggle</item>
     </string-array>
-
     <string-array name="eos_panel_enabled_preferences">
         <item>QS_User</item>
         <item>QS_Settings</item>
@@ -48,7 +47,6 @@
         <item>QS_WifiAp</item>
         <item>QS_Torch</item>
     </string-array>
-
     <string-array name="eos_panel_enabled_names">
         <item>Avatar</item>
         <item>Settings</item>
@@ -65,18 +63,15 @@
         <item>WiFi AP</item>
         <item>Torch</item>
     </string-array>
-
     <string-array name="eos_panel_column_names">
         <item>3 Columns</item>
         <item>4 Columns</item>
     </string-array>
-
     <string-array name="eos_panel_column_values">
         <item>3</item>
         <item>4</item>
     </string-array>
-
-<string-array name="eos_display_legal_rotation_names">
+    <string-array name="eos_display_legal_rotation_names">
         <item>90 Degrees</item>
         <item>180 Degrees</item>
         <item>270 Degrees</item>

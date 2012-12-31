@@ -394,10 +394,10 @@ public class ColorPickerDialog extends Dialog {
 
     // Source: http://www.anddev.org/announce_color_picker_dialog-t10771.html
     static final int[] STATE_FOCUSED = {
-        android.R.attr.state_focused
+            android.R.attr.state_focused
     };
     static final int[] STATE_PRESSED = {
-        android.R.attr.state_pressed
+            android.R.attr.state_pressed
     };
 
     static class TextSeekBarDrawable extends Drawable implements Runnable {

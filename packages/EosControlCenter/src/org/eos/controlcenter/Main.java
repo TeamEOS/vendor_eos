@@ -26,7 +26,7 @@ public class Main extends Activity {
 
     private static Activity mActivity;
     private static ArrayList<String> mFragmentsTitleList = new ArrayList<String>();
-    
+
     private static TextView mTitle;
     private Spinner mNavigation;
     private ImageView mIcon;
@@ -47,21 +47,23 @@ public class Main extends Activity {
             setContentView(R.layout.main);
         }
 
-        getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM); 
+        getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getActionBar().setCustomView(R.layout.action_bar);
-        
-        mTitle = (TextView) getActionBar().getCustomView().findViewById(R.id.titleTextView);       
+
+        mTitle = (TextView) getActionBar().getCustomView().findViewById(R.id.titleTextView);
         mNavigation = (Spinner) getActionBar().getCustomView().findViewById(R.id.navigationSpinner);
         mIcon = (ImageView) getActionBar().getCustomView().findViewById(R.id.iconImageView);
 
-        String[] tabsList = {"Interface", "System", "Information"};    	
-    	ArrayAdapter<String> spinnerDataAdapter = new ArrayAdapter<String>(this,
-    			R.layout.navigation_spinner_textview, tabsList);
-    	spinnerDataAdapter.setDropDownViewResource(R.layout.navigation_spinner_dropdown_textview);	    		
-    	mNavigation.setAdapter(spinnerDataAdapter);
+        String[] tabsList = {
+                "Interface", "System", "Information"
+        };
+        ArrayAdapter<String> spinnerDataAdapter = new ArrayAdapter<String>(this,
+                R.layout.navigation_spinner_textview, tabsList);
+        spinnerDataAdapter.setDropDownViewResource(R.layout.navigation_spinner_dropdown_textview);
+        mNavigation.setAdapter(spinnerDataAdapter);
         mNavigation.setOnItemSelectedListener(new OnNavigationItemSelectedListener());
 
-        mIcon.setOnClickListener(new OnClickListener(){
+        mIcon.setOnClickListener(new OnClickListener() {
             public void onClick(View view) {
                 onIconPressed();
             }
@@ -113,13 +115,13 @@ public class Main extends Activity {
             mTitle.setText("EOS Control Center");
         }
     }
-    
+
     private class SpaceHolder extends Fragment {
     }
-    
+
     private final class OnNavigationItemSelectedListener implements OnItemSelectedListener {
-		@Override
-		public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
             mFragmentsTitleList.clear();
 
@@ -133,23 +135,28 @@ public class Main extends Activity {
             }
 
             if (!mTwoPane) {
-                getFragmentManager().beginTransaction().replace(R.id.container, newFragment).commit();
+                getFragmentManager().beginTransaction().replace(R.id.container, newFragment)
+                        .commit();
             } else {
                 if (position != 2) {
-                    getFragmentManager().beginTransaction().replace(R.id.container, newFragment).commit();
-                    getFragmentManager().beginTransaction().replace(R.id.detail_container, new SpaceHolder()).commit();
+                    getFragmentManager().beginTransaction().replace(R.id.container, newFragment)
+                            .commit();
+                    getFragmentManager().beginTransaction()
+                            .replace(R.id.detail_container, new SpaceHolder()).commit();
                 } else {
-                    getFragmentManager().beginTransaction().replace(R.id.container, new RomLinks()).commit();
-                    getFragmentManager().beginTransaction().replace(R.id.detail_container, newFragment).commit();
+                    getFragmentManager().beginTransaction().replace(R.id.container, new RomLinks())
+                            .commit();
+                    getFragmentManager().beginTransaction()
+                            .replace(R.id.detail_container, newFragment).commit();
                 }
             }
-            
+
             mFragmentsTitleList.add("EOS Control Center");
             updateActionBarTitle();
-		}
-		 
-		@Override
-		public void onNothingSelected(AdapterView<?> arg0) {
-		}	 
-	}
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> arg0) {
+        }
+    }
 }
