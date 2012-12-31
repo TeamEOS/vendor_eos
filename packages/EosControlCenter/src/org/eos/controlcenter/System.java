@@ -36,6 +36,7 @@ public class System extends PreferenceFragment implements OnPreferenceChangeList
     private CheckBoxPreference mVolumeKeysSwitch;
     private CheckBoxPreference mVolumeKeysMusicControl;
     private CheckBoxPreference mBatteryWarning;
+    private CheckBoxPreference mScreenCharging;
     private ListPreference mWifiChannelsPreference;
     private ListPreference mDefaultVolumeStreamPreference;
     private ListPreference mScreenshotFactor;
@@ -72,6 +73,13 @@ public class System extends PreferenceFragment implements OnPreferenceChangeList
         mVolumeKeysMusicControl.setChecked(Settings.System.getInt(mResolver,
                 EOSConstants.SYSTEM_VOLUME_KEYS_MUSIC_CONTROL, 1) == 1);
         mVolumeKeysMusicControl.setOnPreferenceChangeListener(this);
+
+        boolean unplugTurnsOnScreen = mContext.getResources().getBoolean(com.android.internal.R.bool.config_unplugTurnsOnScreen);
+        mScreenCharging = (CheckBoxPreference) findPreference("eos_system_power_unplug_screen_off");
+        mScreenCharging.setChecked(Settings.System.getInt(mResolver,
+                EOSConstants.SYSTEM_POWER_DONT_WAKE_DEVICE_PLUGGED,
+                unplugTurnsOnScreen ? 0 : 1) == 1);
+        mScreenCharging.setOnPreferenceChangeListener(this);
 
         mWifiChannelsPreference = (ListPreference) findPreference("eos_wifi_regulatory_domain_selector");
         mWifiChannelsPreference.setOnPreferenceChangeListener(this);
@@ -161,6 +169,9 @@ public class System extends PreferenceFragment implements OnPreferenceChangeList
             return true;
         } else if (mWifiIdleMs.equals(preference)) {
             Settings.Secure.putLong(mContext.getContentResolver(), WIFI_IDLE_MS, Long.valueOf((String) newValue)); 
+        } else if (mScreenCharging.equals(preference)) {
+            Settings.System.putInt(mResolver, EOSConstants.SYSTEM_POWER_DONT_WAKE_DEVICE_PLUGGED,
+                    ((Boolean) newValue).booleanValue() ? 1 : 0);
             return true;
         }
         return false;

@@ -42,6 +42,11 @@
         android:summary="@string/eos_system_volume_keys_music_control_summary"
         android:title="@string/eos_system_volume_keys_music_control" />
 
+    <CheckBoxPreference
+        android:key="eos_system_power_unplug_screen_off"
+        android:summary="@string/eos_system_power_unplug_screen_off_summary"
+        android:title="@string/eos_system_power_unplug_screen_off_title" />
+
     <ListPreference
         android:entries="@array/eos_wifi_regulatory_domain_entries"
         android:entryValues="@array/eos_wifi_regulatory_domain_values"
