@@ -1,6 +1,8 @@
 
 package org.eos.controlcenter;
 
+import android.content.ContentResolver;
+import android.content.Context;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
@@ -56,6 +58,23 @@ public class SoftKeyActions extends ActionFragment
                 .setRestorePref((Preference) findPreference("eos_interface_softkey_menu_default_key_color"));
         ((MultiColorPreference) findPreference("eos_softkey_glow_color_menu"))
                 .setRestorePref((Preference) findPreference("eos_interface_softkey_menu_default_glow_color"));
+        checkColorUri();
+    }
+
+    // check for null uri values before preference is selected
+    // move here instead of the preference itself
+    private void checkColorUri() {
+        // test glow color and softkey color
+        ContentResolver resolver = ((Context) getActivity()).getContentResolver();
+        String filler = "-1|-1|-1|-1|";
+        String key = Settings.System.getString(resolver, "eos_systemui_navkey_color");
+        String glow = Settings.System.getString(resolver, "eos_systemui_navglow_color");
+        if (key == null || key.equals("") || key.equals(" ")) {
+            Settings.System.putString(resolver, "eos_systemui_navkey_color", filler);
+        }
+        if (glow == null || glow.equals("") || glow.equals(" ")) {
+            Settings.System.putString(resolver, "eos_systemui_navglow_color", filler);
+        }
     }
 
     @Override

@@ -117,15 +117,6 @@ public class MultiColorPreference extends Preference {
 
     private static int[] populateColorArray(String s) {
         int[] colorArray = new int[4];
-        if (s == null || s.equals("") || s.equals(" ")) {
-            // the whole uri was null
-            for (int i = 0; i < colorArray.length; i++) {
-                colorArray[i] = -1;
-                i++;
-            }
-            return colorArray;
-
-        }
         String[] colorStrings = s.split("\\|");
         int tmp = 0;
         for (String i : colorStrings) {
