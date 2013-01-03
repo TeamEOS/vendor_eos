@@ -69,26 +69,21 @@ PRODUCT_PACKAGES += \
 
 # Optional cfX packages
 PRODUCT_PACKAGES += \
+    audio_effects.conf \
+    AndroidTerm \
+    Apollo \
+    Basic \
+    CMFileManager \
     VideoEditor \
     VoiceDialer \
     SoundRecorder \
     ZeroXBenchmark \
-    CMFileManager \
-    Basic
 
 # Theme Chooser
 PRODUCT_PACKAGES += \
-        ThemeManager \
-        ThemeChooser \
-        com.tmobile.themes
-
-# Custom cfX packages
-PRODUCT_PACKAGES += \
-    DSPManager \
-    libcyanogen-dsp \
-    audio_effects.conf \
-    CMWallpapers \
-    Apollo
+    ThemeManager \
+    ThemeChooser \
+    com.tmobile.themes
 
 # Extra tools in cfX
 PRODUCT_PACKAGES += \
