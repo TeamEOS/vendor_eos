@@ -70,7 +70,6 @@ PRODUCT_PACKAGES += \
 # Optional cfX packages
 PRODUCT_PACKAGES += \
     audio_effects.conf \
-    AndroidTerm \
     Apollo \
     Basic \
     CMFileManager \
