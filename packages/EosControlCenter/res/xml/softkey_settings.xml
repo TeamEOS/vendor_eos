@@ -41,7 +41,7 @@
             settings:customSummary="@string/eos_interface_softkeys_custom_pref_summary"
             settings:targetUri="@string/eos_interface_softkey_back_target_uri" />
 
-        <org.eos.controlcenter.MultiColorPreference
+        <org.eos.controlcenter.ColorPreference
             android:key="eos_softkey_color_back"
             android:title="@string/eos_interface_softkey_color"
             settings:keyIdentifier="0"
@@ -51,7 +51,7 @@
             android:key="eos_interface_softkey_back_default_key_color"
             android:title="@string/eos_interface_softkey_color_default" />
 
-        <org.eos.controlcenter.MultiColorPreference
+        <org.eos.controlcenter.ColorPreference
             android:key="eos_softkey_glow_color_back"
             android:title="@string/eos_interface_softkey_glow_color"
             settings:keyIdentifier="0"
@@ -62,7 +62,7 @@
             android:title="@string/eos_interface_softkey_glow_color_default" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/eos_interface_softkeys_home" >
-        <org.eos.controlcenter.MultiColorPreference
+        <org.eos.controlcenter.ColorPreference
             android:key="eos_softkey_color_home"
             android:title="@string/eos_interface_softkey_color"
             settings:keyIdentifier="1"
@@ -72,7 +72,7 @@
             android:key="eos_interface_softkey_home_default_key_color"
             android:title="@string/eos_interface_softkey_color_default" />
 
-        <org.eos.controlcenter.MultiColorPreference
+        <org.eos.controlcenter.ColorPreference
             android:key="eos_softkey_glow_color_home"
             android:title="@string/eos_interface_softkey_glow_color"
             settings:keyIdentifier="1"
@@ -95,7 +95,7 @@
             settings:customSummary="@string/eos_interface_softkeys_custom_pref_summary"
             settings:targetUri="@string/eos_interface_softkey_recent_target_uri" />
 
-        <org.eos.controlcenter.MultiColorPreference
+        <org.eos.controlcenter.ColorPreference
             android:key="eos_softkey_color_recent"
             android:title="@string/eos_interface_softkey_color"
             settings:keyIdentifier="2"
@@ -105,7 +105,7 @@
             android:key="eos_interface_softkey_recent_default_key_color"
             android:title="@string/eos_interface_softkey_color_default" />
 
-        <org.eos.controlcenter.MultiColorPreference
+        <org.eos.controlcenter.ColorPreference
             android:key="eos_softkey_glow_color_recent"
             android:title="@string/eos_interface_softkey_glow_color"
             settings:keyIdentifier="2"
@@ -128,7 +128,7 @@
             settings:customSummary="@string/eos_interface_softkeys_custom_pref_summary"
             settings:targetUri="@string/eos_interface_softkey_menu_target_uri" />
 
-        <org.eos.controlcenter.MultiColorPreference
+        <org.eos.controlcenter.ColorPreference
             android:key="eos_softkey_color_menu"
             android:title="@string/eos_interface_softkey_color"
             settings:keyIdentifier="3"
@@ -138,7 +138,7 @@
             android:key="eos_interface_softkey_menu_default_key_color"
             android:title="@string/eos_interface_softkey_color_default" />
 
-        <org.eos.controlcenter.MultiColorPreference
+        <org.eos.controlcenter.ColorPreference
             android:key="eos_softkey_glow_color_menu"
             android:title="@string/eos_interface_softkey_glow_color"
             settings:keyIdentifier="3"
