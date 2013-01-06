@@ -236,6 +236,9 @@ public class Interface extends PreferenceFragment implements OnPreferenceChangeL
                     i.setComponent(ComponentName
                             .unflattenFromString("com.android.systemui/.SystemUIService"));
                     mContext.startService(i);
+                    Intent intent = new Intent().setAction(EOSConstants.INTENT_EOS_CONTROL_CENTER);
+                    intent.putExtra(EOSConstants.INTENT_EOS_CONTROL_CENTER_EXTRAS_STATE, true);
+                    mContext.sendBroadcast(intent);
                 }
             }, 250);
             return true;

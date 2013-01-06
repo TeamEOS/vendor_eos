@@ -5,6 +5,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -20,6 +21,8 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 
+import org.teameos.jellybean.settings.EOSConstants;
+
 import java.util.ArrayList;
 
 public class Main extends Activity {
@@ -32,6 +35,8 @@ public class Main extends Activity {
     private ImageView mIcon;
 
     public static boolean mTwoPane = false;
+    private static boolean STATE_ON = true;
+    private static boolean STATE_OFF = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +73,24 @@ public class Main extends Activity {
                 onIconPressed();
             }
         });
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        notifyEosUiController(STATE_ON);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        notifyEosUiController(STATE_OFF);
+    }
+
+    private void notifyEosUiController(boolean state) {
+        Intent i = new Intent().setAction(EOSConstants.INTENT_EOS_CONTROL_CENTER);
+        i.putExtra(EOSConstants.INTENT_EOS_CONTROL_CENTER_EXTRAS_STATE, state);
+        sendBroadcast(i);
     }
 
     public static void showFragment(String title, Fragment fragment) {
