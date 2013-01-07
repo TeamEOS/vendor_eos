@@ -63,6 +63,7 @@ PRODUCT_PACKAGES += \
     Email \
     LatinIME \
     Launcher2 \
+    LockClock \
     SpareParts \
     Superuser \
     su
