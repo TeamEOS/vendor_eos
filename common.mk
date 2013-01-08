@@ -18,7 +18,7 @@
 
 PRODUCT_PACKAGES += \
     TerminalEmulator \
-	Superuser \
+    Superuser \
     GooManager \
     busybox \
     thtt \
@@ -33,6 +33,14 @@ PRODUCT_PACKAGES += \
     com.tmobile.themes \
     fstrim \
     EosControlCenter \
+    libnl \
+    iw \
+    tcpdump \
+    powertop \
+    dropbear \
+    scp \
+    sftp \
+    ssh-keygen
 
 PRODUCT_COPY_FILES += \
     vendor/eos/filesystem_overlay/etc/permissions/com.tmobile.software.themes.xml:system/etc/permissions/com.tmobile.software.themes.xml \
