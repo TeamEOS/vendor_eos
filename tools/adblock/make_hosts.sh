@@ -1,5 +1,5 @@
 #!/bin/bash
-DATE=`date -u +%H:%M:%S\ %d.%m.%Y`
+DATE=`date -u +%Y-%m-%d\ %H:%M:%S\ %Z`
 PWD=`pwd`
 
 ## First feed
@@ -31,7 +31,9 @@ sed -i '/^$/d' $PWD/temp_hosts1
 ## $DATE
 ##
 127.0.0.1 localhost
+
 EOF
 
 awk '!seen[$0]++' $PWD/temp_hosts1 |sort >> $PWD/hosts
+mv $PWD/hosts ../../prebuilt/common/etc/hosts
 rm temp_*
