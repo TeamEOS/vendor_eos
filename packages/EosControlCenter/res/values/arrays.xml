@@ -46,6 +46,7 @@
         <item>QS_Location</item>
         <item>QS_WifiAp</item>
         <item>QS_Torch</item>
+        <item>QS_LTE</item>
     </string-array>
     <string-array name="eos_panel_enabled_names">
         <item>Avatar</item>
@@ -62,6 +63,7 @@
         <item>GPS</item>
         <item>WiFi AP</item>
         <item>Torch</item>
+        <item>LTE</item>
     </string-array>
     <string-array name="eos_panel_column_names">
         <item>3 Columns</item>

@@ -74,6 +74,10 @@ public class QuickSettingsPanel extends PreferenceFragment implements OnPreferen
         if (!Utils.hasTorch()) {
             mEosQuickPanelView.removeValueEntry(EOSConstants.SYSTEMUI_PANEL_TORCH_TILE);
         }
+
+        if(!Utils.isCdmaLTE(mContext)) {
+            mEosQuickPanelView.removeValueEntry(EOSConstants.SYSTEMUI_PANEL_LTE_TILE);
+        }
         mEosQuickPanelView.setEnabled(true);
     }
 
