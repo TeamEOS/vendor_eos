@@ -6,5 +6,8 @@
         <!-- The Google provider -->
         <item>com.google.android.location</item>
     </string-array>
+
+    <!--  Maximum number of supported users -->
+    <integer name="config_multiuserMaximumUsers">8</integer>
 </resources>
 
