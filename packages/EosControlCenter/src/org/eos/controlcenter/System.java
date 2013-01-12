@@ -29,6 +29,8 @@ public class System extends PreferenceFragment implements OnPreferenceChangeList
     private static final String EOS_PERFORMANCE_SETTINGS = "eos_performance_settings";
     private static final String PRIVACY = "eos_privacy_settings";
     private static final String KEY_SCREENSHOT_FACTOR = "screenshot_scaling";
+    
+    private static final String WIFI_IDLE_MS = "wifi_idle_ms";
 
     private boolean hasDeviceSettings;
     private CheckBoxPreference mVolumeKeysSwitch;
@@ -36,6 +38,7 @@ public class System extends PreferenceFragment implements OnPreferenceChangeList
     private ListPreference mWifiChannelsPreference;
     private ListPreference mDefaultVolumeStreamPreference;
     private ListPreference mScreenshotFactor;
+    private ListPreference mWifiIdleMs;
     private EditTextPreference mHostnamePreference;
 
     private Context mContext;
@@ -80,7 +83,11 @@ public class System extends PreferenceFragment implements OnPreferenceChangeList
             currentStreamValue = "default";
         }
         mDefaultVolumeStreamPreference.setValue(currentStreamValue);
-
+        
+        mWifiIdleMs = (ListPreference) findPreference("eos_wifi_idle_ms");
+        mWifiIdleMs.setOnPreferenceChangeListener(this);
+        mWifiIdleMs.setValue(String.valueOf(Settings.Secure.getLong(mContext.getContentResolver(), WIFI_IDLE_MS, 900000)));
+        
         mScreenshotFactor = (ListPreference) findPreference(KEY_SCREENSHOT_FACTOR);
         mScreenshotFactor.setOnPreferenceChangeListener(this);
         int currentVal = Settings.System.getInt(mResolver,
@@ -138,6 +145,9 @@ public class System extends PreferenceFragment implements OnPreferenceChangeList
             Settings.System.putString(mResolver, EOSConstants.NET_HOSTNAME, value);
             SystemProperties.set("net.hostname", value);
             mHostnamePreference.setSummary(value);
+            return true;
+        } else if (mWifiIdleMs.equals(preference)) {
+            Settings.Secure.putLong(mContext.getContentResolver(), WIFI_IDLE_MS, Long.valueOf((String) newValue)); 
             return true;
         }
         return false;

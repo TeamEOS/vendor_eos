@@ -88,6 +88,8 @@
     <string name="eos_system_volume_default_stream_description">Default volume stream to control when none is specified</string>
     <string name="eos_system_volume_keys_music_control">Volume keys long press music control</string>
     <string name="eos_system_volume_keys_music_control_summary">Long press volume up or down to seek music and both to toggle play/pause</string>
+    <string name="eos_system_wifi_idle_ms">Screen Off Wifi Idle Delay</string>
+    <string name="eos_system_wifi_idle_ms_summary">Override Wifi timeout delay when keep on during sleep is set to never or plugged in</string>
     <string name="eos_performance">Performance Settings</string>
     <string name="eos_performance_cpu">CPU Overclocking</string>
     <string name="eos_performance_cpu_on_boot">Set clock values on boot</string>

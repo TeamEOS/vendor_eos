@@ -148,5 +148,19 @@
         <item>blacklist</item>
         <item>whitelist</item>
     </string-array>
+    <string-array name="eos_wifi_idle_ms_entries">
+        <item>15 Seconds</item>
+        <item>30 Seconds</item>
+        <item>1 Minute</item>
+        <item>5 Minutes</item>
+        <item>15 Minutes</item>
+    </string-array>
+    <string-array name="eos_wifi_idle_ms_values">
+        <item>15000</item>
+        <item>30000</item>
+        <item>60000</item>
+        <item>300000</item>
+        <item>900000</item>
+    </string-array>
 
 </resources>

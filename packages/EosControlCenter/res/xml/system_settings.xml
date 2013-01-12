@@ -49,6 +49,14 @@
         android:title="@string/eos_wifi_regulatory_domain_selector" >
     </ListPreference>
 
+    <ListPreference
+        android:entries="@array/eos_wifi_idle_ms_entries"
+        android:entryValues="@array/eos_wifi_idle_ms_values"
+        android:key="eos_wifi_idle_ms"
+        android:title="@string/eos_system_wifi_idle_ms"
+        android:summary="@string/eos_system_wifi_idle_ms_summary" >
+    </ListPreference>
+
     <PreferenceScreen
         android:fragment="org.eos.controlcenter.Privacy"
         android:key="eos_privacy_settings"
