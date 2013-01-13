@@ -1,13 +1,12 @@
 
 package org.eos.controlcenter;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
-import android.preference.PreferenceScreen;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 
 public class Info extends PreferenceFragment {
 
@@ -15,54 +14,47 @@ public class Info extends PreferenceFragment {
     private final String ROOTZ = "rootz_thread";
 
     private String mDevice;
+    private String mXdaUrl;
+    private String mRootzUrl;
+
+    private Context mContext;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.info);
+        mContext = (Context) getActivity();
 
         if (!Main.mTwoPane) {
             addPreferencesFromResource(R.xml.rom_links);
-            getDevice();
+            mDevice = Utils.getDevice();
+            mXdaUrl = Utils.getXdaUrl(mContext, mDevice);
+            mRootzUrl = Utils.getRootzUrl(mContext, mDevice);
 
             Preference pXda = findPreference(XDA);
-            Preference pRootz = findPreference(ROOTZ);
+            pXda.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(mXdaUrl));
+                    startActivity(intent);
+                    return false;
+                }
+            });
+
+//            Preference pRootz = findPreference(ROOTZ);
+
+            // Disable until we get rootz links
+//            pRootz.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+//                @Override
+//                public boolean onPreferenceClick(Preference preference) {
+//                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(mRootzUrl));
+//                    startActivity(intent);
+//                    return false;
+//                }
+//            });
 
             pXda.setSummary("Detected Device: " + mDevice);
-            pRootz.setSummary("Detected Device: " + mDevice);
-        }
-    }
-
-    @Override
-    public boolean onPreferenceTreeClick(PreferenceScreen prefScreen, Preference pref) {
-        super.onPreferenceTreeClick(prefScreen, pref);
-        if (pref.getKey().equals(XDA)) {
-            // TODO: launch device thread after thread creation
-            return true;
-        } else if (pref.getKey().equals(ROOTZ)) {
-            // TODO: launch device thread after thread creation
-            return true;
-        }
-        return false;
-    }
-
-    private void getDevice() {
-        try {
-            Process process = Runtime.getRuntime().exec("/system/bin/getprop ro.goo.board");
-
-            BufferedReader mBufferedReader = new BufferedReader(
-                    new InputStreamReader(process.getInputStream()));
-            int read;
-            char[] buffer = new char[4096];
-            StringBuffer output = new StringBuffer();
-            while ((read = mBufferedReader.read(buffer)) > 0) {
-                output.append(buffer, 0, read);
-            }
-            mBufferedReader.close();
-            process.waitFor();
-
-            mDevice = output.toString().trim();
-        } catch (Exception e) {
+//            pRootz.setSummary("Detected Device: " + mDevice);
         }
     }
 }

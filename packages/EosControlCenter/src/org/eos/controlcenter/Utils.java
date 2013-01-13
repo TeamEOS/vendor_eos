@@ -16,6 +16,8 @@ import android.view.WindowManager;
 
 import com.android.internal.telephony.RILConstants;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.List;
 
 public final class Utils {
@@ -75,5 +77,70 @@ public final class Utils {
             e.printStackTrace();
         }
         return mHasNavBar;
+    }
+
+    public static String getDevice() {
+        try {
+            Process process = Runtime.getRuntime().exec("/system/bin/getprop ro.goo.board");
+
+            BufferedReader mBufferedReader = new BufferedReader(
+                    new InputStreamReader(process.getInputStream()));
+            int read;
+            char[] buffer = new char[4096];
+            StringBuffer output = new StringBuffer();
+            while ((read = mBufferedReader.read(buffer)) > 0) {
+                output.append(buffer, 0, read);
+            }
+            mBufferedReader.close();
+            process.waitFor();
+
+            return output.toString().trim();
+        } catch (Exception e) {
+            return "error getting device name";
+        }
+    }
+    
+    public static String getXdaUrl(Context context, String device) {
+        if(device.equals("grouper")) {
+            return context.getString(R.string.eos_information_rom_link_xda_grouper);
+        } else if (device.equals("maguro")) {
+            return context.getString(R.string.eos_information_rom_link_xda_maguro);
+        } else if (device.equals("toro")) {
+            return context.getString(R.string.eos_information_rom_link_xda_toro);
+        } else if (device.equals("toroplus")) {
+            return context.getString(R.string.eos_information_rom_link_xda_toroplus);
+        } else if (device.equals("wingray")) {
+            return context.getString(R.string.eos_information_rom_link_xda_wingray);
+        } else if (device.equals("stingray")) {
+            return context.getString(R.string.eos_information_rom_link_xda_stingray);
+        } else if (device.equals("umts_everest")) {
+            return context.getString(R.string.eos_information_rom_link_xda_umts_everest);
+        } else if (device.equals("tf101")) {
+            return context.getString(R.string.eos_information_rom_link_xda_tf101);
+        } else {
+            return "hello";
+        }        
+    }
+    
+    public static String getRootzUrl(Context context, String device) {
+        if(device.equals("grouper")) {
+            return context.getString(R.string.eos_information_rom_link_rootz_grouper);
+        } else if (device.equals("maguro")) {
+            return context.getString(R.string.eos_information_rom_link_rootz_maguro);
+        } else if (device.equals("toro")) {
+            return context.getString(R.string.eos_information_rom_link_rootz_toro);
+        } else if (device.equals("toroplus")) {
+            return context.getString(R.string.eos_information_rom_link_rootz_toroplus);
+        } else if (device.equals("wingray")) {
+            return context.getString(R.string.eos_information_rom_link_rootz_wingray);
+        } else if (device.equals("stingray")) {
+            return context.getString(R.string.eos_information_rom_link_rootz_stingray);
+        } else if (device.equals("umts_everest")) {
+            return context.getString(R.string.eos_information_rom_link_rootz_umts_everest);
+        } else if (device.equals("tf101")) {
+            return context.getString(R.string.eos_information_rom_link_rootz_tf101);
+        } else {
+            return "hello";
+        }    
     }
 }

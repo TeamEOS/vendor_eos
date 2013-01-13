@@ -142,5 +142,21 @@
     <string name="eos_interface_panel_pref">Settings Panel Controls</string>
     <string name="eos_interface_panel_column_title">Column width</string>
     <string name="eos_interface_panel_column_summary">Number of single tiles per row</string>
+    <string name="eos_information_rom_link_xda_grouper">http://forum.xda-developers.com/showthread.php?t=2052854</string>
+    <string name="eos_information_rom_link_rootz_grouper"></string>
+    <string name="eos_information_rom_link_xda_toro">http://forum.xda-developers.com/showthread.php?t=2052838</string>
+    <string name="eos_information_rom_link_rootz_toro"></string>
+    <string name="eos_information_rom_link_xda_toroplus">http://forum.xda-developers.com/showthread.php?t=2063392</string>
+    <string name="eos_information_rom_link_rootz_toroplus"></string>
+    <string name="eos_information_rom_link_xda_maguro">http://forum.xda-developers.com/showthread.php?t=2052853</string>
+    <string name="eos_information_rom_link_rootz_maguro"></string>
+    <string name="eos_information_rom_link_xda_wingray">http://forum.xda-developers.com/showthread.php?t=2026100</string>
+    <string name="eos_information_rom_link_rootz_wingray"></string>
+    <string name="eos_information_rom_link_xda_stingray">http://forum.xda-developers.com/showthread.php?t=2088705</string>
+    <string name="eos_information_rom_link_rootz_stingray"></string>
+    <string name="eos_information_rom_link_xda_umts_everest">http://forum.xda-developers.com/showthread.php?t=2088717</string>
+    <string name="eos_information_rom_link_rootz_umts_everest"></string>
+    <string name="eos_information_rom_link_xda_tf101">http://forum.xda-developers.com/showthread.php?t=2063406</string>
+    <string name="eos_information_rom_link_rootz_tf101"></string>
 
 </resources>

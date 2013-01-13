@@ -8,8 +8,5 @@
     <Preference
         android:key="xda_thread"
         android:title="XDA Device Thread" />
-    <Preference
-        android:key="rootz_thread"
-        android:title="RootzWiki Device Thread" />
 
 </PreferenceScreen>
