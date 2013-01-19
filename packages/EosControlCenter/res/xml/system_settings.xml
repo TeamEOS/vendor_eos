@@ -70,6 +70,11 @@
         android:summary="@string/eos_screenshot_scaling_summary"
         android:title="@string/eos_screenshot_scaling_title" />
 
+    <CheckBoxPreference
+        android:key="eos_system_disable_battery_warning"
+        android:summary="@string/eos_system_disable_battery_warning_summary"
+        android:title="@string/eos_system_disable_battery_warning_title" />
+
     <EditTextPreference
         android:key="eos_net_hostname"
         android:title="@string/eos_net_hostname" />

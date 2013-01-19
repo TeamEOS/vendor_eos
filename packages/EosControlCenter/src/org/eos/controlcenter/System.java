@@ -35,6 +35,7 @@ public class System extends PreferenceFragment implements OnPreferenceChangeList
     private boolean hasDeviceSettings;
     private CheckBoxPreference mVolumeKeysSwitch;
     private CheckBoxPreference mVolumeKeysMusicControl;
+    private CheckBoxPreference mBatteryWarning;
     private ListPreference mWifiChannelsPreference;
     private ListPreference mDefaultVolumeStreamPreference;
     private ListPreference mScreenshotFactor;
@@ -95,6 +96,13 @@ public class System extends PreferenceFragment implements OnPreferenceChangeList
         mScreenshotFactor.setValue(String.valueOf(currentVal));
         updateScreenshotFactorSummary(currentVal);
 
+        mBatteryWarning = (CheckBoxPreference) findPreference("eos_system_disable_battery_warning");
+        mBatteryWarning.setChecked(Settings.System.getInt(mResolver,
+                EOSConstants.SYSTEM_DISABLE_LOW_BATTERY_WARNING,
+                EOSConstants.SYSTEM_DISABLE_LOW_BATTERY_WARNING_DEF)
+                == EOSConstants.SYSTEM_DISABLE_LOW_BATTERY_WARNING_DEF ? false : true);
+        mBatteryWarning.setOnPreferenceChangeListener(this);
+
         mHostnamePreference = (EditTextPreference) findPreference("eos_net_hostname");
         String hostname = Settings.System.getString(mResolver, EOSConstants.NET_HOSTNAME);
         if (TextUtils.isEmpty(hostname))
@@ -135,6 +143,11 @@ public class System extends PreferenceFragment implements OnPreferenceChangeList
             int val = Integer.parseInt((String) newValue);
             Settings.System.putInt(mResolver, EOSConstants.SYSTEMUI_SCREENSHOT_SCALE_INDEX, val);
             updateScreenshotFactorSummary(val);
+            return true;
+        } else if (mBatteryWarning.equals(preference)) {
+            Settings.System.putInt(mResolver,
+                    EOSConstants.SYSTEM_DISABLE_LOW_BATTERY_WARNING,
+                    ((Boolean) newValue).booleanValue() ? 1 : 0);
             return true;
         } else if (mHostnamePreference.equals(preference)) {
             String value = (String) newValue;
