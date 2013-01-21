@@ -94,6 +94,10 @@
     <string name="eos_system_disable_battery_warning_summary">Prevent annoying low battery warning alerts from popping up</string>
     <string name="eos_system_power_unplug_screen_off_title">Screen behavior when charging</string>
     <string name="eos_system_power_unplug_screen_off_summary">Screen stays off when plugged or unplugged</string>
+    <string name="eos_system_power_crt_screen_off_title">CRT Screen Off</string>
+    <string name="eos_system_power_crt_screen_off_summary">Screen will animate an Electron Beam when turned off</string>
+    <string name="eos_system_power_crt_screen_on_title">CRT Screen On</string>
+    <string name="eos_system_power_crt_screen_on_summary">Screen will animate an Electron Beam when turned on</string>
     <string name="eos_performance">Performance Settings</string>
     <string name="eos_performance_cpu">CPU Overclocking</string>
     <string name="eos_performance_cpu_on_boot">Set clock values on boot</string>

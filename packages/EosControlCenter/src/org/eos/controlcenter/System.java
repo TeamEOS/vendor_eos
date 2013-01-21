@@ -33,10 +33,13 @@ public class System extends PreferenceFragment implements OnPreferenceChangeList
     private static final String WIFI_IDLE_MS = "wifi_idle_ms";
 
     private boolean hasDeviceSettings;
+    private boolean isCrtOffChecked = false;
     private CheckBoxPreference mVolumeKeysSwitch;
     private CheckBoxPreference mVolumeKeysMusicControl;
     private CheckBoxPreference mBatteryWarning;
     private CheckBoxPreference mScreenCharging;
+    private CheckBoxPreference mCrtOff;
+    private CheckBoxPreference mCrtOn;
     private ListPreference mWifiChannelsPreference;
     private ListPreference mDefaultVolumeStreamPreference;
     private ListPreference mScreenshotFactor;
@@ -80,6 +83,28 @@ public class System extends PreferenceFragment implements OnPreferenceChangeList
                 EOSConstants.SYSTEM_POWER_DONT_WAKE_DEVICE_PLUGGED,
                 unplugTurnsOnScreen ? 0 : 1) == 1);
         mScreenCharging.setOnPreferenceChangeListener(this);
+
+        // respect device default configuration
+        // true fades while false animates
+        boolean electronBeamFadesConfig = mContext.getResources().getBoolean(
+                com.android.internal.R.bool.config_animateScreenLights);
+
+        // use this to enable/disable crt on feature
+        // crt only works if crt off is enabled
+        // total system failure if only crt on is enabled
+        isCrtOffChecked = Settings.System.getInt(mResolver,
+                EOSConstants.SYSTEM_POWER_ENABLE_CRT_OFF,
+                electronBeamFadesConfig ? 0 : 1) == 1;
+
+        mCrtOff = (CheckBoxPreference) findPreference("eos_system_power_crt_screen_off");
+        mCrtOff.setChecked(isCrtOffChecked);
+        mCrtOff.setOnPreferenceChangeListener(this);
+
+        mCrtOn = (CheckBoxPreference) findPreference("eos_system_power_crt_screen_on");
+        mCrtOn.setChecked(Settings.System.getInt(mResolver,
+                EOSConstants.SYSTEM_POWER_ENABLE_CRT_ON, 0) == 1);
+        mCrtOn.setEnabled(isCrtOffChecked);
+        mCrtOn.setOnPreferenceChangeListener(this);
 
         mWifiChannelsPreference = (ListPreference) findPreference("eos_wifi_regulatory_domain_selector");
         mWifiChannelsPreference.setOnPreferenceChangeListener(this);
@@ -171,6 +196,21 @@ public class System extends PreferenceFragment implements OnPreferenceChangeList
             Settings.Secure.putLong(mContext.getContentResolver(), WIFI_IDLE_MS, Long.valueOf((String) newValue)); 
         } else if (mScreenCharging.equals(preference)) {
             Settings.System.putInt(mResolver, EOSConstants.SYSTEM_POWER_DONT_WAKE_DEVICE_PLUGGED,
+                    ((Boolean) newValue).booleanValue() ? 1 : 0);
+            return true;
+        } else if (mCrtOff.equals(preference)) {
+            isCrtOffChecked = ((Boolean) newValue).booleanValue();
+            Settings.System.putInt(mResolver, EOSConstants.SYSTEM_POWER_ENABLE_CRT_OFF,
+                    (isCrtOffChecked ? 1 : 0));
+            // if crt off gets turned off, crt on gets turned off and disabled
+            if (!isCrtOffChecked) {
+                Settings.System.putInt(mResolver, EOSConstants.SYSTEM_POWER_ENABLE_CRT_ON, 0);
+                mCrtOn.setChecked(false);
+            }
+            mCrtOn.setEnabled(isCrtOffChecked);
+            return true;
+        } else if (mCrtOn.equals(preference)) {
+            Settings.System.putInt(mResolver, EOSConstants.SYSTEM_POWER_ENABLE_CRT_ON,
                     ((Boolean) newValue).booleanValue() ? 1 : 0);
             return true;
         }
