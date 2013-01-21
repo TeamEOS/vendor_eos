@@ -54,6 +54,10 @@
     <PreferenceCategory
         android:key="eos_interface_navbar"
         android:title="@string/eos_interface_navbar" >
+        <CheckBoxPreference
+            android:key="eos_interface_hide_navbar"
+            android:summary="@string/eos_interface_hide_navbar_summary"
+            android:title="@string/eos_interface_hide_navbar_title" />
         <PreferenceScreen
             android:fragment="org.eos.controlcenter.NavigationAreaActions"
             android:key="eos_navbar_settings"
@@ -67,7 +71,6 @@
             android:key="eos_navring_settings"
             android:summary="@string/eos_interface_navring_settings_summary"
             android:title="@string/eos_interface_navring_settings" />
-
         <CheckBoxPreference
             android:key="eos_interface_navbar_low_profile"
             android:summary="@string/eos_interface_navbar_low_profile_summary"

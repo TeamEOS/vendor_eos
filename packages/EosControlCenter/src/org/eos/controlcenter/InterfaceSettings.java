@@ -1,4 +1,3 @@
-
 package org.eos.controlcenter;
 
 import java.util.Arrays;
@@ -38,6 +37,7 @@ public class InterfaceSettings extends PreferenceFragment implements OnPreferenc
     private CheckBoxPreference mRecentsMemDisplayPreference;
     private CheckBoxPreference mShowAllLockscreenWidgetsPreference;
     private CheckBoxPreference mLowProfileNavBar;
+    private CheckBoxPreference mHideNavBar;
     private CheckBoxPreference mTabletStyleBar;
     private CheckBoxPreference mEosTogglesEnabled;
     private CheckBoxPreference mHideIndicator;
@@ -73,35 +73,40 @@ public class InterfaceSettings extends PreferenceFragment implements OnPreferenc
         mEosQuickSettingsView = (EosMultiSelectListPreference) findPreference("eos_interface_eos_quick_enabled");
         mEosTogglesEnabled = (CheckBoxPreference) findPreference("eos_interface_settings_eos_settings_enabled");
         mShowAllLockscreenWidgetsPreference = (CheckBoxPreference) findPreference("eos_interface_lockscreen_show_all_widgets");
-        mRecentsKillallButtonPreference = (CheckBoxPreference)
-                findPreference("eos_interface_recents_killall_button");
-        mRecentsMemDisplayPreference = (CheckBoxPreference)
-                findPreference("eos_interface_recents_mem_display");
+        mRecentsKillallButtonPreference = (CheckBoxPreference) findPreference("eos_interface_recents_killall_button");
+        mRecentsMemDisplayPreference = (CheckBoxPreference) findPreference("eos_interface_recents_mem_display");
         mLowProfileNavBar = (CheckBoxPreference) findPreference("eos_interface_navbar_low_profile");
+        mHideNavBar = (CheckBoxPreference) findPreference("eos_interface_hide_navbar");
         mTabletStyleBar = (CheckBoxPreference) findPreference("eos_interface_navbar_tablet_style");
         mHideIndicator = (CheckBoxPreference) findPreference("eos_interface_settings_indicator_visibility");
         mIndicatorColor = (ColorPreference) findPreference("eos_interface_settings_indicator_color");
         mIndicatorDefaultColor = (Preference) findPreference("eos_interface_settings_indicator_color_default");
 
-        if (!mHasNavBar) {
-            PreferenceScreen ps = this.getPreferenceScreen();
-            PreferenceCategory pc = (PreferenceCategory) ps.findPreference("eos_interface_navbar");
+        PreferenceScreen ps = this.getPreferenceScreen();
+        PreferenceCategory pc = (PreferenceCategory) ps.findPreference("eos_interface_navbar");
+        if (!Utils.isHybridUI(mContext) && !mHasNavBar) {
             if (pc != null)
                 ps.removePreference(pc);
         }
 
         if (!Utils.isHybridUI(mContext) && mTabletStyleBar != null) {
-            PreferenceScreen ps = this.getPreferenceScreen();
-            PreferenceCategory pc = (PreferenceCategory) ps.findPreference("eos_interface_navbar");
             if (pc != null)
                 pc.removePreference(mTabletStyleBar);
         }
 
         // will be null on tablets and grouper in tablet mode
         if (mLowProfileNavBar != null && mHasNavBar) {
-            mLowProfileNavBar.setChecked(Settings.System.getInt(mContext.getContentResolver(),
-                    EOSConstants.SYSTEMUI_BAR_SIZE_MODE, 0) == 1);
+            mLowProfileNavBar.setChecked(Settings.System.getInt(mContext.getContentResolver(), EOSConstants.SYSTEMUI_BAR_SIZE_MODE, 0) == 1);
             mLowProfileNavBar.setOnPreferenceChangeListener(this);
+        }
+
+        if (Utils.isHybridUI(mContext) && mHideNavBar != null) {
+            mHideNavBar.setChecked(Settings.System.getInt(mContext.getContentResolver(), EOSConstants.SYSTEMUI_HIDE_NAVBAR, 0) == 1);
+            mHideNavBar.setOnPreferenceChangeListener(this);
+
+            // Grey out other NavBar related options if Hiding NavBar
+            if(pc != null) 
+                enableAllCategoryChilds(pc, "eos_interface_hide_navbar", !mHideNavBar.isChecked());
         }
 
         if (mTabletStyleBar != null && mHasNavBar) {
@@ -192,6 +197,13 @@ public class InterfaceSettings extends PreferenceFragment implements OnPreferenc
         super.onSaveInstanceState(outState);
     }
 
+    private void enableAllCategoryChilds(PreferenceCategory pc, String keyToExclude, boolean enabled) {
+        int nbPrefs = pc.getPreferenceCount();
+        for(int pref = 0;pref < nbPrefs;pref++)
+            if(!pc.getPreference(pref).getKey().equals(keyToExclude))
+                pc.getPreference(pref).setEnabled(enabled);
+    }
+
     private void populateEosSettingsList() {
         LinkedHashSet<String> selectedValues = new LinkedHashSet<String>();
         String enabledControls = Settings.System.getString(mContext.getContentResolver(),
@@ -259,6 +271,13 @@ public class InterfaceSettings extends PreferenceFragment implements OnPreferenc
             Settings.System.putInt(mContext.getContentResolver(),
                     EOSConstants.SYSTEMUI_BAR_SIZE_MODE,
                     ((Boolean) newValue).booleanValue() ? 1 : 0);
+            return true;
+        } else if (preference.equals(mHideNavBar)) {
+            Settings.System.putInt(mContext.getContentResolver(), EOSConstants.SYSTEMUI_HIDE_NAVBAR, ((Boolean) newValue).booleanValue() ? 1 : 0);
+            PreferenceScreen ps = this.getPreferenceScreen();
+            PreferenceCategory pc = (PreferenceCategory) ps.findPreference("eos_interface_navbar");
+            if(pc != null)
+                enableAllCategoryChilds(pc, "eos_interface_hide_navbar", !((Boolean) newValue).booleanValue());
             return true;
         } else if (preference.equals(mTabletStyleBar)) {
             Settings.System.putInt(mContext.getContentResolver(),
