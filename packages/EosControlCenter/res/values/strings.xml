@@ -82,6 +82,9 @@
     <string name="eos_interface_loading_dialog_title">Please wait</string>
     <string name="eos_interface_loading_dialog_msg">Loading...</string>
     <string name="eos_system_settings">System</string>
+    <string name="eos_system_volume_sound_category_title">Volume and Sound</string>
+    <string name="eos_system_power_display_category_title">Power and Display</string>
+    <string name="eos_system_network_connectivity_category_title">Network and Connectivity</string>
     <string name="eos_system_volume_keys_rotate">Volume keys switch on rotation</string>
     <string name="eos_system_volume_keys_rotate_description">When the device is rotated 90 or 180 degrees anti-clockwise.</string>
     <string name="eos_system_volume_default_stream">Default volume control stream</string>
