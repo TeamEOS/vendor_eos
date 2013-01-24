@@ -59,11 +59,8 @@ public class Main extends Activity {
         mNavigation = (Spinner) getActionBar().getCustomView().findViewById(R.id.navigationSpinner);
         mIcon = (ImageView) getActionBar().getCustomView().findViewById(R.id.iconImageView);
 
-        String[] tabsList = {
-                "Interface", "System", "Information"
-        };
         ArrayAdapter<String> spinnerDataAdapter = new ArrayAdapter<String>(this,
-                R.layout.navigation_spinner_textview, tabsList);
+                R.layout.navigation_spinner_textview, getResources().getStringArray(R.array.tabs_list));
         spinnerDataAdapter.setDropDownViewResource(R.layout.navigation_spinner_dropdown_textview);
         mNavigation.setAdapter(spinnerDataAdapter);
         mNavigation.setOnItemSelectedListener(new OnNavigationItemSelectedListener());

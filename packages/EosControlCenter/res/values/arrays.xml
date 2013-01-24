@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <!-- Eos Values -->
+    <!-- ECC UI -->
+
+    <string-array name="tabs_list">
+        <item>Interface</item>
+        <item>System</item>
+        <item>Information</item>
+    </string-array>
+
+    <!-- Feature values -->
 
     <string-array name="eos_quick_enabled_preferences">
         <item>eos_systemui_settings_wifi</item>
