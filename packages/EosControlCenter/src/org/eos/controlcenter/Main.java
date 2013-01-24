@@ -147,9 +147,9 @@ public class Main extends Activity {
 
             Fragment newFragment = null;
             if (position == 0) {
-                newFragment = new Interface();
+                newFragment = InterfaceSettings.newInstance();
             } else if (position == 1) {
-                newFragment = new System();
+                newFragment = SystemSettings.newInstance();
             } else if (position == 2) {
                 newFragment = new Info();
             }

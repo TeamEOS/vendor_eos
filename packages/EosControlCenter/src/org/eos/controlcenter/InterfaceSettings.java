@@ -21,7 +21,7 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
 
-public class Interface extends PreferenceFragment implements OnPreferenceChangeListener {
+public class InterfaceSettings extends PreferenceFragment implements OnPreferenceChangeListener {
 
     private final String QUICKSETTINGSPANEL = "eos_interface_panel_settings";
     private final String BATTERY = "eos_battery_settings";
@@ -30,6 +30,7 @@ public class Interface extends PreferenceFragment implements OnPreferenceChangeL
     private final String NAVBAR = "eos_navbar_settings";
     private final String SOFTKEYS = "eos_softkey_settings";
     private final String NAVRING = "eos_navring_settings";
+    private static final String LAST_FRAG = "interface_last_viewed_frag";
 
     private Context mContext;
 
@@ -45,6 +46,21 @@ public class Interface extends PreferenceFragment implements OnPreferenceChangeL
     private EosMultiSelectListPreference mEosQuickSettingsView;
     private boolean mEosSettingsEnabled = false;
     private boolean mHasNavBar = false;
+    private static String mLastFrag;
+    
+    public static InterfaceSettings newInstance(String lastFrag) {
+        InterfaceSettings frag = new InterfaceSettings();
+        Bundle b = new Bundle();
+        b.putString(LAST_FRAG, lastFrag);
+        frag.setArguments(b);
+        return frag;
+    }
+
+    public static InterfaceSettings newInstance() {
+        return new InterfaceSettings();
+    }
+
+    public InterfaceSettings() {}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -154,6 +170,26 @@ public class Interface extends PreferenceFragment implements OnPreferenceChangeL
                     EOSConstants.SYSTEMUI_LOCKSCREEN_SHOW_ALL_WIDGETS, 0) == 1);
             mShowAllLockscreenWidgetsPreference.setOnPreferenceChangeListener(this);
         }
+        
+        if(savedInstanceState != null) {
+            mLastFrag = savedInstanceState.getString(LAST_FRAG, BATTERY);
+        }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (Main.mTwoPane) {
+            if (mLastFrag == null)
+                mLastFrag = BATTERY;
+            showFragment(mLastFrag);
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putString(LAST_FRAG, mLastFrag);
+        super.onSaveInstanceState(outState);
     }
 
     private void populateEosSettingsList() {
@@ -255,32 +291,43 @@ public class Interface extends PreferenceFragment implements OnPreferenceChangeL
         }
         return false;
     }
+    
+    private boolean showFragment(String key) {
+        if (key.equals(QUICKSETTINGSPANEL)) {
+            Main.showFragment("Quick Settings", new QuickSettingsPanel());
+            mLastFrag = key;
+            return true;
+        } else if (key.equals(BATTERY)) {
+            Main.showFragment("Battery Settings", new BatteryActions());
+            mLastFrag = key;
+            return true;
+        } else if (key.equals(CLOCK)) {
+            Main.showFragment("Clock Settings", new ClockActions());
+            mLastFrag = key;
+            return true;
+        } else if (key.equals(STATBARCOLOR)) {
+            Main.showFragment("Status Bar Color", new StatusBarColor());
+            mLastFrag = key;
+            return true;
+        } else if (key.equals(NAVBAR)) {
+            Main.showFragment("Nav Bar Appearance", new NavigationAreaActions());
+            mLastFrag = key;
+            return true;
+        } else if (key.equals(SOFTKEYS)) {
+            Main.showFragment("SoftKey Settings", new SoftKeyActions());
+            mLastFrag = key;
+            return true;
+        } else if (key.equals(NAVRING)) {
+            Main.showFragment("Quick Launch Targets", new NavRingActions());
+            mLastFrag = key;
+            return true;
+        }
+        return false;
+    }
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen prefScreen, Preference pref) {
         super.onPreferenceTreeClick(prefScreen, pref);
-        if (pref.getKey().equals(QUICKSETTINGSPANEL)) {
-            Main.showFragment("Quick Settings", new QuickSettingsPanel());
-            return true;
-        } else if (pref.getKey().equals(BATTERY)) {
-            Main.showFragment("Battery Settings", new BatteryActions());
-            return true;
-        } else if (pref.getKey().equals(CLOCK)) {
-            Main.showFragment("Clock Settings", new ClockActions());
-            return true;
-        } else if (pref.getKey().equals(STATBARCOLOR)) {
-            Main.showFragment("Status Bar Color", new StatusBarColor());
-            return true;
-        } else if (pref.getKey().equals(NAVBAR)) {
-            Main.showFragment("Nav Bar Appearance", new NavigationAreaActions());
-            return true;
-        } else if (pref.getKey().equals(SOFTKEYS)) {
-            Main.showFragment("SoftKey Settings", new SoftKeyActions());
-            return true;
-        } else if (pref.getKey().equals(NAVRING)) {
-            Main.showFragment("Quick Launch Targets", new NavRingActions());
-            return true;
-        }
-        return false;
+        return showFragment(pref.getKey());
     }
 }

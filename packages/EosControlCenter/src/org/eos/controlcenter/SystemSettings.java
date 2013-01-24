@@ -23,12 +23,13 @@ import android.provider.Settings;
 import android.text.TextUtils;
 import android.view.IWindowManager;
 
-public class System extends PreferenceFragment implements OnPreferenceChangeListener {
+public class SystemSettings extends PreferenceFragment implements OnPreferenceChangeListener {
 
     private static final String EOS_DEVICE_SETTINGS = "eos_device_settings";
     private static final String EOS_PERFORMANCE_SETTINGS = "eos_performance_settings";
     private static final String PRIVACY = "eos_privacy_settings";
     private static final String KEY_SCREENSHOT_FACTOR = "screenshot_scaling";
+    private static final String LAST_FRAG = "system_last_viewed_frag";
     
     private static final String WIFI_IDLE_MS = "wifi_idle_ms";
 
@@ -48,6 +49,21 @@ public class System extends PreferenceFragment implements OnPreferenceChangeList
 
     private Context mContext;
     private ContentResolver mResolver;
+    private static String mLastFrag;
+    
+    public static SystemSettings newInstance(String lastFrag) {
+        SystemSettings frag = new SystemSettings();
+        Bundle b = new Bundle();
+        b.putString(LAST_FRAG, lastFrag);
+        frag.setArguments(b);
+        return frag;
+    }
+
+    public static SystemSettings newInstance() {
+        return new SystemSettings();
+    }
+
+    public SystemSettings() {}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -143,6 +159,26 @@ public class System extends PreferenceFragment implements OnPreferenceChangeList
         mHostnamePreference.setText(hostname);
         mHostnamePreference.setSummary(hostname);
         mHostnamePreference.setOnPreferenceChangeListener(this);
+
+        if(savedInstanceState != null) {
+            mLastFrag = savedInstanceState.getString(LAST_FRAG, EOS_PERFORMANCE_SETTINGS);
+        }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (Main.mTwoPane) {
+            if (mLastFrag == null)
+                mLastFrag = EOS_PERFORMANCE_SETTINGS;
+            showFragment(mLastFrag);
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putString(LAST_FRAG, mLastFrag);
+        super.onSaveInstanceState(outState);
     }
 
     @Override
@@ -217,16 +253,22 @@ public class System extends PreferenceFragment implements OnPreferenceChangeList
         return false;
     }
 
+    private boolean showFragment(String key) {
+        if (key.equals(PRIVACY)) {
+            Main.showFragment("Privacy", new Privacy());
+            mLastFrag = key;
+            return true;
+        } else if (key.equals(EOS_PERFORMANCE_SETTINGS)) {
+            Main.showFragment("Performance", new Performance());
+            mLastFrag = key;
+        }
+        return false;
+    }
+
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen prefScreen, Preference pref) {
         super.onPreferenceTreeClick(prefScreen, pref);
-        if (pref.getKey().equals(PRIVACY)) {
-            Main.showFragment("Privacy", new Privacy());
-            return true;
-        } else if (pref.getKey().equals(EOS_PERFORMANCE_SETTINGS)) {
-            Main.showFragment("Performance", new Performance());
-        }
-        return false;
+        return showFragment(pref.getKey());
     }
 
     private void handleWifiState(String countryCode) {
