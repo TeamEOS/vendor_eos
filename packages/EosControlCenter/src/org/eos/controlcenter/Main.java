@@ -139,9 +139,6 @@ public class Main extends Activity {
         }
     }
 
-    private class SpaceHolder extends Fragment {
-    }
-
     private final class OnNavigationItemSelectedListener implements OnItemSelectedListener {
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -165,7 +162,7 @@ public class Main extends Activity {
                     getFragmentManager().beginTransaction().replace(R.id.container, newFragment)
                             .commit();
                     getFragmentManager().beginTransaction()
-                            .replace(R.id.detail_container, new SpaceHolder()).commit();
+                            .replace(R.id.detail_container, SpaceHolder.newInstance()).commit();
                 } else {
                     getFragmentManager().beginTransaction().replace(R.id.container, new RomLinks())
                             .commit();
