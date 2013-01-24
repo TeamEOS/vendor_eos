@@ -151,28 +151,19 @@ public class Main extends Activity {
             } else if (position == 1) {
                 newFragment = SystemSettings.newInstance();
             } else if (position == 2) {
-                newFragment = new Info();
-            }
-
-            if (!mTwoPane) {
-                getFragmentManager().beginTransaction().replace(R.id.container, newFragment)
-                        .commit();
-            } else {
-                if (position != 2) {
-                    getFragmentManager().beginTransaction().replace(R.id.container, newFragment)
-                            .commit();
-                    getFragmentManager().beginTransaction()
-                            .replace(R.id.detail_container, SpaceHolder.newInstance()).commit();
+                if (mTwoPane) {
+                    newFragment = RomLinks.newInstance();
                 } else {
-                    getFragmentManager().beginTransaction().replace(R.id.container, new RomLinks())
-                            .commit();
-                    getFragmentManager().beginTransaction()
-                            .replace(R.id.detail_container, newFragment).commit();
+                    newFragment = Info.newInstance();
                 }
             }
-
-            mFragmentsTitleList.add("EOS Control Center");
-            updateActionBarTitle();
+            // for twopane, titlelist will update when child fragment is automatically loaded
+            if (!mTwoPane) {
+                mFragmentsTitleList.add("EOS Control Center");
+                updateActionBarTitle();
+            }
+            getFragmentManager().beginTransaction().replace(R.id.container, newFragment)
+                    .commit();
         }
 
         @Override

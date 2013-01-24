@@ -12,6 +12,8 @@ public class RomLinks extends PreferenceFragment {
 
     private final String XDA = "xda_thread";
     private final String ROOTZ = "rootz_thread";
+    private static final String LAST_FRAG = "romlinks_last_viewed_frag";
+    private static final String ROSTER_TITLE = "Team Roster";
 
     private String mDevice;
     private String mXdaUrl;
@@ -19,10 +21,25 @@ public class RomLinks extends PreferenceFragment {
 
     private Context mContext;
 
+    public static RomLinks newInstance(String lastFrag) {
+        RomLinks frag = new RomLinks();
+        Bundle b = new Bundle();
+        b.putString(LAST_FRAG, lastFrag);
+        frag.setArguments(b);
+        return frag;
+    }
+    
+    public static RomLinks newInstance() {
+        return new RomLinks();
+    }
+    
+    public RomLinks() {};
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.rom_links);
+        
         mContext = (Context) getActivity();
         mDevice = Utils.getDevice();
         mXdaUrl = Utils.getXdaUrl(mContext, mDevice);
@@ -52,5 +69,13 @@ public class RomLinks extends PreferenceFragment {
 
         pXda.setSummary("Detected Device: " + mDevice);
 //        pRootz.setSummary("Detected Device: " + mDevice);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (Main.mTwoPane) {
+            Main.showFragment(ROSTER_TITLE, Info.newInstance());
+        }
     }
 }

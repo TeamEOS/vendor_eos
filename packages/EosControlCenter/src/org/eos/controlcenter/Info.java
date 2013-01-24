@@ -12,12 +12,27 @@ public class Info extends PreferenceFragment {
 
     private final String XDA = "xda_thread";
     private final String ROOTZ = "rootz_thread";
+    private static final String LAST_FRAG = "info_last_viewed_frag";
 
     private String mDevice;
     private String mXdaUrl;
     private String mRootzUrl;
 
     private Context mContext;
+    
+    public static Info newInstance(String lastFrag) {
+        Info frag = new Info();
+        Bundle b = new Bundle();
+        b.putString(LAST_FRAG, lastFrag);
+        frag.setArguments(b);
+        return frag;
+    }
+    
+    public static Info newInstance() {
+        return new Info();
+    }
+    
+    public Info() {};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
