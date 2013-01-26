@@ -2,17 +2,16 @@
 package org.eos.controlcenter;
 
 import android.content.Context;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.hardware.Camera;
 import android.hardware.Camera.Parameters;
 import android.net.ConnectivityManager;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.telephony.TelephonyManager;
-import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Display;
 import android.view.IWindowManager;
-import android.view.WindowManager;
 
 import com.android.internal.telephony.RILConstants;
 
@@ -21,6 +20,35 @@ import java.io.InputStreamReader;
 import java.util.List;
 
 public final class Utils {
+    public static final String ANDROIDNS = "http://schemas.android.com/apk/res/android";
+    public static final String CONTROLCENTERNS = "http://schemas.android.com/apk/res/org.eos.controlcenter";
+    public static final String URI_GRAVEYARD = "eos_graveyard_uri";
+
+    // 10 inch tablets
+    public static boolean isXLargeScreen() {
+        int screenLayout = Resources.getSystem().getConfiguration().screenLayout &
+                Configuration.SCREENLAYOUT_SIZE_MASK;
+        return screenLayout == Configuration.SCREENLAYOUT_SIZE_XLARGE;
+    }
+
+    // 7 inch "phablets" i.e. grouper
+    public static boolean isLargeScreen() {
+        int screenLayout = Resources.getSystem().getConfiguration().screenLayout &
+                Configuration.SCREENLAYOUT_SIZE_MASK;
+        return screenLayout == Configuration.SCREENLAYOUT_SIZE_LARGE;
+    }
+
+    // normal phones
+    public static boolean isNormalScreen() {
+        int screenLayout = Resources.getSystem().getConfiguration().screenLayout &
+                Configuration.SCREENLAYOUT_SIZE_MASK;
+        return screenLayout == Configuration.SCREENLAYOUT_SIZE_NORMAL;
+    }
+
+    public static boolean isLandscape(Context context) {
+        return Configuration.ORIENTATION_LANDSCAPE
+                == context.getResources().getConfiguration().orientation;
+    }
 
     public static boolean hasTorch() {
         Camera mCamera = null;
