@@ -58,6 +58,22 @@
             android:key="eos_interface_hide_navbar"
             android:summary="@string/eos_interface_hide_navbar_summary"
             android:title="@string/eos_interface_hide_navbar_title" />
+        <CheckBoxPreference
+            android:key="eos_interface_hide_navbar_on_boot"
+            android:summary="@string/eos_interface_hide_navbar_on_boot_summary"
+            android:title="@string/eos_interface_hide_navbar_on_boot_title" />
+        <CheckBoxPreference
+            android:key="eos_interface_hide_statbar_too"
+            android:summary="@string/eos_interface_hide_statbar_too_summary"
+            android:title="@string/eos_interface_hide_statbar_too_title" />
+        <CheckBoxPreference
+            android:key="eos_interface_navbar_low_profile"
+            android:summary="@string/eos_interface_navbar_low_profile_summary"
+            android:title="@string/eos_interface_navbar_low_profile_title" />
+        <CheckBoxPreference
+            android:key="eos_interface_navbar_tablet_style"
+            android:summary="@string/eos_interface_navbar_tablet_style_summary"
+            android:title="@string/eos_interface_navbar_tablet_style_title" />
         <PreferenceScreen
             android:fragment="org.eos.controlcenter.NavigationAreaActions"
             android:key="eos_navbar_settings"
@@ -71,14 +87,6 @@
             android:key="eos_navring_settings"
             android:summary="@string/eos_interface_navring_settings_summary"
             android:title="@string/eos_interface_navring_settings" />
-        <CheckBoxPreference
-            android:key="eos_interface_navbar_low_profile"
-            android:summary="@string/eos_interface_navbar_low_profile_summary"
-            android:title="@string/eos_interface_navbar_low_profile_title" />
-        <CheckBoxPreference
-            android:key="eos_interface_navbar_tablet_style"
-            android:summary="@string/eos_interface_navbar_tablet_style_summary"
-            android:title="@string/eos_interface_navbar_tablet_style_title" />
     </PreferenceCategory>
     <PreferenceCategory
         android:key="eos_interface_lockscreen"

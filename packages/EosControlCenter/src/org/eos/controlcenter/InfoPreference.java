@@ -17,8 +17,6 @@ import android.widget.TextView;
 
 public class InfoPreference extends Preference {
 
-    private static final String ANDROIDNS = "http://schemas.android.com/apk/res/android";
-
     private String mKey;
 
     public InfoPreference(Context context, AttributeSet attrs) {
@@ -77,7 +75,7 @@ public class InfoPreference extends Preference {
     }
 
     private void getKey(AttributeSet attrs) {
-        String value = attrs.getAttributeValue(ANDROIDNS, "key");
+        String value = attrs.getAttributeValue(Utils.ANDROIDNS, "key");
         if (value == null) {
             value = "unknown";
         }

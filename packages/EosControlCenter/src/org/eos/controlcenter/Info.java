@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 
+import org.teameos.jellybean.settings.EOSUtils;
+
 public class Info extends PreferenceFragment {
 
     private final String XDA = "xda_thread";
@@ -42,7 +44,7 @@ public class Info extends PreferenceFragment {
 
         if (!Main.mTwoPane) {
             addPreferencesFromResource(R.xml.rom_links);
-            mDevice = Utils.getDevice();
+            mDevice = EOSUtils.getDevice();
             mXdaUrl = Utils.getXdaUrl(mContext, mDevice);
             mRootzUrl = Utils.getRootzUrl(mContext, mDevice);
 

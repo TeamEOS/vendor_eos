@@ -12,6 +12,7 @@ import android.provider.Settings;
 import android.util.AttributeSet;
 
 import org.teameos.jellybean.settings.EOSConstants;
+import org.teameos.jellybean.settings.EOSUtils;
 
 import java.util.Arrays;
 import java.util.LinkedHashSet;
@@ -64,18 +65,18 @@ public class QuickSettingsPanel extends PreferenceFragment implements OnPreferen
         }
         mEosQuickPanelView.setValues(selectedValues);
 
-        if (!Utils.hasData(mContext)) {
+        if (!EOSUtils.hasData(mContext)) {
             mEosQuickPanelView
                     .removeValueEntry(EOSConstants.SYSTEMUI_PANEL_DATA_TILE);
             mEosQuickPanelView
                     .removeValueEntry(EOSConstants.SYSTEMUI_PANEL_WIFIAP_TILE);
         }
 
-        if (!Utils.hasTorch()) {
+        if (!EOSUtils.hasTorch()) {
             mEosQuickPanelView.removeValueEntry(EOSConstants.SYSTEMUI_PANEL_TORCH_TILE);
         }
 
-        if(!Utils.isCdmaLTE(mContext)) {
+        if(!EOSUtils.isCdmaLTE(mContext)) {
             mEosQuickPanelView.removeValueEntry(EOSConstants.SYSTEMUI_PANEL_LTE_TILE);
         }
         mEosQuickPanelView.setEnabled(true);
