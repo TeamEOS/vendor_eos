@@ -1,170 +1,85 @@
 
 package org.eos.controlcenter;
 
-import android.app.ActionBar;
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.preference.PreferenceFragment;
+import android.preference.PreferenceScreen;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
-import android.widget.Spinner;
-import android.widget.ImageView;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
 
-import org.teameos.jellybean.settings.EOSConstants;
+import org.eos.controlcenter.PreferenceListFragment.OnPreferenceAttachedListener;
+import org.eos.controlcenter.ViewPagerAdapter;
+import org.eos.controlcenter.TitlePageIndicator;
 
-import java.util.ArrayList;
+public class Main extends FragmentActivity implements OnPreferenceAttachedListener, OnActivityRequestedListener {
+    private static final String TAG = "EosControlCenter";
 
-public class Main extends Activity {
-
-    private static Activity mActivity;
-    private static ArrayList<String> mFragmentsTitleList = new ArrayList<String>();
-
-    private static TextView mTitle;
-    private Spinner mNavigation;
-    private ImageView mIcon;
-
-    public static boolean mTwoPane = false;
-    private static boolean STATE_ON = true;
-    private static boolean STATE_OFF = false;
+    ViewPager mPager;
+    TitlePageIndicator mIndicator;
+    ViewPagerAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mActivity = (Activity) this;
+        setContentView(R.layout.main_pager);
 
-        int screenLayout = Resources.getSystem().getConfiguration().screenLayout &
-                Configuration.SCREENLAYOUT_SIZE_MASK;
-        if (screenLayout == Configuration.SCREENLAYOUT_SIZE_XLARGE) {
-            setContentView(R.layout.main_twopane);
-            mTwoPane = true;
-        } else {
-            setContentView(R.layout.main);
-        }
+        mPager = (ViewPager) findViewById(R.id.view_pager);
+        mAdapter = new ViewPagerAdapter(getApplicationContext(),
+                getSupportFragmentManager());
+        mPager.setAdapter(mAdapter);
 
-        getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getActionBar().setCustomView(R.layout.action_bar);
-
-        mTitle = (TextView) getActionBar().getCustomView().findViewById(R.id.titleTextView);
-        mNavigation = (Spinner) getActionBar().getCustomView().findViewById(R.id.navigationSpinner);
-        mIcon = (ImageView) getActionBar().getCustomView().findViewById(R.id.iconImageView);
-
-        ArrayAdapter<String> spinnerDataAdapter = new ArrayAdapter<String>(this,
-                R.layout.navigation_spinner_textview, getResources().getStringArray(R.array.tabs_list));
-        spinnerDataAdapter.setDropDownViewResource(R.layout.navigation_spinner_dropdown_textview);
-        mNavigation.setAdapter(spinnerDataAdapter);
-        mNavigation.setOnItemSelectedListener(new OnNavigationItemSelectedListener());
-
-        mIcon.setOnClickListener(new OnClickListener() {
-            public void onClick(View view) {
-                onIconPressed();
-            }
-        });
+        mIndicator = (TitlePageIndicator) findViewById(R.id.indicator);
+        mIndicator.setViewPager(mPager);
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        notifyEosUiController(STATE_ON);
+        Utils.turnOnEosUI(getApplicationContext());
     }
 
     @Override
-    public void onStop() {
-        super.onStop();
-        notifyEosUiController(STATE_OFF);
-    }
-
-    private void notifyEosUiController(boolean state) {
-        Intent i = new Intent().setAction(EOSConstants.INTENT_EOS_CONTROL_CENTER);
-        i.putExtra(EOSConstants.INTENT_EOS_CONTROL_CENTER_EXTRAS_STATE, state);
-        sendBroadcast(i);
-    }
-
-    public static void showFragment(String title, Fragment fragment) {
-        if (!mTwoPane) {
-            mActivity.getFragmentManager().beginTransaction()
-                    .replace(R.id.container, fragment)
-                    .addToBackStack(null)
-                    .commit();
-            mFragmentsTitleList.add(title);
-            updateActionBarTitle();
-        } else {
-            mActivity.getFragmentManager().beginTransaction()
-                    .replace(R.id.detail_container, fragment)
-                    .commit();
-            mFragmentsTitleList.add(title);
-            updateActionBarTitle();
-        }
-    }
-
-    private void onIconPressed() {
-        if (getFragmentManager().getBackStackEntryCount() > 0) {
-            getFragmentManager().popBackStack();
-            mFragmentsTitleList.remove(mFragmentsTitleList.size() - 1);
-            updateActionBarTitle();
-        } else {
-            finish();
-        }
+    public void onDestroy() {
+        super.onDestroy();
+        Utils.turnOffEosUI(getApplicationContext());
     }
 
     @Override
-    public void onBackPressed() {
-        if (getFragmentManager().getBackStackEntryCount() > 0) {
-            getFragmentManager().popBackStack();
-            mFragmentsTitleList.remove(mFragmentsTitleList.size() - 1);
-            updateActionBarTitle();
-        } else {
-            finish();
+    public void onPreferenceAttached(PreferenceScreen root, int xmlId) {
+        if (root == null) {
+            Log.i(TAG, "Root preference screen is null!");
+            return;
+        } else if (xmlId == R.xml.interface_settings) {
+            Log.i(TAG, "Interface settings is attached");
+            new InterfaceHandler(root);
+            return;
+        } else if (xmlId == R.xml.navigation_bar) {
+            Log.i(TAG, "NavigationBar settings is attached");
+            new NavigationBarHandler(root, (OnActivityRequestedListener)this);
+            return;
+        } else if (xmlId == R.xml.statusbar) {
+            Log.i(TAG, "Statusbar settings is attached");
+            new StatusbarHandler(root);
+            return;
+        } else if (xmlId == R.xml.system_settings) {
+            Log.i(TAG, "System settings is attached");
+            new SystemHandler(root, (OnActivityRequestedListener)this);
+            return;
+        } else if (xmlId == R.xml.info) {
+            Log.i(TAG, "Info is attached");
+            return;
         }
     }
-
-    public static void updateActionBarTitle() {
-        if (mFragmentsTitleList.size() > 0) {
-            mTitle.setText(mFragmentsTitleList.get(mFragmentsTitleList.size() - 1));
-        } else {
-            mTitle.setText("EOS Control Center");
-        }
+    
+    private void startSingleFragmentActivity(String tag) {
+        Intent intent = new Intent(this, SingleFragmentActivity.class);
+        intent.putExtra(Utils.INCOMING_FRAG_KEY, tag);
+        startActivity(intent);
     }
 
-    private final class OnNavigationItemSelectedListener implements OnItemSelectedListener {
-        @Override
-        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-            mFragmentsTitleList.clear();
-
-            Fragment newFragment = null;
-            if (position == 0) {
-                newFragment = InterfaceSettings.newInstance();
-            } else if (position == 1) {
-                newFragment = SystemSettings.newInstance();
-            } else if (position == 2) {
-                if (mTwoPane) {
-                    newFragment = RomLinks.newInstance();
-                } else {
-                    newFragment = Info.newInstance();
-                }
-            }
-            // for twopane, titlelist will update when child fragment is automatically loaded
-            if (!mTwoPane) {
-                mFragmentsTitleList.add("EOS Control Center");
-                updateActionBarTitle();
-            }
-            getFragmentManager().beginTransaction().replace(R.id.container, newFragment)
-                    .commit();
+    @Override
+    public void onActivityRequested(String tag) {
+            startSingleFragmentActivity(tag);
         }
-
-        @Override
-        public void onNothingSelected(AdapterView<?> arg0) {
-        }
-    }
 }

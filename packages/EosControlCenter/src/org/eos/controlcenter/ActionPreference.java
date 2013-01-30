@@ -66,11 +66,13 @@ public class ActionPreference extends Preference {
         mContext = context;
         mRes = mContext.getResources();
         mResolver = mContext.getContentResolver();
-        TypedArray a = context.obtainStyledAttributes(attr, R.styleable.ActionPreference,
-                defStyle, 0);
-        mTargetUri = a.getString(R.styleable.ActionPreference_targetUri);
-        CUSTOM_SUMMARY = a.getString(R.styleable.ActionPreference_customSummary);
+
+        int customSummaryRes = attr.getAttributeResourceValue(Utils.CONTROLCENTERNS, "customSummary", -1);
+        if (customSummaryRes != -1) CUSTOM_SUMMARY = context.getString(customSummaryRes);
         DEFAULT_SUMMARY = String.valueOf(getSummary());
+        
+        int uriRes = attr.getAttributeResourceValue(Utils.CONTROLCENTERNS, "providerUri", -1);
+        if (uriRes != -1) mTargetUri = context.getString(uriRes);
     }
 
     public void setListener(View.OnClickListener listener) {

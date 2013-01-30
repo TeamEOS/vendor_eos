@@ -72,12 +72,4 @@ public class RomLinks extends PreferenceFragment {
         pXda.setSummary("Detected Device: " + mDevice);
 //        pRootz.setSummary("Detected Device: " + mDevice);
     }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        if (Main.mTwoPane) {
-            Main.showFragment(ROSTER_TITLE, Info.newInstance());
-        }
-    }
 }

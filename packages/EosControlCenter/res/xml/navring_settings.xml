@@ -29,7 +29,7 @@
             android:title="@string/eos_interface_softkeys_pref_default_title"
             android:widgetLayout="@layout/softkey_longpress_preference_widget"
             settings:customSummary="@string/eos_interface_navring_custom_pref_summary"
-            settings:targetUri="@string/eos_interface_navring_1_target_uri" />
+            settings:providerUri="@string/eos_interface_navring_1_target_uri" />
     </PreferenceCategory>
     <PreferenceCategory
         android:key="eos_interface_navring_2"
@@ -43,7 +43,7 @@
             android:title="@string/eos_interface_softkeys_pref_default_title"
             android:widgetLayout="@layout/softkey_longpress_preference_widget"
             settings:customSummary="@string/eos_interface_navring_custom_pref_summary"
-            settings:targetUri="@string/eos_interface_navring_2_target_uri" />
+            settings:providerUri="@string/eos_interface_navring_2_target_uri" />
     </PreferenceCategory>
     <PreferenceCategory
         android:key="eos_interface_navring_3"
@@ -55,7 +55,7 @@
             android:title="@string/eos_interface_softkeys_pref_default_title"
             android:widgetLayout="@layout/softkey_longpress_preference_widget"
             settings:customSummary="@string/eos_interface_navring_custom_pref_summary"
-            settings:targetUri="@string/eos_interface_navring_3_target_uri" />
+            settings:providerUri="@string/eos_interface_navring_3_target_uri" />
     </PreferenceCategory>
 
 </PreferenceScreen>

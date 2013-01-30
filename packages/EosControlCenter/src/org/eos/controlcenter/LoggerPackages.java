@@ -37,6 +37,31 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class LoggerPackages extends Fragment {
+
+    public static LoggerPackages newInstance(Bundle args) {
+        LoggerPackages frag = new LoggerPackages();
+        if (args != null) {
+            args.putString(Utils.PRIVACY_LOG_PACKAGES, "Logger Packages");
+        }
+        frag.setArguments(args);
+        return frag;
+    }
+
+    public static LoggerPackages newInstance() {
+        LoggerPackages frag = new LoggerPackages();
+        Bundle args = new Bundle();
+        args.putString(Utils.PRIVACY_LOG_PACKAGES, "Logger Packages");
+        frag.setArguments(args);
+        return frag;
+    }
+
+    public LoggerPackages(Bundle args) {
+        newInstance(args);
+    }
+
+    public LoggerPackages() {
+    }
+
     private static final String DEFAULT_ADD_ACTION = "";
 
     private ButtonOnClickListener mButtonOnClickListener;
@@ -81,6 +106,7 @@ public class LoggerPackages extends Fragment {
                     }
                 }
             }
+            reader.close();
         } catch (IOException e) {
 
         }

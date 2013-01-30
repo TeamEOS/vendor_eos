@@ -19,36 +19,44 @@ package org.eos.controlcenter;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.bluetooth.BluetoothDevice;
-import android.content.BroadcastReceiver;
-import android.content.ContentResolver;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
-import android.preference.MultiSelectListPreference;
 import android.preference.Preference;
-import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
-import android.provider.Settings;
 import android.util.Log;
 
 public class Performance extends PreferenceFragment implements
         Preference.OnPreferenceChangeListener {
+    
+    public static Performance newInstance(Bundle args) {
+        Performance frag = new Performance();
+        if (args != null) {
+            args.putString(Utils.PERFORMANCE_FRAG_TAG, "Performance");
+        }
+        frag.setArguments(args);
+        return frag;
+    }
+
+    public static Performance newInstance() {
+        Performance frag = new Performance();
+        Bundle args = new Bundle();
+        args.putString(Utils.PERFORMANCE_FRAG_TAG, "Performance");
+        frag.setArguments(args);
+        return frag;
+    }
+
+    public Performance(Bundle args) {
+        newInstance(args);
+    }
+
+    public Performance() {
+    }
 
     private CheckBoxPreference mClocksOnBootPreference;
     private ListPreference mClocksMinPreference;

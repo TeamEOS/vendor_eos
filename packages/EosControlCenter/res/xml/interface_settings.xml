@@ -32,95 +32,12 @@
         </Preference>
     </PreferenceCategory>
     <PreferenceCategory
-        android:key="eos_interface_statusbar"
-        android:title="@string/eos_interface_statusbar" >
-        <PreferenceScreen
-            android:fragment="org.eos.controlcenter.BatteryActions"
-            android:key="eos_battery_settings"
-            android:title="@string/eos_interface_statusbar_battery_settings" />
-        <PreferenceScreen
-            android:fragment="org.eos.controlcenter.ClockActions"
-            android:key="eos_clock_settings"
-            android:title="@string/eos_interface_statusbar_clock_settings" />
-        <PreferenceScreen
-            android:fragment="org.eos.controlcenter.StatusBarColor"
-            android:key="eos_statbar_color_settings"
-            android:title="@string/eos_interface_statusbar_color" />
-        <PreferenceScreen
-            android:fragment="org.eos.controlcenter.QuickSettingsPanel"
-            android:key="eos_interface_panel_settings"
-            android:title="@string/eos_interface_panel_pref" />
-    </PreferenceCategory>
-    <PreferenceCategory
-        android:key="eos_interface_navbar"
-        android:title="@string/eos_interface_navbar" >
-        <CheckBoxPreference
-            android:key="eos_interface_hide_navbar"
-            android:summary="@string/eos_interface_hide_navbar_summary"
-            android:title="@string/eos_interface_hide_navbar_title" />
-        <CheckBoxPreference
-            android:key="eos_interface_hide_navbar_on_boot"
-            android:summary="@string/eos_interface_hide_navbar_on_boot_summary"
-            android:title="@string/eos_interface_hide_navbar_on_boot_title" />
-        <CheckBoxPreference
-            android:key="eos_interface_hide_statbar_too"
-            android:summary="@string/eos_interface_hide_statbar_too_summary"
-            android:title="@string/eos_interface_hide_statbar_too_title" />
-        <CheckBoxPreference
-            android:key="eos_interface_navbar_low_profile"
-            android:summary="@string/eos_interface_navbar_low_profile_summary"
-            android:title="@string/eos_interface_navbar_low_profile_title" />
-        <CheckBoxPreference
-            android:key="eos_interface_navbar_tablet_style"
-            android:summary="@string/eos_interface_navbar_tablet_style_summary"
-            android:title="@string/eos_interface_navbar_tablet_style_title" />
-        <PreferenceScreen
-            android:fragment="org.eos.controlcenter.NavigationAreaActions"
-            android:key="eos_navbar_settings"
-            android:title="@string/eos_interface_navbar_appearance" />
-        <PreferenceScreen
-            android:fragment="org.eos.controlcenter.SoftKeyActions"
-            android:key="eos_softkey_settings"
-            android:title="@string/eos_interface_softkey_settings" />
-        <PreferenceScreen
-            android:fragment="org.eos.controlcenter.NavRingActions"
-            android:key="eos_navring_settings"
-            android:summary="@string/eos_interface_navring_settings_summary"
-            android:title="@string/eos_interface_navring_settings" />
-    </PreferenceCategory>
-    <PreferenceCategory
         android:key="eos_interface_lockscreen"
         android:title="@string/eos_interface_lockscreen" >
         <CheckBoxPreference
             android:key="eos_interface_lockscreen_show_all_widgets"
             android:summary="@string/eos_interface_lockscreen_show_all_widgets_summary"
             android:title="@string/eos_interface_lockscreen_show_all_widgets" />
-    </PreferenceCategory>
-    <PreferenceCategory
-        android:key="eos_interface_settings"
-        android:title="@string/eos_interface_settings" >
-        <CheckBoxPreference
-            android:key="eos_interface_settings_eos_settings_enabled"
-            android:summary="@string/eos_interface_eos_settings_enable_summary"
-            android:title="@string/eos_interface_eos_settings_enable_title" />
-
-        <org.eos.controlcenter.EosMultiSelectListPreference
-            android:key="eos_interface_eos_quick_enabled"
-            android:summary="@string/eos_interface_eos_settings_summary"
-            android:title="@string/eos_interface_eos_settings_enabled" />
-
-        <CheckBoxPreference
-            android:key="eos_interface_settings_indicator_visibility"
-            android:summary="@string/eos_interface_eos_settings_indicator_visibility_summary"
-            android:title="@string/eos_interface_eos_settings_indicator_visibility_title" />
-
-        <org.eos.controlcenter.ColorPreference
-            android:key="eos_interface_settings_indicator_color"
-            android:title="@string/eos_interface_settings_color_title" />
-
-        <Preference
-            android:key="eos_interface_settings_indicator_color_default"
-            android:title="@string/eos_interface_settings_color_default_title" />
     </PreferenceCategory>
     <PreferenceCategory
         android:key="eos_interface_recents"

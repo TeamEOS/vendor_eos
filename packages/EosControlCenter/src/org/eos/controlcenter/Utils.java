@@ -2,11 +2,36 @@
 package org.eos.controlcenter;
 
 import android.content.Context;
+import android.content.Intent;
+
+import org.teameos.jellybean.settings.EOSConstants;
 
 public final class Utils {
+    public static boolean STATE_ON = true;
+    public static boolean STATE_OFF = false;
+
     public static final String ANDROIDNS = "http://schemas.android.com/apk/res/android";
     public static final String CONTROLCENTERNS = "http://schemas.android.com/apk/res/org.eos.controlcenter";
     public static final String URI_GRAVEYARD = "eos_graveyard_uri";
+    
+    public static final String INCOMING_FRAG_KEY = "eos_incoming_frag_key";
+    public static final String SOFTKEY_FRAG_TAG = "eos_softkey_settings";
+    public static final String SEARCH_PANEL_FRAG_TAG = "eos_navring_settings";
+    public static final String PERFORMANCE_FRAG_TAG = "eos_performance_frag_tag";
+    public static final String PRIVACY_FRAG_TAG = "eos_privacy_frag_tag";
+    public static final String PRIVACY_LOG_PACKAGES = "eos_logger_packages";
+    
+    public static void turnOnEosUI(Context context) {
+        Intent i = new Intent().setAction(EOSConstants.INTENT_EOS_CONTROL_CENTER);
+        i.putExtra(EOSConstants.INTENT_EOS_CONTROL_CENTER_EXTRAS_STATE, STATE_ON);
+        context.sendBroadcast(i);
+    }
+    
+    public static void turnOffEosUI(Context context) {
+        Intent i = new Intent().setAction(EOSConstants.INTENT_EOS_CONTROL_CENTER);
+        i.putExtra(EOSConstants.INTENT_EOS_CONTROL_CENTER_EXTRAS_STATE, STATE_OFF);
+        context.sendBroadcast(i);
+    }
     
     public static String getXdaUrl(Context context, String device) {
         if(device.equals("grouper")) {

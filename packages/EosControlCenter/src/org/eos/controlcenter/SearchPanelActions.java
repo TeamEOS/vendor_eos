@@ -6,7 +6,31 @@ import android.provider.Settings;
 
 import org.teameos.jellybean.settings.EOSConstants;
 
-public class NavRingActions extends ActionFragment {
+public class SearchPanelActions extends ActionFragment {
+
+    public static SearchPanelActions newInstance(Bundle args) {
+        SearchPanelActions frag = new SearchPanelActions();
+        if (args != null) {
+            args.putString(Utils.SEARCH_PANEL_FRAG_TAG, "SearchPanel Actions");
+        }
+        frag.setArguments(args);
+        return frag;
+    }
+
+    public static SearchPanelActions newInstance() {
+        SearchPanelActions frag = new SearchPanelActions();
+        Bundle args = new Bundle();
+        args.putString(Utils.SEARCH_PANEL_FRAG_TAG, "SearchPanel Actions");
+        frag.setArguments(args);
+        return frag;
+    }
+
+    public SearchPanelActions(Bundle args) {
+        newInstance(args);
+    }
+
+    public SearchPanelActions() {
+    }
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

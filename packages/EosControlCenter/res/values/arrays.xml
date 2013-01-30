@@ -170,5 +170,17 @@
         <item>300000</item>
         <item>900000</item>
     </string-array>
+    <string-array name="softkey_apply_all_list">
+        <item>eos_systemui_back_key_color"</item>
+        <item>eos_systemui_home_key_color"</item>
+        <item>eos_systemui_recent_key_color"</item>
+        <item>eos_systemui_menu_key_color"</item>
+    </string-array>
+    <string-array name="softkey_glow_apply_all_list">
+        <item>eos_systemui_back_glow_color"</item>
+        <item>eos_systemui_home_glow_color"</item>
+        <item>eos_systemui_recent_glow_color"</item>
+        <item>eos_systemui_menu_glow_color"</item>
+    </string-array>
 
 </resources>

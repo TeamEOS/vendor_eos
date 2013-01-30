@@ -39,48 +39,34 @@
             android:title="@string/eos_interface_softkeys_pref_default_title"
             android:widgetLayout="@layout/softkey_longpress_preference_widget"
             settings:customSummary="@string/eos_interface_softkeys_custom_pref_summary"
-            settings:targetUri="@string/eos_interface_softkey_back_target_uri" />
+            settings:providerUri="@string/eos_interface_softkey_back_target_uri" />
 
-        <org.eos.controlcenter.ColorPreference
-            android:key="eos_softkey_color_back"
-            android:title="@string/eos_interface_softkey_color"
-            settings:keyIdentifier="0"
-            settings:targetUri2="@string/eos_interface_softkey_multicolor_key_uri" />
-
-        <Preference
-            android:key="eos_interface_softkey_back_default_key_color"
-            android:title="@string/eos_interface_softkey_color_default" />
-
-        <org.eos.controlcenter.ColorPreference
-            android:key="eos_softkey_glow_color_back"
-            android:title="@string/eos_interface_softkey_glow_color"
-            settings:keyIdentifier="0"
-            settings:targetUri2="@string/eos_interface_softkey_multicolor_glow_uri" />
-
-        <Preference
-            android:key="eos_interface_softkey_back_default_glow_color"
-            android:title="@string/eos_interface_softkey_glow_color_default" />
+        <org.eos.controlcenter.EosPreference
+            android:key="back_key_color_pref"
+            settings:applyAllList="@array/softkey_apply_all_list"
+            settings:defaultVal="@integer/softkey_default_color_val"
+            settings:prefTitle="@string/color_preference_title"
+            settings:providerUri="@string/back_key_color_target" />
+        <org.eos.controlcenter.EosPreference
+            android:key="back_key_glow_color_pref"
+            settings:applyAllList="@array/softkey_glow_apply_all_list"
+            settings:defaultVal="@integer/softkey_default_color_val"
+            settings:prefTitle="@string/glow_color_preference_title"
+            settings:providerUri="@string/back_key_glow_color_target" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/eos_interface_softkeys_home" >
-        <org.eos.controlcenter.ColorPreference
-            android:key="eos_softkey_color_home"
-            android:title="@string/eos_interface_softkey_color"
-            settings:keyIdentifier="1"
-            settings:targetUri2="@string/eos_interface_softkey_multicolor_key_uri" />
-
-        <Preference
-            android:key="eos_interface_softkey_home_default_key_color"
-            android:title="@string/eos_interface_softkey_color_default" />
-
-        <org.eos.controlcenter.ColorPreference
-            android:key="eos_softkey_glow_color_home"
-            android:title="@string/eos_interface_softkey_glow_color"
-            settings:keyIdentifier="1"
-            settings:targetUri2="@string/eos_interface_softkey_multicolor_glow_uri" />
-
-        <Preference
-            android:key="eos_interface_softkey_home_default_glow_color"
-            android:title="@string/eos_interface_softkey_glow_color_default" />
+        <org.eos.controlcenter.EosPreference
+            android:key="home_key_color_pref"
+            settings:applyAllList="@array/softkey_apply_all_list"
+            settings:defaultVal="@integer/softkey_default_color_val"
+            settings:prefTitle="@string/color_preference_title"
+            settings:providerUri="@string/home_key_color_target" />
+        <org.eos.controlcenter.EosPreference
+            android:key="home_key_glow_color_pref"
+            settings:applyAllList="@array/softkey_glow_apply_all_list"
+            settings:defaultVal="@integer/softkey_default_color_val"
+            settings:prefTitle="@string/glow_color_preference_title"
+            settings:providerUri="@string/home_key_glow_color_target" />
     </PreferenceCategory>
     <PreferenceCategory
         android:key="eos_interface_softkeys_recent"
@@ -93,27 +79,20 @@
             android:title="@string/eos_interface_softkeys_pref_default_title"
             android:widgetLayout="@layout/softkey_longpress_preference_widget"
             settings:customSummary="@string/eos_interface_softkeys_custom_pref_summary"
-            settings:targetUri="@string/eos_interface_softkey_recent_target_uri" />
+            settings:providerUri="@string/eos_interface_softkey_recent_target_uri" />
 
-        <org.eos.controlcenter.ColorPreference
-            android:key="eos_softkey_color_recent"
-            android:title="@string/eos_interface_softkey_color"
-            settings:keyIdentifier="2"
-            settings:targetUri2="@string/eos_interface_softkey_multicolor_key_uri" />
-
-        <Preference
-            android:key="eos_interface_softkey_recent_default_key_color"
-            android:title="@string/eos_interface_softkey_color_default" />
-
-        <org.eos.controlcenter.ColorPreference
-            android:key="eos_softkey_glow_color_recent"
-            android:title="@string/eos_interface_softkey_glow_color"
-            settings:keyIdentifier="2"
-            settings:targetUri2="@string/eos_interface_softkey_multicolor_glow_uri" />
-
-        <Preference
-            android:key="eos_interface_softkey_recent_default_glow_color"
-            android:title="@string/eos_interface_softkey_glow_color_default" />
+        <org.eos.controlcenter.EosPreference
+            android:key="recent_key_color_pref"
+            settings:applyAllList="@array/softkey_apply_all_list"
+            settings:defaultVal="@integer/softkey_default_color_val"
+            settings:prefTitle="@string/color_preference_title"
+            settings:providerUri="@string/recent_key_color_target" />
+        <org.eos.controlcenter.EosPreference
+            android:key="recent_key_glow_color_pref"
+            settings:applyAllList="@array/softkey_glow_apply_all_list"
+            settings:defaultVal="@integer/softkey_default_color_val"
+            settings:prefTitle="@string/glow_color_preference_title"
+            settings:providerUri="@string/recent_key_glow_color_target" />
     </PreferenceCategory>
     <PreferenceCategory
         android:key="eos_interface_softkeys_menu"
@@ -126,27 +105,20 @@
             android:title="@string/eos_interface_softkeys_pref_default_title"
             android:widgetLayout="@layout/softkey_longpress_preference_widget"
             settings:customSummary="@string/eos_interface_softkeys_custom_pref_summary"
-            settings:targetUri="@string/eos_interface_softkey_menu_target_uri" />
+            settings:providerUri="@string/eos_interface_softkey_menu_target_uri" />
 
-        <org.eos.controlcenter.ColorPreference
-            android:key="eos_softkey_color_menu"
-            android:title="@string/eos_interface_softkey_color"
-            settings:keyIdentifier="3"
-            settings:targetUri2="@string/eos_interface_softkey_multicolor_key_uri" />
-
-        <Preference
-            android:key="eos_interface_softkey_menu_default_key_color"
-            android:title="@string/eos_interface_softkey_color_default" />
-
-        <org.eos.controlcenter.ColorPreference
-            android:key="eos_softkey_glow_color_menu"
-            android:title="@string/eos_interface_softkey_glow_color"
-            settings:keyIdentifier="3"
-            settings:targetUri2="@string/eos_interface_softkey_multicolor_glow_uri" />
-
-        <Preference
-            android:key="eos_interface_softkey_menu_default_glow_color"
-            android:title="@string/eos_interface_softkey_glow_color_default" />
+        <org.eos.controlcenter.EosPreference
+            android:key="menu_key_color_pref"
+            settings:applyAllList="@array/softkey_apply_all_list"
+            settings:defaultVal="@integer/softkey_default_color_val"
+            settings:prefTitle="@string/color_preference_title"
+            settings:providerUri="@string/menu_key_color_target" />
+        <org.eos.controlcenter.EosPreference
+            android:key="menu_key_glow_color_pref"
+            settings:applyAllList="@array/softkey_glow_apply_all_list"
+            settings:defaultVal="@integer/softkey_default_color_val"
+            settings:prefTitle="@string/glow_color_preference_title"
+            settings:providerUri="@string/menu_key_glow_color_target" />
     </PreferenceCategory>
     <PreferenceCategory
         android:key="eos_interface_softkeys_extra_features"

@@ -17,15 +17,15 @@
 
 <resources>
 
-    <declare-styleable name="ActionPreference">
-        <attr name="targetUri" format="reference" />
+    <declare-styleable name="EosPreference">
+        <attr name="headerTitle" format="reference" />
+        <attr name="headerText" format="reference" />
+        <attr name="prefTitle" format="reference" />
+        <attr name="providerUri" format="reference" />
+        <attr name="defaultVal" format="reference" />
+        <attr name="applyAllList" format="reference" />
         <attr name="customSummary" format="reference" />
-    </declare-styleable>
-    <declare-styleable name="MultiColorPreference">
-
-        <!-- Fix this targetUri2 sloppiness -->
-        <attr name="targetUri2" format="reference" />
-        <attr name="keyIdentifier" format="integer" />
+        <attr name="hasCheckBox" format="boolean" />
     </declare-styleable>
 
 </resources>

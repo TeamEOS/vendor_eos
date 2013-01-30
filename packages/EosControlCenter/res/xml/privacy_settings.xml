@@ -30,7 +30,6 @@
             android:title="@string/eos_logger_mode" />
 
         <PreferenceScreen
-            android:fragment="org.eos.controlcenter.LoggerPackages"
             android:key="eos_logger_packages"
             android:title="@string/eos_logger_packages" />
     </PreferenceCategory>
