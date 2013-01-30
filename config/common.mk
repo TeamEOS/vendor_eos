@@ -62,11 +62,11 @@ PRODUCT_PACKAGES += \
     Development \
     Email \
     LatinIME \
+    Launcher2 \
     LockClock \
     SpareParts \
     Superuser \
-    su \
-    Trebuchet
+    su
 
 # Optional cfX packages
 PRODUCT_PACKAGES += \
@@ -77,7 +77,7 @@ PRODUCT_PACKAGES += \
     VideoEditor \
     VoiceDialer \
     SoundRecorder \
-    ZeroXBenchmark
+    ZeroXBenchmark \
 
 # Theme Chooser
 PRODUCT_PACKAGES += \
