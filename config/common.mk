@@ -17,6 +17,13 @@ PRODUCT_COPY_FILES += \
     vendor/cm/prebuilt/common/lib/libjni_latinime.so:obj/lib/libjni_latinime.so \
     vendor/cm/prebuilt/common/lib/libjni_latinime.so:system/lib/libjni_latinime.so
 
+# Backup Tool
+PRODUCT_COPY_FILES += \
+	vendor/cm/prebuilt/common/bin/backuptool.sh:system/bin/backuptool.sh \
+	vendor/cm/prebuilt/common/bin/backuptool.functions:system/bin/backuptool.functions \
+	vendor/cm/prebuilt/common/bin/50-hosts.sh:system/addon.d/50-hosts.sh \
+	vendor/cm/prebuilt/common/bin/blacklist:system/addon.d/blacklist
+
 # init.d support
 PRODUCT_COPY_FILES += \
     vendor/cm/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
