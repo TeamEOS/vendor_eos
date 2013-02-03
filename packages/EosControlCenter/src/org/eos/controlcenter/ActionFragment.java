@@ -3,17 +3,12 @@ package org.eos.controlcenter;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.preference.PreferenceFragment;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,22 +17,20 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.eos.controlcenter.PackageServerActivity.OnPackagesLoadedListener;
+
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
-public abstract class ActionFragment extends PreferenceFragment {
+public abstract class ActionFragment extends PreferenceFragment implements OnPackagesLoadedListener {
 
     protected Context mContext;
     protected ContentResolver mResolver;
     protected LayoutInflater mInflate;
-    protected List<AppPackage> components;
     protected AppArrayAdapter mAdapter;
     protected ListView mListView;
     protected Resources mRes;
     protected ArrayList<ActionPreference> mActionPreferenceList;
-    protected ProgressDialog mLoaderDialog;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,21 +38,7 @@ public abstract class ActionFragment extends PreferenceFragment {
         mRes = mContext.getResources();
         mResolver = mContext.getContentResolver();
         mActionPreferenceList = new ArrayList<ActionPreference>();
-        mLoaderDialog = ProgressDialog.show(mContext,
-                getString(R.string.eos_interface_loading_dialog_title),
-                getString(R.string.eos_interface_loading_dialog_msg), true);
-        if (mAdapter == null) {
-            new Handler().postDelayed(new Runnable() {
-
-                @Override
-                public void run() {
-                    // TODO Auto-generated method stub
-                    mLoaderDialog.show();
-                    populateActionAdapter();
-                    mLoaderDialog.dismiss();
-                }
-            }, 1000);
-        }
+        populateActionAdapter();
     }
 
     class WidgetListener implements View.OnClickListener {
@@ -76,7 +55,6 @@ public abstract class ActionFragment extends PreferenceFragment {
                     }
                 }
             }
-
         }
     }
 
@@ -123,23 +101,7 @@ public abstract class ActionFragment extends PreferenceFragment {
     }
 
     private void populateActionAdapter() {
-        components = new ArrayList<AppPackage>();
-
-        PackageManager pm = mContext.getPackageManager();
-        Intent intent = new Intent(Intent.ACTION_MAIN, null);
-        intent.addCategory(Intent.CATEGORY_LAUNCHER);
-        List<ResolveInfo> activities = pm.queryIntentActivities(intent, 0);
-        for (ResolveInfo info : activities) {
-            AppPackage ap = new AppPackage(info, pm);
-            components.add(ap);
-        }
-        // sort the app packages by simple name
-        Collections.sort(components, new Comparator<AppPackage>() {
-            public int compare(AppPackage ap1, AppPackage ap2) {
-                return ap1.getName().compareToIgnoreCase(ap2.getName());
-            }
-        });
-        mAdapter = new AppArrayAdapter(mContext, components);
+        mAdapter = new AppArrayAdapter(mContext, PackageServerActivity.getPackageList());
         View dialog = View.inflate(mContext, R.layout.activity_dialog, null);
         mListView = (ListView) dialog.findViewById(R.id.eos_dialog_list);
         mListView.setAdapter(mAdapter);

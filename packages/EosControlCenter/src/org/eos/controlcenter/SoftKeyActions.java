@@ -16,7 +16,7 @@ public class SoftKeyActions extends ActionFragment
     public static SoftKeyActions newInstance(Bundle args) {
         SoftKeyActions frag = new SoftKeyActions();
         if (args != null) {
-            args.putString(Utils.SOFTKEY_FRAG_TAG, "Softkey Actions");
+            args.putString(Utils.FRAG_TITLE_KEY, "Softkey Actions");
         }
         frag.setArguments(args);
         return frag;
@@ -25,7 +25,7 @@ public class SoftKeyActions extends ActionFragment
     public static SoftKeyActions newInstance() {
         SoftKeyActions frag = new SoftKeyActions();
         Bundle args = new Bundle();
-        args.putString(Utils.SOFTKEY_FRAG_TAG, "Softkey Actions");
+        args.putString(Utils.FRAG_TITLE_KEY, "Softkey Actions");
         frag.setArguments(args);
         return frag;
     }
@@ -77,6 +77,18 @@ public class SoftKeyActions extends ActionFragment
             return true;
         }
         return false;
+    }
+
+    @Override
+    public void onPackagesUpdated(int percent) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void onPackagesLoaded(boolean loaded) {
+        // TODO Auto-generated method stub
+        
     }
 
 }

@@ -6,21 +6,40 @@ import android.content.Intent;
 
 import org.teameos.jellybean.settings.EOSConstants;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+
 public final class Utils {
-    public static boolean STATE_ON = true;
-    public static boolean STATE_OFF = false;
+    public static final boolean STATE_ON = true;
+    public static final boolean STATE_OFF = false;
 
     public static final String ANDROIDNS = "http://schemas.android.com/apk/res/android";
     public static final String CONTROLCENTERNS = "http://schemas.android.com/apk/res/org.eos.controlcenter";
     public static final String URI_GRAVEYARD = "eos_graveyard_uri";
     
     public static final String INCOMING_FRAG_KEY = "eos_incoming_frag_key";
+    public static final String FRAG_TITLE_KEY = "title";
+    public static final String INCOMING_LAST_FRAG_VIEWED = "eos_incoming_last_frag_viewed";
     public static final String SOFTKEY_FRAG_TAG = "eos_softkey_settings";
-    public static final String SEARCH_PANEL_FRAG_TAG = "eos_navring_settings";
+    public static final String SEARCH_PANEL_FRAG_TAG = "eos_search_panel_settings";
     public static final String PERFORMANCE_FRAG_TAG = "eos_performance_frag_tag";
     public static final String PRIVACY_FRAG_TAG = "eos_privacy_frag_tag";
     public static final String PRIVACY_LOG_PACKAGES = "eos_logger_packages";
+    public static final String TEXT_FRAGMENT_TITLE_KEY = "eos_text_frag_title";
+    public static final String TEXT_FRAGMENT_TEXT_RES_KEY = "eos_text_frag_res";
     
+    public static final String DEFAULT_TITLE = "EOS Control Center";
+    public static final String INTERFACE_SETTINGS_TITLE = "Interface";
+    public static final String NAVBAR_SETTINGS_TITLE = "Navigation";
+    public static final String STATUSBAR_SETTINGS_TITLE = "Statusbar";
+    public static final String SYSTEM_SETTINGS_TITLE = "System";
+    public static final String INFO_TITLE = "Info";
+    
+    public static int LAST_FRAG_VIEWED = 0;
+
     public static void turnOnEosUI(Context context) {
         Intent i = new Intent().setAction(EOSConstants.INTENT_EOS_CONTROL_CENTER);
         i.putExtra(EOSConstants.INTENT_EOS_CONTROL_CENTER_EXTRAS_STATE, STATE_ON);
@@ -75,5 +94,23 @@ public final class Utils {
         } else {
             return "hello";
         }    
+    }
+
+    public static String readRawTextFile(Context context, int resId) {
+        InputStream inputStream = context.getResources().openRawResource(resId);
+        InputStreamReader inputreader = new InputStreamReader(inputStream);
+        BufferedReader buffreader = new BufferedReader(inputreader);
+        String line;
+        StringBuilder text = new StringBuilder();
+
+        try {
+            while ((line = buffreader.readLine()) != null) {
+                text.append(line);
+                text.append('\n');
+            }
+        } catch (IOException e) {
+            return null;
+        }
+        return text.toString();
     }
 }

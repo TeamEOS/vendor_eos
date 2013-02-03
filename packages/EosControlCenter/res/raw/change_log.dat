@@ -1,0 +1,264 @@
+2/9/13
+
+PHONES
+
+  •  Toroplus - bring in apn fix for lte-3g data transition bug fix
+
+TABLETS
+
+  •  tf101: increase touch sensitivity
+
+ALL
+
+  •  NEW FEATURE: Introducing the EosNX Gesture Bar! A new navigation
+     bar that is completely controlled by gesture. 
+    
+      · Swipe left for "back"
+      · Swipe up for "home"
+      · Swipe right for "recent apps"
+      · Longpress searchlight for search panel
+      · Longpress bar for menu
+      
+  •  Massive overhaul continued on Eos Control Center
+  
+      · Phones - portrait and landscape use viewpager
+      · Grouper - portrait uses viewpager, landscape uses dual pane
+      · Tablets - portrait and landscape use dual pane
+      
+      · Changelog, Team roster, and XDA support thread in menu
+      · ThemeChooser now ActionBar action button
+      · Got rid of stupid progress dialog when loading softkeys
+      · and Search Panel targets
+      · Countless other improvements to mention
+      
+  •  Recents Panel make memory available text holo_light for themes
+  
+  •  Recents Panel fix kill-all when launcher is front activity
+  
+  •  NEW FEATURE: new 25dp bar size available, now there are 3 sizes
+  
+  •  Bring in resources from cm libhardware_legacy, libhardware, 
+     frameworks/av to support upcoming nozomi support
+  
+  •  Update mako tree for upcoming N4 builds
+  
+  •  Bring in resources for upcoming D2 (Samsung SIII) series builds
+  
+  •  frameworks/base: Bring in "killSupplicant()" support from cm10.1
+  
+  •  Merged in the whole 5 commits that make us Android 4.2.2
+  
+  •  Bump build id to JOP40G
+  
+  
+**************************************************************************************
+
+2/3/13
+
+PHONES
+
+    • Tuna Series
+        · bump LeanKernel to 5.8.2exp1-230 from Imoseyon 
+
+    • All
+        · new Swipe to QuickSettings brought in from CM. Swipe
+        · expanded statusbar drag handle to flip between QuickSettings
+        · and Notification panels. It's pretty slick. 
+
+TABLETS
+
+    • TF101
+        · Bring in extended BatteryController class to manage
+          Dock battery 
+        
+        · Revert "mach-tegra: proper gpu overlocking"
+          Should stabilize some issues 
+
+ALL
+
+    • New QuickSettings seekbar style and animation. Now fling open
+      area of seekbar to scroll between volume and brightness. Much
+      cleaner and sleeker.
+    
+    • Various backend code cleanup for various features and implementation.
+    
+    • Completely overhauled Systembar visibility code.
+    
+    • FEATURE: All device can now select to hide both bars, just hide 
+      navigation bar and leave statusbar alone, and hide bars on boot. 
+      NOTE: As always, the user may also hide bars from Power Menu, softkey
+      longpress action, and custom Search Panel target action!
+    
+    • Introducing version 0.5a (lol) of the all new ECC (Eos Control Center)! 
+      For now all users will use view pager in portrait and landscape orientation. 
+      In time, tablets will use dual pane interface, large screen (grouper) will 
+      use pager in portrait and dual pane in landscape, and phones will 
+      use view pager for both. 
+      
+      Some things to note:
+      
+        · Some features have been reorganized. You won't have to look far for them.
+        
+        · Some various layouts are a work in progress. I already know what 
+          they are so don't remind me!
+        
+        · Softkey settings: You can now apply one key's color or glow color to all 
+          the keys or glows. With the push of a button. Should satisfy some 
+          vocal users ;P
+        
+        · The ECC will continue to grow and evolve with the goal of the ECC 
+          properly reflecting that TeamEos is a world class organization, and 
+          the gateway to our features will reflect that.
+          No need to wipe or anything else. All your settings are preserved. 
+          
+**************************************************************************************
+
+1/25/13
+
+PHONES
+
+    • Tuna Series
+        · bump LeanKernel to 5.8exp1-230 from Imoseyon 
+
+TABLETS
+
+    • TF101
+        · Enabled configs to help with launcher lag (likely a special nighty
+          since i should have been in last one) 
+        
+    • Xoom
+        · Backport cfg80211, netlink, and bcmdhd from common/3.0 fixing 
+          tether on Stingray and UMTS_Everest. Oh ya baby, kernel pwnage! 
+        
+    • Add CTRL + MENU shortcut to bring Recent Apps
+    
+    • Fix control center FC on dual pane views
+    
+    • Browser - enable full screen option in labs
+    
+    • New implementation for disabling navigation bar, should give a
+      performance improvement on tablets that have issues 
+
+ALL
+
+    • Fix Recents Landscape Killall
+    
+    • Feature - Disable annoying Low Battery Warning system alerts
+    
+    • Feature - Enable/disable screen on when plugging/unplugging
+    
+    • FEATURE - CRT screen on/off animations user defined
+    
+    • Feature -Add more settings and data validation to EOS Daydream
+    
+    • Zygote: Restrict slave mountspace so Dalvik apps can mount 
+      system-wide volumes. Should fix apps like cifsManager and other 
+      fs mount related issues 
+    
+    • Update Recents Panel Orientation
+    
+    • Organize EosControlCenter (ECC) system into preference categories
+    
+    • Remove bogus "no file_contexts" warning from updater binary
+    
+    • Remove selinux bloat from root dir
+    
+    • Misc code cleanup on ECC with fragment handling
+    
+    • Styled ECC spinner 
+    
+**************************************************************************************
+
+1/19/13
+
+PHONES
+
+    • Tuna Series
+        · All - bring back depricated SMS framework fixing Handcent issues
+        
+        · Maguro - update build fingerprint
+        
+        · Toroplus
+            · Update toroplus build fingerprint to official 4.2.1
+            
+            · Bring in official 4.2.1 vendor binaries! Dramatically better
+              battery life, radio performance, gps lock, and fixed 
+              drm for Hulu+ yippie! 
+
+TABLETS
+
+    • All
+        · Fix clock digit cut on lock screen
+        
+        · Fix annoying Back/Ime button bug when using a hard keyboard 
+        
+    • Xoom
+        · Stingray - New activation helper app for clean activation 
+          on initial boot
+        
+        · Stingray - Removed activation app in favor of a better framework fix 
+        
+    • TF101
+        · Numerous AutoRotate patches fixing a number of pending issues 
+        
+    • Nexus 7
+        · Enable CRT screen off animation (I like it better, will make 
+          user defined soon) 
+
+ALL
+
+    • Clean up EosControlCenter icons
+    
+    • Feature - control wifi off timeout when device sleeps
+    
+    • Enable XDA support links in ECC information, disable Rootz link for now
+    
+    • Bring back the Toasts in frameworks non app / services
+    
+    • SystemUI: respect statusbar background for themes
+    
+    • Add config to allow to decrease suggested wallpaper size
+    
+    • Fix Launcher lag with optional overlay config value
+    
+    • Add EOS Daydream into SystemUI. Welcome back Roach! Fling away ;D
+    
+    • Fix Recents Landscape Killall 
+
+**************************************************************************************
+
+1/9/13
+
+PHONES
+
+    • Tuna Series
+        · Update device tree
+            · Update Leankernel 5.6exp2-230
+            · Bring in usb-otg support 
+            
+        · Update omap3 branch and libhardware branch fixing Tuna gps
+        
+        · Maguro - fix signal strength bug caused by importing Everest code 
+
+TABLETS
+
+    • TF101 - Fix system crash when changing dock keyboard layout
+    
+    • Grouper - Update device tree
+        · Bring in usb-otg support
+        · kill long press volume buttons for bug reporter 
+
+ALL
+
+    • Bring in some cli binaries
+        · iw, libnl, dropbear, powertop, scp, sftp, ssh-keygen, tcpdump 
+        
+    • Update some quick settings panel icons
+    
+    • Update broadcom/wlan branch
+    
+    • Misc framework updates from CyanogenMod thanks guys
+    
+    • Yet another attempt to fix APN settings, should work for real now
+    
+    • (LTE devices) new LTE Quick Settings toggle (see, I remembered ;D ) 

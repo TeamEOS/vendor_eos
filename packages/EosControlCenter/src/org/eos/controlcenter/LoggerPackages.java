@@ -41,7 +41,7 @@ public class LoggerPackages extends Fragment {
     public static LoggerPackages newInstance(Bundle args) {
         LoggerPackages frag = new LoggerPackages();
         if (args != null) {
-            args.putString(Utils.PRIVACY_LOG_PACKAGES, "Logger Packages");
+            args.putString(Utils.FRAG_TITLE_KEY, "Logger Packages");
         }
         frag.setArguments(args);
         return frag;
@@ -50,7 +50,7 @@ public class LoggerPackages extends Fragment {
     public static LoggerPackages newInstance() {
         LoggerPackages frag = new LoggerPackages();
         Bundle args = new Bundle();
-        args.putString(Utils.PRIVACY_LOG_PACKAGES, "Logger Packages");
+        args.putString(Utils.FRAG_TITLE_KEY, "Logger Packages");
         frag.setArguments(args);
         return frag;
     }

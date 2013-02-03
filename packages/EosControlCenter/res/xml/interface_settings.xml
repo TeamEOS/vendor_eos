@@ -18,19 +18,6 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
     android:title="@string/eos_interface" >
-
-    <PreferenceCategory
-        android:key="eos_interface_theme"
-        android:title="@string/eos_interface_theme" >
-        <Preference
-            android:key="eos_interface_theme_pref"
-            android:title="@string/eos_interface_theme_pref_title" >
-            <intent
-                android:action="android.intent.action.MAIN"
-                android:targetClass="com.tmobile.themechooser.ThemeChooser"
-                android:targetPackage="com.tmobile.themechooser" />
-        </Preference>
-    </PreferenceCategory>
     <PreferenceCategory
         android:key="eos_interface_lockscreen"
         android:title="@string/eos_interface_lockscreen" >

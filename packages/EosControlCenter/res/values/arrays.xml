@@ -182,5 +182,15 @@
         <item>eos_systemui_recent_glow_color"</item>
         <item>eos_systemui_menu_glow_color"</item>
     </string-array>
+    <string-array name="navbar_size_entries">
+        <item>Normal (48dp)</item>
+        <item>Slim (36dp)</item>
+        <item>Small (24dp)</item>
+    </string-array>
+    <string-array name="navbar_size_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
 
 </resources>

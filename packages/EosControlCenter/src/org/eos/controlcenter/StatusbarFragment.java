@@ -2,21 +2,21 @@ package org.eos.controlcenter;
 
 import android.os.Bundle;
 
-public class StatusbarSettings extends PreferenceListFragment {
+public class StatusbarFragment extends PreferenceListFragment {
 
 
-    public static StatusbarSettings newInstance(int xml) {
-        StatusbarSettings frag = new StatusbarSettings(xml);
+    public static StatusbarFragment newInstance(int xml) {
+        StatusbarFragment frag = new StatusbarFragment(xml);
         Bundle b = new Bundle();
         b.putInt("xml", xml);
         frag.setArguments(b);
         return frag;
     }
 
-    public StatusbarSettings(int xmlId) {
+    public StatusbarFragment(int xmlId) {
         // TODO Auto-generated constructor stub
         super(xmlId);
     }
 
-    public StatusbarSettings() {}
+    public StatusbarFragment() {}
 }

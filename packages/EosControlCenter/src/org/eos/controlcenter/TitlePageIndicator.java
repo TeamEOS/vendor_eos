@@ -76,6 +76,21 @@ public class TitlePageIndicator extends View implements PageIndicator {
         void onCenterItemClick(int position);
     }
 
+    /**
+     * @author bigrushdog Secondary page changed callback. Apparently the compat
+     *         library only allows for a single page changed listener to be
+     *         registered. This class uses the only allowed callback so we'll
+     *         add one of our own to be invoked when the original one is
+     */
+    public interface OnMyPageChangedListener {
+        /**
+         * Callback to Main activity when page changes
+         * 
+         * @param position
+         */
+        void onMyPageChanged(int position);
+    }
+
     public enum IndicatorStyle {
         None(0), Triangle(1), Underline(2);
 
@@ -116,6 +131,8 @@ public class TitlePageIndicator extends View implements PageIndicator {
 
     private ViewPager mViewPager;
     private ViewPager.OnPageChangeListener mListener;
+    /** Our special listener */
+    private OnMyPageChangedListener mMyListener;
     private int mCurrentPage = -1;
     private float mPageOffset;
     private int mScrollState;
@@ -748,6 +765,11 @@ public class TitlePageIndicator extends View implements PageIndicator {
         mViewPager.setCurrentItem(item);
         mCurrentPage = item;
         invalidate();
+
+        /** invoke here too for good measure */
+        if (mMyListener != null) {
+            mMyListener.onMyPageChanged(item);
+        }
     }
 
     @Override
@@ -780,11 +802,23 @@ public class TitlePageIndicator extends View implements PageIndicator {
         if (mListener != null) {
             mListener.onPageSelected(position);
         }
-    }
+
+        /** this looks like a good place to invoke */
+        if (mMyListener != null) {
+            mMyListener.onMyPageChanged(position);
+        }
+     }
 
     @Override
     public void setOnPageChangeListener(ViewPager.OnPageChangeListener listener) {
         mListener = listener;
+    }
+
+    /**
+     * We can set our special listener here
+     */
+    public void setOnMyPageChangedListener(OnMyPageChangedListener listener) {
+        mMyListener = listener;
     }
 
     @Override

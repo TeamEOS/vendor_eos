@@ -2,21 +2,21 @@ package org.eos.controlcenter;
 
 import android.os.Bundle;
 
-public class InterfaceSettings extends PreferenceListFragment {
+public class InterfaceFragment extends PreferenceListFragment {
 
 
-    public static InterfaceSettings newInstance(int xml) {
-        InterfaceSettings frag = new InterfaceSettings(xml);
+    public static InterfaceFragment newInstance(int xml) {
+        InterfaceFragment frag = new InterfaceFragment(xml);
         Bundle b = new Bundle();
         b.putInt("xml", xml);
         frag.setArguments(b);
         return frag;
     }
 
-    public InterfaceSettings(int xmlId) {
+    public InterfaceFragment(int xmlId) {
         // TODO Auto-generated constructor stub
         super(xmlId);
     }
 
-    public InterfaceSettings() {}
+    public InterfaceFragment() {}
 }

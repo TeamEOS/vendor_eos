@@ -37,7 +37,7 @@ public class Performance extends PreferenceFragment implements
     public static Performance newInstance(Bundle args) {
         Performance frag = new Performance();
         if (args != null) {
-            args.putString(Utils.PERFORMANCE_FRAG_TAG, "Performance");
+            args.putString(Utils.FRAG_TITLE_KEY, "Performance");
         }
         frag.setArguments(args);
         return frag;
@@ -46,7 +46,7 @@ public class Performance extends PreferenceFragment implements
     public static Performance newInstance() {
         Performance frag = new Performance();
         Bundle args = new Bundle();
-        args.putString(Utils.PERFORMANCE_FRAG_TAG, "Performance");
+        args.putString(Utils.FRAG_TITLE_KEY, "Performance");
         frag.setArguments(args);
         return frag;
     }

@@ -1,20 +1,20 @@
 <resources>
 
-    <!--
-        Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
-    -->
-    <style name="AppBaseTheme" parent="android:Theme.Light">
-        <!--
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-        -->
+    <!-- Pager Activity theme. -->
+    <style name="PagerTheme" parent="android:Theme.Holo">
+        <item name="vpiTitlePageIndicatorStyle">@style/CustomViewPagerIndicator</item>
     </style>
 
-    <!-- Application theme. -->
-    <style name="AppTheme" parent="AppBaseTheme">
-        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    <style name="CustomViewPagerIndicator">
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">14sp</item>
+        <item name="footerIndicatorStyle">underline</item>
+        <item name="footerIndicatorHeight">2dp</item>
+        <item name="selectedBold">true</item>
+        <item name="footerColor">@*android:color/holo_blue_light</item>
     </style>
 
 </resources>

@@ -20,8 +20,8 @@
     android:title="@string/eos_interface_navbar" >
 
     <PreferenceCategory
-        android:key="eos_interface_navbar"
-        android:title="@string/eos_interface_navbar" >
+        android:key="eos_navbar_visibility"
+        android:title="@string/eos_interface_navbar_category_visibility" >
         <CheckBoxPreference
             android:key="eos_interface_hide_navbar"
             android:summary="@string/eos_interface_hide_navbar_summary"
@@ -34,26 +34,43 @@
             android:key="eos_interface_hide_statbar_too"
             android:summary="@string/eos_interface_hide_statbar_too_summary"
             android:title="@string/eos_interface_hide_statbar_too_title" />
-        <CheckBoxPreference
-            android:key="eos_interface_navbar_low_profile"
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="eos_navbar_style"
+        android:title="@string/eos_interface_navbar_category_style" >
+        <ListPreference
+            android:defaultValue="0"
+            android:entries="@array/navbar_size_entries"
+            android:entryValues="@array/navbar_size_values"
+            android:key="eos_interface_navbar_size"
             android:summary="@string/eos_interface_navbar_low_profile_summary"
             android:title="@string/eos_interface_navbar_low_profile_title" />
+
         <CheckBoxPreference
             android:key="eos_interface_navbar_tablet_style"
             android:summary="@string/eos_interface_navbar_tablet_style_summary"
             android:title="@string/eos_interface_navbar_tablet_style_title" />
+        <CheckBoxPreference
+            android:key="eos_interface_navbar_nx_style"
+            android:summary="@string/eos_interface_navbar_nx_style_summary"
+            android:title="@string/eos_interface_navbar_nx_style_title" />
+
         <org.eos.controlcenter.EosPreference
             android:key="nav_bar_color_pref"
-            settings:prefTitle="@string/color_preference_title"
             settings:defaultVal="@integer/softkey_default_color_val"
+            settings:prefTitle="@string/color_preference_title"
             settings:providerUri="@string/eos_interface_navbar_color_uri" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="eos_navbar_actions"
+        android:title="@string/eos_interface_navbar_category_actions" >
         <PreferenceScreen
-            android:fragment="org.eos.controlcenter.SoftKeyActions"
             android:key="eos_softkey_settings"
             android:title="@string/eos_interface_softkey_settings" />
         <PreferenceScreen
-            android:fragment="org.eos.controlcenter.NavRingActions"
-            android:key="eos_navring_settings"
+            android:key="eos_search_panel_settings"
             android:summary="@string/eos_interface_navring_settings_summary"
             android:title="@string/eos_interface_navring_settings" />
     </PreferenceCategory>

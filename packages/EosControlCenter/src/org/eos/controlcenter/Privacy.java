@@ -21,7 +21,7 @@ public class Privacy extends PreferenceFragment implements
     public static Privacy newInstance(Bundle args) {
         Privacy frag = new Privacy();
         if (args != null) {
-            args.putString(Utils.PRIVACY_FRAG_TAG, "Privacy");
+            args.putString(Utils.FRAG_TITLE_KEY, "Privacy");
         }
         frag.setArguments(args);
         return frag;
@@ -30,7 +30,7 @@ public class Privacy extends PreferenceFragment implements
     public static Privacy newInstance() {
         Privacy frag = new Privacy();
         Bundle args = new Bundle();
-        args.putString(Utils.PRIVACY_FRAG_TAG, "Privacy");
+        args.putString(Utils.FRAG_TITLE_KEY, "Privacy");
         frag.setArguments(args);
         return frag;
     }

@@ -25,4 +25,4 @@
     android:focusable="true"
     android:paddingLeft="15dip"
     android:paddingRight="?android:attr/scrollbarSize"
-    android:src="@drawable/ic_sysbar_quicksettings" />
+    android:src="@drawable/ic_ecc_configure" />

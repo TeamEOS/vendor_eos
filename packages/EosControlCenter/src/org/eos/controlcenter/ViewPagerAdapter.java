@@ -20,18 +20,17 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         super(fm);
         mFragments = new ArrayList<Pair<Fragment, String>>();
         mFragments.add(Pair.create(
-                (Fragment) InterfaceSettings.newInstance(R.xml.interface_settings), "Interface"));
+                (Fragment) InterfaceFragment.newInstance(R.xml.interface_settings), "INTERFACE"));
 
         if (EOSUtils.hasNavBar(context)) {
             mFragments.add(Pair.create(
-                    (Fragment) NavigationFragment.newInstance(R.xml.navigation_bar), "Navigation"));
+                    (Fragment) NavigationFragment.newInstance(R.xml.navigation_bar), "NAVIGATION"));
         }
 
-        mFragments.add(Pair.create((Fragment) StatusbarSettings.newInstance(R.xml.statusbar),
-                "Statusbar"));
-        mFragments.add(Pair.create((Fragment) SystemSettings.newInstance(R.xml.system_settings),
-                "System"));
-        mFragments.add(Pair.create((Fragment) Info.newInstance(R.xml.info), "Info"));
+        mFragments.add(Pair.create((Fragment) StatusbarFragment.newInstance(R.xml.statusbar),
+                "STATUSBAR"));
+        mFragments.add(Pair.create((Fragment) SystemFragment.newInstance(R.xml.system_settings),
+                "SYSTEM"));
     }
 
     @Override

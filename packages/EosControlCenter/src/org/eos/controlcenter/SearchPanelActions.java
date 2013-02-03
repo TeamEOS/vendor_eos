@@ -11,7 +11,7 @@ public class SearchPanelActions extends ActionFragment {
     public static SearchPanelActions newInstance(Bundle args) {
         SearchPanelActions frag = new SearchPanelActions();
         if (args != null) {
-            args.putString(Utils.SEARCH_PANEL_FRAG_TAG, "SearchPanel Actions");
+            args.putString(Utils.FRAG_TITLE_KEY, "SearchPanel Actions");
         }
         frag.setArguments(args);
         return frag;
@@ -20,7 +20,7 @@ public class SearchPanelActions extends ActionFragment {
     public static SearchPanelActions newInstance() {
         SearchPanelActions frag = new SearchPanelActions();
         Bundle args = new Bundle();
-        args.putString(Utils.SEARCH_PANEL_FRAG_TAG, "SearchPanel Actions");
+        args.putString(Utils.FRAG_TITLE_KEY, "SearchPanel Actions");
         frag.setArguments(args);
         return frag;
     }
@@ -34,7 +34,7 @@ public class SearchPanelActions extends ActionFragment {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.navring_settings);
+        addPreferencesFromResource(R.xml.search_panel_settings);
 
         addActionPreference((ActionPreference) findPreference("eos_interface_navring_1_release"));
         addActionPreference((ActionPreference) findPreference("eos_interface_navring_2_release"));
@@ -46,5 +46,17 @@ public class SearchPanelActions extends ActionFragment {
             Settings.System.putString(mContext.getContentResolver(),
                     EOSConstants.SYSTEMUI_NAVRING_2, "assist");
         }
+    }
+
+    @Override
+    public void onPackagesUpdated(int percent) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void onPackagesLoaded(boolean loaded) {
+        // TODO Auto-generated method stub
+        
     }
 }
