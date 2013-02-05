@@ -42,6 +42,12 @@ service compcache /system/bin/handle_compcache
     group root
     oneshot
 
+service handleswap /system/bin/handle_swap
+    class main
+    user root
+    group root
+    oneshot
+
 # sysinit (/system/etc/init.d)
 service sysinit /system/bin/sysinit
     user root
