@@ -27,7 +27,7 @@
 
     <org.eos.controlcenter.InfoPreference android:key="Timduru" />
 
-    <PreferenceCategory android:title="TF101 Device Maintainer" />
+    <PreferenceCategory android:title="TF101 Device Maintainer &amp; Nozomi Device Maintainer" />
 
     <org.eos.controlcenter.InfoPreference android:key="RaymanFX" />
 
