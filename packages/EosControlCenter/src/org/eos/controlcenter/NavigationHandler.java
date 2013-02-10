@@ -243,6 +243,5 @@ public class NavigationHandler extends PreferenceScreenHandler {
             mNxStyleBar.setEnabled(!mTabletStyleBar.isChecked());
             mTabletStyleBar.setEnabled(!mNxStyleBar.isChecked());
         }
-        pc_action.setEnabled(!mNxStyleBar.isChecked());
     }
 }

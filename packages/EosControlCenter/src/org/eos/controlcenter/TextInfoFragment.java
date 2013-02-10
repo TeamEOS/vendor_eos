@@ -4,10 +4,9 @@ package org.eos.controlcenter;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.HorizontalScrollView;
-import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -29,7 +28,6 @@ public class TextInfoFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         mContent = Utils.readRawTextFile(getActivity(), mContentRes);
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle(mTitle);
         ScrollView vScroll = new ScrollView(getActivity());
         HorizontalScrollView hScroll = new HorizontalScrollView(getActivity());
         TextView mText = new TextView(getActivity());
@@ -37,7 +35,15 @@ public class TextInfoFragment extends DialogFragment {
         mText.setText(mContent);
         hScroll.addView(mText);
         vScroll.addView(hScroll);
-        builder.setView(vScroll);
+
+        builder.setView(vScroll)
+                .setTitle(mTitle)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
         return builder.create();
     }
 }
