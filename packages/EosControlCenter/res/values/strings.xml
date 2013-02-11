@@ -70,7 +70,7 @@
     <string name="eos_interface_navbar_tablet_style_title">Softkeys position</string>
     <string name="eos_interface_navbar_tablet_style_summary">Enable to left align softkeys on navigation bar</string>
     <string name="eos_interface_navbar_nx_style_title">NX Gesture Bar</string>
-    <string name="eos_interface_navbar_nx_style_summary">Use common gestures instead of buttons</string>
+    <string name="eos_interface_navbar_nx_style_summary">Swipe left for \"back\" Swipe up for \"home\" \nSwipe right for \"recent\" Longpress bar for \"menu\" \nLongpress searchlight for search panel</string>
     <string name="eos_interface_softkey_settings">Softkey Settings</string>
     <string name="eos_interface_softkeys_longpress">Long Press Actions</string>
     <string name="eos_interface_softkey_enable_feature">Enable Long Press feature</string>

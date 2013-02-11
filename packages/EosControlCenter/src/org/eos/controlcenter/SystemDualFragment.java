@@ -10,6 +10,7 @@ public class SystemDualFragment extends PreferenceFragment {
         SystemDualFragment frag = new SystemDualFragment();
         if (args != null) {
             args.putString(Utils.FRAG_TITLE_KEY, Utils.SYSTEM_SETTINGS_TITLE);
+            args.putInt(Utils.FRAG_POSITION_KEY, 3);
         }
         frag.setArguments(args);
         return frag;
@@ -19,6 +20,7 @@ public class SystemDualFragment extends PreferenceFragment {
         SystemDualFragment frag = new SystemDualFragment();
         Bundle args = new Bundle();
         args.putString(Utils.FRAG_TITLE_KEY, Utils.SYSTEM_SETTINGS_TITLE);
+        args.putInt(Utils.FRAG_POSITION_KEY, 3);
         frag.setArguments(args);
         return frag;
     }

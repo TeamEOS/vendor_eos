@@ -22,6 +22,7 @@ public final class Utils {
     
     public static final String INCOMING_FRAG_KEY = "eos_incoming_frag_key";
     public static final String FRAG_TITLE_KEY = "title";
+    public static final String FRAG_POSITION_KEY = "position";
     public static final String INCOMING_LAST_FRAG_VIEWED = "eos_incoming_last_frag_viewed";
     public static final String SOFTKEY_FRAG_TAG = "eos_softkey_settings";
     public static final String SEARCH_PANEL_FRAG_TAG = "eos_search_panel_settings";

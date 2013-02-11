@@ -10,6 +10,7 @@ public class StatusbarDualFragment extends PreferenceFragment {
         StatusbarDualFragment frag = new StatusbarDualFragment();
         if (args != null) {
             args.putString(Utils.FRAG_TITLE_KEY, Utils.STATUSBAR_SETTINGS_TITLE);
+            args.putInt(Utils.FRAG_POSITION_KEY, 2);
         }
         frag.setArguments(args);
         return frag;
@@ -19,6 +20,7 @@ public class StatusbarDualFragment extends PreferenceFragment {
         StatusbarDualFragment frag = new StatusbarDualFragment();
         Bundle args = new Bundle();
         args.putString(Utils.FRAG_TITLE_KEY, Utils.STATUSBAR_SETTINGS_TITLE);
+        args.putInt(Utils.FRAG_POSITION_KEY, 2);
         frag.setArguments(args);
         return frag;
     }

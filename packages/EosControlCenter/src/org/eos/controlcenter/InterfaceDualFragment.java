@@ -10,6 +10,7 @@ public class InterfaceDualFragment extends PreferenceFragment {
         InterfaceDualFragment frag = new InterfaceDualFragment();
         if (args != null) {
             args.putString(Utils.FRAG_TITLE_KEY, Utils.INTERFACE_SETTINGS_TITLE);
+            args.putInt(Utils.FRAG_POSITION_KEY, 0);
         }
         frag.setArguments(args);
         return frag;
@@ -19,6 +20,7 @@ public class InterfaceDualFragment extends PreferenceFragment {
         InterfaceDualFragment frag = new InterfaceDualFragment();
         Bundle args = new Bundle();
         args.putString(Utils.FRAG_TITLE_KEY, Utils.INTERFACE_SETTINGS_TITLE);
+        args.putInt(Utils.FRAG_POSITION_KEY, 0);
         frag.setArguments(args);
         return frag;
     }

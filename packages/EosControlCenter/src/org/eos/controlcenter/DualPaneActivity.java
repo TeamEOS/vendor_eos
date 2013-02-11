@@ -231,19 +231,8 @@ public class DualPaneActivity extends Activity implements OnActivityRequestedLis
     }
 
     private void getFragmentPosition(Fragment f) {
-        if (f instanceof InterfaceDualFragment) {
-            Utils.LAST_FRAG_VIEWED = 0;
-        } else if (f instanceof NavigationDualFragment) {
-            Utils.LAST_FRAG_VIEWED = 1;
-        } else if (f instanceof StatusbarDualFragment) {
-            Utils.LAST_FRAG_VIEWED = 2;
-        } else if (f instanceof SystemDualFragment) {
-            Utils.LAST_FRAG_VIEWED = 3;
-        } else if (f instanceof InfoDualFragment) {
-            Utils.LAST_FRAG_VIEWED = 4;
-        } else {
-            Utils.LAST_FRAG_VIEWED = 0;
-        }
+        Utils.LAST_FRAG_VIEWED = f.getArguments()
+                .getInt(Utils.FRAG_POSITION_KEY, 0);
     }
 
     private void replaceFragmentFromContainer(Fragment f) {

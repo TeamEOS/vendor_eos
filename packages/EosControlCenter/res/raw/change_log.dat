@@ -1,4 +1,4 @@
-2/9/13
+2/10/13
 
 PHONES
 
@@ -6,7 +6,10 @@ PHONES
 
 TABLETS
 
-  •  tf101: increase touch sensitivity
+  •  tf101
+      · increase touch sensitivity
+      · improved mic routine
+      · possible bluetooth improvement
 
 ALL
 
@@ -31,6 +34,8 @@ ALL
         and Search Panel targets
       · Countless other improvements to mention
       
+  •  GoogleNow now opens in insecure lockscreen properly (finally ;D )
+      
   •  Recents Panel make memory available text holo_light for themes
   
   •  Recents Panel fix kill-all when launcher is front activity
@@ -46,7 +51,7 @@ ALL
   
   •  frameworks/base: Bring in "killSupplicant()" support from cm10.1
   
-  •  Merged in the whole 5 commits that make us Android 4.2.2
+  •  Merged in the whole 5 commits that make us Android 4.2.1_mr1.2
   
   •  Bump build id to JOP40G
   

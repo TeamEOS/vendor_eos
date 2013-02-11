@@ -10,6 +10,7 @@ public class NavigationDualFragment extends PreferenceFragment {
         NavigationDualFragment frag = new NavigationDualFragment();
         if (args != null) {
             args.putString(Utils.FRAG_TITLE_KEY, Utils.NAVBAR_SETTINGS_TITLE);
+            args.putInt(Utils.FRAG_POSITION_KEY, 1);
         }
         frag.setArguments(args);
         return frag;
@@ -19,6 +20,7 @@ public class NavigationDualFragment extends PreferenceFragment {
         NavigationDualFragment frag = new NavigationDualFragment();
         Bundle args = new Bundle();
         args.putString(Utils.FRAG_TITLE_KEY, Utils.NAVBAR_SETTINGS_TITLE);
+        args.putInt(Utils.FRAG_POSITION_KEY, 1);
         frag.setArguments(args);
         return frag;
     }
