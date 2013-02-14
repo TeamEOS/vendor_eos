@@ -86,7 +86,6 @@ public class DualPaneActivity extends Activity implements OnActivityRequestedLis
         filter = new IntentFilter();
         filter.addAction(EOSConstants.INTENT_SETTINGS_RESTART_INTERFACE_SETTINGS);
         registerReceivers();
-        Utils.turnOnEosUI(getApplicationContext());
     }
 
     private void updateActionBarTitle() {
@@ -127,7 +126,7 @@ public class DualPaneActivity extends Activity implements OnActivityRequestedLis
     public void onStop() {
         super.onStop();
         unregisterReceivers();
-        // Utils.turnOffEosUI(getApplicationContext());
+        Utils.turnOffEosUI(getApplicationContext());
     }
 
     @Override

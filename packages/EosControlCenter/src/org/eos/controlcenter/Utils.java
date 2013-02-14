@@ -3,6 +3,7 @@ package org.eos.controlcenter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.UserHandle;
 
 import org.teameos.jellybean.settings.EOSConstants;
 
@@ -44,13 +45,13 @@ public final class Utils {
     public static void turnOnEosUI(Context context) {
         Intent i = new Intent().setAction(EOSConstants.INTENT_EOS_CONTROL_CENTER);
         i.putExtra(EOSConstants.INTENT_EOS_CONTROL_CENTER_EXTRAS_STATE, STATE_ON);
-        context.sendBroadcast(i);
+        context.sendBroadcastAsUser(i, UserHandle.CURRENT);
     }
     
     public static void turnOffEosUI(Context context) {
         Intent i = new Intent().setAction(EOSConstants.INTENT_EOS_CONTROL_CENTER);
         i.putExtra(EOSConstants.INTENT_EOS_CONTROL_CENTER_EXTRAS_STATE, STATE_OFF);
-        context.sendBroadcast(i);
+        context.sendBroadcastAsUser(i, UserHandle.CURRENT);
     }
     
     public static String getXdaUrl(Context context, String device) {

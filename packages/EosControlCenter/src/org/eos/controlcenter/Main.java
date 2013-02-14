@@ -104,7 +104,6 @@ public class Main extends FragmentActivity
             filter = new IntentFilter();
             filter.addAction(EOSConstants.INTENT_SETTINGS_RESTART_INTERFACE_SETTINGS);
             registerReceivers();
-            Utils.turnOnEosUI(getApplicationContext());
         }
     }
 
@@ -154,12 +153,18 @@ public class Main extends FragmentActivity
         PackageServerActivity.startPackageServer(getPackageManager());
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-        unregisterReceivers();
-        // Utils.turnOffEosUI(getApplicationContext());
-    }
+	@Override
+	public void onStop() {
+		super.onStop();
+		/* if we are largescreen going from portrait to landscape
+		 * onStop is called here after DualPaneActivity onStart is called
+		 * so it leaves our SystemUI observers unregistered
+		 */
+		if (!isLargeLandscape) {
+			unregisterReceivers();
+			Utils.turnOffEosUI(getApplicationContext());
+		}
+	}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
