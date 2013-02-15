@@ -126,7 +126,7 @@ public class DualPaneActivity extends Activity implements OnActivityRequestedLis
     public void onStop() {
         super.onStop();
         unregisterReceivers();
-        Utils.turnOffEosUI(getApplicationContext());
+        // Utils.turnOffEosUI(getApplicationContext());
     }
 
     @Override

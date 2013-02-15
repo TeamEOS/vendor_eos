@@ -162,7 +162,7 @@ public class Main extends FragmentActivity
 		 */
 		if (!isLargeLandscape) {
 			unregisterReceivers();
-			Utils.turnOffEosUI(getApplicationContext());
+			// Utils.turnOffEosUI(getApplicationContext());
 		}
 	}
 
