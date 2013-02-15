@@ -25,6 +25,8 @@ public class NavigationHandler extends PreferenceScreenHandler {
     private static final String STYLE_TABLET_KEY = "eos_interface_navbar_tablet_style";
     private static final String STYLE_SIZE_KEY = "eos_interface_navbar_size";
     private static final String STYLE_NX_KEY = "eos_interface_navbar_nx_style";
+    private static final String STYLE_GLASS_KEY = "eos_interface_navbar_glass_style";
+    private static final String STYLE_GLASS_SEEKBAR_KEY = "eos_interface_navbar_glass_seekbar";
 
     OnActivityRequestedListener mListener;
     ContentObserver mBarHidingObserver;
@@ -38,6 +40,7 @@ public class NavigationHandler extends PreferenceScreenHandler {
     CheckBoxPreference mHideStatbarToo;
     CheckBoxPreference mTabletStyleBar;
     CheckBoxPreference mNxStyleBar;
+    CheckBoxPreference mGlassStyleBar;
     Preference mSoftKeyActions;
     Preference mSearchPanelActions;
 
@@ -58,6 +61,7 @@ public class NavigationHandler extends PreferenceScreenHandler {
         mTabletStyleBar = (CheckBoxPreference) pc_style.findPreference(STYLE_TABLET_KEY);
         mLowProfileNavBar = (ListPreference) pc_style.findPreference(STYLE_SIZE_KEY);
         mNxStyleBar = (CheckBoxPreference) pc_style.findPreference(STYLE_NX_KEY);
+        mGlassStyleBar = (CheckBoxPreference) pc_style.findPreference(STYLE_GLASS_KEY);
         mSoftKeyActions = (Preference) pc_action.findPreference(Utils.SOFTKEY_FRAG_TAG);
         mSearchPanelActions = (Preference) pc_action.findPreference(Utils.SEARCH_PANEL_FRAG_TAG);
 
@@ -94,6 +98,10 @@ public class NavigationHandler extends PreferenceScreenHandler {
         mNxStyleBar.setChecked(Settings.System.getInt(mResolver,
                 EOSConstants.SYSTEMUI_USE_NX_NAVBAR,
                 EOSConstants.SYSTEMUI_USE_NX_NAVBAR_DEF) == 1);
+        
+        mGlassStyleBar.setChecked(Settings.System.getInt(mResolver,
+                EOSConstants.SYSTEMUI_USE_GLASS,
+                EOSConstants.SYSTEMUI_USE_GLASS_DEF) == 1);
 
         // set initial feature enabled/disabled state
         updateEnabledState();
@@ -207,6 +215,19 @@ public class NavigationHandler extends PreferenceScreenHandler {
             }
         });
 
+        mGlassStyleBar.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                boolean enabled = ((Boolean) newValue).booleanValue();
+                Settings.System.putInt(mResolver,
+                        EOSConstants.SYSTEMUI_USE_GLASS, enabled ? 1 : 0);
+                mGlassStyleBar.setChecked(enabled);
+                updateEnabledState();
+                return true;
+            }
+        });
+
         mSoftKeyActions.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
@@ -215,8 +236,7 @@ public class NavigationHandler extends PreferenceScreenHandler {
             }
         });
 
-        mSearchPanelActions
-                .setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+        mSearchPanelActions.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                     @Override
                     public boolean onPreferenceClick(Preference preference) {
                         mListener.onActivityRequested(Utils.SEARCH_PANEL_FRAG_TAG);

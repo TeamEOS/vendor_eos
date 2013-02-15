@@ -39,6 +39,11 @@
     <PreferenceCategory
         android:key="eos_navbar_style"
         android:title="@string/eos_interface_navbar_category_style" >
+        <org.eos.controlcenter.EosPreference
+            android:key="nav_bar_color_pref"
+            settings:defaultVal="@integer/softkey_default_color_val"
+            settings:prefTitle="@string/color_preference_title"
+            settings:providerUri="@string/eos_interface_navbar_color_uri" />
         <ListPreference
             android:defaultValue="0"
             android:entries="@array/navbar_size_entries"
@@ -46,7 +51,6 @@
             android:key="eos_interface_navbar_size"
             android:summary="@string/eos_interface_navbar_low_profile_summary"
             android:title="@string/eos_interface_navbar_low_profile_title" />
-
         <CheckBoxPreference
             android:key="eos_interface_navbar_tablet_style"
             android:summary="@string/eos_interface_navbar_tablet_style_summary"
@@ -55,12 +59,15 @@
             android:key="eos_interface_navbar_nx_style"
             android:summary="@string/eos_interface_navbar_nx_style_summary"
             android:title="@string/eos_interface_navbar_nx_style_title" />
-
-        <org.eos.controlcenter.EosPreference
-            android:key="nav_bar_color_pref"
-            settings:defaultVal="@integer/softkey_default_color_val"
-            settings:prefTitle="@string/color_preference_title"
-            settings:providerUri="@string/eos_interface_navbar_color_uri" />
+        <CheckBoxPreference
+            android:key="eos_interface_navbar_glass_style"
+            android:summary="@string/eos_interface_navbar_glass_style_summary"
+            android:title="@string/eos_interface_navbar_glass_style_title" />
+        <org.eos.controlcenter.GlassDialogPreference
+            android:key="eos_interface_navbar_glass_seekbar"
+            android:summary="@string/eos_interface_navbar_glass_level_summary"
+            android:title="@string/eos_interface_navbar_glass_level_title"
+            android:dependency="eos_interface_navbar_glass_style" />
     </PreferenceCategory>
 
     <PreferenceCategory

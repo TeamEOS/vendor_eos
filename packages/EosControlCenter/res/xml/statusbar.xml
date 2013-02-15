@@ -19,11 +19,24 @@
     xmlns:settings="http://schemas.android.com/apk/res/org.eos.controlcenter"
     android:title="@string/eos_interface_statusbar" >
 
-    <org.eos.controlcenter.EosPreference
-        android:key="statusbar_color_pref"
-        settings:defaultVal="@integer/softkey_default_color_val"
-        settings:prefTitle="@string/color_preference_title"
-        settings:providerUri="@string/eos_interface_statusbar_color_uri" />
+    <PreferenceCategory
+        android:key="statusbar_appearance_category"
+        android:title="@string/eos_interface_statusbar_appearance" >
+        <org.eos.controlcenter.EosPreference
+            android:key="statusbar_color_pref"
+            settings:defaultVal="@integer/softkey_default_color_val"
+            settings:prefTitle="@string/color_preference_title"
+            settings:providerUri="@string/eos_interface_statusbar_color_uri" />
+        <CheckBoxPreference
+            android:key="eos_interface_statusbar_glass_style"
+            android:summary="@string/eos_interface_statusbar_glass_style_summary"
+            android:title="@string/eos_interface_navbar_glass_style_title" />
+        <org.eos.controlcenter.GlassDialogPreference
+            android:key="eos_interface_statusbar_glass_seekbar"
+            android:summary="@string/eos_interface_navbar_glass_level_summary"
+            android:title="@string/eos_interface_navbar_glass_level_title"
+            android:dependency="eos_interface_statbar_glass_style" />        
+    </PreferenceCategory>
 
     <PreferenceCategory
         android:key="@string/eos_interface_statusbar_battery"

@@ -25,6 +25,8 @@
     <string name="eos_interface_systembar_color">System Bar Color</string>
     <string name="eos_interface_systembar_fat_fingers_title">Larger Clear All button</string>
     <string name="eos_interface_systembar_fat_fingers_summary">Assists with clearing notifications if the button is too small</string>
+    <string name="eos_interface_statusbar_appearance">Appearance</string>
+    <string name="eos_interface_statusbar_glass_style_summary">Apply transparency to the statusbar</string>
     <string name="eos_interface_statusbar_battery">Battery</string>
     <string name="eos_interface_statusbar_battery_color_uri">eos_systemui_battery_text_color</string>
     <string name="eos_interface_statusbar_battery_settings">Battery Settings</string>
@@ -71,6 +73,10 @@
     <string name="eos_interface_navbar_tablet_style_summary">Enable to left align softkeys on navigation bar</string>
     <string name="eos_interface_navbar_nx_style_title">NX Gesture Bar</string>
     <string name="eos_interface_navbar_nx_style_summary">Swipe left for \"back\" Swipe up for \"home\" \nSwipe right for \"recent\" Longpress bar for \"menu\" \nLongpress searchlight for search panel</string>
+    <string name="eos_interface_navbar_glass_style_title">Glass</string>
+    <string name="eos_interface_navbar_glass_style_summary">Apply transparency to system bars</string>
+    <string name="eos_interface_navbar_glass_level_title">Glass effect</string>
+    <string name="eos_interface_navbar_glass_level_summary">Set transparency level for launcher glass effect</string>
     <string name="eos_interface_softkey_settings">Softkey Settings</string>
     <string name="eos_interface_softkeys_longpress">Long Press Actions</string>
     <string name="eos_interface_softkey_enable_feature">Enable Long Press feature</string>

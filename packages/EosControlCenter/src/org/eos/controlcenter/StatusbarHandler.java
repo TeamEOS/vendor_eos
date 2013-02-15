@@ -17,10 +17,15 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 public class StatusbarHandler extends PreferenceScreenHandler {
-    static final String TILEPICKER = "eos_interface_panel_tile_chooser";
-    static final String COLUMNS = "eos_interface_panel_columns";
-    static final String TOGGLES = "eos_interface_settings";
+    private static final String APPEARANCE_CATEGORY = "statusbar_appearance_category";
+    private static final String TILEPICKER = "eos_interface_panel_tile_chooser";
+    private static final String COLUMNS = "eos_interface_panel_columns";
+    private static final String TOGGLES = "eos_interface_settings";
+    private static final String GLASS = "eos_interface_statusbar_glass_style";
+    private static final String STYLE_GLASS_SEEKBAR_KEY = "eos_interface_statusbar_glass_seekbar";
 
+    CheckBoxPreference mGlass;
+    GlassDialogPreference mGlassSeekBar;
     CheckBoxPreference mBatteryIcon;
     CheckBoxPreference mBatteryText;
     CheckBoxPreference mBatteryPercent;
@@ -32,6 +37,7 @@ public class StatusbarHandler extends PreferenceScreenHandler {
     CheckBoxPreference mHideIndicator;
     EosMultiSelectListPreference mEosQuickSettingsView;
 
+    PreferenceCategory mAppearance;
     PreferenceCategory mToggles;
 
     boolean mEosSettingsEnabled = false;
@@ -42,6 +48,36 @@ public class StatusbarHandler extends PreferenceScreenHandler {
     }
 
     protected void init() {
+        mAppearance = (PreferenceCategory) mRoot.findPreference(APPEARANCE_CATEGORY);
+        mGlass = (CheckBoxPreference) mAppearance.findPreference(GLASS);
+        mGlassSeekBar = (GlassDialogPreference) mAppearance.findPreference(STYLE_GLASS_SEEKBAR_KEY);
+
+        // if the device has no navbar, the user will control glass
+        // from here. Otherwise it is removed and user will control glass
+        // from Navigation settings
+
+        if (EOSUtils.hasNavBar(mContext)) {
+            mAppearance.removePreference(mGlass);
+            mAppearance.removePreference(mGlassSeekBar);
+            mGlass = null;
+            mGlassSeekBar = null;
+        } else {
+            mGlass.setChecked(Settings.System.getInt(mResolver,
+                    EOSConstants.SYSTEMUI_USE_GLASS,
+                    EOSConstants.SYSTEMUI_USE_GLASS_DEF) == 1);
+            mGlass.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    boolean enabled = ((Boolean) newValue).booleanValue();
+                    Settings.System.putInt(mResolver,
+                            EOSConstants.SYSTEMUI_USE_GLASS, enabled ? 1 : 0);
+                    mGlass.setChecked(enabled);
+                    return true;
+                }
+            });
+        }
+
         mToggles = (PreferenceCategory) mRoot.findPreference(TOGGLES);
 
         mBatteryIcon = (CheckBoxPreference) mRoot
