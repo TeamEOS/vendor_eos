@@ -205,6 +205,10 @@ public class DualPaneActivity extends Activity implements OnActivityRequestedLis
             replaceFragment(SoftKeyActions.newInstance());
         } else if (Utils.SEARCH_PANEL_FRAG_TAG.equals(tag)) {
             replaceFragment(SearchPanelActions.newInstance());
+        } else if (Utils.LEGACY_TOGGLES_FRAGMENT_TAG.equals(tag)) {
+            replaceFragment(LegacyTogglesFragment.newInstance());
+        } else if (Utils.QUICK_SETTINGS_FRAGMENT_TAG.equals(tag)) {
+            replaceFragment(SettingsPanelFragment.newInstance());
         } else if (getString(R.string.eos_interface).equals(tag)) {
             replaceFragmentFromContainer(InterfaceDualFragment.newInstance());
         } else if (getString(R.string.eos_interface_navigation).equals(tag)) {

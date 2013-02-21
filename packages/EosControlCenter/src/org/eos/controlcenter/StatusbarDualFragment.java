@@ -36,6 +36,7 @@ public class StatusbarDualFragment extends PreferenceFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.statusbar);
-        new StatusbarHandler(this.getPreferenceScreen());
+        new StatusbarHandler(this.getPreferenceScreen(),
+                (OnActivityRequestedListener) getActivity());
     }
 }

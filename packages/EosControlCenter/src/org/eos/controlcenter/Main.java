@@ -219,7 +219,7 @@ public class Main extends FragmentActivity
             return;
         } else if (xmlId == R.xml.statusbar) {
             Log.i(TAG, "Statusbar settings is attached");
-            new StatusbarHandler(root);
+            new StatusbarHandler(root, (OnActivityRequestedListener) Main.this);
             return;
         } else if (xmlId == R.xml.system_settings) {
             Log.i(TAG, "System settings is attached");

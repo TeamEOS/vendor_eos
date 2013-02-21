@@ -19,7 +19,7 @@
     <string name="eos_interface_eos_settings_indicator_visibility_summary">Use with themes with multi-state icons</string>
     <string name="eos_interface_settings_color_title">Indicator color</string>
     <string name="eos_interface_settings_color_default_title">Restore default color</string>
-    <string name="eos_interface_eos_settings_summary">Select toggles in the order you would like them to appear, from left to right</string>
+    <string name="eos_interface_eos_settings_summary">Enable and resequence toggles</string>
     <string name="eos_interface_statusbar">Statusbar</string>
     <string name="eos_interface_systembar">System bar</string>
     <string name="eos_interface_systembar_color">System Bar Color</string>
@@ -193,7 +193,7 @@
     <string name="eos_interface_lockscreen_show_all_widgets">Allow Selection Of All Widgets</string>
     <string name="eos_interface_lockscreen_show_all_widgets_summary">Allow all widgets to be added to the lockscreen widgets panel</string>
     <string name="eos_interface_panel_title">Quick Settings Panel</string>
-    <string name="eos_interface_panel_summary">Select tiles in the desired order of appearance</string>
+    <string name="eos_interface_panel_summary">Enable and resequence tiles</string>
     <string name="eos_interface_panel_pref">Settings Panel Controls</string>
     <string name="eos_interface_panel_column_title">Column width</string>
     <string name="eos_interface_panel_column_summary">Number of single tiles per row</string>
@@ -217,5 +217,9 @@
     <string name="eos_information_rom_link_rootz_mako"></string>
     <string name="eos_information_rom_link_xda_manta">http://forum.xda-developers.com/showthread.php?t=2178128</string>
     <string name="eos_information_rom_link_rootz_manta"></string>
+    <string name="ic_content_desc_up">up</string>
+    <string name="ic_content_desc_down">down</string>
+    <string name="item_order_category_enabled">Toggle settings</string>
+    <string name="item_order_button_enable">Enable</string>
 
 </resources>

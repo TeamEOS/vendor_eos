@@ -80,7 +80,7 @@
     <PreferenceCategory
         android:key="eos_interface_panel_settings"
         android:title="@string/eos_interface_panel_pref" >
-        <org.eos.controlcenter.EosMultiSelectListPreference
+        <Preference
             android:key="eos_interface_panel_tile_chooser"
             android:summary="@string/eos_interface_panel_summary"
             android:title="@string/eos_interface_panel_title" />
@@ -101,8 +101,8 @@
             android:summary="@string/eos_interface_eos_settings_enable_summary"
             android:title="@string/eos_interface_eos_settings_enable_title" />
 
-        <org.eos.controlcenter.EosMultiSelectListPreference
-            android:key="eos_interface_eos_quick_enabled"
+        <Preference
+            android:key="eos_interface_legacy_toggles_order"
             android:summary="@string/eos_interface_eos_settings_summary"
             android:title="@string/eos_interface_eos_settings_enabled" />
 

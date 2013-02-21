@@ -1,8 +1,0 @@
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/TextView01"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center|left"
-    android:paddingRight="15dp"
-    android:text="@+id/TextView01"
-    android:textAppearance="?android:attr/textAppearanceMedium" />

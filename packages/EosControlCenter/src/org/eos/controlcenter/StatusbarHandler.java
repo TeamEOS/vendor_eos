@@ -31,19 +31,21 @@ public class StatusbarHandler extends PreferenceScreenHandler {
     CheckBoxPreference mBatteryPercent;
     CheckBoxPreference mStatusbarClock;
     ListPreference mAmPmStyle;
-    EosMultiSelectListPreference mEosQuickPanelView;
+    Preference mQuickSettingsOrder;
     ListPreference mColumns;
     CheckBoxPreference mEosTogglesEnabled;
     CheckBoxPreference mHideIndicator;
-    EosMultiSelectListPreference mEosQuickSettingsView;
+    Preference mLegacyTogglesOrder;
 
     PreferenceCategory mAppearance;
     PreferenceCategory mToggles;
 
     boolean mEosSettingsEnabled = false;
+    OnActivityRequestedListener mListener;
 
-    public StatusbarHandler(PreferenceScreen root) {
+    public StatusbarHandler(PreferenceScreen root, OnActivityRequestedListener listener) {
         super(root);
+        mListener = listener;
         init();
     }
 
@@ -165,31 +167,15 @@ public class StatusbarHandler extends PreferenceScreenHandler {
             }
         });
 
-        mEosQuickPanelView = (EosMultiSelectListPreference) mRoot.findPreference(TILEPICKER);
-        mEosQuickPanelView.setEntries(mContext.getResources().getStringArray(
-                R.array.eos_panel_enabled_names));
-        mEosQuickPanelView.setEntryValues(mContext.getResources().getStringArray(
-                R.array.eos_panel_enabled_preferences));
-        mEosQuickPanelView.setReturnFullList(true);
-        populateEosPanelList();
+        mQuickSettingsOrder = (Preference) mRoot.findPreference(TILEPICKER);
+        mQuickSettingsOrder.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
 
-        mEosQuickPanelView
-                .setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-
-                    @Override
-                    public boolean onPreferenceChange(Preference preference, Object newValue) {
-                        Map<String, Boolean> values = (Map<String, Boolean>) newValue;
-                        StringBuilder newPreferenceValue = new StringBuilder();
-                        for (Entry entry : values.entrySet()) {
-                            newPreferenceValue.append(entry.getKey());
-                            newPreferenceValue.append("|");
-                        }
-                        Settings.System.putString(mResolver,
-                                EOSConstants.SYSTEMUI_PANEL_ENABLED_TILES,
-                                newPreferenceValue.toString());
-                        return true;
-                    }
-                });
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                mListener.onActivityRequested(Utils.QUICK_SETTINGS_FRAGMENT_TAG);
+                return true;
+            }
+        });
 
         mColumns = (ListPreference) mRoot.findPreference(COLUMNS);
         mColumns.setDefaultValue(String.valueOf((Settings.System.getInt(
@@ -228,32 +214,16 @@ public class StatusbarHandler extends PreferenceScreenHandler {
                         return true;
                     }
                 });
-
-        mEosQuickSettingsView = (EosMultiSelectListPreference) mRoot
-                .findPreference("eos_interface_eos_quick_enabled");
-        mEosQuickSettingsView.setEntries(mContext.getResources().getStringArray(
-                R.array.eos_quick_enabled_names));
-        mEosQuickSettingsView.setEntryValues(mContext.getResources().getStringArray(
-                R.array.eos_quick_enabled_preferences));
-        mEosQuickSettingsView.setReturnFullList(true);
-        populateEosSettingsList();
-        mEosQuickSettingsView
-                .setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-
-                    @Override
-                    public boolean onPreferenceChange(Preference preference, Object newValue) {
-                        Map<String, Boolean> values = (Map<String, Boolean>) newValue;
-                        StringBuilder newPreferenceValue = new StringBuilder();
-                        for (Entry entry : values.entrySet()) {
-                            newPreferenceValue.append(entry.getKey());
-                            newPreferenceValue.append("|");
-                        }
-                        Settings.System.putString(mResolver,
-                                EOSConstants.SYSTEMUI_SETTINGS_ENABLED_CONTROLS,
-                                newPreferenceValue.toString());
-                        return true;
-                    }
-                });
+        
+        mLegacyTogglesOrder = (Preference) mRoot.findPreference("eos_interface_legacy_toggles_order");
+        mLegacyTogglesOrder.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                mListener.onActivityRequested(Utils.LEGACY_TOGGLES_FRAGMENT_TAG);
+                return true;
+            }
+        });
 
         mHideIndicator = (CheckBoxPreference) mRoot
                 .findPreference("eos_interface_settings_indicator_visibility");
@@ -273,63 +243,6 @@ public class StatusbarHandler extends PreferenceScreenHandler {
 
         enableAllCategoryChilds(mToggles, "eos_interface_settings_eos_settings_enabled",
                 mEosTogglesEnabled.isChecked());
-    }
-
-    private void populateEosPanelList() {
-        LinkedHashSet<String> selectedValues = new LinkedHashSet<String>();
-        String enabledControls = Settings.System.getString(mResolver,
-                EOSConstants.SYSTEMUI_PANEL_ENABLED_TILES);
-        if (enabledControls != null) {
-            String[] controls = enabledControls.split("\\|");
-            selectedValues.addAll(Arrays.asList(controls));
-        } else {
-            selectedValues.addAll(Arrays.asList(EOSConstants.SYSTEMUI_PANEL_DEFAULTS));
-        }
-        mEosQuickPanelView.setValues(selectedValues);
-
-        if (!EOSUtils.hasData(mContext)) {
-            mEosQuickPanelView
-                    .removeValueEntry(EOSConstants.SYSTEMUI_PANEL_DATA_TILE);
-            mEosQuickPanelView
-                    .removeValueEntry(EOSConstants.SYSTEMUI_PANEL_WIFIAP_TILE);
-        }
-
-        if (!Utils.hasTorch(mContext)) {
-            mEosQuickPanelView.removeValueEntry(EOSConstants.SYSTEMUI_PANEL_TORCH_TILE);
-        }
-
-        if (!EOSUtils.isCdmaLTE(mContext)) {
-            mEosQuickPanelView.removeValueEntry(EOSConstants.SYSTEMUI_PANEL_LTE_TILE);
-        }
-    }
-
-    private void populateEosSettingsList() {
-        LinkedHashSet<String> selectedValues = new LinkedHashSet<String>();
-        String enabledControls = Settings.System.getString(mResolver,
-                EOSConstants.SYSTEMUI_SETTINGS_ENABLED_CONTROLS);
-        if (enabledControls != null) {
-            String[] controls = enabledControls.split("\\|");
-            selectedValues.addAll(Arrays.asList(controls));
-        } else {
-            selectedValues.addAll(Arrays.asList(EOSConstants.SYSTEMUI_SETTINGS_DEFAULTS));
-        }
-        mEosQuickSettingsView.setValues(selectedValues);
-
-        if (!EOSUtils.hasData(mContext)) {
-            mEosQuickSettingsView
-                    .removeValueEntry(EOSConstants.SYSTEMUI_SETTINGS_MOBILEDATA);
-            mEosQuickSettingsView
-                    .removeValueEntry(EOSConstants.SYSTEMUI_SETTINGS_WIFITETHER);
-            mEosQuickSettingsView.removeValueEntry(EOSConstants.SYSTEMUI_SETTINGS_USBTETHER);
-        }
-
-        if (!EOSUtils.isCdmaLTE(mContext)) {
-            mEosQuickSettingsView.removeValueEntry(EOSConstants.SYSTEMUI_SETTINGS_LTE);
-        }
-
-        if (!Utils.hasTorch(mContext)) {
-            mEosQuickSettingsView.removeValueEntry(EOSConstants.SYSTEMUI_SETTINGS_TORCH);
-        }
     }
 
     private void enableAllCategoryChilds(PreferenceCategory pc, String keyToExclude, boolean enabled) {

@@ -3,6 +3,7 @@ package org.eos.controlcenter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.UserHandle;
 
 import org.teameos.jellybean.settings.EOSConstants;
@@ -12,7 +13,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 
 public final class Utils {
     public static final boolean STATE_ON = true;
@@ -33,6 +33,8 @@ public final class Utils {
     public static final String PRIVACY_LOG_PACKAGES = "eos_logger_packages";
     public static final String TEXT_FRAGMENT_TITLE_KEY = "eos_text_frag_title";
     public static final String TEXT_FRAGMENT_TEXT_RES_KEY = "eos_text_frag_res";
+    public static final String LEGACY_TOGGLES_FRAGMENT_TAG = "eos_legacy_toggles_fragment";
+    public static final String QUICK_SETTINGS_FRAGMENT_TAG = "eos_quick_settings_fragment";
     
     public static final String DEFAULT_TITLE = "EOS Control Center";
     public static final String INTERFACE_SETTINGS_TITLE = "Interface";
@@ -40,7 +42,11 @@ public final class Utils {
     public static final String STATUSBAR_SETTINGS_TITLE = "Statusbar";
     public static final String SYSTEM_SETTINGS_TITLE = "System";
     public static final String INFO_TITLE = "Info";
-    
+
+    private static final String EOS_SHARED_PREFS = "eos_shared_prefs";
+    public static final String QS_PREFS_KEY = "qs_prefs_key";
+    public static final String LEGACY_TOGGLES_PREFS_KEY = "legacy_prefs_key";
+
     public static int LAST_FRAG_VIEWED = 0;
 
     public static void turnOnEosUI(Context context) {
@@ -129,5 +135,15 @@ public final class Utils {
             return null;
         }
         return text.toString();
+    }
+
+    public static String getToggleOrderFromPrefs(Context context, String key) {
+        return context.getSharedPreferences(EOS_SHARED_PREFS, Context.MODE_PRIVATE).getString(key,
+                URI_GRAVEYARD);
+    }
+
+    public static void commitToggleOrder(Context context, String key, String str) {
+        context.getSharedPreferences(EOS_SHARED_PREFS, Context.MODE_PRIVATE).edit()
+                .putString(key, str).commit();
     }
 }

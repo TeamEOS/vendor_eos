@@ -53,7 +53,7 @@
     <string-array name="eos_panel_enabled_names">
         <item>Avatar</item>
         <item>Settings</item>
-        <item>Brightness &amp; Volume Seekbars</item>
+        <item>Dual Seekbars</item>
         <item>Brightness Dialog</item>
         <item>Battery</item>
         <item>Rotation Lock</item>

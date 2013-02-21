@@ -21,6 +21,9 @@ public class SingleFragmentActivity extends Activity implements OnActivityReques
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if (savedInstanceState != null) {
+            savedInstanceState.remove("android:fragments");
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
@@ -44,6 +47,10 @@ public class SingleFragmentActivity extends Activity implements OnActivityReques
             f = (Fragment) Privacy.newInstance();
         } else if (newFrag.equals(Utils.INFO_TITLE)) {
             f = (Fragment) InfoDualFragment.newInstance();
+        } else if (newFrag.equals(Utils.LEGACY_TOGGLES_FRAGMENT_TAG)) {
+            f = (Fragment) LegacyTogglesFragment.newInstance();
+        } else if (newFrag.equals(Utils.QUICK_SETTINGS_FRAGMENT_TAG)) {
+            f = (Fragment) SettingsPanelFragment.newInstance();
         } else {
             finish();
             return;
