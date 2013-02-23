@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.UserHandle;
 
 import org.teameos.jellybean.settings.EOSConstants;
+import org.teameos.jellybean.settings.EOSUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -96,6 +97,14 @@ public final class Utils {
         } else {
             return "hello";
         }    
+    }
+
+    public static boolean hasTorch(Context context) {
+        if (context.getResources().getBoolean(R.bool.config_force_disable_torch)) {
+            return false;
+        } else {
+            return EOSUtils.hasTorch();
+        }
     }
 
     public static String readRawTextFile(Context context, int resId) {

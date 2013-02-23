@@ -258,7 +258,7 @@ public class StatusbarHandler extends PreferenceScreenHandler {
                     .removeValueEntry(EOSConstants.SYSTEMUI_PANEL_WIFIAP_TILE);
         }
 
-        if (!EOSUtils.hasTorch()) {
+        if (!Utils.hasTorch(mContext)) {
             mEosQuickPanelView.removeValueEntry(EOSConstants.SYSTEMUI_PANEL_TORCH_TILE);
         }
 
@@ -290,7 +290,8 @@ public class StatusbarHandler extends PreferenceScreenHandler {
         if (!EOSUtils.isCdmaLTE(mContext)) {
             mEosQuickSettingsView.removeValueEntry(EOSConstants.SYSTEMUI_SETTINGS_LTE);
         }
-        if (!EOSUtils.hasTorch()) {
+
+        if (!Utils.hasTorch(mContext)) {
             mEosQuickSettingsView.removeValueEntry(EOSConstants.SYSTEMUI_SETTINGS_TORCH);
         }
     }
