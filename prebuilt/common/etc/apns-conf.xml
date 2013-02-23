@@ -566,7 +566,7 @@
   <apn carrier="T-Mobile US 240" mcc="310" mnc="240" apn="epc.tmobile.com" user="none" password="none" server="*" mmsc="http://mms.msg.eng.t-mobile.com/mms/wapenc" type="default,supl,mms" />
   <apn carrier="T-Mobile US 250" mcc="310" mnc="250" apn="epc.tmobile.com" user="none" password="none" server="*" mmsc="http://mms.msg.eng.t-mobile.com/mms/wapenc" type="default,supl,mms" />
   <apn carrier="T-Mobile US" mcc="310" mnc="260" apn="epc.tmobile.com" user="none" password="none" server="*" mmsc="http://mms.msg.eng.t-mobile.com/mms/wapenc" type="default,supl,mms" />
-  <apn carrier="Simple" mcc="310" mnc="260" apn="simple" proxy="216.155.165.050" port="8080" mmsc="http://smpl.mms.msg.eng.t-mobile.com/mms/wapenc" mmsproxy="216.155.165.050" mmsport="8080" type="default,supl,mms" />
+  <apn carrier="Simple" mcc="310" mnc="260" apn="simple" mmsc="http://smpl.mms.msg.eng.t-mobile.com/mms/wapenc" type="default,supl,mms" />
   <apn carrier="StraightTalk T-Mobile" mcc="310" mnc="260" apn="wap.tracfone" port="8080" mmsc="http://mmsc.tracfone.com" type="default,supl,mms" />
   <apn carrier="T-Mobile US 270" mcc="310" mnc="270" apn="epc.tmobile.com" user="none" password="none" server="*" mmsc="http://mms.msg.eng.t-mobile.com/mms/wapenc" type="default,supl,mms" />
   <apn carrier="T-Mobile US 310" mcc="310" mnc="310" apn="epc.tmobile.com" user="none" password="none" server="*" mmsc="http://mms.msg.eng.t-mobile.com/mms/wapenc" type="default,supl,mms" />
@@ -574,6 +574,7 @@
   <apn carrier="AWS MMS" mcc="310" mnc="380" apn="proxy" mmsc="http://mmsc.mymmode.com" mmsproxy="10.250.250.55" mmsport="8080" type="mms" />
   <apn carrier="Celloneet MMS" mcc="310" mnc="390" apn="mms.celloneet.com" user="user1@mms.celloneet.com" password="celloneet" mmsc="http://mms.celloneet.com/servlets/mms" mmsproxy="63.99.231.135" mmsport="8080" type="mms" />
   <apn carrier="ATT" mcc="310" mnc="410" apn="wap.cingular" user="WAP@CINGULARGPRS.COM" mmsc="http://mmsc.cingular.com" mmsproxy="wireless.cingular.com" mmsport="80" type="default,supl,mms" />
+  <apn carrier="ATT Phone" mcc="310" mnc="410" apn="phone" mmsc="http://mmsc.mobile.att.net" mmsproxy="proxy.mobile.att.net" mmsport="80" type="default,supl,mms" />
   <apn carrier="ATT LTE" mcc="310" mnc="410" apn="pta" mmsc="http://mmsc.mobile.att.net" mmsproxy="proxy.mobile.att.net" mmsport="80" type="default,supl,mms" />
   <apn carrier="ATT Broadband" mcc="310" mnc="410" apn="broadband" user="" server="" password="" mmsc="" type="default" />
   <apn carrier="ATT Activation" mcc="310" mnc="410" apn="lwaactivate" user="" server="" password="" mmsc="" protocol="IP" />
