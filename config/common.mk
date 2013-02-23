@@ -15,7 +15,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Proprietary LatinIME Gesture Support
 PRODUCT_COPY_FILES += \
     vendor/cm/prebuilt/common/lib/libjni_latinime.so:obj/lib/libjni_latinime.so \
-    vendor/cm/prebuilt/common/lib/libjni_latinime.so:system/lib/libjni_latinime.so
+    vendor/cm/prebuilt/common/lib/libjni_latinime.so:system/lib/libjni_latinime.so \
+    vendor/cm/prebuilt/common/lib/libjni_latinimegoogle.so:system/lib/libjni_latinimegoogle.so
 
 # Backup Tool
 PRODUCT_COPY_FILES += \
