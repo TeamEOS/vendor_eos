@@ -18,7 +18,7 @@
 
 PRODUCT_PACKAGES += \
     TerminalEmulator \
-    Superuser \
+    SuperSU \
     GooManager \
     busybox \
     thtt \
