@@ -72,9 +72,11 @@ public final class Utils {
             return context.getString(R.string.eos_information_rom_link_xda_umts_everest);
         } else if (device.equals("tf101")) {
             return context.getString(R.string.eos_information_rom_link_xda_tf101);
-        } else {
-            return "hello";
-        }        
+        } else if (device.equals("mako")) {
+            return context.getString(R.string.eos_information_rom_link_xda_mako);
+        }
+
+        return "null";
     }
     
     public static String getRootzUrl(Context context, String device) {
@@ -94,9 +96,11 @@ public final class Utils {
             return context.getString(R.string.eos_information_rom_link_rootz_umts_everest);
         } else if (device.equals("tf101")) {
             return context.getString(R.string.eos_information_rom_link_rootz_tf101);
-        } else {
-            return "hello";
-        }    
+        } else if (device.equals("mako")) {
+            return context.getString(R.string.eos_information_rom_link_rootz_mako);
+        }
+
+        return "null";
     }
 
     public static boolean hasTorch(Context context) {

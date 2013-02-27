@@ -55,6 +55,8 @@ public class InfoPreference extends Preference {
             inputStream = getContext().getResources().openRawResource(R.raw.solarnz);
         } else if (mKey.equals("K.Crudup")) {
             inputStream = getContext().getResources().openRawResource(R.raw.kcrudup);
+        } else if (mKey.equals("Uber")) {
+            inputStream = getContext().getResources().openRawResource(R.raw.uber);
         }
 
         avatar.setImageBitmap(BitmapFactory.decodeStream(inputStream));

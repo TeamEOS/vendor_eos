@@ -207,5 +207,7 @@
     <string name="eos_information_rom_link_rootz_umts_everest"></string>
     <string name="eos_information_rom_link_xda_tf101">http://forum.xda-developers.com/showthread.php?t=2063406</string>
     <string name="eos_information_rom_link_rootz_tf101"></string>
+    <string name="eos_information_rom_link_xda_mako">http://forum.xda-developers.com/showthread.php?t=2165081</string>
+    <string name="eos_information_rom_link_rootz_mako"></string>
 
 </resources>
