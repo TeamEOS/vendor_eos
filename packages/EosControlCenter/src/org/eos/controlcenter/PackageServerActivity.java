@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.os.AsyncTask;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -28,45 +29,12 @@ public class PackageServerActivity extends Activity {
     private static boolean shouldContinue = true;
     private static int numPackages = 0;
     private static int percentLoaded = 0;
-    private static Thread loaderThread;
-    private static Runnable loaderTasks = new Runnable() {
-
-        @Override
-        public void run() {
-            if(!shouldContinue) {
-                return;
-            }
-            if (!loaded && !isRunning) {
-                isRunning = true;
-                Intent intent = new Intent(Intent.ACTION_MAIN, null);
-                intent.addCategory(Intent.CATEGORY_LAUNCHER);
-                List<ResolveInfo> activities = mPm.queryIntentActivities(intent, 0);
-                numPackages = activities.size();
-                for (ResolveInfo info : activities) {
-                    AppPackage ap = new AppPackage(info, mPm);
-                    components.add(ap);
-                    percentLoaded = Math.round(((components.size() / numPackages) * 100));
-                    notifyPackagesUpdated(percentLoaded);
-                }
-                // sort the app packages by simple name
-                Collections.sort(components, new Comparator<AppPackage>() {
-                    public int compare(AppPackage ap1, AppPackage ap2) {
-                        return ap1.getName().compareToIgnoreCase(ap2.getName());
-                    }
-                });
-                loaded = true;
-                notifyPackagesLoaded(loaded);
-                isRunning = false;
-            }
-        }
-    };
 
     public static void startPackageServer(PackageManager pm) {
         if (mPm == null) {
             mPm = pm;
         }
-        loaderThread = new Thread(loaderTasks);
-        loaderThread.start();
+        new PackageLoader().execute();
     }
 
     public static ArrayList<AppPackage> getPackageList() {
@@ -97,10 +65,41 @@ public class PackageServerActivity extends Activity {
         isRunning = false;
         loaded = false;
         components = null;
-        loaderThread = null;
-        loaderTasks = null;
         mPm = null;
         mListeners.clear();
         super.onDestroy();
+    }
+
+    private static class PackageLoader extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            if (!shouldContinue) {
+                return null;
+            }
+            if (!loaded && !isRunning) {
+                isRunning = true;
+                Intent intent = new Intent(Intent.ACTION_MAIN, null);
+                intent.addCategory(Intent.CATEGORY_LAUNCHER);
+                List<ResolveInfo> activities = mPm.queryIntentActivities(intent, 0);
+                numPackages = activities.size();
+                for (ResolveInfo info : activities) {
+                    AppPackage ap = new AppPackage(info, mPm);
+                    components.add(ap);
+                    percentLoaded = Math.round(((components.size() / numPackages) * 100));
+                    notifyPackagesUpdated(percentLoaded);
+                }
+                // sort the app packages by simple name
+                Collections.sort(components, new Comparator<AppPackage>() {
+                    public int compare(AppPackage ap1, AppPackage ap2) {
+                        return ap1.getName().compareToIgnoreCase(ap2.getName());
+                    }
+                });
+                loaded = true;
+                notifyPackagesLoaded(loaded);
+                isRunning = false;
+            }
+            return null;
+        }
     }
 }
