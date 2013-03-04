@@ -3,6 +3,7 @@ PRODUCT_BRAND ?= codefireX
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
 SUPERUSER_EMBEDDED := true
+SUPERUSER_PACKAGE_PREFIX := com.android.settings.cyanogenmod.superuser
 
 PRODUCT_PROPERTY_OVERRIDES += \
     keyguard.no_require_sim=true \
