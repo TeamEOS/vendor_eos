@@ -1,3 +1,55 @@
+=3/5/13=
+
+
+PHONES
+
+  • A bunch more work getting Xperia Z ready (almost there now!)
+
+  • Toro and Maguro - updated to official 4.2.2 binaries
+
+TABLETS
+
+  • TF101 - Add hard keyboard layouts for live switching
+
+  • N7 - update drm libs and include missing keystore-grouper.so in build
+
+  • TF101 - update drm resouces fixing Play Store movies and other drm issues
+
+ALL
+
+  • Update Terminal Emulator and SuperSU (now with multiuser support)
+
+  • Prevent anything from spamming system bar visibility
+
+  • Tweak mobile data qs indicator
+
+  • Get manta building (hope to be ready this time around! watch goo)
+
+  • Add Uber Avatar and Mako XDA Link in ECC
+
+  • Minor Recents Panel touch up
+
+  • updated telephony branches from cm
+
+  • Bring back Brightness quick settings dialog tile. for those who don't like
+    the slider tile, use this for now until we come up with a more "pleasant"
+    solution
+
+  • better implementation for ECC loading resources when app starts, less stutter
+
+  • Linaro: Add ARMv7 optimized string & mem handling routines
+    NO BUZZWORDS IN THREAD TITLES! I PROMISE! BUT THIS SURE FEELS SMOOTH!
+    Soon we'll look into moving to 4.7 GCC Linaro toolchain. Honestly, the benefit
+    is negligible, but this commit here you will feel for sure.
+
+  • Long Press to Play/Pause Music - code clean up
+
+  • Merged Glass!!!!!!! Have fun! Still need to fix live walls and dreams
+
+  • Bring in missing QS drawables for theme compliance
+
+**************************************************************************************
+
 2/21/13
 
 ALL
