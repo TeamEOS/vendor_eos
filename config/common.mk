@@ -14,6 +14,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.android.dateformat=MM-dd-yyyy \
     ro.com.android.dataroaming=false
 
+# Temporary hack for assembler error with AAC
+PRODUCT_COPY_FILES += \
+    vendor/cm/prebuilt/common/mh_det.o:obj/STATIC_LIBRARIES/libFraunhoferAAC_intermediates/libSBRenc/src/mh_det.o
+
 # Proprietary LatinIME Gesture Support
 PRODUCT_COPY_FILES += \
     vendor/cm/prebuilt/common/lib/libjni_latinime.so:obj/lib/libjni_latinime.so \
