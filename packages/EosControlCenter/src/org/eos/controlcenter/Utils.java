@@ -74,6 +74,8 @@ public final class Utils {
             return context.getString(R.string.eos_information_rom_link_xda_tf101);
         } else if (device.equals("mako")) {
             return context.getString(R.string.eos_information_rom_link_xda_mako);
+        } else if (device.equals("manta")) {
+            return context.getString(R.string.eos_information_rom_link_xda_manta);
         }
 
         return "null";
