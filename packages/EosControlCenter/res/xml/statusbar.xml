@@ -35,7 +35,7 @@
             android:key="eos_interface_statusbar_glass_seekbar"
             android:summary="@string/eos_interface_navbar_glass_level_summary"
             android:title="@string/eos_interface_navbar_glass_level_title"
-            android:dependency="eos_interface_statbar_glass_style" />        
+            android:dependency="eos_interface_statusbar_glass_style" />
     </PreferenceCategory>
 
     <PreferenceCategory
