@@ -48,6 +48,7 @@
         <item>QS_WifiAp</item>
         <item>QS_Torch</item>
         <item>QS_LTE</item>
+        <item>QS_Sync</item>
     </string-array>
     <string-array name="eos_panel_enabled_names">
         <item>Avatar</item>
@@ -66,6 +67,7 @@
         <item>WiFi AP</item>
         <item>Torch</item>
         <item>LTE</item>
+        <item>AutoSync</item>
     </string-array>
     <string-array name="eos_panel_column_names">
         <item>3 Columns</item>
