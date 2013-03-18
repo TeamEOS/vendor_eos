@@ -60,8 +60,11 @@
     <PreferenceCategory
         android:key="eos_statusbar_clock"
         android:title="@string/eos_interface_statusbar_clock" >
-        <CheckBoxPreference
-            android:key="eos_interface_statusbar_clock"
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/eos_clock_state_entries"
+            android:entryValues="@array/eos_clock_state_entry_values"
+            android:key="eos_interface_statusbar_clock_state"
             android:title="@string/eos_interface_statusbar_clock_title" />
 
         <org.eos.controlcenter.EosPreference
