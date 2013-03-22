@@ -5,7 +5,7 @@
 
 export C=/tmp/backupdir
 export S=/system
-export V=2
+export V=3
 
 # Mount /system if it is not already mounted
 mount_system() {
