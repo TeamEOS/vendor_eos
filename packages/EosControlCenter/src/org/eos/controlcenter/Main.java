@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.UserHandle;
 import android.preference.PreferenceScreen;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
@@ -86,6 +87,7 @@ public class Main extends FragmentActivity
 
             mBar = getActionBar();
             mBar.setTitle(TITLE);
+            mBar.setDisplayHomeAsUpEnabled(true);
 
             int lastViewed = getIntent().getIntExtra(Utils.INCOMING_LAST_FRAG_VIEWED, 0);
             mPager.setCurrentItem(lastViewed, true);
@@ -125,10 +127,10 @@ public class Main extends FragmentActivity
         intent.putExtra(Utils.INCOMING_FRAG_KEY, tag);
         startActivity(intent);
     }
-    
+
     private void startTextDialogFragment(Bundle b) {
         TextInfoFragment textFragment = TextInfoFragment.newInstance(b);
-        textFragment.show(getFragmentManager(), b.getString(Utils.TEXT_FRAGMENT_TITLE_KEY));        
+        textFragment.show(getFragmentManager(), b.getString(Utils.TEXT_FRAGMENT_TITLE_KEY));
     }
 
     @Override
@@ -153,18 +155,19 @@ public class Main extends FragmentActivity
         PackageServerActivity.startPackageServer(getPackageManager());
     }
 
-	@Override
-	public void onStop() {
-		super.onStop();
-		/* if we are largescreen going from portrait to landscape
-		 * onStop is called here after DualPaneActivity onStart is called
-		 * so it leaves our SystemUI observers unregistered
-		 */
-		if (!isLargeLandscape) {
-			unregisterReceivers();
-			// Utils.turnOffEosUI(getApplicationContext());
-		}
-	}
+    @Override
+    public void onStop() {
+        super.onStop();
+        /*
+         * if we are largescreen going from portrait to landscape onStop is
+         * called here after DualPaneActivity onStart is called so it leaves our
+         * SystemUI observers unregistered
+         */
+        if (!isLargeLandscape) {
+            unregisterReceivers();
+            // Utils.turnOffEosUI(getApplicationContext());
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -176,6 +179,12 @@ public class Main extends FragmentActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent settingsIntent = new Intent()
+                        .setAction(android.provider.Settings.ACTION_SETTINGS)
+                        .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivityAsUser(settingsIntent, new UserHandle(UserHandle.USER_CURRENT));
+                break;
             case R.id.action_themes:
                 Intent intent = new Intent()
                         .setAction(Intent.ACTION_MAIN)

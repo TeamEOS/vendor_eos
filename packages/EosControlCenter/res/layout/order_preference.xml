@@ -45,8 +45,8 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:contentDescription="@string/ic_content_desc_up"
-        android:paddingLeft="5.0dip"
-        android:src="@drawable/ic_arrow_up" />
+        android:paddingLeft="15.0dip"
+        android:src="@drawable/ic_action_arrow_top" />
 
     <ImageView
         android:id="@+id/btnOrderDown"
@@ -55,7 +55,7 @@
         android:layout_centerVertical="true"
         android:layout_toLeftOf="@+id/btnOrderUp"
         android:contentDescription="@string/ic_content_desc_down"
-        android:paddingRight="5.0dip"
-        android:src="@drawable/ic_arrow_down" />
+        android:paddingRight="15.0dip"
+        android:src="@drawable/ic_action_arrow_bottom" />
 
 </RelativeLayout>

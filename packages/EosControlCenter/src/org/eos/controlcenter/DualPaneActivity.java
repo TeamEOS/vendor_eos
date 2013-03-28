@@ -5,13 +5,13 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.app.FragmentManager.OnBackStackChangedListener;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.UserHandle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -21,8 +21,7 @@ import org.teameos.jellybean.settings.EOSUtils;
 
 import java.util.ArrayList;
 
-public class DualPaneActivity extends Activity implements OnActivityRequestedListener,
-        OnBackStackChangedListener {
+public class DualPaneActivity extends Activity implements OnActivityRequestedListener {
     ActionBar mBar;
     ArrayList<String> mFragmentsTitleList = new ArrayList<String>();
 
@@ -49,8 +48,8 @@ public class DualPaneActivity extends Activity implements OnActivityRequestedLis
 
         mBar = getActionBar();
         updateActionBarTitle();
+        mBar.setDisplayHomeAsUpEnabled(true);
 
-        getFragmentManager().addOnBackStackChangedListener((OnBackStackChangedListener) this);
         getFragmentManager().beginTransaction()
                 .add(R.id.container, ContentFragment.newInstance())
                 .commit();
@@ -146,6 +145,12 @@ public class DualPaneActivity extends Activity implements OnActivityRequestedLis
                     getFragmentManager().popBackStack();
                     mFragmentsTitleList.remove(mFragmentsTitleList.size() - 1);
                     updateActionBarTitle();
+                } else {
+                    Intent settingsIntent = new Intent()
+                            .setAction(android.provider.Settings.ACTION_SETTINGS)
+                            .setFlags(
+                                    Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivityAsUser(settingsIntent, new UserHandle(UserHandle.USER_CURRENT));
                 }
                 break;
             case R.id.action_themes:
@@ -250,14 +255,4 @@ public class DualPaneActivity extends Activity implements OnActivityRequestedLis
                         Utils.DEFAULT_TITLE));
         updateActionBarTitle();
     }
-
-    @Override
-    public void onBackStackChanged() {
-        if (getFragmentManager().getBackStackEntryCount() > 0) {
-            mBar.setDisplayHomeAsUpEnabled(true);
-        } else {
-            mBar.setDisplayHomeAsUpEnabled(false);
-        }
-    }
-
 }
