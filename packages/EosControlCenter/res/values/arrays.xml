@@ -48,6 +48,7 @@
         <item>QS_WifiAp</item>
         <item>QS_Torch</item>
         <item>QS_LTE</item>
+        <item>QS_2G3G</item>
         <item>QS_Sync</item>
     </string-array>
     <string-array name="eos_panel_enabled_names">
@@ -67,6 +68,7 @@
         <item>WiFi AP</item>
         <item>Torch</item>
         <item>LTE</item>
+        <item>2G Only</item>
         <item>AutoSync</item>
     </string-array>
     <string-array name="eos_panel_column_names">

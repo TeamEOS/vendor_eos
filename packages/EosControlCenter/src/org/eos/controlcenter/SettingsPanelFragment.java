@@ -68,6 +68,8 @@ public class SettingsPanelFragment extends ItemOrderFragment {
         boolean hasData = EOSUtils.hasData(mContext);
         boolean isCdmaLte = EOSUtils.isCdmaLTE(mContext);
         boolean hasTorch = EOSUtils.hasTorch();
+        boolean hasGSM = EOSUtils.isGSM(mContext);
+
         ArrayList<Pair<String, String>> map = new ArrayList<Pair<String, String>>();
         String[] entries = mContext.getResources().getStringArray(
                 R.array.eos_panel_enabled_names);
@@ -83,6 +85,9 @@ public class SettingsPanelFragment extends ItemOrderFragment {
                 continue;
             }
             if (!hasTorch && values[i].equals(EOSConstants.SYSTEMUI_PANEL_TORCH_TILE)) {
+                continue;
+            }
+            if (!hasGSM && values[i].equals(EOSConstants.SYSTEMUI_PANEL_2G3G_TILE)) {
                 continue;
             }
             map.add(Pair.create(entries[i], values[i]));
