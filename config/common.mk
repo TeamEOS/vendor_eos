@@ -98,7 +98,7 @@ PRODUCT_PACKAGES += \
     org.cyanogenmod.hardware \
     org.cyanogenmod.hardware.xml
 
-# Extra tools in eos
+# Extra tools in EOS
 PRODUCT_PACKAGES += \
     libsepol \
     openvpn \

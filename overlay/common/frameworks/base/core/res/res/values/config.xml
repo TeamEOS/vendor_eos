@@ -27,4 +27,6 @@
     <!-- EOSify the wallz -->
     <string name="default_wallpaper_component">com.android.wallpaper/.nexus.NexusWallpaper</string>
 
+    <bool name="config_cellBroadcastAppLinks">true</bool>
+
 </resources>

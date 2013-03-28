@@ -1,9 +1,6 @@
 # Inherit common eos stuff
 $(call inherit-product, vendor/eos/config/common_full.mk)
 
-PRODUCT_PACKAGES += \
-  Mms
-
 # World APN list
 PRODUCT_COPY_FILES += \
     vendor/eos/prebuilt/common/etc/apns-conf.xml:system/etc/apns-conf.xml
@@ -16,6 +13,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     vendor/eos/prebuilt/common/etc/selective-spn-conf.xml:system/etc/selective-spn-conf.xml
 
-# SIM Toolkit
+# Telephony packages
 PRODUCT_PACKAGES += \
-    Stk
+    Mms \
+    Stk \
+    CellBroadcastReceiver
