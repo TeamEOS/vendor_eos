@@ -1,0 +1,15 @@
+#!/system/bin/sh
+
+if [ -e /sys/android_touch/sweep2wake ]; then
+    chgrp system /sys/android_touch/sweep2wake
+    chmod 664 /sys/android_touch/sweep2wake
+
+# s2w is enabled in the kernel by default
+# so turn off only if user has disabled it
+    if [! -e /data/data/org.eos.controlcenter/app_eos/s2w_on_boot ]; then
+        echo "0" > /sys/android_touch/sweep2wake
+    fi;
+fi
+
+
+

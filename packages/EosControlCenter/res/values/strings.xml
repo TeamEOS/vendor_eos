@@ -151,6 +151,13 @@
     <string name="eos_performance_cpu_max">Maximum frequency</string>
     <string name="eos_performance_current_value">Current value: </string>
     <string name="eos_performance_boot_value">Boot value: </string>
+    <string name="eos_performance_iosched">I/O scheduler</string>
+    <string name="eos_performance_iosched_on_boot">Set value on boot</string>
+    <string name="eos_performance_fast_charge">USB Fast Charge</string>
+    <string name="eos_performance_fast_charge_title">Enable USB fast charge</string>
+    <string name="eos_performance_sweep2wake">Sweep2Wake</string>
+    <string name="eos_performance_sweep2wake_enable">Enable Sweep2Wake</string>
+    <string name="eos_performance_sweep2wake_on_boot">Start on boot</string>
     <string name="eos_device_settings">Device settings</string>
     <string name="eos_wifi_regulatory_domain_selector">Change wifi regulatory domain</string>
     <string name="eos_wifi_regulatory_domain_changed">Wifi regulatory domain changed</string>

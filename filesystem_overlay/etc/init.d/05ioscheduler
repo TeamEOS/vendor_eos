@@ -1,0 +1,10 @@
+#!/system/bin/sh
+
+chgrp system /sys/block/mmcblk0/queue/scheduler /sys/block/mmcblk1/queue/scheduler /sys/block/mmcblk2/queue/scheduler
+chmod 664 /sys/block/mmcblk0/queue/scheduler /sys/block/mmcblk1/queue/scheduler /sys/block/mmcblk2/queue/scheduler
+
+if [ -e /data/data/org.eos.controlcenter/app_eos/iosched_on_boot ]; then
+       cat /data/data/org.eos.controlcenter/app_eos/iosched_on_boot > /sys/block/mmcblk0/queue/scheduler
+       cat /data/data/org.eos.controlcenter/app_eos/iosched_on_boot > /sys/block/mmcblk1/queue/scheduler
+       cat /data/data/org.eos.controlcenter/app_eos/iosched_on_boot > /sys/block/mmcblk2/queue/scheduler
+fi

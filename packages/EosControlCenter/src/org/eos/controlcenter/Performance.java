@@ -22,18 +22,23 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
+import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
 import android.util.Log;
 
+import org.teameos.jellybean.settings.EOSUtils;
+
 public class Performance extends PreferenceFragment implements
         Preference.OnPreferenceChangeListener {
-    
+
     public static Performance newInstance(Bundle args) {
         Performance frag = new Performance();
         if (args != null) {
@@ -58,10 +63,25 @@ public class Performance extends PreferenceFragment implements
     public Performance() {
     }
 
+    private static final String IO_SCHED0 = "/sys/block/mmcblk0/queue/scheduler";
+    private static final String IO_SCHED1 = "/sys/block/mmcblk1/queue/scheduler";
+    private static final String IO_SCHED2 = "/sys/block/mmcblk2/queue/scheduler";
+    private ArrayList<File> mSchedFiles = new ArrayList<File>();
+
+    private static final String FC_CATEGORY = "eos_settings_fast_charge";
+    private static final String S2W_CATEGORY = "eos_settings_sweep2wake";
+
     private CheckBoxPreference mClocksOnBootPreference;
+    private CheckBoxPreference mIoSchedOnBootPreference;
+
     private ListPreference mClocksMinPreference;
     private ListPreference mClocksMaxPreference;
     private ListPreference mClocksGovPreference;
+    private ListPreference mIoSchedPreference;
+    private CheckBoxPreference mFastChargePreference;
+    private CheckBoxPreference mEnableSweep2Wake;
+    private CheckBoxPreference mSweep2WakeOnBoot;
+
     private Context mContext;
 
     @Override
@@ -82,6 +102,23 @@ public class Performance extends PreferenceFragment implements
         mClocksMaxPreference = (ListPreference) findPreference("eos_performance_cpu_max");
         mClocksMinPreference.setOnPreferenceChangeListener(this);
         mClocksMaxPreference.setOnPreferenceChangeListener(this);
+
+        File f0 = new File(IO_SCHED0);
+        if (f0.exists()) mSchedFiles.add(f0);
+        File f1 = new File(IO_SCHED1);
+        if (f1.exists()) mSchedFiles.add(f1);
+        File f2 = new File(IO_SCHED2);
+        if (f2.exists()) mSchedFiles.add(f2);
+
+        mIoSchedPreference = (ListPreference) findPreference("eos_performance_iosched");
+        mIoSchedPreference.setPersistent(false);
+        mIoSchedPreference.setOnPreferenceChangeListener(this);
+
+        mIoSchedOnBootPreference = (CheckBoxPreference) findPreference("eos_performance_iosched_on_boot");
+        mIoSchedOnBootPreference.setChecked(getSchedulerFlag().exists());
+        mIoSchedOnBootPreference.setPersistent(false);
+        mIoSchedOnBootPreference.setOnPreferenceChangeListener(this);
+
         try {
             BufferedReader reader = new BufferedReader(new FileReader(
                     "/sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies"));
@@ -124,6 +161,110 @@ public class Performance extends PreferenceFragment implements
             Log.w("Settings", e.toString());
         }
 
+        if (!EOSUtils.hasFastCharge()) {
+            final PreferenceCategory fc = (PreferenceCategory) getPreferenceScreen()
+                    .findPreference(FC_CATEGORY);
+            getPreferenceScreen().removePreference(fc);
+        } else {
+            mFastChargePreference = (CheckBoxPreference) findPreference("eos_performance_fast_charge");
+            mFastChargePreference.setPersistent(false);
+            mFastChargePreference.setChecked(EOSUtils.isFastChargeEnabled());
+            mFastChargePreference.setOnPreferenceChangeListener(this);
+        }
+
+        if (!EOSUtils.hasSweep2Wake()) {
+            final PreferenceCategory s2w = (PreferenceCategory) getPreferenceScreen()
+                    .findPreference(S2W_CATEGORY);
+            getPreferenceScreen().removePreference(s2w);
+        } else {
+            mEnableSweep2Wake = (CheckBoxPreference) findPreference("eos_performance_sweep2wake_enable");
+            mEnableSweep2Wake.setChecked(EOSUtils.isSweep2WakeEnabled());
+            mEnableSweep2Wake.setOnPreferenceChangeListener(this);
+
+            mSweep2WakeOnBoot = (CheckBoxPreference) findPreference("eos_performance_sweep2wake_set_on_boot");
+            mSweep2WakeOnBoot.setChecked(getSweep2WakeFlag().exists());
+            mSweep2WakeOnBoot.setOnPreferenceChangeListener(this);
+        }
+
+        getSchedulers();
+    }
+
+    private void getSchedulers() {
+        boolean success = false;
+        String defSched = "cfq";
+        for (File f : mSchedFiles) {
+            try {
+                BufferedReader reader = new BufferedReader(new FileReader(f.getAbsolutePath()));
+                String[] temp = reader.readLine().split(" ");
+                reader.close();
+                String[] schedulers = new String[temp.length];
+                for (int i = 0; i < temp.length; i++) {
+                    String test = temp[i];
+                    if (test.contains("[")) {
+                        schedulers[i] = test.substring(1, test.length() - 1);
+                        defSched = schedulers[i];
+                        success = true;
+                        continue;
+                    }
+                    schedulers[i] = test;
+                }
+                if (!success) {
+                    mIoSchedPreference.setEntries(new String[] {
+                            "cfq", "deadline"
+                    });
+                    mIoSchedPreference.setEntryValues(new String[] {
+                            "cfq", "deadline"
+                    });
+                    mIoSchedPreference.setSummary("Unable to read schedulers");
+                    mIoSchedPreference.setValue(defSched);
+                } else {
+                    mIoSchedPreference.setEntries(schedulers);
+                    mIoSchedPreference.setEntryValues(schedulers);
+                    mIoSchedPreference.setSummary("Current value:: " + defSched);
+                    mIoSchedPreference.setValue(defSched);
+                }
+            } catch (Exception e) {
+                mIoSchedPreference.setEntries(new String[] {
+                        "cfq", "deadline"
+                });
+                mIoSchedPreference.setEntryValues(new String[] {
+                        "cfq", "deadline"
+                });
+                mIoSchedPreference.setSummary("Unable to read schedulers");
+                mIoSchedPreference.setValue(defSched);
+            }
+        }
+    }
+
+    private File getSchedulerFlag() {
+        return new File(mContext.getDir("eos", Context.MODE_PRIVATE),
+                "iosched_on_boot");
+    }
+
+    private void writeSchedulerFlag(String scheduler) {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(getSchedulerFlag()));
+            writer.write(scheduler.toCharArray(), 0, scheduler.toCharArray().length);
+            writer.close();
+        } catch (Exception e) {
+            Log.w("Settings", e.toString());
+        }
+    }
+
+    private void writeScheduler(String scheduler) {
+        for (File f : mSchedFiles) {
+            try {
+                BufferedWriter writer = new BufferedWriter(new FileWriter(f));
+                writer.write(scheduler.toCharArray(), 0, scheduler.toCharArray().length);
+                writer.close();
+            } catch (Exception e) {
+                Log.w("Settings", e.toString());
+            }
+        }
+    }
+
+    private File getSweep2WakeFlag() {
+        return new File(mContext.getDir("eos", Context.MODE_PRIVATE), "sw2_on_boot");
     }
 
     @Override
@@ -161,7 +302,6 @@ public class Performance extends PreferenceFragment implements
                 updateCpuPreferenceValues(mClocksGovPreference, CLOCK_TYPE.GOV);
             } catch (Exception e) {
             }
-            return true;
         } else if (preference.equals(mClocksMinPreference) ||
                 preference.equals(mClocksMaxPreference)) {
             try {
@@ -193,8 +333,6 @@ public class Performance extends PreferenceFragment implements
                 Log.d("Settings", e.toString());
                 return false;
             }
-
-            return true;
         } else if (preference.equals(mClocksGovPreference)) {
             try {
                 String newValue = (String) objValue;
@@ -212,10 +350,41 @@ public class Performance extends PreferenceFragment implements
                 Log.d("Settings", e.toString());
                 return false;
             }
-            return true;
+        } else if (preference.equals(mIoSchedPreference)) {
+            writeScheduler((String) objValue);
+            getSchedulers();
+            if (mIoSchedOnBootPreference.isChecked()) {
+                writeSchedulerFlag((String) objValue);
+            }
+        } else if (preference.equals(mIoSchedOnBootPreference)) {
+            if (((Boolean) objValue).booleanValue()) {
+                try {
+                    getSchedulerFlag().createNewFile();
+                    writeSchedulerFlag(mIoSchedPreference.getValue());
+                } catch (IOException e) {
+                    Log.d("Settings", e.toString());
+                    return false;
+                }
+            } else {
+                getSchedulerFlag().delete();
+            }
+        } else if (preference.equals(mEnableSweep2Wake)) {
+            EOSUtils.setSweep2WakeEnabled(((Boolean) objValue).booleanValue());
+        } else if (preference.equals(mSweep2WakeOnBoot)) {
+            if (((Boolean) objValue).booleanValue()) {
+                try {
+                    getSweep2WakeFlag().createNewFile();
+                } catch (IOException e) {
+                    Log.d("Settings", e.toString());
+                    return false;
+                }
+            } else {
+                getSweep2WakeFlag().delete();
+            }
+        } else if (preference.equals(mFastChargePreference)) {
+            EOSUtils.setFastChargeEnabled(((Boolean) objValue).booleanValue());
         }
-
-        return false;
+        return true;
     }
 
     /**

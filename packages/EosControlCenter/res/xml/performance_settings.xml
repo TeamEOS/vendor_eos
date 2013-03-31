@@ -37,4 +37,34 @@
             android:title="@string/eos_performance_cpu_max" />
     </PreferenceCategory>
 
+    <PreferenceCategory
+        android:key="eos_settings_iosched"
+        android:title="@string/eos_performance_iosched" >
+        <ListPreference
+            android:key="eos_performance_iosched"
+            android:title="@string/eos_performance_iosched" />
+        <CheckBoxPreference
+            android:key="eos_performance_iosched_on_boot"
+            android:title="@string/eos_performance_iosched_on_boot" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="eos_settings_fast_charge"
+        android:title="@string/eos_performance_fast_charge" >
+        <CheckBoxPreference
+            android:key="eos_performance_fast_charge"
+            android:title="@string/eos_performance_fast_charge_title" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="eos_settings_sweep2wake"
+        android:title="@string/eos_performance_sweep2wake" >
+        <CheckBoxPreference
+            android:key="eos_performance_sweep2wake_enable"
+            android:title="@string/eos_performance_sweep2wake_enable" />
+        <CheckBoxPreference
+            android:key="eos_performance_sweep2wake_set_on_boot"
+            android:title="@string/eos_performance_sweep2wake_on_boot" />
+    </PreferenceCategory>
+
 </PreferenceScreen>
