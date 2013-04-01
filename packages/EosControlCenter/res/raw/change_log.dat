@@ -1,3 +1,37 @@
+=4/1/13=
+
+This changelog will be condensed to account for me being lazy since the 5th.
+
+ALL
+
+  • Linaro 4.7.3 toolchain everywhere for everything.
+    string/memopt optimizations and Linaro branches everywhere
+    
+  • 2g/3g quick settings toggle for gsm devices
+
+  • New kernel controls! I/O scheduler, usb fast charge, and sleep2wake
+  
+  • frameworks: Smooth background gradient (Holo cleanup from UBER)
+  
+  • Much cleaner arrows for quick settings toggle order fragment
+  
+  • Removed ECC icon from launcher, accessible from Settings or from
+    longpress settings quick settings toggle. Added holo style ECC
+    icon to Settings. Got rid of colorful one. Action menu home icon
+    takes user to Settings when backstack is empty.
+    
+  • Glow Ring activities launch from unsecure lockscreen as they 
+    properly should now. 
+    
+  • Quick Settings: Fix flip-to-settings animation (commit from Cyanogenmod)
+  
+  • Our first Sprint LG Optimus G build! Rlasalle is a beast!
+  
+  • Xoom kernel sleep2Wake patch thanks flar2
+  
+  • More internal code cleanup and optimizations
+
+
 =3/5/13=
 
 
