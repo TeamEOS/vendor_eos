@@ -1,6 +1,17 @@
 #!/system/bin/sh
 
+# set boot values for eos kernel controls
+
+# create ZRAM block device (128M for now, will likely tune), then
+# prepare and enable ZRAM swapspace
+
+echo 134217728 > /sys/block/zram0/disksize && \
+/system/xbin/mkswap /dev/block/zram0 && \
+/system/xbin/swapon /dev/block/zram0
+
+# frequency control
 chgrp system /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq  /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq
+
 chmod 664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq  /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq
 
 if [ -e /data/data/org.eos.controlcenter/app_eos/clocks_on_boot ]; then
@@ -26,3 +37,28 @@ if [ -e /data/data/org.eos.controlcenter/app_eos/clocks_on_boot ]; then
         setprop eos.overclocking.failed 1
     fi;
 fi
+
+# I/O scheduler
+chgrp system /sys/block/mmcblk0/queue/scheduler
+chmod 664 /sys/block/mmcblk0/queue/scheduler
+
+if [ -e /data/data/org.eos.controlcenter/app_eos/iosched_on_boot ]; then
+       cat /data/data/org.eos.controlcenter/app_eos/iosched_on_boot > /sys/block/mmcblk0/queue/scheduler
+fi
+
+# Sweep2Wake if kernel supports it
+chgrp system /sys/android_touch/sweep2wake
+chmod 664 /sys/android_touch/sweep2wake
+
+echo "0" > /sys/android_touch/sweep2wake
+
+if [ -e /data/data/org.eos.controlcenter/app_eos/s2w_on_boot ]; then
+    echo "1" > /sys/android_touch/sweep2wake
+fi
+
+# USB fast charge, we just set perms. This is likely
+# not something we want to set on boot
+chgrp system /sys/kernel/fast_charge/force_fast_charge
+chmod 664 /sys/kernel/fast_charge/force_fast_charge
+
+

@@ -5,12 +5,8 @@ PRODUCT_COPY_FILES += \
     vendor/eos/filesystem_overlay/bin/sysro:system/bin/sysro \
     vendor/eos/filesystem_overlay/bin/rootrw:system/bin/rootrw \
     vendor/eos/filesystem_overlay/bin/rootro:system/bin/rootro \
-    vendor/eos/filesystem_overlay/etc/init.d/01zram-swap:system/etc/init.d/01zram-swap \
-    vendor/eos/filesystem_overlay/etc/init.d/02overclock:system/etc/init.d/02overclock \
-    vendor/eos/filesystem_overlay/etc/init.d/03eosSettings:system/etc/init.d/03eosSettings \
-    vendor/eos/filesystem_overlay/etc/init.d/04sweep2wake:system/etc/init.d/04sweep2wake \
-    vendor/eos/filesystem_overlay/etc/init.d/05ioscheduler:system/etc/init.d/05ioscheduler \
-    vendor/eos/filesystem_overlay/etc/init.d/06ffc:system/etc/init.d/06ffc \
+    vendor/eos/filesystem_overlay/etc/init.d/01_kernel_controls:system/etc/init.d/01_kernel_controls \
+    vendor/eos/filesystem_overlay/etc/init.d/02_privacy_controls:system/etc/init.d/02_privacy_controls \
     vendor/eos/filesystem_overlay/bin/backuptool.functions:system/bin/backuptool.functions \
     vendor/eos/filesystem_overlay/bin/backuptool.sh:system/bin/backuptool.sh \
     vendor/eos/filesystem_overlay/addon.d/99-eos-hosts.sh:system/addon.d/99-eos-hosts.sh \

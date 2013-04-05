@@ -22,7 +22,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -63,10 +62,18 @@ public class Performance extends PreferenceFragment implements
     public Performance() {
     }
 
-    private static final String IO_SCHED0 = "/sys/block/mmcblk0/queue/scheduler";
-    private static final String IO_SCHED1 = "/sys/block/mmcblk1/queue/scheduler";
-    private static final String IO_SCHED2 = "/sys/block/mmcblk2/queue/scheduler";
-    private ArrayList<File> mSchedFiles = new ArrayList<File>();
+    /*
+     * kernel feature path constants. We only use detected paths and features
+     */
+    // cpu frequency and governors
+    private static final String CPU_AVAIL_FREQ = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies";
+    private static final String CPU_AVAIL_GOV = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors";
+    private static final String CPU_MIN_SCALE = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq";
+    private static final String CPU_MAX_SCALE = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq";
+    private static final String CPU_GOV = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor";
+
+    private static final String IO_SCHED = "/sys/block/mmcblk0/queue/scheduler";
+    private File scheduler_file;
 
     private static final String FC_CATEGORY = "eos_settings_fast_charge";
     private static final String S2W_CATEGORY = "eos_settings_sweep2wake";
@@ -103,12 +110,7 @@ public class Performance extends PreferenceFragment implements
         mClocksMinPreference.setOnPreferenceChangeListener(this);
         mClocksMaxPreference.setOnPreferenceChangeListener(this);
 
-        File f0 = new File(IO_SCHED0);
-        if (f0.exists()) mSchedFiles.add(f0);
-        File f1 = new File(IO_SCHED1);
-        if (f1.exists()) mSchedFiles.add(f1);
-        File f2 = new File(IO_SCHED2);
-        if (f2.exists()) mSchedFiles.add(f2);
+        scheduler_file = new File(IO_SCHED);
 
         mIoSchedPreference = (ListPreference) findPreference("eos_performance_iosched");
         mIoSchedPreference.setPersistent(false);
@@ -120,8 +122,7 @@ public class Performance extends PreferenceFragment implements
         mIoSchedOnBootPreference.setOnPreferenceChangeListener(this);
 
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(
-                    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies"));
+            BufferedReader reader = new BufferedReader(new FileReader(CPU_AVAIL_FREQ));
             String[] frequencies = reader.readLine().split(" ");
             reader.close();
             for (int i = 0; i < frequencies.length; i++) {
@@ -137,8 +138,7 @@ public class Performance extends PreferenceFragment implements
         mClocksGovPreference = (ListPreference) findPreference("eos_performance_cpu_governor");
         mClocksGovPreference.setOnPreferenceChangeListener(this);
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(
-                    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors"));
+            BufferedReader reader = new BufferedReader(new FileReader(CPU_AVAIL_GOV));
             String[] governors = reader.readLine().split(" ");
             reader.close();
             mClocksGovPreference.setEntries(governors);
@@ -192,38 +192,23 @@ public class Performance extends PreferenceFragment implements
     private void getSchedulers() {
         boolean success = false;
         String defSched = "cfq";
-        for (File f : mSchedFiles) {
-            try {
-                BufferedReader reader = new BufferedReader(new FileReader(f.getAbsolutePath()));
-                String[] temp = reader.readLine().split(" ");
-                reader.close();
-                String[] schedulers = new String[temp.length];
-                for (int i = 0; i < temp.length; i++) {
-                    String test = temp[i];
-                    if (test.contains("[")) {
-                        schedulers[i] = test.substring(1, test.length() - 1);
-                        defSched = schedulers[i];
-                        success = true;
-                        continue;
-                    }
-                    schedulers[i] = test;
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(
+                    scheduler_file.getAbsolutePath()));
+            String[] temp = reader.readLine().split(" ");
+            reader.close();
+            String[] schedulers = new String[temp.length];
+            for (int i = 0; i < temp.length; i++) {
+                String test = temp[i];
+                if (test.contains("[")) {
+                    schedulers[i] = test.substring(1, test.length() - 1);
+                    defSched = schedulers[i];
+                    success = true;
+                    continue;
                 }
-                if (!success) {
-                    mIoSchedPreference.setEntries(new String[] {
-                            "cfq", "deadline"
-                    });
-                    mIoSchedPreference.setEntryValues(new String[] {
-                            "cfq", "deadline"
-                    });
-                    mIoSchedPreference.setSummary("Unable to read schedulers");
-                    mIoSchedPreference.setValue(defSched);
-                } else {
-                    mIoSchedPreference.setEntries(schedulers);
-                    mIoSchedPreference.setEntryValues(schedulers);
-                    mIoSchedPreference.setSummary("Current value:: " + defSched);
-                    mIoSchedPreference.setValue(defSched);
-                }
-            } catch (Exception e) {
+                schedulers[i] = test;
+            }
+            if (!success) {
                 mIoSchedPreference.setEntries(new String[] {
                         "cfq", "deadline"
                 });
@@ -232,7 +217,21 @@ public class Performance extends PreferenceFragment implements
                 });
                 mIoSchedPreference.setSummary("Unable to read schedulers");
                 mIoSchedPreference.setValue(defSched);
+            } else {
+                mIoSchedPreference.setEntries(schedulers);
+                mIoSchedPreference.setEntryValues(schedulers);
+                mIoSchedPreference.setSummary("Current value:: " + defSched);
+                mIoSchedPreference.setValue(defSched);
             }
+        } catch (Exception e) {
+            mIoSchedPreference.setEntries(new String[] {
+                    "cfq", "deadline"
+            });
+            mIoSchedPreference.setEntryValues(new String[] {
+                    "cfq", "deadline"
+            });
+            mIoSchedPreference.setSummary("Unable to read schedulers");
+            mIoSchedPreference.setValue(defSched);
         }
     }
 
@@ -252,14 +251,12 @@ public class Performance extends PreferenceFragment implements
     }
 
     private void writeScheduler(String scheduler) {
-        for (File f : mSchedFiles) {
-            try {
-                BufferedWriter writer = new BufferedWriter(new FileWriter(f));
-                writer.write(scheduler.toCharArray(), 0, scheduler.toCharArray().length);
-                writer.close();
-            } catch (Exception e) {
-                Log.w("Settings", e.toString());
-            }
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(scheduler_file));
+            writer.write(scheduler.toCharArray(), 0, scheduler.toCharArray().length);
+            writer.close();
+        } catch (Exception e) {
+            Log.w("Settings", e.toString());
         }
     }
 
@@ -401,13 +398,13 @@ public class Performance extends PreferenceFragment implements
 
         switch (clockType) {
             case MIN:
-                outputFile = new File("/sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq");
+                outputFile = new File(CPU_MIN_SCALE);
                 break;
             case MAX:
-                outputFile = new File("/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq");
+                outputFile = new File(CPU_MAX_SCALE);
                 break;
             case GOV:
-                outputFile = new File("/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor");
+                outputFile = new File(CPU_GOV);
                 break;
         }
 
@@ -460,15 +457,15 @@ public class Performance extends PreferenceFragment implements
 
         switch (clockType) {
             case MIN:
-                currentClockFile = new File("/sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq");
+                currentClockFile = new File(CPU_MIN_SCALE);
                 bootClockFile = new File(mContext.getDir("eos", Context.MODE_PRIVATE), "clocks_min");
                 break;
             case MAX:
-                currentClockFile = new File("/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq");
+                currentClockFile = new File(CPU_MAX_SCALE);
                 bootClockFile = new File(mContext.getDir("eos", Context.MODE_PRIVATE), "clocks_max");
                 break;
             case GOV:
-                currentClockFile = new File("/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor");
+                currentClockFile = new File(CPU_GOV);
                 bootClockFile = new File(mContext.getDir("eos", Context.MODE_PRIVATE), "clocks_gov");
                 break;
         }
