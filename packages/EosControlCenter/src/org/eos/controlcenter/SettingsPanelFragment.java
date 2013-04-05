@@ -78,7 +78,8 @@ public class SettingsPanelFragment extends ItemOrderFragment {
         for (int i = 0; i < entries.length; i++) {
             if (!hasData &&
                     (values[i].equals(EOSConstants.SYSTEMUI_PANEL_DATA_TILE)
-                            || values[i].equals(EOSConstants.SYSTEMUI_PANEL_WIFIAP_TILE))) {
+                            || values[i].equals(EOSConstants.SYSTEMUI_PANEL_WIFIAP_TILE)
+                            || values[i].equals(EOSConstants.SYSTEMUI_PANEL_2G3G_TILE))) {
                 continue;
             }
             if (!isCdmaLte && values[i].equals(EOSConstants.SYSTEMUI_PANEL_LTE_TILE)) {
