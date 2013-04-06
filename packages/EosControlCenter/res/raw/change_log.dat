@@ -1,3 +1,43 @@
+=4/6/13=
+
+TABLETS
+
+  • TF101 and Xoom - Full IBSS AdHoc support! 
+
+  • N7 - don't show 2g/3g toggle as available
+  
+  • Xoom - update kernel bluetooth, mac80211, bcmdhd to common/3.0 branch
+           Build common used kernel modules: dm9601, ftdi_sio, option,
+           pegasus, pl2303, sierra, uvcvideo
+
+           Build rtl8187 for Alfa h4xR cards. Xoom is now BT5 ready
+           fresh out the box!
+
+           Row I/O Scheduler
+           
+           Try to clean up enable/disable sweep2wake on boot setting
+
+ALL
+
+  • Fix alarm quick settings click to go to default alarm app
+    
+  • Fix padding issue between signal cluster and battery icon
+
+  • Slim down all seekbar quick settings tiles
+  
+  • Single brightness and volume seekbar controls
+  
+  • Disable autobright when brightness seekbar is pressed
+  
+  • Add IBSS Ad-Hoc support: Framework for all devices, but the device
+    kernel must support this as well.
+    
+  • Add LgECDMA Custom RIL
+  
+  • Internal code cleanups
+
+
+
 =4/1/13=
 
 This changelog will be condensed to account for me being lazy since the 5th.
