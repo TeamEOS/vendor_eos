@@ -35,6 +35,8 @@
         <item>QS_User</item>
         <item>QS_Settings</item>
         <item>QS_Seekbar</item>
+        <item>QS_Bright_Seekbar</item>
+        <item>QS_Vol_Seekbar</item>
         <item>QS_Brightness</item>
         <item>QS_Battery</item>
         <item>QS_Rotation</item>
@@ -55,6 +57,8 @@
         <item>Avatar</item>
         <item>Settings</item>
         <item>Dual Seekbars</item>
+        <item>Brightness Seekbar</item>
+        <item>Volume Seekbar</item>
         <item>Brightness Dialog</item>
         <item>Battery</item>
         <item>Rotation Lock</item>
