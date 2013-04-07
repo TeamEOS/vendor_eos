@@ -2,12 +2,18 @@
 
 # set boot values for eos kernel controls
 
-# create ZRAM block device (128M for now, will likely tune), then
-# prepare and enable ZRAM swapspace
+# ZRAM allocate 10% of device memory
+# credit Imoseyon
 
-echo 134217728 > /sys/block/zram0/disksize && \
-/system/xbin/mkswap /dev/block/zram0 && \
-/system/xbin/swapon /dev/block/zram0
+if [ -e /data/data/org.eos.controlcenter/app_eos/zram_on_boot ]; then
+    RAMSIZE=`grep MemTotal /proc/meminfo | awk '{ print \$2 }'`
+    ZRAMSIZE=$(($RAMSIZE*100))
+
+    echo $ZRAMSIZE > /sys/block/zram0/disksize && \
+    /system/xbin/mkswap /dev/block/zram0 && \
+    /system/xbin/swapon /dev/block/zram0 && \
+    echo "500,1000,20000,20000,20000,25000" > /sys/module/lowmemorykiller/parameters/minfree
+fi
 
 # frequency control
 chgrp system /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq  /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq

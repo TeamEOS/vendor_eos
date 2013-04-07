@@ -75,11 +75,15 @@ public class Performance extends PreferenceFragment implements
     private static final String IO_SCHED = "/sys/block/mmcblk0/queue/scheduler";
     private File scheduler_file;
 
+    private static final String ZRAM = "/sys/block/zram0/disksize";
+
     private static final String FC_CATEGORY = "eos_settings_fast_charge";
     private static final String S2W_CATEGORY = "eos_settings_sweep2wake";
+    private static final String ZRAM_CATEGORY = "eos_settings_zram";
 
     private CheckBoxPreference mClocksOnBootPreference;
     private CheckBoxPreference mIoSchedOnBootPreference;
+    private CheckBoxPreference mZramPref;
 
     private ListPreference mClocksMinPreference;
     private ListPreference mClocksMaxPreference;
@@ -186,6 +190,16 @@ public class Performance extends PreferenceFragment implements
             mSweep2WakeOnBoot.setOnPreferenceChangeListener(this);
         }
 
+        if(!hasZram()) {
+            final PreferenceCategory zram = (PreferenceCategory) getPreferenceScreen()
+                    .findPreference(ZRAM_CATEGORY);
+            getPreferenceScreen().removePreference(zram);
+        } else {
+            mZramPref = (CheckBoxPreference) findPreference("eos_performance_zram");
+            mZramPref.setChecked(getZramFlag().exists());
+            mZramPref.setOnPreferenceChangeListener(this);
+        }
+
         getSchedulers();
     }
 
@@ -262,6 +276,15 @@ public class Performance extends PreferenceFragment implements
 
     private File getSweep2WakeFlag() {
         return new File(mContext.getDir("eos", Context.MODE_PRIVATE), "sw2_on_boot");
+    }
+
+    private boolean hasZram() {
+        return new File(ZRAM).exists();
+    }
+
+    private File getZramFlag() {
+        return new File(mContext.getDir("eos", Context.MODE_PRIVATE),
+                "zram_on_boot");
     }
 
     @Override
@@ -364,6 +387,17 @@ public class Performance extends PreferenceFragment implements
                 }
             } else {
                 getSchedulerFlag().delete();
+            }
+        } else if (preference.equals(mZramPref)) {
+            if (((Boolean) objValue).booleanValue()) {
+                try {
+                    getZramFlag().createNewFile();
+                } catch (IOException e) {
+                    Log.d("Settings", e.toString());
+                    return false;
+                }
+            } else {
+                getZramFlag().delete();
             }
         } else if (preference.equals(mEnableSweep2Wake)) {
             EOSUtils.setSweep2WakeEnabled(((Boolean) objValue).booleanValue());

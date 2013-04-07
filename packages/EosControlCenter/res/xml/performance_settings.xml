@@ -49,6 +49,15 @@
     </PreferenceCategory>
 
     <PreferenceCategory
+        android:key="eos_settings_zram"
+        android:title="@string/eos_performance_zram_category" >
+        <CheckBoxPreference
+            android:key="eos_performance_zram"
+            android:title="@string/eos_performance_zram_title"
+            android:summary="@string/eos_performance_zram_summary" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
         android:key="eos_settings_fast_charge"
         android:title="@string/eos_performance_fast_charge" >
         <CheckBoxPreference
