@@ -78,10 +78,14 @@
     <string-array name="eos_panel_column_names">
         <item>3 Columns</item>
         <item>4 Columns</item>
+        <item>5 Columns</item>
+        <item>6 Columns</item>
     </string-array>
     <string-array name="eos_panel_column_values">
         <item>3</item>
         <item>4</item>
+        <item>5</item>
+        <item>6</item>
     </string-array>
     <string-array name="eos_display_legal_rotation_names">
         <item>90 Degrees</item>
