@@ -154,13 +154,14 @@
     <string name="eos_performance_iosched">I/O scheduler</string>
     <string name="eos_performance_iosched_on_boot">Set value on boot</string>
     <string name="eos_performance_fast_charge">USB Fast Charge</string>
-    <string name="eos_performance_fast_charge_title">Enable USB fast charge</string>
     <string name="eos_performance_sweep2wake">Sweep2Wake</string>
-    <string name="eos_performance_sweep2wake_enable">Enable Sweep2Wake</string>
     <string name="eos_performance_sweep2wake_on_boot">Start on boot</string>
     <string name="eos_performance_zram_category">ZRAM</string>
     <string name="eos_performance_zram_title">Enable ZRAM on boot</string>
     <string name="eos_performance_zram_summary">10% of RAM will be used as swap space</string>
+    <string name="eos_performance_not_applied">Overclocking not applied</string>
+    <string name="eos_performance_notification_title">Eos Overclocking</string>
+    <string name="eos_performance_notification_text">Values have not been applied due to recent reboot.</string>
     <string name="eos_device_settings">Device settings</string>
     <string name="eos_wifi_regulatory_domain_selector">Change wifi regulatory domain</string>
     <string name="eos_wifi_regulatory_domain_changed">Wifi regulatory domain changed</string>

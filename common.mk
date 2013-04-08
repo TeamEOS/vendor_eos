@@ -28,7 +28,6 @@ PRODUCT_PACKAGES += \
     ntfs-3g.probe \
     ntfsfix \
     ntfs-3g \
-    EosOverclockHelper \
     PhaseBeam \
     HoloSpiral \
     ThemeChooser \

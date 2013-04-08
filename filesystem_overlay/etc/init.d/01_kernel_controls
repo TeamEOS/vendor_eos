@@ -16,30 +16,24 @@ if [ -e /data/data/org.eos.controlcenter/app_eos/zram_on_boot ]; then
 fi
 
 # frequency control
-chgrp system /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq  /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq
 
-chmod 664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq  /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq
+files="/sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq \
+       /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq \
+       /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq \
+       /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq \
+       /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor \
+       /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor"
+
+for x in $files; do
+    chmod 664 $x
+    chgrp system $x
+done
 
 if [ -e /data/data/org.eos.controlcenter/app_eos/clocks_on_boot ]; then
     thtt /data/local/eos_clocking
     TEST_VALUE=$?
 
-    if [ $TEST_VALUE -eq 0 ]; then
-        if [ -e /data/data/org.eos.controlcenter/app_eos/clocks_min ]; then
-            cat /data/data/org.eos.controlcenter/app_eos/clocks_min > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
-            cat /data/data/org.eos.controlcenter/app_eos/clocks_min > /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq
-        fi;
-
-        if [ -e /data/data/org.eos.controlcenter/app_eos/clocks_max ]; then
-            cat /data/data/org.eos.controlcenter/app_eos/clocks_max > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
-            cat /data/data/org.eos.controlcenter/app_eos/clocks_max > /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq
-        fi;
-
-        if [ -e /data/data/org.eos.controlcenter/app_eos/clocks_gov ]; then
-            cat /data/data/org.eos.controlcenter/app_eos/clocks_gov > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-            cat /data/data/org.eos.controlcenter/app_eos/clocks_gov > /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor
-        fi;
-    else
+    if [ ! $TEST_VALUE -eq 0 ]; then
         setprop eos.overclocking.failed 1
     fi;
 fi
@@ -48,19 +42,9 @@ fi
 chgrp system /sys/block/mmcblk0/queue/scheduler
 chmod 664 /sys/block/mmcblk0/queue/scheduler
 
-if [ -e /data/data/org.eos.controlcenter/app_eos/iosched_on_boot ]; then
-       cat /data/data/org.eos.controlcenter/app_eos/iosched_on_boot > /sys/block/mmcblk0/queue/scheduler
-fi
-
 # Sweep2Wake if kernel supports it
 chgrp system /sys/android_touch/sweep2wake
 chmod 664 /sys/android_touch/sweep2wake
-
-echo "0" > /sys/android_touch/sweep2wake
-
-if [ -e /data/data/org.eos.controlcenter/app_eos/s2w_on_boot ]; then
-    echo "1" > /sys/android_touch/sweep2wake
-fi
 
 # USB fast charge, we just set perms. This is likely
 # not something we want to set on boot

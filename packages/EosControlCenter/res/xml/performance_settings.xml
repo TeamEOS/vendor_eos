@@ -62,7 +62,7 @@
         android:title="@string/eos_performance_fast_charge" >
         <CheckBoxPreference
             android:key="eos_performance_fast_charge"
-            android:title="@string/eos_performance_fast_charge_title" />
+            android:title="@string/eos_performance_fast_charge" />
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -70,7 +70,7 @@
         android:title="@string/eos_performance_sweep2wake" >
         <CheckBoxPreference
             android:key="eos_performance_sweep2wake_enable"
-            android:title="@string/eos_performance_sweep2wake_enable" />
+            android:title="@string/eos_performance_sweep2wake" />
         <CheckBoxPreference
             android:key="eos_performance_sweep2wake_set_on_boot"
             android:title="@string/eos_performance_sweep2wake_on_boot" />
