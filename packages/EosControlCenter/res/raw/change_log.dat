@@ -1,3 +1,35 @@
+=4/9/13=
+
+TABLETS
+
+  • Xoom - possible SOD fix from TDR
+  
+  • N10 - fix usb storage fail
+
+ALL
+
+  • Fix 2G/3G toggle
+    
+  • H+ indicator
+
+  • Slim down quick settings seekbars even more
+    I'm leaving the swipe seekbar a bit fatter
+    than the single bars. This is to allow for 
+    easy swiping between controls. 
+  
+  • Add 5 and 6 column options for quick settings layout
+  
+  • Performance - enable/disable zram on boot
+    Can't do it on the fly without root. We don't want
+    to give shared uid system root, so we are exploring 
+    making a separate "diagnostics" app where we do any
+    root operations.
+  
+  • quick settings mobile data - clean up toggle implementation
+    label shows "DIABLED" in white when mobile data has been 
+    turned off by user
+
+
 =4/6/13=
 
 TABLETS
