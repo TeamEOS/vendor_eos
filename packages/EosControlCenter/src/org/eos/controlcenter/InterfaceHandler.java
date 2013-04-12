@@ -1,6 +1,7 @@
 
 package org.eos.controlcenter;
 
+import android.content.ComponentName;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
@@ -13,6 +14,8 @@ public class InterfaceHandler extends PreferenceScreenHandler {
     private CheckBoxPreference mRecentsMemDisplayPreference;
     private CheckBoxPreference mShowAllLockscreenWidgetsPreference;
     private CheckBoxPreference mMenuOverflow;
+    private CheckBoxPreference mShowECCIcon;
+    private CheckBoxPreference mShowEDIcon;
 
     public InterfaceHandler(PreferenceScreen pref) {
         super(pref);
@@ -29,6 +32,10 @@ public class InterfaceHandler extends PreferenceScreenHandler {
                 .findPreference("eos_interface_recents_mem_display");
         mMenuOverflow = (CheckBoxPreference) mRoot
                 .findPreference("eos_interface_general_menu_overflow");
+        mShowECCIcon = (CheckBoxPreference) mRoot
+                .findPreference("eos_interface_show_ecc_icon");
+        mShowEDIcon = (CheckBoxPreference) mRoot
+                .findPreference("eos_interface_show_ED_icon");
 
         mShowAllLockscreenWidgetsPreference.setChecked(Settings.System.getInt(
                 mResolver,
@@ -43,6 +50,12 @@ public class InterfaceHandler extends PreferenceScreenHandler {
 
         mMenuOverflow.setChecked(Settings.System.getInt(
                 mResolver, Settings.System.UI_FORCE_OVERFLOW_BUTTON, 0) == 1);
+
+        mShowECCIcon.setChecked(Utils.getComponentEnabledState(mContext, new ComponentName("org.eos.controlcenter",
+                "org.eos.controlcenter.Main-Icon")));
+
+        mShowEDIcon.setChecked(Utils.getComponentEnabledState(mContext, new ComponentName("org.eos.controlcenter",
+                "org.eos.controlcenter.ED-Icon")));
 
         mRecentsKillallButtonPreference
                 .setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
@@ -91,6 +104,25 @@ public class InterfaceHandler extends PreferenceScreenHandler {
                         return true;
                     }
                 });
-    }
 
+        mShowECCIcon.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                Utils.setComponentEnabledState(mContext, new ComponentName("org.eos.controlcenter",
+                        "org.eos.controlcenter.Main-Icon"),((Boolean) newValue).booleanValue());
+                return true;
+            }
+        });
+
+        mShowEDIcon.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                Utils.setComponentEnabledState(mContext, new ComponentName("org.eos.controlcenter",
+                        "org.eos.controlcenter.ED-Icon"),((Boolean) newValue).booleanValue());
+                return true;
+            }
+        });
+    }
 }

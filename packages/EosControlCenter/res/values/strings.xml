@@ -46,6 +46,9 @@
     <string name="eos_interface_statusbar_use_tablet_ui">Use the full tablet status bar</string>
     <string name="eos_interface_statusbar_color">Status Bar Color</string>
     <string name="eos_interface_navigation">Navigation</string>
+    <string name="eos_interface_show_ecc_icon_title">Show ECC icon</string>
+    <string name="eos_interface_show_ecc_icon_summary">It takes a few seconds for your launcher to detect the icon change.</string>
+    <string name="eos_interface_show_ED_icon_title">Show Expanded Desktop icon</string>
     <string name="eos_system">System</string>
     <string name="eos_info">Info</string>
     <string name="eos_interface_navbar">Navigation Bar</string>
@@ -241,5 +244,6 @@
     <string name="ic_content_desc_down">down</string>
     <string name="item_order_category_enabled">Toggle settings</string>
     <string name="item_order_button_enable">Enable</string>
+    <string name="expanded_desktop_launcher_icon_label">Expanded Desktop</string>
 
 </resources>

@@ -1,9 +1,13 @@
 
 package org.eos.controlcenter;
 
+import android.app.ActivityManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.os.UserHandle;
 import android.util.Log;
 
@@ -19,6 +23,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.List;
 
 public final class Utils {
     public static final boolean STATE_ON = true;
@@ -162,6 +167,30 @@ public final class Utils {
     public static void commitToggleOrder(Context context, String key, String str) {
         context.getSharedPreferences(EOS_SHARED_PREFS, Context.MODE_PRIVATE).edit()
                 .putString(key, str).commit();
+    }
+
+    public static void restartLauncher(Context context) {
+        ActivityManager am = (ActivityManager) context
+                .getSystemService(Context.ACTIVITY_SERVICE);
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        ResolveInfo resolveInfo = context.getPackageManager().resolveActivity(intent,
+                PackageManager.MATCH_DEFAULT_ONLY);
+        am.forceStopPackage(resolveInfo.activityInfo.packageName);
+    }
+
+    public static void setComponentEnabledState(Context context, ComponentName component,
+            boolean enabled) {
+        context.getPackageManager().setComponentEnabledSetting(
+                component,
+                enabled ? PackageManager.COMPONENT_ENABLED_STATE_ENABLED
+                        : PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                PackageManager.DONT_KILL_APP);
+    }
+
+    public static boolean getComponentEnabledState(Context context, ComponentName component) {
+        return context.getPackageManager().getComponentEnabledSetting(component) == PackageManager.COMPONENT_ENABLED_STATE_ENABLED ? true
+                : false;
     }
 
     /*
