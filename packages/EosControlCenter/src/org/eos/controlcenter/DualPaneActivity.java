@@ -118,7 +118,6 @@ public class DualPaneActivity extends Activity implements OnActivityRequestedLis
         super.onStart();
         registerReceivers();
         Utils.turnOnEosUI(getApplicationContext());
-        PackageServerActivity.startPackageServer(getPackageManager());
     }
 
     @Override

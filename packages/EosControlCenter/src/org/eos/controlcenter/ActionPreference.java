@@ -9,10 +9,12 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.preference.Preference;
 import android.provider.Settings;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -210,15 +212,15 @@ public class ActionPreference extends Preference {
         }
     }
 
-    public void setResourcesFromPackage(AppPackage app) {
-        setTitle(app.getName());
-        setIcon(app.getIcon());
+    public void setResourcesFromPackage(String name, String component, Drawable d) {
+        setTitle(name);
+        setIcon(d);
         StringBuilder builder = new StringBuilder();
         builder.append(CUSTOM_SUMMARY)
                 .append(" ")
-                .append(app.getName());
+                .append(name);
         setSummary(builder.toString());
-        String tmp = "app:" + app.getComponentName();
+        String tmp = "app:" + component;
         setTargetValue(tmp);
     }
 }

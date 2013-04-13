@@ -47,16 +47,4 @@ public class SearchPanelActions extends ActionFragment {
                     EOSConstants.SYSTEMUI_NAVRING_2, "assist");
         }
     }
-
-    @Override
-    public void onPackagesUpdated(int percent) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void onPackagesLoaded(boolean loaded) {
-        // TODO Auto-generated method stub
-        
-    }
 }

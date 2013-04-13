@@ -152,7 +152,6 @@ public class Main extends FragmentActivity
         }
         registerReceivers();
         Utils.turnOnEosUI(getApplicationContext());
-        PackageServerActivity.startPackageServer(getPackageManager());
     }
 
     @Override

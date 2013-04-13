@@ -1,8 +1,6 @@
 
 package org.eos.controlcenter;
 
-import android.content.ContentResolver;
-import android.content.Context;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
@@ -37,16 +35,11 @@ public class SoftKeyActions extends ActionFragment
     public SoftKeyActions() {
     }
 
-    Context mContext;
-    ContentResolver mResolver;
-
     CheckBoxPreference mEnable;
     CheckBoxPreference mMenuPersist;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mContext = (Context) getActivity();
-        mResolver = mContext.getContentResolver();
         addPreferencesFromResource(R.xml.softkey_settings);
 
         mEnable = (CheckBoxPreference) findPreference("eos_interface_softkey_enable_feature");
@@ -78,17 +71,4 @@ public class SoftKeyActions extends ActionFragment
         }
         return false;
     }
-
-    @Override
-    public void onPackagesUpdated(int percent) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void onPackagesLoaded(boolean loaded) {
-        // TODO Auto-generated method stub
-        
-    }
-
 }
