@@ -15,10 +15,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.android.dateformat=MM-dd-yyyy \
     ro.com.android.dataroaming=false
 
-# Temporary hack for assembler error with AAC
-PRODUCT_COPY_FILES += \
-    vendor/cm/prebuilt/common/mh_det.o:obj/STATIC_LIBRARIES/libFraunhoferAAC_intermediates/libSBRenc/src/mh_det.o
-
 # Proprietary LatinIME Gesture Support
 PRODUCT_COPY_FILES += \
     vendor/cm/prebuilt/common/lib/libjni_latinime.so:obj/lib/libjni_latinime.so \
@@ -135,7 +131,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGE_OVERLAYS += vendor/cm/overlay/dictionaries
 PRODUCT_PACKAGE_OVERLAYS += vendor/cm/overlay/common
 
-PRODUCT_VERSION_MAJOR = OpenMaster
+PRODUCT_VERSION_MAJOR = 4.2.2
 #PRODUCT_VERSION_MINOR = SR2
 PRODUCT_VERSION_MINOR = $(shell date -u +%Y%m%d)
 PRODUCT_VERSION_MAINTENANCE = 0-RC0
