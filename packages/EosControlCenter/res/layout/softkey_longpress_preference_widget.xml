@@ -24,5 +24,4 @@
     android:clickable="true"
     android:focusable="true"
     android:paddingLeft="15dip"
-    android:paddingRight="?android:attr/scrollbarSize"
-    android:src="@drawable/ic_ecc_configure" />
+    android:paddingRight="?android:attr/scrollbarSize" />

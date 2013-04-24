@@ -90,8 +90,16 @@ public class ActionPreference extends Preference {
     public void onBindView(View v) {
         super.onBindView(v);
         mWidget = (ImageView) v.findViewById(R.id.eos_configure_settings);
+        mWidget.setImageResource(R.drawable.ic_action_reload);
+        mWidget.setOnClickListener(null);
         mWidget.setTag(mTargetUri);
-        mWidget.setOnClickListener(mListener);
+    }
+
+    public void setWidgetEnabled() {
+        if (mWidget != null) {
+            mWidget.setImageResource(R.drawable.ic_action_settings);
+            mWidget.setOnClickListener(mListener);
+        }
     }
 
     private String getUriValue(String uri) {

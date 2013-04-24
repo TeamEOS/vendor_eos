@@ -165,6 +165,9 @@ public abstract class ActionFragment extends PreferenceFragment {
             View dialog = View.inflate(mContext, R.layout.activity_dialog, null);
             mListView = (ListView) dialog.findViewById(R.id.eos_dialog_list);
             mListView.setAdapter(new PackageAdapter(getActivity(), result, mPm));
+            for (ActionPreference ap : mActionPreferenceList) {
+                ap.setWidgetEnabled();
+            }
         }
     }
 }
