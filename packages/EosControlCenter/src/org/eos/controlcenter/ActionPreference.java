@@ -8,13 +8,11 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Resources;
-import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.preference.Preference;
 import android.provider.Settings;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -69,12 +67,15 @@ public class ActionPreference extends Preference {
         mRes = mContext.getResources();
         mResolver = mContext.getContentResolver();
 
-        int customSummaryRes = attr.getAttributeResourceValue(Utils.CONTROLCENTERNS, "customSummary", -1);
-        if (customSummaryRes != -1) CUSTOM_SUMMARY = context.getString(customSummaryRes);
+        int customSummaryRes = attr.getAttributeResourceValue(Utils.CONTROLCENTERNS,
+                "customSummary", -1);
+        if (customSummaryRes != -1)
+            CUSTOM_SUMMARY = context.getString(customSummaryRes);
         DEFAULT_SUMMARY = String.valueOf(getSummary());
-        
+
         int uriRes = attr.getAttributeResourceValue(Utils.CONTROLCENTERNS, "providerUri", -1);
-        if (uriRes != -1) mTargetUri = context.getString(uriRes);
+        if (uriRes != -1)
+            mTargetUri = context.getString(uriRes);
     }
 
     public void setListener(View.OnClickListener listener) {
@@ -90,16 +91,9 @@ public class ActionPreference extends Preference {
     public void onBindView(View v) {
         super.onBindView(v);
         mWidget = (ImageView) v.findViewById(R.id.eos_configure_settings);
-        mWidget.setImageResource(R.drawable.ic_action_reload);
-        mWidget.setOnClickListener(null);
+        mWidget.setImageResource(R.drawable.ic_action_settings);
+        mWidget.setOnClickListener(mListener);
         mWidget.setTag(mTargetUri);
-    }
-
-    public void setWidgetEnabled() {
-        if (mWidget != null) {
-            mWidget.setImageResource(R.drawable.ic_action_settings);
-            mWidget.setOnClickListener(mListener);
-        }
     }
 
     private String getUriValue(String uri) {

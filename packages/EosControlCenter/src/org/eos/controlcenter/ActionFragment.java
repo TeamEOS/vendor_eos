@@ -28,6 +28,8 @@ public abstract class ActionFragment extends PreferenceFragment {
     protected Context mContext;
     protected ContentResolver mResolver;
     private PackageManager mPm;
+    private PackageAdapter mAdapter;
+    private ArrayList<ResolveInfo> mPackageList;
     private ListView mListView;
     protected Resources mRes;
     private ArrayList<ActionPreference> mActionPreferenceList;
@@ -39,12 +41,12 @@ public abstract class ActionFragment extends PreferenceFragment {
         mResolver = mContext.getContentResolver();
         mPm = mContext.getPackageManager();
         mActionPreferenceList = new ArrayList<ActionPreference>();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        new PackageLoader().execute();
+        View dialog = View.inflate(mContext, R.layout.activity_dialog, null);
+        mListView = (ListView) dialog.findViewById(R.id.eos_dialog_list);
+        mPackageList = new ArrayList<ResolveInfo>();
+        mAdapter = new PackageAdapter(getActivity(), mPackageList, mPm);
+        mListView.setAdapter(mAdapter);
+        mAdapter.notifyDataSetChanged();
     }
 
     class WidgetListener implements View.OnClickListener {
@@ -75,6 +77,8 @@ public abstract class ActionFragment extends PreferenceFragment {
                 .getStringArray(R.array.eos_action_dialog_entries);
         final CharSequence[] item_values = mRes
                 .getStringArray(R.array.eos_action_dialog_values);
+        mPackageList.clear();
+        new PackageLoader().execute(mPackageList);
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         builder.setTitle(
                 mRes.getString(R.string.eos_interface_activity_dialog_title))
@@ -108,7 +112,7 @@ public abstract class ActionFragment extends PreferenceFragment {
 
     private void callActivityDialog(final ActionPreference caller) {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-        builder.setAdapter(mListView.getAdapter(), new Dialog.OnClickListener() {
+        builder.setAdapter(mAdapter, new Dialog.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -135,39 +139,39 @@ public abstract class ActionFragment extends PreferenceFragment {
                 .create().show();
     }
 
-    private class PackageLoader extends AsyncTask<List<ResolveInfo>, Integer, List<ResolveInfo>> {
+    private class PackageLoader extends
+            AsyncTask<ArrayList<ResolveInfo>, ArrayList<ResolveInfo>, ArrayList<ResolveInfo>> {
 
         @Override
-        protected List<ResolveInfo> doInBackground(List<ResolveInfo>... list) {
+        protected ArrayList<ResolveInfo> doInBackground(ArrayList<ResolveInfo>... list) {
             Intent intent = new Intent(Intent.ACTION_MAIN, null);
             intent.addCategory(Intent.CATEGORY_LAUNCHER);
-            List<ResolveInfo> packageList = mContext.getPackageManager()
-                    .queryIntentActivities(intent, 0);
-            // sort the app packages by simple name
-            Collections.sort(packageList, new Comparator<ResolveInfo>() {
-                @Override
-                public int compare(ResolveInfo lhs, ResolveInfo rhs) {
-                    return lhs.activityInfo.loadLabel(mPm).toString()
-                            .compareToIgnoreCase(rhs.activityInfo.loadLabel(mPm).toString());
-                }
-            });
-            return packageList;
-        }
+            for (ResolveInfo info : mPm.queryIntentActivities(intent, 0)) {
+                list[0].add(info);
+                publishProgress(list[0]);
+                // sort the app packages by simple name
+                Collections.sort(list[0], new Comparator<ResolveInfo>() {
+                    @Override
+                    public int compare(ResolveInfo lhs, ResolveInfo rhs) {
+                        return lhs.activityInfo.loadLabel(mPm).toString()
+                                .compareToIgnoreCase(rhs.activityInfo.loadLabel(mPm).toString());
+                    }
+                });
+                publishProgress(list[0]);
 
-        @Override
-        protected void onProgressUpdate(Integer... values) {
-            super.onProgressUpdate(values);
-        }
-
-        @Override
-        protected void onPostExecute(List<ResolveInfo> result) {
-            super.onPostExecute(result);
-            View dialog = View.inflate(mContext, R.layout.activity_dialog, null);
-            mListView = (ListView) dialog.findViewById(R.id.eos_dialog_list);
-            mListView.setAdapter(new PackageAdapter(getActivity(), result, mPm));
-            for (ActionPreference ap : mActionPreferenceList) {
-                ap.setWidgetEnabled();
             }
+            return list[0];
+        }
+
+        @Override
+        protected void onProgressUpdate(ArrayList<ResolveInfo>... list) {
+            super.onProgressUpdate(list);
+            mAdapter.notifyDataSetChanged();
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<ResolveInfo> list) {
+            super.onPostExecute(list);
         }
     }
 }
