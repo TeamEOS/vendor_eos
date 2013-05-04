@@ -1,3 +1,23 @@
+=5/4/13=
+
+ALL
+
+  • Bring in Cyanogenmod camera, power button shutter disabled for now
+  
+  • Bring in QuickEmoji from Cyanogenmod gerrit review
+  
+  • major code overhaul and cleanup in systemui. Much stronger feature
+    implementation. I'm looking for improvement in systemui memory usage
+    Any signs of improvement, let me know.
+    
+  • nozomi and lgog device tree and kernel work, improvements to internal
+    build systems. Various branch pushes and merges. Check
+    review.teameos.org for commit history.
+    
+  • Hong Kong and Verizon CDMA Only variants released for testing. HK users
+    can install any variant and Verizon cdma users get a separate build.
+
+
 =4/9/13=
 
 TABLETS
