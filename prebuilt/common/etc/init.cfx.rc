@@ -10,6 +10,9 @@ on post-fs-data
     chown system system /cache/dalvik-cache
     chmod 0771 /cache/dalvik-cache
 
+# include additional memory tweaks
+    import /init.memory.rc
+
 on boot
     # Run sysinit
     start sysinit

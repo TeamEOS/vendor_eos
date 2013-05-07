@@ -39,7 +39,13 @@ PRODUCT_COPY_FILES += \
 
 # cfX-specific init file
 PRODUCT_COPY_FILES += \
-    vendor/cm/prebuilt/common/etc/init.local.rc:root/init.cfx.rc
+    vendor/cm/prebuilt/common/etc/init.cfx.rc:root/init.cfx.rc
+
+# Don't copy memory tweaks on low ram devices (<786M)
+ifneq ($(TARGET_IS_LOW_RAM),true)
+PRODUCT_COPY_FILES += \
+    vendor/cm/prebuilt/common/etc/init.memory.rc:root/init.memory.rc
+endif
 
 # Compcache/Zram support
 PRODUCT_COPY_FILES += \
