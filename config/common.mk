@@ -85,6 +85,7 @@ PRODUCT_PACKAGES += \
     LatinIME \
     Launcher2 \
     LockClock \
+    PermissionsManager \
     SpareParts \
     Superuser \
     su
