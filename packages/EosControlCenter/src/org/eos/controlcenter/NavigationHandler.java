@@ -17,16 +17,18 @@ import org.teameos.jellybean.settings.EOSUtils;
 
 public class NavigationHandler extends PreferenceScreenHandler {
     private static final String CATEGORY_VISIBLE_KEY = "eos_navbar_visibility";
+    private static final String CATEGORY_CAPKEY = "eos_navbar_capkey_features";
     private static final String CATEGORY_STYLE_KEY = "eos_navbar_style";
     private static final String CATEGORY_ACTIONS_KEY = "eos_navbar_actions";
     private static final String HIDE_BARS_KEY = "eos_interface_hide_navbar";
     private static final String HIDE_BARS_BOOT_KEY = "eos_interface_hide_navbar_on_boot";
     private static final String HIDE_BARS_STATBAR_KEY = "eos_interface_hide_statbar_too";
+    private static final String CAPKEY_FORCE_NAVBAR = "eos_interface_force_navbar";
+    private static final String STYLE_FULL_TABLET_MODE = "eos_interface_navbar_full_tablet_style";
     private static final String STYLE_TABLET_KEY = "eos_interface_navbar_tablet_style";
     private static final String STYLE_SIZE_KEY = "eos_interface_navbar_size";
     private static final String STYLE_NX_KEY = "eos_interface_navbar_nx_style";
     private static final String STYLE_GLASS_KEY = "eos_interface_navbar_glass_style";
-    private static final String STYLE_GLASS_SEEKBAR_KEY = "eos_interface_navbar_glass_seekbar";
 
     OnActivityRequestedListener mListener;
     ContentObserver mBarHidingObserver;
@@ -34,11 +36,14 @@ public class NavigationHandler extends PreferenceScreenHandler {
     PreferenceCategory pc_visible;
     PreferenceCategory pc_style;
     PreferenceCategory pc_action;
+    PreferenceCategory pc_capkey;
     ListPreference mLowProfileNavBar;
     CheckBoxPreference mHideNavBar;
     CheckBoxPreference mHideBarsOnBoot;
     CheckBoxPreference mHideStatbarToo;
+    CheckBoxPreference mForceShowNavbar;
     CheckBoxPreference mTabletStyleBar;
+    CheckBoxPreference mFullTabletMode;
     CheckBoxPreference mNxStyleBar;
     CheckBoxPreference mGlassStyleBar;
     Preference mSoftKeyActions;
@@ -54,21 +59,41 @@ public class NavigationHandler extends PreferenceScreenHandler {
         pc_visible = (PreferenceCategory) mRoot.findPreference(CATEGORY_VISIBLE_KEY);
         pc_style = (PreferenceCategory) mRoot.findPreference(CATEGORY_STYLE_KEY);
         pc_action = (PreferenceCategory) mRoot.findPreference(CATEGORY_ACTIONS_KEY);
+        pc_capkey = (PreferenceCategory) mRoot.findPreference(CATEGORY_CAPKEY);
 
         mHideNavBar = (CheckBoxPreference) pc_visible.findPreference(HIDE_BARS_KEY);
         mHideBarsOnBoot = (CheckBoxPreference) pc_visible.findPreference(HIDE_BARS_BOOT_KEY);
         mHideStatbarToo = (CheckBoxPreference) pc_visible.findPreference(HIDE_BARS_STATBAR_KEY);
+        mForceShowNavbar = (CheckBoxPreference) pc_capkey.findPreference(CAPKEY_FORCE_NAVBAR);
         mTabletStyleBar = (CheckBoxPreference) pc_style.findPreference(STYLE_TABLET_KEY);
+        mFullTabletMode = (CheckBoxPreference) pc_style.findPreference(STYLE_FULL_TABLET_MODE);
         mLowProfileNavBar = (ListPreference) pc_style.findPreference(STYLE_SIZE_KEY);
         mNxStyleBar = (CheckBoxPreference) pc_style.findPreference(STYLE_NX_KEY);
         mGlassStyleBar = (CheckBoxPreference) pc_style.findPreference(STYLE_GLASS_KEY);
         mSoftKeyActions = (Preference) pc_action.findPreference(Utils.SOFTKEY_FRAG_TAG);
         mSearchPanelActions = (Preference) pc_action.findPreference(Utils.SEARCH_PANEL_FRAG_TAG);
 
+        /*
+         * show features for cap key devices adjust for force show navbar mode
+         * if navbar is forces, give users access to all the goods
+         */
+        if (EOSUtils.isCapKeyDevice(mContext)) {
+            // navbar not forced, clean house
+            if (!EOSUtils.hasNavBar(mContext)) {
+                mRoot.removePreference(pc_visible);
+                mRoot.removePreference(pc_style);
+                mRoot.removePreference(pc_action);
+            }
+        } else {
+            mRoot.removePreference(pc_capkey);
+        }
+
         // remove softkey left side feature on all phones
         if (EOSUtils.isNormalScreen()) {
             pc_style.removePreference(mTabletStyleBar);
+            pc_style.removePreference(mFullTabletMode);
             mTabletStyleBar = null;
+            mFullTabletMode = null;
         }
 
         // visibility category
@@ -84,12 +109,24 @@ public class NavigationHandler extends PreferenceScreenHandler {
                 EOSConstants.SYSTEMUI_HIDE_STATBAR_TOO,
                 EOSConstants.SYSTEMUI_HIDE_STATBAR_TOO_DEF) == 1);
 
+        if (mForceShowNavbar != null) {
+            mForceShowNavbar.setChecked(Settings.System.getInt(mResolver,
+                    EOSConstants.SYSTEMUI_FORCE_NAVBAR,
+                    EOSConstants.SYSTEMUI_FORCE_NAVBAR_DEF) == 1);
+        }
+
         // style category
         // initialize if available
         if (mTabletStyleBar != null) {
             mTabletStyleBar.setChecked(Settings.System.getInt(mResolver,
                     EOSConstants.SYSTEMUI_USE_HYBRID_STATBAR,
                     EOSConstants.SYSTEMUI_USE_HYBRID_STATBAR_DEF) == 1);
+        }
+
+        if (mFullTabletMode != null) {
+            mFullTabletMode.setChecked(Settings.System.getInt(mResolver,
+                    EOSConstants.SYSTEMUI_USE_TABLET_BAR,
+                    EOSConstants.SYSTEMUI_USE_TABLET_BAR_DEF) == 1);
         }
 
         mLowProfileNavBar.setValue(String.valueOf((Settings.System.getInt(mResolver,
@@ -157,6 +194,23 @@ public class NavigationHandler extends PreferenceScreenHandler {
             }
         });
 
+        if (mForceShowNavbar != null) {
+            mForceShowNavbar
+                    .setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+
+                        @Override
+                        public boolean onPreferenceChange(Preference preference, Object newValue) {
+                            boolean enabled = ((Boolean) newValue).booleanValue();
+                            Settings.System.putInt(mResolver,
+                                    EOSConstants.SYSTEMUI_FORCE_NAVBAR, enabled ? 1 : 0);
+                            mForceShowNavbar.setChecked(enabled);
+                            updateEnabledState();
+                            restartSystemUI();
+                            return true;
+                        }
+                    });
+        }
+
         // style category
         if (mTabletStyleBar != null) {
             mTabletStyleBar
@@ -169,22 +223,24 @@ public class NavigationHandler extends PreferenceScreenHandler {
                                     EOSConstants.SYSTEMUI_USE_HYBRID_STATBAR, enabled ? 1 : 0);
                             mTabletStyleBar.setChecked(enabled);
                             updateEnabledState();
-                            new Handler().postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    // TODO Auto-generated method stub
-                                    Intent i = new Intent();
-                                    i.setComponent(ComponentName
-                                            .unflattenFromString("com.android.systemui/.SystemUIService"));
-                                    mContext.startService(i);
-                                    Intent intent = new Intent()
-                                            .setAction(EOSConstants.INTENT_EOS_CONTROL_CENTER);
-                                    intent.putExtra(
-                                            EOSConstants.INTENT_EOS_CONTROL_CENTER_EXTRAS_STATE,
-                                            true);
-                                    mContext.sendBroadcast(intent);
-                                }
-                            }, 250);
+                            restartSystemUI();
+                            return true;
+                        }
+                    });
+        }
+
+        if (mFullTabletMode != null) {
+            mFullTabletMode
+                    .setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+
+                        @Override
+                        public boolean onPreferenceChange(Preference preference, Object newValue) {
+                            boolean enabled = ((Boolean) newValue).booleanValue();
+                            Settings.System.putInt(mResolver,
+                                    EOSConstants.SYSTEMUI_USE_TABLET_BAR, enabled ? 1 : 0);
+                            mFullTabletMode.setChecked(enabled);
+                            updateEnabledState();
+                            restartSystemUI();
                             return true;
                         }
                     });
@@ -245,6 +301,28 @@ public class NavigationHandler extends PreferenceScreenHandler {
                 });
     }
 
+    // if's faster is done manually than waiting for system server
+    private void restartSystemUI() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // TODO Auto-generated method stub
+                Intent i = new Intent();
+                i.setComponent(ComponentName
+                        .unflattenFromString("com.android.systemui/.SystemUIService"));
+                mContext.startService(i);
+                Intent intent = new Intent()
+                        .setAction(EOSConstants.INTENT_EOS_CONTROL_CENTER);
+                intent.putExtra(
+                        EOSConstants.INTENT_EOS_CONTROL_CENTER_EXTRAS_STATE,
+                        true);
+                mContext.sendBroadcast(intent);
+                System.runFinalizersOnExit(true);
+                System.exit(0);
+            }
+        }, 250);
+    }
+
     private void enableAllCategoryChilds(PreferenceCategory pc, String keyToExclude, boolean enabled) {
         int nbPrefs = pc.getPreferenceCount();
         for (int pref = 0; pref < nbPrefs; pref++)
@@ -259,9 +337,9 @@ public class NavigationHandler extends PreferenceScreenHandler {
         pc_style.setEnabled(!isNavbarHidden);
         pc_action.setEnabled(!isNavbarHidden);
         if (isNavbarHidden) return;
-        if (mTabletStyleBar != null) {
-            mNxStyleBar.setEnabled(!mTabletStyleBar.isChecked());
-            mTabletStyleBar.setEnabled(!mNxStyleBar.isChecked());
+        if (mTabletStyleBar != null && mFullTabletMode != null) {
+            mNxStyleBar.setEnabled(!(mTabletStyleBar.isChecked() || mFullTabletMode.isChecked()));
+            mTabletStyleBar.setEnabled(!(mNxStyleBar.isChecked() || mFullTabletMode.isChecked()));
         }
     }
 }

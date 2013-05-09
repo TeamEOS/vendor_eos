@@ -20,6 +20,15 @@
     android:title="@string/eos_interface_navbar" >
 
     <PreferenceCategory
+        android:key="eos_navbar_capkey_features"
+        android:title="@string/eos_interface_navbar_category_capkey" >
+        <CheckBoxPreference
+            android:key="eos_interface_force_navbar"
+            android:summary="@string/eos_interface_force_navbar_summary"
+            android:title="@string/eos_interface_force_navbar_title" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
         android:key="eos_navbar_visibility"
         android:title="@string/eos_interface_navbar_category_visibility" >
         <CheckBoxPreference
@@ -51,6 +60,10 @@
             android:key="eos_interface_navbar_size"
             android:summary="@string/eos_interface_navbar_low_profile_summary"
             android:title="@string/eos_interface_navbar_low_profile_title" />
+        <CheckBoxPreference
+            android:key="eos_interface_navbar_full_tablet_style"
+            android:summary="@string/eos_interface_navbar_full_tablet_style_summary"
+            android:title="@string/eos_interface_navbar_full_tablet_style_title" />
         <CheckBoxPreference
             android:key="eos_interface_navbar_tablet_style"
             android:summary="@string/eos_interface_navbar_tablet_style_summary"

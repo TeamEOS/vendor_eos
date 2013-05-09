@@ -53,7 +53,7 @@ public class StatusbarHandler extends PreferenceScreenHandler {
         // from here. Otherwise it is removed and user will control glass
         // from Navigation settings
 
-        if (EOSUtils.hasNavBar(mContext)) {
+        if (EOSUtils.hasNavBar(mContext) || EOSUtils.hasSystemBar(mContext)) {
             mAppearance.removePreference(mGlass);
             mAppearance.removePreference(mGlassSeekBar);
             mGlass = null;

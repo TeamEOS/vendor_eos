@@ -50,6 +50,8 @@
     <string name="eos_info">Info</string>
     <string name="eos_interface_navbar">Navigation Bar</string>
     <string name="eos_interface_navbar_appearance">Navigation Bar Appearance</string>
+    <string name="eos_interface_navbar_full_tablet_style_title">Tablet style bar</string>
+    <string name="eos_interface_navbar_full_tablet_style_summary">Force old school tablet user interface</string>
     <string name="eos_interface_navbar_color_uri">eos_systemui_navbar_color</string>
     <string name="eos_interface_systembar_appearance">System Bar Appearance</string>
     <string name="eos_interface_softkey_color">Set Softkey Color</string>
@@ -63,6 +65,9 @@
     <string name="eos_interface_navbar_category_visibility">Visibility</string>
     <string name="eos_interface_navbar_category_style">Appearance and Style</string>
     <string name="eos_interface_navbar_category_actions">Custom Actions</string>
+    <string name="eos_interface_navbar_category_capkey">Capacitive Keys</string>
+    <string name="eos_interface_force_navbar_summary">Use the software navigation bar instead of capacitive keys</string>
+    <string name="eos_interface_force_navbar_title">Navigation Bar</string>
     <string name="eos_interface_hide_navbar_title">Hide Now</string>
     <string name="eos_interface_hide_navbar_summary">Hide the Navigation Bar</string>
     <string name="eos_interface_hide_statbar_too_title">Hide bars together</string>
