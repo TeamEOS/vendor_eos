@@ -1,3 +1,22 @@
+=5/11/13=
+
+ALL
+
+  • Update frameworks/av, frameworks/native, libhardware, and 
+    libhardware_legacy to latest CM upstream.
+    
+PHONES
+  
+  • Nozomi - RaymanFX pushed like crazy getting Nozomi online and running
+             Be sure to thank him if you enjoy our build!
+  
+  • Tuna Series - bring LeanKernel up to v6.5exp230
+    
+  • Almost done with TabletBar for large and xlarge screen devices. I'm doing
+    some prep work to bring in Paranoid Android's Pie UI. As always, keeping
+    things smooth, steady, stable, and interesting.
+
+
 =5/4/13=
 
 ALL
