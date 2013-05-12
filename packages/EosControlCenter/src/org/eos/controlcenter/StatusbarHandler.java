@@ -11,11 +11,6 @@ import android.provider.Settings;
 import org.teameos.jellybean.settings.EOSConstants;
 import org.teameos.jellybean.settings.EOSUtils;
 
-import java.util.Arrays;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Map.Entry;
-
 public class StatusbarHandler extends PreferenceScreenHandler {
     private static final String APPEARANCE_CATEGORY = "statusbar_appearance_category";
     private static final String TILEPICKER = "eos_interface_panel_tile_chooser";
@@ -29,7 +24,7 @@ public class StatusbarHandler extends PreferenceScreenHandler {
     CheckBoxPreference mBatteryIcon;
     CheckBoxPreference mBatteryText;
     CheckBoxPreference mBatteryPercent;
-    CheckBoxPreference mStatusbarClock;
+    ListPreference mStatusbarClock;
     ListPreference mAmPmStyle;
     Preference mQuickSettingsOrder;
     ListPreference mColumns;
@@ -131,19 +126,21 @@ public class StatusbarHandler extends PreferenceScreenHandler {
             }
         });
 
-        mStatusbarClock = (CheckBoxPreference) mRoot
-                .findPreference("eos_interface_statusbar_clock");
-        mStatusbarClock.setChecked(Settings.System.getInt(mResolver,
+        mStatusbarClock = (ListPreference) mRoot
+                .findPreference("eos_interface_statusbar_clock_state");
+
+        mStatusbarClock.setDefaultValue(String.valueOf(Settings.System.getInt(mResolver,
                 EOSConstants.SYSTEMUI_CLOCK_VISIBLE,
-                EOSConstants.SYSTEMUI_CLOCK_VISIBLE_DEF) == 1);
+                EOSConstants.SYSTEMUI_CLOCK_CLUSTER)));
 
         mStatusbarClock.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
 
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
+                int val = Integer.parseInt(((String) newValue).toString());
                 Settings.System.putInt(mResolver,
                         EOSConstants.SYSTEMUI_CLOCK_VISIBLE,
-                        ((Boolean) newValue).booleanValue() ? 1 : 0);
+                        (val));
                 return true;
             }
         });

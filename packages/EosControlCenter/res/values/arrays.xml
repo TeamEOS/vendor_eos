@@ -92,6 +92,16 @@
         <item>180 Degrees</item>
         <item>270 Degrees</item>
     </string-array>
+    <string-array name="eos_clock_state_entries">
+        <item>Gone</item>
+        <item>Right</item>
+        <item>Center</item>
+    </string-array>
+    <string-array name="eos_clock_state_entry_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
     <string-array name="eos_clock_am_pm_entries">
         <item>AM/PM Large text</item>
         <item>AM/PM Small text</item>
