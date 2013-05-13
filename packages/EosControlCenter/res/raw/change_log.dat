@@ -1,3 +1,26 @@
+=5/13/13=
+
+ALL
+
+  • Enable Dalvik JIT (Just-In-Time compiler) Somehow this got
+    lost in a merge at some unknown point. Benchmarkers, start
+    your engines ;D
+    
+  • Fix Airplane mode legacy toggle
+  
+  • Center clock
+ 
+PHONES
+
+  • Capacitive key devices - force a navigation bar (optional)
+
+  • Nozomi - fix location-based services
+
+TABLETS
+  
+  • Tablet style system bar (optional)
+
+
 =5/11/13=
 
 ALL
