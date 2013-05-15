@@ -79,7 +79,7 @@ public class NavigationHandler extends PreferenceScreenHandler {
          */
         if (EOSUtils.isCapKeyDevice(mContext)) {
             // navbar not forced, clean house
-            if (!EOSUtils.hasNavBar(mContext)) {
+            if (!EOSUtils.hasNavBar(mContext) && !EOSUtils.hasSystemBar(mContext)) {
                 mRoot.removePreference(pc_visible);
                 mRoot.removePreference(pc_style);
                 mRoot.removePreference(pc_action);
@@ -89,11 +89,9 @@ public class NavigationHandler extends PreferenceScreenHandler {
         }
 
         // remove softkey left side feature on all phones
-        if (EOSUtils.isNormalScreen()) {
+        if (EOSUtils.isNormalScreen() && pc_style != null) {
             pc_style.removePreference(mTabletStyleBar);
-            pc_style.removePreference(mFullTabletMode);
             mTabletStyleBar = null;
-            mFullTabletMode = null;
         }
 
         // visibility category
