@@ -1,3 +1,21 @@
+=5/19/13=
+
+ALL
+
+  • Fix Airplane mode legacy toggle, but legacy toggles are gone
+    gone for the time being. 
+
+PHONES
+
+  • Enable tablet UI (optional)
+
+  • Nozomi - calibrate WiFi
+	     fix torch system-wide
+	     latest mako blobs
+	     add back adreno200 3D egl blob
+	     partial ANT+ support
+
+
 =5/13/13=
 
 ALL
