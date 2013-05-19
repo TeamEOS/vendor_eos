@@ -19,6 +19,7 @@ public class StatusbarHandler extends PreferenceScreenHandler {
     private static final String GLASS = "eos_interface_statusbar_glass_style";
     private static final String STYLE_GLASS_SEEKBAR_KEY = "eos_interface_statusbar_glass_seekbar";
 
+    Preference mStatusBarColor;
     CheckBoxPreference mGlass;
     GlassDialogPreference mGlassSeekBar;
     CheckBoxPreference mBatteryIcon;
@@ -46,6 +47,7 @@ public class StatusbarHandler extends PreferenceScreenHandler {
 
     protected void init() {
         mAppearance = (PreferenceCategory) mRoot.findPreference(APPEARANCE_CATEGORY);
+        mStatusBarColor = mAppearance.findPreference("statusbar_color_pref");
         mGlass = (CheckBoxPreference) mAppearance.findPreference(GLASS);
         mGlassSeekBar = (GlassDialogPreference) mAppearance.findPreference(STYLE_GLASS_SEEKBAR_KEY);
 
@@ -58,6 +60,9 @@ public class StatusbarHandler extends PreferenceScreenHandler {
             mAppearance.removePreference(mGlassSeekBar);
             mGlass = null;
             mGlassSeekBar = null;
+            if (EOSUtils.hasSystemBar(mContext)) {
+                mAppearance.removePreference(mStatusBarColor);
+            }
         } else {
             mGlass.setChecked(Settings.System.getInt(mResolver,
                     EOSConstants.SYSTEMUI_USE_GLASS,
@@ -75,7 +80,10 @@ public class StatusbarHandler extends PreferenceScreenHandler {
             });
         }
 
+        /* disable just for now */
         mToggles = (PreferenceCategory) mRoot.findPreference(TOGGLES);
+        mRoot.removePreference(mToggles);
+        mToggles = null;
 
         mBatteryIcon = (CheckBoxPreference) mRoot
                 .findPreference("eos_interface_statusbar_battery_icon");
@@ -192,54 +200,59 @@ public class StatusbarHandler extends PreferenceScreenHandler {
 
         });
 
-        mEosTogglesEnabled = (CheckBoxPreference) mRoot
-                .findPreference("eos_interface_settings_eos_settings_enabled");
-        mEosTogglesEnabled.setChecked(Settings.System.getInt(mResolver,
-                EOSConstants.SYSTEMUI_SETTINGS_ENABLED,
-                EOSConstants.SYSTEMUI_SETTINGS_ENABLED_DEF) == 1);
-        mEosTogglesEnabled
-                .setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+        if (mToggles != null) {
+            mEosTogglesEnabled = (CheckBoxPreference) mRoot
+                    .findPreference("eos_interface_settings_eos_settings_enabled");
+            mEosTogglesEnabled.setChecked(Settings.System.getInt(mResolver,
+                    EOSConstants.SYSTEMUI_SETTINGS_ENABLED,
+                    EOSConstants.SYSTEMUI_SETTINGS_ENABLED_DEF) == 1);
+            mEosTogglesEnabled
+                    .setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
 
-                    @Override
-                    public boolean onPreferenceChange(Preference preference, Object newValue) {
-                        Settings.System.putInt(mResolver,
-                                EOSConstants.SYSTEMUI_SETTINGS_ENABLED,
-                                ((Boolean) newValue).booleanValue() ? 1 : 0);
-                        enableAllCategoryChilds(mToggles,
-                                "eos_interface_settings_eos_settings_enabled",
-                                ((Boolean) newValue).booleanValue());
-                        return true;
-                    }
-                });
-        
-        mLegacyTogglesOrder = (Preference) mRoot.findPreference("eos_interface_legacy_toggles_order");
-        mLegacyTogglesOrder.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
-                mListener.onActivityRequested(Utils.LEGACY_TOGGLES_FRAGMENT_TAG);
-                return true;
-            }
-        });
+                        @Override
+                        public boolean onPreferenceChange(Preference preference, Object newValue) {
+                            Settings.System.putInt(mResolver,
+                                    EOSConstants.SYSTEMUI_SETTINGS_ENABLED,
+                                    ((Boolean) newValue).booleanValue() ? 1 : 0);
+                            enableAllCategoryChilds(mToggles,
+                                    "eos_interface_settings_eos_settings_enabled",
+                                    ((Boolean) newValue).booleanValue());
+                            return true;
+                        }
+                    });
 
-        mHideIndicator = (CheckBoxPreference) mRoot
-                .findPreference("eos_interface_settings_indicator_visibility");
-        mHideIndicator.setChecked(Settings.System.getInt(mResolver,
-                EOSConstants.SYSTEMUI_SETTINGS_INDICATOR_HIDDEN,
-                EOSConstants.SYSTEMUI_SETTINGS_INDICATOR_HIDDEN_DEF) == 1);
-        mHideIndicator.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            mLegacyTogglesOrder = (Preference) mRoot
+                    .findPreference("eos_interface_legacy_toggles_order");
+            mLegacyTogglesOrder
+                    .setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
 
-            @Override
-            public boolean onPreferenceChange(Preference preference, Object newValue) {
-                Settings.System.putInt(mResolver,
-                        EOSConstants.SYSTEMUI_SETTINGS_INDICATOR_HIDDEN,
-                        ((Boolean) newValue).booleanValue() ? 1 : 0);
-                return true;
-            }
-        });
+                        @Override
+                        public boolean onPreferenceClick(Preference preference) {
+                            mListener.onActivityRequested(Utils.LEGACY_TOGGLES_FRAGMENT_TAG);
+                            return true;
+                        }
+                    });
 
-        enableAllCategoryChilds(mToggles, "eos_interface_settings_eos_settings_enabled",
-                mEosTogglesEnabled.isChecked());
+            mHideIndicator = (CheckBoxPreference) mRoot
+                    .findPreference("eos_interface_settings_indicator_visibility");
+            mHideIndicator.setChecked(Settings.System.getInt(mResolver,
+                    EOSConstants.SYSTEMUI_SETTINGS_INDICATOR_HIDDEN,
+                    EOSConstants.SYSTEMUI_SETTINGS_INDICATOR_HIDDEN_DEF) == 1);
+            mHideIndicator
+                    .setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+
+                        @Override
+                        public boolean onPreferenceChange(Preference preference, Object newValue) {
+                            Settings.System.putInt(mResolver,
+                                    EOSConstants.SYSTEMUI_SETTINGS_INDICATOR_HIDDEN,
+                                    ((Boolean) newValue).booleanValue() ? 1 : 0);
+                            return true;
+                        }
+                    });
+
+            enableAllCategoryChilds(mToggles, "eos_interface_settings_eos_settings_enabled",
+                    mEosTogglesEnabled.isChecked());
+        }
     }
 
     private void enableAllCategoryChilds(PreferenceCategory pc, String keyToExclude, boolean enabled) {
