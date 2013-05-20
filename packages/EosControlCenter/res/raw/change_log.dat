@@ -1,19 +1,38 @@
-=5/19/13=
+=5/20/13=
 
 ALL
 
   • Fix Airplane mode legacy toggle, but legacy toggles are gone
-    gone for the time being. 
+    for the time being. But they will likely make guest appearances.
+    
+  • Update wpa_supplicant from CM upstream. Thanks guys.
+  
+  • Much more work on tablet UI. Still a WIP for sure. Keeping in
+    mind, we're not using any form of DPI change. That's for noobs!
+    We're using pure logic in configuring and loading resources.
+    So this feature will continue to get polished.
+    
+  • Removed legacy notification toggles. All toggles are now 
+    Quick Settings toggles! Added QS toggles to tablet ui.
+    
+  • Fixed up weird Navigation bar behavior here it would not move
+    to landscape and softkeys would disappear. At least i'm 99%
+    sure it's fixed ;D
+
 
 PHONES
 
-  • Enable tablet UI (optional)
+  • Enable tablet UI
+    This is still a work in progress. There's definately style
+    work to do. But it's very fast and very stable and very fun!
 
   • Nozomi - calibrate WiFi
 	     fix torch system-wide
 	     latest mako blobs
 	     add back adreno200 3D egl blob
 	     partial ANT+ support
+	     
+  • LGOG - updated device tree, vendor, and kernel
 
 
 =5/13/13=
