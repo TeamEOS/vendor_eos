@@ -1,3 +1,18 @@
+=5/22/13=
+
+BUG FIX UPDATE ONLY FOR PHONES. 
+
+PHONES
+
+    • Fixed up weird Navigation bar behavior here it would not move
+      to landscape and softkeys would disappear. 100% absolutely fixed
+      now. This only affected "normal screen" devices, also known
+      as "phones" ;D
+
+    • Tuna Series - update LeanKernel to 6.6exp230
+
+
+
 =5/20/13=
 
 ALL
