@@ -18,4 +18,21 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:settings="http://schemas.android.com/apk/res/org.eos.controlcenter"
     android:title="@string/eos_interface_navbar" >
+
+    <PreferenceCategory
+        android:key="eos_systemui_mode_category"
+        android:title="@string/eos_systemui_mode_category_title" >
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/systemui_mode_entries"
+            android:entryValues="@array/systemui_mode_values"
+            android:key="eos_systemui_mode"
+            android:summary="@string/eos_interface_systemui_mode_summary"
+            android:title="@string/eos_interface_systemui_mode_title" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="eos_navbar_capkey_features"
+        android:title="@string/eos_interface_navbar_category_capkey" >
+    </PreferenceCategory>
+
 </PreferenceScreen>

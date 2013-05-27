@@ -91,35 +91,7 @@ public class Main extends FragmentActivity
 
             int lastViewed = getIntent().getIntExtra(Utils.INCOMING_LAST_FRAG_VIEWED, 0);
             mPager.setCurrentItem(lastViewed, true);
-
-            mEosUiReceiver = new BroadcastReceiver() {
-
-                @Override
-                public void onReceive(Context context, Intent intent) {
-                    if (intent.getAction()
-                            .equals(EOSConstants.INTENT_SETTINGS_RESTART_INTERFACE_SETTINGS)) {
-                        Utils.turnOnEosUI(getApplicationContext());
-                    }
-                }
-            };
-
-            filter = new IntentFilter();
-            filter.addAction(EOSConstants.INTENT_SETTINGS_RESTART_INTERFACE_SETTINGS);
-            registerReceivers();
         }
-    }
-
-    void registerReceivers() {
-        unregisterReceivers();
-        this.registerReceiver(mEosUiReceiver, filter);
-        mReceivers.add(mEosUiReceiver);
-    }
-
-    void unregisterReceivers() {
-        for (BroadcastReceiver r : mReceivers) {
-            this.unregisterReceiver(r);
-        }
-        mReceivers.clear();
     }
 
     private void startSingleFragmentActivity(String tag) {
@@ -149,22 +121,6 @@ public class Main extends FragmentActivity
         if (isLargeLandscape) {
             finish();
             return;
-        }
-        registerReceivers();
-        Utils.turnOnEosUI(getApplicationContext());
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        /*
-         * if we are largescreen going from portrait to landscape onStop is
-         * called here after DualPaneActivity onStart is called so it leaves our
-         * SystemUI observers unregistered
-         */
-        if (!isLargeLandscape) {
-            unregisterReceivers();
-            // Utils.turnOffEosUI(getApplicationContext());
         }
     }
 

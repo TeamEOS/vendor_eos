@@ -78,18 +78,6 @@ public final class Utils {
     public static final String ZRAM_PREF = "zram_on_boot";
     public static final String S2W_PREF = "s2w_on_boot";
 
-    public static void turnOnEosUI(Context context) {
-        Intent i = new Intent().setAction(EOSConstants.INTENT_EOS_CONTROL_CENTER);
-        i.putExtra(EOSConstants.INTENT_EOS_CONTROL_CENTER_EXTRAS_STATE, STATE_ON);
-        context.sendBroadcastAsUser(i, UserHandle.CURRENT);
-    }
-
-    public static void turnOffEosUI(Context context) {
-        Intent i = new Intent().setAction(EOSConstants.INTENT_EOS_CONTROL_CENTER);
-        i.putExtra(EOSConstants.INTENT_EOS_CONTROL_CENTER_EXTRAS_STATE, STATE_OFF);
-        context.sendBroadcastAsUser(i, UserHandle.CURRENT);
-    }
-
     public static String getXdaUrl(Context context, String device) {
         if (device.equals("grouper")) {
             return context.getString(R.string.eos_information_rom_link_xda_grouper);

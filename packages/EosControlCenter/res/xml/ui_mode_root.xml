@@ -18,4 +18,6 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:settings="http://schemas.android.com/apk/res/org.eos.controlcenter"
     android:title="@string/eos_interface_navbar" >
+
+
 </PreferenceScreen>

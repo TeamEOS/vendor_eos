@@ -70,21 +70,6 @@ public class DualPaneActivity extends Activity implements OnActivityRequestedLis
             newFragment = InterfaceDualFragment.newInstance();
         }
         replaceFragmentFromContainer(newFragment);
-
-        mEosUiReceiver = new BroadcastReceiver() {
-
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                if (intent.getAction()
-                        .equals(EOSConstants.INTENT_SETTINGS_RESTART_INTERFACE_SETTINGS)) {
-                    Utils.turnOnEosUI(getApplicationContext());
-                }
-            }
-        };
-
-        filter = new IntentFilter();
-        filter.addAction(EOSConstants.INTENT_SETTINGS_RESTART_INTERFACE_SETTINGS);
-        registerReceivers();
     }
 
     private void updateActionBarTitle() {
@@ -111,13 +96,6 @@ public class DualPaneActivity extends Activity implements OnActivityRequestedLis
     private void startTextDialogFragment(Bundle b) {
         TextInfoFragment textFragment = TextInfoFragment.newInstance(b);
         textFragment.show(getFragmentManager(), b.getString(Utils.TEXT_FRAGMENT_TITLE_KEY));        
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        registerReceivers();
-        Utils.turnOnEosUI(getApplicationContext());
     }
 
     @Override

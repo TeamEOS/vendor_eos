@@ -69,12 +69,6 @@ public class SingleFragmentActivity extends Activity implements OnActivityReques
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-        Utils.turnOnEosUI(getApplicationContext());
-    }
-
-    @Override
     public void onBackPressed() {
         if (getFragmentManager().getBackStackEntryCount() > 0) {
             getFragmentManager().popBackStack();
