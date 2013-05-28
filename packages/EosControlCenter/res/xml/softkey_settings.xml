@@ -20,19 +20,9 @@
     android:title="@string/eos_interface_softkey_settings" >
 
     <PreferenceCategory
-        android:key="eos_interface_softkeys_longpress"
-        android:title="@string/eos_interface_softkeys_longpress" >
-        <CheckBoxPreference
-            android:defaultValue="false"
-            android:key="eos_interface_softkey_enable_feature"
-            android:summary="@string/eos_interface_softkey_enable_feature_summary"
-            android:title="@string/eos_interface_softkey_enable_feature" />
-    </PreferenceCategory>
-    <PreferenceCategory
         android:key="eos_interface_softkeys_back"
         android:title="@string/eos_interface_softkeys_back" >
         <org.eos.controlcenter.ActionPreference
-            android:dependency="eos_interface_softkey_enable_feature"
             android:key="eos_interface_softkey_back_longpress"
             android:layout="@layout/softkey_longpress_preference"
             android:summary="@string/eos_interface_softkeys_pref_default_summary"
@@ -72,7 +62,6 @@
         android:key="eos_interface_softkeys_recent"
         android:title="@string/eos_interface_softkeys_recent" >
         <org.eos.controlcenter.ActionPreference
-            android:dependency="eos_interface_softkey_enable_feature"
             android:key="eos_interface_softkey_recent_longpress"
             android:layout="@layout/softkey_longpress_preference"
             android:summary="@string/eos_interface_softkeys_pref_default_summary"
@@ -98,7 +87,6 @@
         android:key="eos_interface_softkeys_menu"
         android:title="@string/eos_interface_softkeys_menu" >
         <org.eos.controlcenter.ActionPreference
-            android:dependency="eos_interface_softkey_enable_feature"
             android:key="eos_interface_softkey_menu_longpress"
             android:layout="@layout/softkey_longpress_preference"
             android:summary="@string/eos_interface_softkeys_pref_default_summary"
@@ -119,14 +107,6 @@
             settings:defaultVal="@integer/softkey_default_color_val"
             settings:prefTitle="@string/glow_color_preference_title"
             settings:providerUri="@string/menu_key_glow_color_target" />
-    </PreferenceCategory>
-    <PreferenceCategory
-        android:key="eos_interface_softkeys_extra_features"
-        android:title="@string/eos_interface_softkeys_extra_features" >
-        <CheckBoxPreference
-            android:key="eos_interface_softkey_menu_persist"
-            android:summary="@string/eos_interface_softkey_menu_persist_summary"
-            android:title="@string/eos_interface_softkey_menu_persist_title" />
     </PreferenceCategory>
 
 </PreferenceScreen>
