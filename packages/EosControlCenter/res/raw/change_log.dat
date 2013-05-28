@@ -1,3 +1,41 @@
+=5/28/13=
+
+ALL
+
+  • Overhaul how UI modes are handled and controlled. All devices,
+    all UI configurations.
+    
+  • Major bottom bar UI cleanup. Ticker is clean now, but could
+    still use some polish. Most UI blemishes are clean now.
+  
+  • ECC - Navigation fragment now shows features contextually,
+    based on current UI mode. Cap key devices - i know it's 
+    a little empty in there. Rlasalle and RaymanFX have some 
+    stuff coming. They promise ;D
+    
+  • Temporarily disable hide bars. I'm gonna bring in CM's 
+    Extended Desktop implementation. It's stronger and better. But
+    had to disable for now as it's not set up with new UI controls.
+    
+  • Fix rare SystemUI fc caused by Null Pointer on Mobile Data toggle    
+        
+  • Internals - Bring up feature observers when ECC is foreground, 
+    unregister observers when ECC leaves foreground. This is a unique
+    feature to Eos! All other builds have about 100 content observers
+    running in SystemUI all the time! That's wasting precious CPU
+    cycles.       
+    
+  • This UI overhaul is part of a bigger picture. You will be able to 
+    seamlessly and effortlessly transition from one UI style (soon to
+    include Pie ;D) regardless of device type.
+    
+  • Build system - preparation for GCC 4.8 toolchain
+  
+  • XDA user EvilDobe is now managing bug reports for us. There's too
+    many repeat reports coming in. Xoom and TF101 users, DISABLE HOTWORD
+    DETECTION PLEASE!!!!!!!!!1 And use a third party keyboard app. Please.
+
+
 =5/22/13=
 
 BUG FIX UPDATE ONLY FOR PHONES. 
