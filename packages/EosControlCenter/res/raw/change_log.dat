@@ -1,3 +1,28 @@
+=5/29/13=
+
+BUG FIX UPDATE
+
+ALL
+
+  • Fix bug in which system would not respond to changes in ECC
+    I couldn't reproduce because i always launch ECC from 
+    quick settings settings toggle long press. The bug came
+    from launching ECC from Settings
+    
+  • Bug fix in which in some cases, tablet ui panel would 
+    not open when the notification area was touched
+  
+PHONES
+
+  • Tuna series - update to LeanKernel v6.7exp230
+  
+  • Xperia - update device tree, vendor resources, and kernel
+  
+TABLET
+
+  • Xoom - Garmin GPS serial module per user request
+  
+
 =5/28/13=
 
 ALL
@@ -57,7 +82,8 @@ ALL
 
   • Fix Airplane mode legacy toggle, but legacy toggles are gone
     for the time being. But they will likely make guest appearances.
-    
+    Overhaul how UI modes are handled and controlled. All devices,
+    all UI configurations.
   • Update wpa_supplicant from CM upstream. Thanks guys.
   
   • Much more work on tablet UI. Still a WIP for sure. Keeping in
