@@ -52,6 +52,8 @@
     <string name="eos_interface_navbar_appearance">Navigation Bar Appearance</string>
     <string name="eos_interface_systemui_mode_title">UI Mode</string>
     <string name="eos_interface_systemui_mode_summary">Four modes to choose from</string>
+    <string name="eos_interface_systemui_expanded_desktop_title">Expanded Desktop</string>
+    <string name="eos_interface_systemui_expanded_desktop_summary">Hide interface bars</string>
     <string name="eos_systemui_mode_category_title">User Interface</string>
     <string name="eos_interface_navbar_full_tablet_style_title">Tablet style bar</string>
     <string name="eos_interface_navbar_full_tablet_style_summary">Force old school tablet user interface</string>

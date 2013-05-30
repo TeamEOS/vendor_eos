@@ -31,6 +31,17 @@
             android:title="@string/eos_interface_systemui_mode_title" />
     </PreferenceCategory>
     <PreferenceCategory
+        android:key="eos_systemui_expanded_desktop_category"
+        android:title="@string/eos_interface_systemui_expanded_desktop_title" >
+        <ListPreference
+            android:defaultValue="0"
+            android:entries="@array/systemui_expanded_desktop_entries"
+            android:entryValues="@array/systemui_expanded_desktop_values"
+            android:key="eos_interface_enable_expanded_desktop_list"
+            android:summary="@string/eos_interface_systemui_expanded_desktop_summary"
+            android:title="@string/eos_interface_systemui_expanded_desktop_title" />
+    </PreferenceCategory>
+    <PreferenceCategory
         android:key="eos_navbar_style"
         android:title="@string/eos_interface_navbar_category_style" >
         <org.eos.controlcenter.EosPreference

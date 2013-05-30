@@ -15,6 +15,7 @@ import org.teameos.jellybean.settings.EOSUtils;
 
 public class NavigationHandler extends PreferenceScreenHandler {
     private static final String CATEGORY_UI_MODE_KEY = "eos_systemui_mode_category";
+    private static final String CATEGORY_EXPANDED_DESKTOP = "eos_systemui_expanded_desktop_category";
     private static final String CATEGORY_CAPKEY = "eos_navbar_capkey_features";
     private static final String CATEGORY_STYLE_KEY = "eos_navbar_style";
     private static final String CATEGORY_ACTIONS_KEY = "eos_navbar_actions";
@@ -22,6 +23,7 @@ public class NavigationHandler extends PreferenceScreenHandler {
     private static final String STYLE_NX_KEY = "eos_interface_navbar_nx_style";
     private static final String STYLE_GLASS_KEY = "eos_interface_navbar_glass_style";
     private static final String UI_MODE_KEY = "eos_systemui_mode";
+    private static final String EXPANDED_STYLE_KEY = "eos_interface_enable_expanded_desktop_list";
 
     OnActivityRequestedListener mListener;
 
@@ -29,6 +31,8 @@ public class NavigationHandler extends PreferenceScreenHandler {
     PreferenceCategory pc_action;
     PreferenceCategory pc_capkey;
     PreferenceCategory pc_ui;
+    PreferenceCategory pc_expanded;
+    ListPreference mExpandedStyle;
     ListPreference mLowProfileNavBar;
     CheckBoxPreference mNxStyleBar;
     CheckBoxPreference mGlassStyleBar;
@@ -48,6 +52,7 @@ public class NavigationHandler extends PreferenceScreenHandler {
 
     protected void init() {
         pc_ui = (PreferenceCategory) mRoot.findPreference(CATEGORY_UI_MODE_KEY);
+        pc_expanded = (PreferenceCategory) mRoot.findPreference(CATEGORY_EXPANDED_DESKTOP);
         pc_style = (PreferenceCategory) mRoot.findPreference(CATEGORY_STYLE_KEY);
         pc_action = (PreferenceCategory) mRoot.findPreference(CATEGORY_ACTIONS_KEY);
         pc_capkey = (PreferenceCategory) mRoot.findPreference(CATEGORY_CAPKEY);
@@ -63,6 +68,9 @@ public class NavigationHandler extends PreferenceScreenHandler {
         if (pc_action != null)
             mSearchPanelActions = (Preference) pc_action
                     .findPreference(Utils.SEARCH_PANEL_FRAG_TAG);
+        if (pc_expanded != null) {
+            mExpandedStyle = (ListPreference) pc_expanded.findPreference(EXPANDED_STYLE_KEY);
+        }
 
         mUiMode = (ListPreference) pc_ui.findPreference(UI_MODE_KEY);
         int uiVal = Settings.System.getInt(mResolver,
@@ -86,6 +94,22 @@ public class NavigationHandler extends PreferenceScreenHandler {
                 return true;
             }
         });
+
+        if (mExpandedStyle != null) {
+            mExpandedStyle.setValue(String.valueOf(Settings.System.getInt(mResolver,
+                    Settings.System.EXPANDED_DESKTOP_STYLE, 0)));
+            mExpandedStyle
+                    .setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+
+                        @Override
+                        public boolean onPreferenceChange(Preference preference, Object newValue) {
+                            int val = Integer.parseInt(((String) newValue).toString());
+                            Settings.System.putInt(mResolver,
+                                    Settings.System.EXPANDED_DESKTOP_STYLE, val);
+                            return true;
+                        }
+                    });
+        }
 
         if (mLowProfileNavBar != null)
             mLowProfileNavBar
