@@ -73,12 +73,6 @@
     <string name="eos_interface_navbar_category_capkey">Capacitive Keys</string>
     <string name="eos_interface_force_navbar_summary">Use the software navigation bar instead of capacitive keys</string>
     <string name="eos_interface_force_navbar_title">Navigation Bar</string>
-    <string name="eos_interface_hide_navbar_title">Hide Now</string>
-    <string name="eos_interface_hide_navbar_summary">Hide the Navigation Bar</string>
-    <string name="eos_interface_hide_statbar_too_title">Hide bars together</string>
-    <string name="eos_interface_hide_statbar_too_summary">Statusbar hides with navigation bar even on boot if enabled</string>
-    <string name="eos_interface_hide_navbar_on_boot_title">Hide bars on boot</string>
-    <string name="eos_interface_hide_navbar_on_boot_summary">System bars will be hidden on boot</string>
     <string name="eos_interface_navbar_tablet_style_title">Softkeys position</string>
     <string name="eos_interface_navbar_tablet_style_summary">Enable to left align softkeys on navigation bar</string>
     <string name="eos_interface_navbar_nx_style_title">NX Gesture Bar</string>
@@ -104,7 +98,6 @@
     <string name="eos_interface_softkeys_screenshot_title">Screenshot</string>
     <string name="eos_interface_softkeys_screenoff_title">Screen Off</string>
     <string name="eos_interface_softkeys_kill_process_title">Kill Current Process</string>
-    <string name="eos_interface_softkeys_hide_bars_title">Hide System Bars</string>
     <string name="eos_interface_softkeys_custom_pref_summary">Long press to launch </string>
     <string name="eos_interface_softkeys_extra_features">Extra Features</string>
     <string name="eos_interface_softkey_menu_persist_title">Persistent Menu Key</string>

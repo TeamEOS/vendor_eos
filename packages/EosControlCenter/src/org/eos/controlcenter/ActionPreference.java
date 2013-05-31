@@ -33,21 +33,18 @@ public class ActionPreference extends Preference {
     private static String KILLCURRENT_VAL = EOSConstants.SYSTEMUI_TASK_KILL_PROCESS;
     private static String SCREENOFF_VAL = EOSConstants.SYSTEMUI_TASK_SCREENOFF;
     private static String ASSIST_VAL = EOSConstants.SYSTEMUI_TASK_ASSIST;
-    private static String HIDEBARS_VAL = EOSConstants.SYSTEMUI_TASK_HIDE_BARS;
 
     private static int REBOOT_TITLE = R.string.eos_interface_softkeys_reboot_title;
     private static int SCREENSHOT_TITLE = R.string.eos_interface_softkeys_screenshot_title;
     private static int KILLCURRENT_TITLE = R.string.eos_interface_softkeys_kill_process_title;
     private static int SCREENOFF_TITLE = R.string.eos_interface_softkeys_screenoff_title;
     private static int ASSIST_TITLE = R.string.eos_interface_navring_assist_title;
-    private static int HIDEBARS_TITLE = R.string.eos_interface_softkeys_hide_bars_title;
 
     private static int REBOOT_ICON = com.android.internal.R.drawable.ic_lock_reboot;
     private static int KILLCURRENT_ICON = com.android.internal.R.drawable.ic_dialog_alert;
     private static int SCREENSHOT_ICON = com.android.internal.R.drawable.ic_menu_gallery;
     private static int SCREENOFF_ICON = com.android.internal.R.drawable.ic_lock_power_off;
     private static int ASSIST_ICON = R.drawable.ic_action_assist_activated;
-    private static int HIDEBARS_ICON = com.android.internal.R.drawable.ic_dialog_info;
 
     private static int PACKAGE_NOT_FOUND_SUMMARY = R.string.eos_interface_softkey_package_removed;
     private static int DEFAULT_TITLE = R.string.eos_interface_softkeys_pref_default_title;
@@ -152,14 +149,6 @@ public class ActionPreference extends Preference {
             builder.append(CUSTOM_SUMMARY)
                     .append(" ")
                     .append(mRes.getString(ASSIST_TITLE));
-            setSummary(builder.toString());
-        } else if (uriValue.equals(HIDEBARS_VAL)) {
-            setTitle(mRes.getString(HIDEBARS_TITLE));
-            setIcon(mRes.getDrawable(HIDEBARS_ICON));
-            StringBuilder builder = new StringBuilder();
-            builder.append(CUSTOM_SUMMARY)
-                    .append(" ")
-                    .append(mRes.getString(HIDEBARS_TITLE));
             setSummary(builder.toString());
         } else if (uriValue.equals("none")) {
             setDefaultSettings(false);

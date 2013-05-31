@@ -128,7 +128,6 @@
         <item>Kill process</item>
         <item>Screen off</item>
         <item>Google Now</item>
-        <item>Hide system bars</item>
         <item>Power Menu</item>
         <item>Select Application</item>
     </string-array>
@@ -138,7 +137,6 @@
         <item>killcurrent</item>
         <item>screenoff</item>
         <item>assist</item>
-        <item>hidebars</item>
         <item>powermenu</item>
         <item>app</item>
     </string-array>
