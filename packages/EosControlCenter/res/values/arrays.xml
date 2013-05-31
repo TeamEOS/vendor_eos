@@ -52,6 +52,7 @@
         <item>QS_LTE</item>
         <item>QS_2G3G</item>
         <item>QS_Sync</item>
+        <item>QS_Expanded_Desktop</item>
     </string-array>
     <string-array name="eos_panel_enabled_names">
         <item>Avatar</item>
@@ -74,6 +75,7 @@
         <item>LTE</item>
         <item>2G Only</item>
         <item>AutoSync</item>
+        <item>Expanded Desktop</item>
     </string-array>
     <string-array name="eos_panel_column_names">
         <item>3 Columns</item>
