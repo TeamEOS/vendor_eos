@@ -28,6 +28,9 @@ public class SystemHandler extends PreferenceScreenHandler {
     private Preference mPerformance;
     private CheckBoxPreference mVolumeKeysSwitch;
     private CheckBoxPreference mVolumeKeysMusicControl;
+    private ListPreference mVolumePanelStyle;
+    private CheckBoxPreference mVolumeKeySounds;
+    private CheckBoxPreference mVolumeNotificationLink;
     private CheckBoxPreference mBatteryWarning;
     private CheckBoxPreference mScreenCharging;
     private CheckBoxPreference mCrtOff;
@@ -108,6 +111,52 @@ public class SystemHandler extends PreferenceScreenHandler {
                         return true;
                     }
                 });
+
+        mVolumePanelStyle = (ListPreference) mRoot.findPreference("eos_system_volume_panel_controls_key");
+        mVolumePanelStyle.setValue(String.valueOf(Settings.System.getInt(mResolver,
+                Settings.System.MODE_VOLUME_OVERLAY, Settings.System.VOLUME_OVERLAY_EXPANDABLE)));
+        mVolumePanelStyle
+                .setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+
+                    @Override
+                    public boolean onPreferenceChange(Preference preference, Object newValue) {
+                        int val = Integer.parseInt((String) newValue);
+                        Settings.System.putInt(mResolver,
+                                Settings.System.MODE_VOLUME_OVERLAY, val);
+                        return true;
+                    }
+                });
+
+        mVolumeNotificationLink = (CheckBoxPreference) mRoot
+                .findPreference("eos_system_volume_link_notification_key");
+        mVolumeNotificationLink.setChecked(Settings.System.getInt(mResolver,
+                Settings.System.VOLUME_LINK_NOTIFICATION, 1) == 1);
+        mVolumeNotificationLink
+                .setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+
+                    @Override
+                    public boolean onPreferenceChange(Preference preference, Object newValue) {
+                        Settings.System.putInt(mResolver,
+                                Settings.System.VOLUME_LINK_NOTIFICATION,
+                                ((Boolean) newValue).booleanValue() ? 1 : 0);
+                        return true;
+                    }
+                });
+
+        mVolumeKeySounds = (CheckBoxPreference) mRoot
+                .findPreference("eos_system_volume_hard_button_sounds");
+        mVolumeKeySounds.setChecked(Settings.System.getInt(mResolver,
+                Settings.System.VOLUME_ADJUST_SOUNDS_ENABLED, 1) == 1);
+        mVolumeKeySounds.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                Settings.System.putInt(mResolver,
+                        Settings.System.VOLUME_ADJUST_SOUNDS_ENABLED,
+                        ((Boolean) newValue).booleanValue() ? 1 : 0);
+                return true;
+            }
+        });
 
         boolean unplugTurnsOnScreen = mRes
                 .getBoolean(com.android.internal.R.bool.config_unplugTurnsOnScreen);

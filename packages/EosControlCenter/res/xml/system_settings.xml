@@ -60,6 +60,25 @@
             android:title="@string/eos_system_volume_default_stream" >
         </ListPreference>
 
+        <ListPreference
+            android:entries="@array/volume_control_entries"
+            android:entryValues="@array/volume_control_values"
+            android:defaultValue="1"
+            android:key="eos_system_volume_panel_controls_key"
+            android:summary="@string/eos_system_volume_panel_controls_summary"
+            android:title="@string/eos_system_volume_panel_controls_title" >
+        </ListPreference>
+
+        <CheckBoxPreference
+            android:key="eos_system_volume_link_notification_key"
+            android:summary="@string/eos_system_volume_link_notification_summary"
+            android:title="@string/eos_system_volume_link_notification_title" />
+
+        <CheckBoxPreference
+            android:key="eos_system_volume_hard_button_sounds"
+            android:summary="@string/eos_system_volume_hard_button_sounds_summary"
+            android:title="@string/eos_system_volume_hard_button_sounds_title" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
