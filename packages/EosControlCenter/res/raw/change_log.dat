@@ -1,3 +1,40 @@
+
+=6/13/13=
+  
+PHONES
+  
+  • Xperia S (Nozomi) - BIG BUG FIX UPDATE
+    Fixed: camera, ALS (DASH), weird 2nd core behaviour
+    Modified: kernel: compile CIFS modular to /system/lib/modules
+    
+ALL
+
+  • Show/hide menu overflow button: Fixes disappearing
+    action bar menu on tablets.
+    
+  • new Navigation Drawer API for Settings! Much love and
+    credit to epic developer 0xD34D for porting it over.
+    
+  • Phones: Fix disappearing left-aligned navbar when 
+    on landscape orientation. This has a unique feel.
+    Give it a run.
+    
+  • NX: remove bar glow feedback when action detected. NX 2.0
+    is definately on the agenda. 
+    
+  • Total Glass (Bar Transparency) Overhaul! Much cleaner and 
+    simpler logic, valueAnimate glass bar transitions. This
+    smoothes out window changes dramatically. ECC: Contextutally
+    accurate dialogs for glass. I still want to do even more work 
+    here, but this is good for now.
+    
+  • Fix double bluetooth icons in system icon area on tablets
+  
+  • Get HTC One device tree set up! Yes... I am finally forced
+    to get some quality hardkey controls in place. Look for some
+    Eos builds coming very soon ;D
+    
+
 =6/3/13=
 
 ALL
