@@ -1,3 +1,34 @@
+=6/3/13=
+
+ALL
+
+  • Expanded Desktop from Cyanogenmod. Controls in ECC
+    Toggle in Global Actions power menu when enabled
+    Quick Settings tile for additional control
+    
+  • Volume panel controls. Controls in ECC.
+    Single, expands, expanded, and none.
+    
+  • Unlink notification and ringtone volumes
+  
+  • Enable/disable volume hardware key tones
+  
+  • Navigation Bar/Tablet UI Bar transparent with Live
+    Wallpaper when Glass is enabled. This is my personal
+    favorite this time around. It just looks epic!
+    
+  • Bug fixes and misc code cleanup
+  
+    • Fix back softkey color update on ime hint
+    
+    • Some Quick Settings tiles did not have proper
+      Long Press actions, they do now.
+
+TABLET
+
+  • Fix systembar clock size on large screens
+
+
 =5/29/13=
 
 BUG FIX UPDATE
