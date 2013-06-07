@@ -12,6 +12,7 @@ public class InterfaceHandler extends PreferenceScreenHandler {
     private CheckBoxPreference mRecentsKillallButtonPreference;
     private CheckBoxPreference mRecentsMemDisplayPreference;
     private CheckBoxPreference mShowAllLockscreenWidgetsPreference;
+    private CheckBoxPreference mMenuOverflow;
 
     public InterfaceHandler(PreferenceScreen pref) {
         super(pref);
@@ -26,6 +27,8 @@ public class InterfaceHandler extends PreferenceScreenHandler {
                 .findPreference("eos_interface_recents_killall_button");
         mRecentsMemDisplayPreference = (CheckBoxPreference) mRoot
                 .findPreference("eos_interface_recents_mem_display");
+        mMenuOverflow = (CheckBoxPreference) mRoot
+                .findPreference("eos_interface_general_menu_overflow");
 
         mShowAllLockscreenWidgetsPreference.setChecked(Settings.System.getInt(
                 mResolver,
@@ -37,6 +40,9 @@ public class InterfaceHandler extends PreferenceScreenHandler {
 
         mRecentsMemDisplayPreference.setChecked(Settings.System.getInt(
                 mResolver, EOSConstants.SYSTEMUI_RECENTS_MEM_DISPLAY, 0) == 1);
+
+        mMenuOverflow.setChecked(Settings.System.getInt(
+                mResolver, Settings.System.UI_FORCE_OVERFLOW_BUTTON, 0) == 1);
 
         mRecentsKillallButtonPreference
                 .setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
@@ -74,6 +80,17 @@ public class InterfaceHandler extends PreferenceScreenHandler {
                     }
                 });
 
+        mMenuOverflow
+                .setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+
+                    @Override
+                    public boolean onPreferenceChange(Preference preference, Object newValue) {
+                        Settings.System.putInt(mResolver,
+                                Settings.System.UI_FORCE_OVERFLOW_BUTTON,
+                                ((Boolean) newValue).booleanValue() ? 1 : 0);
+                        return true;
+                    }
+                });
     }
 
 }

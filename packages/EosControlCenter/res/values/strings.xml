@@ -212,6 +212,9 @@
     <string name="eos_interface_lockscreen">Lockscreen Options</string>
     <string name="eos_interface_lockscreen_show_all_widgets">Allow Selection Of All Widgets</string>
     <string name="eos_interface_lockscreen_show_all_widgets_summary">Allow all widgets to be added to the lockscreen widgets panel</string>
+    <string name="eos_interface_general">General</string>
+    <string name="eos_interface_general_menu_overflow_summary">Override system configuration and show overflow menu in action bar regardless of UI state</string>
+    <string name="eos_interface_general_menu_overflow_title">Force show menu overflow</string>
     <string name="eos_interface_panel_title">Quick Settings Panel</string>
     <string name="eos_interface_panel_summary">Enable and resequence tiles</string>
     <string name="eos_interface_panel_pref">Settings Panel Controls</string>

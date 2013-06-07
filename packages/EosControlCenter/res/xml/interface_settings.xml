@@ -38,5 +38,13 @@
             android:summary="@string/eos_interface_recents_mem_display_description"
             android:title="@string/eos_interface_recents_mem_display_title" />
     </PreferenceCategory>
+    <PreferenceCategory
+        android:key="eos_interface_general"
+        android:title="@string/eos_interface_general" >
+        <CheckBoxPreference
+            android:key="eos_interface_general_menu_overflow"
+            android:summary="@string/eos_interface_general_menu_overflow_summary"
+            android:title="@string/eos_interface_general_menu_overflow_title" />
+    </PreferenceCategory>
 
 </PreferenceScreen>
