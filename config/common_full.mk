@@ -1,10 +1,7 @@
-# Inherit common CM stuff
+# Inherit common cfX stuff
 $(call inherit-product, vendor/cm/config/common.mk)
 
-# Include CM audio files
-include vendor/cm/config/cm_audio.mk
-
-# Optional CM packages
+# Optional cfX packages
 PRODUCT_PACKAGES += \
     HoloSpiralWallpaper \
     MagicSmokeWallpapers \
