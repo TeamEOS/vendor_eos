@@ -24,7 +24,6 @@ PRODUCT_PACKAGES += \
     SuperSU \
     GooManager \
     busybox \
-    GoogleLatinIME \
     thtt \
     ntfs-3g.probe \
     ntfsfix \
