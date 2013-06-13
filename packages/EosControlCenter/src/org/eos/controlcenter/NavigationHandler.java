@@ -43,6 +43,12 @@ public class NavigationHandler extends PreferenceScreenHandler {
     PreferenceScreen mNavbarScreen;
     PreferenceScreen mSystembarScreen;
 
+    /*
+     * is this a true capkey device? is not
+     * give extra warning in UI mode summary
+     */
+    boolean mIsCapKey;
+
     public NavigationHandler(PreferenceScreen pref, OnActivityRequestedListener listener) {
         super(pref);
         mListener = listener;
@@ -56,6 +62,7 @@ public class NavigationHandler extends PreferenceScreenHandler {
         pc_style = (PreferenceCategory) mRoot.findPreference(CATEGORY_STYLE_KEY);
         pc_action = (PreferenceCategory) mRoot.findPreference(CATEGORY_ACTIONS_KEY);
         pc_capkey = (PreferenceCategory) mRoot.findPreference(CATEGORY_CAPKEY);
+        mIsCapKey = EOSUtils.isCapKeyDevice(mContext);
 
         if (pc_style != null)
             mLowProfileNavBar = (ListPreference) pc_style.findPreference(STYLE_SIZE_KEY);
@@ -79,6 +86,7 @@ public class NavigationHandler extends PreferenceScreenHandler {
                         : EOSConstants.SYSTEMUI_UI_MODE_NAVBAR);
         mUiMode.setDefaultValue(String.valueOf(uiVal));
         mUiMode.setValue(String.valueOf(uiVal));
+        updateUiSummary();
 
         mUiMode.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
 
@@ -207,6 +215,28 @@ public class NavigationHandler extends PreferenceScreenHandler {
                 .putExtra(EOSConstants.INTENT_EOS_UI_CHANGED_REASON, key)
                 .putExtra(EOSConstants.INTENT_EOS_UI_CHANGED_KEY_RESTART_SYSTEMUI, shouldRestartUI);
         mContext.sendBroadcastAsUser(intent, new UserHandle(UserHandle.USER_ALL));
+    }
+
+    private void updateUiSummary() {
+        String[] entries = mContext.getResources().getStringArray(R.array.systemui_mode_entries);
+        String[] vals = mContext.getResources().getStringArray(R.array.systemui_mode_values);
+        String currentVal = mUiMode.getValue();
+        String newEntry = "";
+        for (int i = 0; i < vals.length; i++) {
+            if (vals[i].equals(currentVal)) {
+                newEntry = entries[i];
+                break;
+            }
+        }
+        StringBuilder b = new StringBuilder()
+                .append(mContext.getResources().getString(
+                        R.string.eos_interface_systemui_mode_summary))
+                .append(newEntry);
+        if (!mIsCapKey && currentVal.equals("0")) {
+            b.append(mContext.getResources().getString(
+                    R.string.eos_interface_systemui_mode_capkey_warning));
+        }
+        mUiMode.setSummary(b.toString());
     }
 
 }

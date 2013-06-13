@@ -51,12 +51,11 @@
     <string name="eos_interface_navbar">Navigation Bar</string>
     <string name="eos_interface_navbar_appearance">Navigation Bar Appearance</string>
     <string name="eos_interface_systemui_mode_title">UI Mode</string>
-    <string name="eos_interface_systemui_mode_summary">Four modes to choose from</string>
+    <string name="eos_interface_systemui_mode_capkey_warning">\nNotice:\u0020 You appear to be simulating a capacitive key device. \nUse caution</string>
+    <string name="eos_interface_systemui_mode_summary">Current Mode:\u0020</string>
     <string name="eos_interface_systemui_expanded_desktop_title">Expanded Desktop</string>
     <string name="eos_interface_systemui_expanded_desktop_summary">Hide interface bars</string>
     <string name="eos_systemui_mode_category_title">User Interface</string>
-    <string name="eos_interface_navbar_full_tablet_style_title">Tablet style bar</string>
-    <string name="eos_interface_navbar_full_tablet_style_summary">Force old school tablet user interface</string>
     <string name="eos_interface_navbar_color_uri">eos_systemui_navbar_color</string>
     <string name="eos_interface_systembar_appearance">System Bar Appearance</string>
     <string name="eos_interface_softkey_color">Set Softkey Color</string>
@@ -83,9 +82,7 @@
     <string name="eos_interface_navbar_glass_level_summary">Set transparency level for launcher glass effect</string>
     <string name="eos_interface_softkey_settings">Softkey Settings</string>
     <string name="eos_interface_softkeys_longpress">Long Press Actions</string>
-    <string name="eos_interface_softkey_enable_feature">Enable Long Press feature</string>
     <string name="eos_interface_softkey_package_removed">The previously selected package was not found</string>
-    <string name="eos_interface_softkey_enable_feature_summary">This will allow you to set your own long press shortcuts.</string>
     <string name="eos_interface_softkeys_back">Back Key</string>
     <string name="eos_interface_softkey_longpress_target">Set application</string>
     <string name="eos_interface_softkeys_home">Home Key</string>
