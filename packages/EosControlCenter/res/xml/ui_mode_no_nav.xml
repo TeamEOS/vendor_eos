@@ -42,6 +42,19 @@
             android:title="@string/eos_interface_systemui_expanded_desktop_title" />
     </PreferenceCategory>
     <PreferenceCategory
+        android:key="eos_navbar_style"
+        android:title="@string/eos_interface_navbar_glass_style_title" >
+        <CheckBoxPreference
+            android:key="eos_interface_navbar_glass_style"
+            android:summary="@string/eos_interface_navbar_glass_style_summary"
+            android:title="@string/eos_interface_navbar_glass_style_title" />
+        <org.eos.controlcenter.GlassDialogPreference
+            android:dependency="eos_interface_navbar_glass_style"
+            android:key="eos_interface_navbar_glass_seekbar"
+            android:summary="@string/eos_interface_navbar_glass_level_summary"
+            android:title="@string/eos_interface_navbar_glass_level_title" />
+    </PreferenceCategory>
+    <PreferenceCategory
         android:key="eos_navbar_capkey_features"
         android:title="@string/eos_interface_navbar_category_capkey" >
     </PreferenceCategory>

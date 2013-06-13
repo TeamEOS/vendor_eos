@@ -20,18 +20,18 @@ import org.teameos.jellybean.settings.EOSUtils;
 public class GlassDialogPreference extends DialogPreference {
     Context mContext;
     ContentResolver mResolver;
-    TextView mNavbar_header;
-    SeekBar mNavbar_seek;
-    TextView mNavbarDefTitle;
-    CheckBox mNavbar_checkbox;
-    TextView mNavbar_value;
+    TextView mBottomBar_header;
+    SeekBar mBottomBar_seek;
+    TextView mBottombarDefTitle;
+    CheckBox mBottomBar_checkbox;
+    TextView mBottomBar_value;
     TextView mStatusbar_header;
     SeekBar mStatusbar_seek;
     TextView mStatusbarDefTitle;
     CheckBox mStatusbar_checkbox;
     TextView mStatusbar_value;
 
-    int mNavbarValue;
+    int mBottombarValue;
     int mStatusbarValue;
 
     public GlassDialogPreference(Context context, AttributeSet attrs) {
@@ -42,18 +42,33 @@ public class GlassDialogPreference extends DialogPreference {
 
     @Override
     protected View onCreateDialogView() {
+        final boolean hasSystemBar = EOSUtils.hasSystemBar(mContext);
+        final boolean hasNavBar = EOSUtils.hasNavBar(mContext);
+        final boolean statusbarOnly = !hasSystemBar && !hasNavBar;
+
         View root = LayoutInflater.from(mContext).inflate(R.layout.glass_dialog_preference, null);
-        mNavbar_header = (TextView) root.findViewById(R.id.navbar_header);
-        mNavbar_seek = (SeekBar) root.findViewById(R.id.navbar_seekbar);
-        mNavbarDefTitle = (TextView) root.findViewById(R.id.navbar_default_title);
-        mNavbar_checkbox = (CheckBox) root.findViewById(R.id.navbar_default_checkbox);
-        mNavbar_value = (TextView) root.findViewById(R.id.navbar_progress_value);
+        mStatusbar_header = (TextView) root.findViewById(R.id.statusbar_header);
+        mStatusbar_seek = (SeekBar) root.findViewById(R.id.statusbar_seekbar);
+        mStatusbarDefTitle = (TextView) root.findViewById(R.id.statusbar_default_title);
+        mStatusbar_checkbox = (CheckBox) root.findViewById(R.id.statusbar_default_checkbox);
+        mStatusbar_value = (TextView) root.findViewById(R.id.statusbar_progress_value);
+        mBottomBar_header = (TextView) root.findViewById(R.id.navbar_header);
+        mBottomBar_seek = (SeekBar) root.findViewById(R.id.navbar_seekbar);
+        mBottombarDefTitle = (TextView) root.findViewById(R.id.navbar_default_title);
+        mBottomBar_checkbox = (CheckBox) root.findViewById(R.id.navbar_default_checkbox);
+        mBottomBar_value = (TextView) root.findViewById(R.id.navbar_progress_value);
 
-        if (EOSUtils.hasNavBar(mContext)) {
-            mNavbar_header.setText("Navigation bar transparency");
+        if (!statusbarOnly) {
+            String titleText = "";
+            if (hasSystemBar) {
+                titleText = "System bar transparency";
+            } else {
+                titleText = "Navigation bar transparency";
+            }
+            mBottomBar_header.setText(titleText);
 
-            mNavbar_seek.setMax(255);
-            mNavbar_seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            mBottomBar_seek.setMax(255);
+            mBottomBar_seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
                 @Override
                 public void onStopTrackingTouch(SeekBar seekBar) {
@@ -69,95 +84,97 @@ public class GlassDialogPreference extends DialogPreference {
 
                 @Override
                 public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                    mNavbarValue = progress;
-                    mNavbar_value.setText("Current value: " + String.valueOf(mNavbarValue));
+                    mBottombarValue = progress;
+                    mBottomBar_value.setText("Current value: " + String.valueOf(mBottombarValue));
                     Settings.System.putInt(mResolver, EOSConstants.SYSTEMUI_NAVBAR_GLASS_LEVEL,
-                            255 - mNavbarValue);
+                            255 - mBottombarValue);
 
                 }
             });
 
-            mNavbarValue = Settings.System.getInt(mResolver,
+            mBottombarValue = Settings.System.getInt(mResolver,
                     EOSConstants.SYSTEMUI_NAVBAR_GLASS_LEVEL,
                     EOSConstants.SYSTEMUI_NAVBAR_GLASS_PRESET);
-            mNavbar_seek.setProgress(255 - mNavbarValue);
+            mBottomBar_seek.setProgress(255 - mBottombarValue);
 
-            mNavbarDefTitle.setText("Default launcher preset");
+            mBottombarDefTitle.setText("Default launcher preset");
 
-            mNavbar_checkbox.setChecked(Settings.System.getInt(mResolver,
+            mBottomBar_checkbox.setChecked(Settings.System.getInt(mResolver,
                     EOSConstants.SYSTEMUI_NAVBAR_GLASS_DEFAULT_ENABLED, 0) == 1);
-            mNavbar_seek.setEnabled(!mNavbar_checkbox.isChecked());
-            mNavbar_checkbox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+            mBottomBar_seek.setEnabled(!mBottomBar_checkbox.isChecked());
+            mBottomBar_checkbox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    mNavbar_seek.setEnabled(!isChecked);
+                    mBottomBar_seek.setEnabled(!isChecked);
                     Settings.System.putInt(mResolver,
                             EOSConstants.SYSTEMUI_NAVBAR_GLASS_DEFAULT_ENABLED, isChecked ? 1 : 0);
                 }
 
             });
-            mNavbar_value.setText("Current value: " + String.valueOf(mNavbarValue));
+            mBottomBar_value.setText("Current value: " + String.valueOf(mBottombarValue));
 
         } else {
-            mNavbar_header.setVisibility(View.GONE);
-            mNavbar_seek.setVisibility(View.GONE);
-            mNavbarDefTitle.setVisibility(View.GONE);
-            mNavbar_checkbox.setVisibility(View.GONE);
-            mNavbar_value.setVisibility(View.GONE);
+            mBottomBar_header.setVisibility(View.GONE);
+            mBottomBar_seek.setVisibility(View.GONE);
+            mBottombarDefTitle.setVisibility(View.GONE);
+            mBottomBar_checkbox.setVisibility(View.GONE);
+            mBottomBar_value.setVisibility(View.GONE);
         }
 
-        mStatusbar_header = (TextView) root.findViewById(R.id.statusbar_header);
-        mStatusbar_seek = (SeekBar) root.findViewById(R.id.statusbar_seekbar);
-        mStatusbarDefTitle = (TextView) root.findViewById(R.id.statusbar_default_title);
-        mStatusbar_checkbox = (CheckBox) root.findViewById(R.id.statusbar_default_checkbox);
-        mStatusbar_value = (TextView) root.findViewById(R.id.statusbar_progress_value);
+        if (!hasSystemBar) {
+            mStatusbar_header.setText("Statusbar transparency");
+            mStatusbar_seek.setMax(255);
+            mStatusbar_seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
-        mStatusbar_header.setText("Statusbar transparency");
+                @Override
+                public void onStopTrackingTouch(SeekBar seekBar) {
+                    // TODO Auto-generated method stub
 
-        mStatusbar_seek.setMax(255);
-        mStatusbar_seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                }
 
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                // TODO Auto-generated method stub
+                @Override
+                public void onStartTrackingTouch(SeekBar seekBar) {
+                    // TODO Auto-generated method stub
 
-            }
+                }
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                // TODO Auto-generated method stub
+                @Override
+                public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                    mStatusbarValue = progress;
+                    mStatusbar_value.setText("Current value: " + String.valueOf(mStatusbarValue));
+                    Settings.System.putInt(mResolver, EOSConstants.SYSTEMUI_STATUSBAR_GLASS_LEVEL,
+                            255 - progress);
 
-            }
+                }
+            });
+            mStatusbarValue = Settings.System.getInt(mResolver,
+                    EOSConstants.SYSTEMUI_STATUSBAR_GLASS_LEVEL,
+                    EOSConstants.SYSTEMUI_STATUSBAR_GLASS_PRESET);
 
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                mStatusbarValue = progress;
-                mStatusbar_value.setText("Current value: " + String.valueOf(mStatusbarValue));
-                Settings.System.putInt(mResolver, EOSConstants.SYSTEMUI_STATUSBAR_GLASS_LEVEL,
-                        255 - progress);
+            mStatusbar_seek.setProgress(255 - mStatusbarValue);
+            mStatusbarDefTitle.setText("Default launcher preset");
 
-            }
-        });
-        mStatusbarValue = Settings.System.getInt(mResolver,
-                EOSConstants.SYSTEMUI_STATUSBAR_GLASS_LEVEL,
-                EOSConstants.SYSTEMUI_STATUSBAR_GLASS_PRESET);
+            mStatusbar_checkbox.setChecked(Settings.System.getInt(mResolver,
+                    EOSConstants.SYSTEMUI_STATUSBAR_GLASS_DEFAULT_ENABLED, 0) == 1);
+            mStatusbar_seek.setEnabled(!mStatusbar_checkbox.isChecked());
+            mStatusbar_checkbox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    mStatusbar_seek.setEnabled(!isChecked);
+                    Settings.System.putInt(mResolver,
+                            EOSConstants.SYSTEMUI_STATUSBAR_GLASS_DEFAULT_ENABLED, isChecked ? 1
+                                    : 0);
+                }
 
-        mStatusbar_seek.setProgress(255 - mStatusbarValue);
-        mStatusbarDefTitle.setText("Default launcher preset");
-
-        mStatusbar_checkbox.setChecked(Settings.System.getInt(mResolver,
-                EOSConstants.SYSTEMUI_STATUSBAR_GLASS_DEFAULT_ENABLED, 0) == 1);
-        mStatusbar_seek.setEnabled(!mStatusbar_checkbox.isChecked());
-        mStatusbar_checkbox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                mStatusbar_seek.setEnabled(!isChecked);
-                Settings.System.putInt(mResolver,
-                        EOSConstants.SYSTEMUI_STATUSBAR_GLASS_DEFAULT_ENABLED, isChecked ? 1 : 0);
-            }
-
-        });
-        mStatusbar_value.setText("Current value: " + String.valueOf(mStatusbarValue));
+            });
+            mStatusbar_value.setText("Current value: " + String.valueOf(mStatusbarValue));
+        } else {
+            mStatusbar_header.setVisibility(View.GONE);
+            mStatusbar_seek.setVisibility(View.GONE);
+            mStatusbarDefTitle.setVisibility(View.GONE);
+            mStatusbar_checkbox.setVisibility(View.GONE);
+            mStatusbar_value.setVisibility(View.GONE);
+        }
 
         return root;
     }
