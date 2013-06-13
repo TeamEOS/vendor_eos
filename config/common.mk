@@ -69,9 +69,6 @@ PRODUCT_COPY_FILES +=  \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml
 
-PRODUCT_COPY_FILES += \
-    vendor/cfx/config/permissions/com.codefirex.android.xml:system/etc/permissions/com.codefirex.android.xml
-
 # Don't export PS1 in /system/etc/mkshrc.
 PRODUCT_COPY_FILES += \
     vendor/cfx/prebuilt/common/etc/mkshrc:system/etc/mkshrc
