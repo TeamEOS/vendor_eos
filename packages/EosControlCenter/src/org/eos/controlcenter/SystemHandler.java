@@ -240,6 +240,8 @@ public class SystemHandler extends PreferenceScreenHandler {
                         }
                     }
                 });
+        mWifiChannelsPreference.setValue(Settings.Secure.getString(mResolver,
+                                Settings.Global.WIFI_COUNTRY_CODE));
 
         mDefaultVolumeStreamPreference = (ListPreference) mRoot
                 .findPreference("eos_system_default_volume_stream");
