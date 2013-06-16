@@ -1,4 +1,40 @@
 
+=6/17/13=
+  
+PHONES
+  
+  • Xperia S (Nozomi) - BIG BUG FIX UPDATE #2
+    Reduced camera freezes/fc's as much as possible
+    ALS: blob DASH, restore JB ALS curve, enable auto-brightness
+    Kernel: resolve various lockup issues/LoD (Lag of Death) scenarios
+    12MP shooting removed, will be re-introduced with the 3.4 kernel
+    
+ALL
+
+  • Enable/Disable ECC icon and Expanded Desktop icon. If you want the
+    icon, you got it. If you don't, you don't get it. That's how it
+    should be. Look in ECC interface settings. This will likely 
+    move later. 
+
+  • Fix WiFi region code not sticking in ECC
+    
+  • Clean up UI Mode summary in ECC. It now shows current mode.
+    
+  • REVERT NAVIGATION DRAWER API IN SETTINGS! My apologies
+    to those who enjoyed it. The "not like" voices were louder here.
+    But I assure all of you, this is not over!
+    
+  • Glass: Use bit shifting for alpha/color coversions
+  
+  • This week's build was mostly to revert the Settings commit
+    that almost got me lynched by Eos tablet users. Note to users
+    with hardware key devices: I got my HTC One TMobile variant!
+    So i will be putting heavy focus on getting Cap key devices
+    where they need to be. Besides, I feel dirty running Sense!
+    Our HTC One device tree is almost ready now. Just needs some 
+    polish.
+
+
 =6/13/13=
   
 PHONES
