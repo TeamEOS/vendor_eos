@@ -15,6 +15,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.android.dateformat=MM-dd-yyyy \
     ro.com.android.dataroaming=false
 
+# Temp HACK: Use a prebuilt libjavacore due to how tricky conscrypt's JNI_OnLoad handling is
+PRODUCT_COPY_FILES += \
+    vendor/cfx/prebuilt/common/obj/lib/libjavacore.so:obj/lib/libjavacore.so \
+    vendor/cfx/prebuilt/common/system/lib/libjavacore.so:system/lib/libjavacore.so \
+    vendor/cfx/prebuilt/common/obj/SHARED_LIBRARIES/libjavacore_intermediates/LINKED/libjavacore.so:obj/SHARED_LIBRARIES/libjavacore_intermediates/LINKED/libjavacore.so \
+    vendor/cfx/prebuilt/common/symbols/system/lib/libjavacore.so:symbols/system/lib/libjavacore.so
+
 # Proprietary LatinIME Gesture Support
 PRODUCT_COPY_FILES += \
     vendor/cfx/prebuilt/common/lib/libjni_latinime.so:obj/lib/libjni_latinime.so \
