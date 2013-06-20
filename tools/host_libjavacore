@@ -1,0 +1,20 @@
+#!/bin/sh
+#
+# Copy a prebuilt host libjavacore for us to link against
+# synergydev
+#
+
+# We must first create the directories since the host tools have not been
+# copied and/or built yet.
+
+mkdir -p $ANDROID_HOST_OUT/obj/SHARED_LIBRARIES/libjavacore_intermediates/crypto/src/main/native/
+mkdir -p $ANDROID_HOST_OUT/obj/SHARED_LIBRARIES/libjavacore_intermediates/luni/src/main/native/
+
+# Now copy the prebuilt host libjavacore.so that lies in this vendor repo.
+# It is okay to use some absolute paths here since the paths of this repo are
+# not conditional. We want to ensure that host libjavacore is not built.
+
+cp ./vendor/cfx/prebuilt/common/host/linux-x86/obj/SHARED_LIBRARIES/libjavacore_intermediates/crypto/src/main/native/org_conscrypt_NativeCrypto.o $ANDROID_HOST_OUT/obj/SHARED_LIBRARIES/libjavacore_intermediates/crypto/src/main/native/
+cp ./vendor/cfx/prebuilt/common/host/linux-x86/obj/SHARED_LIBRARIES/libjavacore_intermediates/luni/src/main/native/Register.o $ANDROID_HOST_OUT/obj/SHARED_LIBRARIES/libjavacore_intermediates/luni/src/main/native/
+
+exit 0
