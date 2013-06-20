@@ -15,6 +15,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.android.dateformat=MM-dd-yyyy \
     ro.com.android.dataroaming=false
 
+# cfX File Contexts
+ifeq ($(HAVE_SELINUX),)
+PRODUCT_COPY_FILES += \
+    vendor/cfx/prebuilt/common/root/file_contexts:root/file_contexts
+endif
+
 # Temp HACK: Use a prebuilt libjavacore due to how tricky conscrypt's JNI_OnLoad handling is
 PRODUCT_COPY_FILES += \
     vendor/cfx/prebuilt/common/obj/lib/libjavacore.so:obj/lib/libjavacore.so \
