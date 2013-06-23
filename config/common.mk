@@ -16,7 +16,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.android.dataroaming=false
 
 # cfX File Contexts
-ifeq ($(HAVE_SELINUX),)
+ifeq ($(HAVE_SELINUX),true)
 PRODUCT_COPY_FILES += \
     vendor/cfx/prebuilt/common/root/file_contexts:root/file_contexts
 endif
