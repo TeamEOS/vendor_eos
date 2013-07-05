@@ -58,6 +58,13 @@ PRODUCT_COPY_FILES += \
     vendor/cfx/prebuilt/common/bin/compcache:system/bin/compcache \
     vendor/cfx/prebuilt/common/bin/handle_compcache:system/bin/handle_compcache
 
+# mounts
+PRODUCT_COPY_FILES += \
+    vendor/cfx/prebuilt/common/bin/sysrw:system/bin/sysrw \
+    vendor/cfx/prebuilt/common/bin/sysro:system/bin/sysro \
+    vendor/cfx/prebuilt/common/bin/rootrw:system/bin/rootrw \
+    vendor/cfx/prebuilt/common/bin/rootro:system/bin/rootro
+
 # swap support
 PRODUCT_COPY_FILES += \
     vendor/cfx/prebuilt/common/bin/handle_swap:system/bin/handle_swap
