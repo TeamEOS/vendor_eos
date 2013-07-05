@@ -19,7 +19,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
 ifeq ($(HAVE_SELINUX),true)
 PRODUCT_COPY_FILES += \
     vendor/cfx/prebuilt/common/root/file_contexts:root/file_contexts
+
 endif
+
+# Disable ADB authentication
+ADDITIONAL_DEFAULT_PROPERTIES += ro.adb.secure=0
 
 # Proprietary LatinIME Gesture Support
 PRODUCT_COPY_FILES += \
