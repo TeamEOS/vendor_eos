@@ -126,6 +126,11 @@ PRODUCT_PACKAGES += \
     htop \
     powertop \
     lsof \
+    mount.exfat \
+    fsck.exfat \
+    mkfs.exfat \
+    ntfsfix \
+    ntfs-3g \
     systembinsh
 
 # Openssh
