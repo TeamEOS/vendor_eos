@@ -1,0 +1,17 @@
+<resources>
+
+    <string name="app_name">CFXSettings</string>
+    <string name="header_category_cfxp">CFX</string>
+    <string name="interface_settings_title">Interface</string>
+    <string name="system_settings_title">System</string>
+    <string name="style_settings_title">Style</string>
+    <string name="cfx_interface_input">Input</string>
+    <string name="cfx_interface_input_menu_overflow_summary">Override system configuration and show overflow menu in action bar regardless of UI state</string>
+    <string name="cfx_interface_input_menu_overflow_title">Force show menu overflow</string>
+    <string name="cfx_interface_navbar_glass_style_title">Glass</string>
+    <string name="cfx_interface_statusbar_glass_style_summary">Apply transparency to the statusbar</string>
+    <string name="cfx_interface_navbar_glass_style_summary">Apply transparency to system bars</string>
+    <string name="cfx_interface_navbar_glass_level_title">Glass effect</string>
+    <string name="cfx_interface_navbar_glass_level_summary">Set transparency level for launcher glass effect</string>
+
+</resources>

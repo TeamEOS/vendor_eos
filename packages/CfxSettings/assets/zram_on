@@ -1,0 +1,23 @@
+#!/system/bin/sh
+
+RAMSIZE=`grep MemTotal /proc/meminfo | awk '{ print \$2 }'`
+ZRAMSIZE=$(($RAMSIZE*100))
+
+
+SWAPCHECK="`cat /proc/swaps | grep zram0`";
+if [ -z "$SWAPCHECK" ]; then
+  echo 1 > /sys/block/zram0/reset;
+  echo 1 > /sys/block/zram1/reset;
+  echo $ZRAMSIZE > /sys/block/zram0/disksize;
+  echo $ZRAMSIZE > /sys/block/zram1/disksize;
+  mkswap /dev/block/zram0;
+  swapon /dev/block/zram0;
+  mkswap /dev/block/zram1;
+  swapon /dev/block/zram1;
+fi
+echo 80 > /proc/sys/vm/swappiness;
+
+
+
+
+

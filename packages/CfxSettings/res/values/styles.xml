@@ -1,0 +1,7 @@
+<resources>
+
+    <!-- Pager Activity theme. -->
+    <style name="PagerTheme" parent="android:Theme.Holo">
+    </style>
+
+</resources>
