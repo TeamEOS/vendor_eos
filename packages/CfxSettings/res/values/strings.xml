@@ -61,4 +61,16 @@
     <string name="cfx_style_navbar_glass_level_summary">Set transparency level for launcher glass effect</string>
     <!-- Style **END** -->
 
+    <!-- System **START** -->
+    <!-- Power and Display -->
+    <string name="cfx_system_power_display_category_title">Power and Display</string>
+    <string name="cfx_system_power_unplug_screen_off_title">Screen behavior when charging</string>
+    <string name="cfx_system_power_unplug_screen_off_summary">Screen stays off when plugged or unplugged</string>
+    <string name="cfx_system_power_crt_screen_off_title">CRT Screen Off</string>
+    <string name="cfx_system_power_crt_screen_off_summary">Screen will animate an Electron Beam when turned off</string>
+    <string name="cfx_system_power_crt_screen_on_title">CRT Screen On</string>
+    <string name="cfx_system_power_crt_screen_on_summary">Screen will animate an Electron Beam when turned on</string>
+    <!-- End Power and Display -->
+    <!-- End system -->
+
 </resources>
