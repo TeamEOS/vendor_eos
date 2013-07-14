@@ -2,18 +2,19 @@ package com.cfx.settings;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.TextView;
-import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.Activity;
-import android.app.FragmentManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import com.cfx.settings.activities.DensityChanger;
+
 public class Main extends Activity implements OnActivityRequestedListener {
-	TextView mTitle;
-	ActionBar mBar;
+	static final String KEY_TARGET_FRAGMENT = "key_target_fragment";
+	static final String INTENT_INTERFACE = "intent_interface";
+	static final String INTENT_SYSTEM = "intent_system";
+	static final String INTENT_STYLE = "intent_style";
 
 	List<String> mFragmentsTitleList;
 
@@ -23,16 +24,31 @@ public class Main extends Activity implements OnActivityRequestedListener {
 			savedInstanceState.remove("android:fragments");
 		}
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
 
 		mFragmentsTitleList = new ArrayList<String>();
-		mFragmentsTitleList.add(getString(R.string.interface_settings_title));
-		mFragmentsTitleList.add(getString(R.string.style_settings_title));
-		mFragmentsTitleList.add(getString(R.string.system_settings_title));
-
-		mBar = getActionBar();
-		mFragmentsTitleList.add(getString(R.string.app_name));
-		showFragment(MainFragment.newInstance());
+		Bundle b = getIntent().getExtras();
+		if (b != null) {
+			String target = b.getString(KEY_TARGET_FRAGMENT);
+			if (target != null) {
+				String theTag;
+				if (INTENT_INTERFACE.equals(target)) {
+					theTag = getString(R.string.interface_settings_title);
+				} else if (INTENT_SYSTEM.equals(target)) {
+					theTag = getString(R.string.system_settings_title);
+				} else if (INTENT_STYLE.equals(target)) {
+					theTag = getString(R.string.style_settings_title);
+				} else {
+					// fallthru -- should never get here
+					theTag = getString(R.string.interface_settings_title);
+				}
+				onActivityRequested(theTag);
+			}
+		} else {
+			setContentView(R.layout.main);
+			mFragmentsTitleList.add(getString(R.string.app_name));
+			getFragmentManager().beginTransaction()
+					.add(R.id.container, MainFragment.newInstance()).commit();
+		}
 	}
 
 	@Override
@@ -49,33 +65,28 @@ public class Main extends Activity implements OnActivityRequestedListener {
 	public void onBackPressed() {
 		if (getFragmentManager().getBackStackEntryCount() > 0) {
 			getFragmentManager().popBackStack();
-            mFragmentsTitleList.remove(mFragmentsTitleList.size() - 1);
-            updateActionBarTitle();
+			mFragmentsTitleList.remove(mFragmentsTitleList.size() - 1);
+			updateActionBarTitle();
 		} else {
 			finish();
 		}
 	}
 
 	private void updateActionBarTitle() {
+		String title;
 		if (mFragmentsTitleList.size() > 0) {
-			mBar.setTitle(mFragmentsTitleList.get(mFragmentsTitleList.size() - 1));
+			title = mFragmentsTitleList.get(mFragmentsTitleList.size() - 1);
 		} else {
-			mBar.setTitle(getString(R.string.app_name));
+			title = getString(R.string.app_name);
 		}
+		getActionBar().setTitle(title);
 	}
 
 	private void replaceFragment(Fragment f, String title) {
 		getFragmentManager().beginTransaction().replace(R.id.container, f)
-		        .addToBackStack(null)
-				.commit();
+				.addToBackStack(null).commit();
 		mFragmentsTitleList.add(title);
 		updateActionBarTitle();
-		mBar.setDisplayHomeAsUpEnabled(true);
-	}
-
-	private void showFragment(Fragment f) {
-		getFragmentManager().beginTransaction().add(R.id.container, f).commit();
-		mBar.setDisplayHomeAsUpEnabled(false);
 	}
 
 	@Override
@@ -86,6 +97,8 @@ public class Main extends Activity implements OnActivityRequestedListener {
 			replaceFragment(StyleSettings.newInstance(), tag);
 		} else if ((getString(R.string.system_settings_title)).equals(tag)) {
 			replaceFragment(SystemSettings.newInstance(), tag);
+		} else if (getString(R.string.cfx_lcd_density_wizard_title).equals(tag)) {
+			replaceFragment(DensityChanger.newInstance(), tag);
 		}
 	}
 }

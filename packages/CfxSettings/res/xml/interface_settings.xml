@@ -19,6 +19,16 @@
     android:title="@string/interface_settings_title" >
 
     <PreferenceCategory
+        android:key="cfx_interface_general"
+        android:title="@string/cfx_interface_general" >
+        <!-- LCD Density Wizard -->
+        <Preference
+            android:key="lcd_density"
+            android:title="@string/cfx_lcd_density_wizard_title"
+            android:summary="@string/cfx_lcd_density_wizard_summary" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
         android:key="cfx_interface_input"
         android:title="@string/cfx_interface_input" >
         <CheckBoxPreference

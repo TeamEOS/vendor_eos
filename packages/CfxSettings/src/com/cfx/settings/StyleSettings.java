@@ -12,7 +12,7 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.provider.Settings;
 
-public class StyleSettings extends PreferenceFragment {
+public class StyleSettings extends CFXPreferenceFragment {
 	public static StyleSettings newInstance() {
 		return new StyleSettings();
 	}
@@ -20,7 +20,7 @@ public class StyleSettings extends PreferenceFragment {
 	public StyleSettings() {
 	}
 
-	static final String STYLE_GLASS_KEY = "cfx_interface_navbar_glass_style";
+	static final String STYLE_GLASS_KEY = "cfx_style_navbar_glass";
 
 	ContentResolver mResolver;
 	Context mContext;

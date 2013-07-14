@@ -67,4 +67,10 @@ public class MainFragment extends PreferenceFragment {
 							}
 						});
 	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		getActivity().getActionBar().setDisplayHomeAsUpEnabled(false);
+	}
 }

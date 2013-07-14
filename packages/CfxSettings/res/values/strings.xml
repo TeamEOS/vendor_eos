@@ -1,17 +1,64 @@
 <resources>
 
+    <!-- Generic **START** -->
     <string name="app_name">CFXSettings</string>
     <string name="header_category_cfxp">CFX</string>
     <string name="interface_settings_title">Interface</string>
     <string name="system_settings_title">System</string>
     <string name="style_settings_title">Style</string>
+    <string name="ok">Okay</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="misc_short">Misc</string>
+    <!-- Generic **END** -->
+
+    <!-- Interface **START** -->
+    <string name="cfx_interface_general">General</string>
+        <!-- Input **START** -->
     <string name="cfx_interface_input">Input</string>
     <string name="cfx_interface_input_menu_overflow_summary">Override system configuration and show overflow menu in action bar regardless of UI state</string>
     <string name="cfx_interface_input_menu_overflow_title">Force show menu overflow</string>
-    <string name="cfx_interface_navbar_glass_style_title">Glass</string>
-    <string name="cfx_interface_statusbar_glass_style_summary">Apply transparency to the statusbar</string>
-    <string name="cfx_interface_navbar_glass_style_summary">Apply transparency to system bars</string>
-    <string name="cfx_interface_navbar_glass_level_title">Glass effect</string>
-    <string name="cfx_interface_navbar_glass_level_summary">Set transparency level for launcher glass effect</string>
+        <!-- Input **END** -->
+
+        <!-- LCD Density Wizard **START** -->
+    <string name="cfx_lcd_density_wizard_title">DPI Wizard</string>
+    <string name="cfx_lcd_density_wizard_summary">Wizard to guide you through changing the display density</string>
+    <string name="dpi">DPI</string>
+    <string name="reboot_reset_density">Resetting density</string>
+    <string name="lcd_density_wizard">LCD Density Wizard</string>
+    <string name="follow_through_title">Follow through!</string>
+    <string name="follow_through_summary">Make sure you follow the steps one-by-one and complete each step before proceeding</string>
+    <string name="stock_density_title">1. Restore LCD density to stock value</string>
+    <string name="stock_density_changed_summary">"Density set to: "</string>
+    <string name="reboot_title">2. Reboot</string>
+    <string name="reboot_summary">Come back here after the reboot and complete the rest of the steps</string>
+    <string name="clear_market_data_title">3. Clear Play Store data</string>
+    <string name="clear_market_data_cleared">Play Store data cleared</string>
+    <string name="open_market_title">4. Open Play Store and hit accept</string>
+    <string name="open_market_summary">Press back when done to return to wizard</string>
+    <string name="open_market_summary_could_not_open">"Couldn't open the Play Store! If you're sure it's installed, open it manually from the launcher."</string>
+    <string name="custom_density_title">5. Change density to whatever you like</string>
+    <string name="custom_density_summary">If you ever have compatibility issues with the Play Store, be sure to return here and repeat the process</string>
+    <string name="custom_density_summary_invalid">"INVALID DENSITY!"</string>
+    <string name="custom_density">custom</string>
+    <string name="set_custom_density_title">Set custom density</string>
+    <string name="set_custom_density_set">Set</string>
+    <string name="custom_density_dialog_title">"WARNING!"</string>
+    <string name="custom_density_dialog_summary">"Changing your LCD density can cause unexpected app behavior. If you encounter Play Store app incompatibility please return here and restart the process from step 1."</string>
+    <string name="custom_density_dialog_button_got">Got it</string>
+    <string name="custom_density_dialog_button_reboot">Hot Reboot</string>
+    <string name="lcd_density_stock_160">160 -- mdpi</string>
+    <string name="lcd_density_stock_240">240 -- hdpi</string>
+    <string name="lcd_density_stock_320">320 -- xhdpi</string>
+        <!-- LCD Density Wizard **END** -->
+    <!-- Interface **END** -->
+
+    <!-- Style **START** -->
+    <string name="cfx_style_navbar_glass_title">Glass</string>
+    <string name="cfx_style_statusbar_glass_summary">Apply transparency to the statusbar</string>
+    <string name="cfx_style_navbar_glass_summary">Apply transparency to system bars</string>
+    <string name="cfx_style_navbar_glass_level_title">Glass effect</string>
+    <string name="cfx_style_navbar_glass_level_summary">Set transparency level for launcher glass effect</string>
+    <!-- Style **END** -->
 
 </resources>

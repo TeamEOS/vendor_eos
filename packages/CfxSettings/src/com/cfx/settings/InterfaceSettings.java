@@ -13,7 +13,7 @@ import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceFragment;
 import android.provider.Settings;
 
-public class InterfaceSettings extends PreferenceFragment implements
+public class InterfaceSettings extends CFXPreferenceFragment implements
 		OnPreferenceChangeListener {
 
 	public static InterfaceSettings newInstance() {
@@ -25,24 +25,32 @@ public class InterfaceSettings extends PreferenceFragment implements
 
 	static final String CATEGORY_INPUT = "cfx_interface_input";
 	static final String PREF_MENU_OVERFLOW = "cfx_interface_input_menu_overflow";
+	public static final String LCD_DENSITY = "lcd_density";
 
 	CheckBoxPreference mMenuOverflow;
 
-	ContentResolver mResolver;
-	Context mContext;
+	OnActivityRequestedListener mListener;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.interface_settings);
 
-		mContext = (Context) getActivity();
-		mResolver = getActivity().getContentResolver();
+		mListener = (OnActivityRequestedListener)getActivity();
 		mMenuOverflow = (CheckBoxPreference) findPreference(PREF_MENU_OVERFLOW);
 		mMenuOverflow.setChecked(Settings.System.getBoolean(getActivity()
 				.getContentResolver(),
 				Settings.System.UI_FORCE_OVERFLOW_BUTTON, false));
 		mMenuOverflow.setOnPreferenceChangeListener(this);
+		findPreference(LCD_DENSITY).setOnPreferenceClickListener(
+				new Preference.OnPreferenceClickListener() {
+
+					@Override
+					public boolean onPreferenceClick(Preference preference) {
+						mListener.onActivityRequested(getString(R.string.cfx_lcd_density_wizard_title));
+						return true;
+					}
+				});
 	}
 
 	@Override

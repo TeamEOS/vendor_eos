@@ -1,5 +1,4 @@
-
-package com.cfx.settings;
+package com.cfx.settings.activities;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -14,6 +13,8 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import org.codefirex.utils.*;
+
+import com.cfx.settings.R;
 
 public class GlassDialogPreference extends DialogPreference {
     Context mContext;

@@ -19,14 +19,14 @@
     android:title="@string/style_settings_title" >
 
     <CheckBoxPreference
-        android:key="cfx_interface_navbar_glass_style"
-        android:summary="@string/cfx_interface_navbar_glass_style_summary"
-        android:title="@string/cfx_interface_navbar_glass_style_title" />
+        android:key="cfx_style_navbar_glass"
+        android:summary="@string/cfx_style_navbar_glass_summary"
+        android:title="@string/cfx_style_navbar_glass_title" />
 
-    <com.cfx.settings.GlassDialogPreference
-        android:dependency="cfx_interface_navbar_glass_style"
-        android:key="cfx_interface_navbar_glass_seekbar"
-        android:summary="@string/cfx_interface_navbar_glass_level_summary"
-        android:title="@string/cfx_interface_navbar_glass_level_title" />
+    <com.cfx.settings.activities.GlassDialogPreference
+        android:dependency="cfx_style_navbar_glass"
+        android:key="cfx_style_navbar_glass_seekbar"
+        android:summary="@string/cfx_style_navbar_glass_level_summary"
+        android:title="@string/cfx_style_navbar_glass_level_title" />
 
 </PreferenceScreen>
