@@ -71,6 +71,15 @@
     <string name="cfx_system_power_crt_screen_on_title">CRT Screen On</string>
     <string name="cfx_system_power_crt_screen_on_summary">Screen will animate an Electron Beam when turned on</string>
     <!-- End Power and Display -->
+    <!-- volume -->
+    <string name="cfx_system_volume_sound_category_title">Volume and Sound</string>
+    <string name="cfx_system_volume_hard_button_sounds_title">Volume key sounds</string>
+    <string name="cfx_system_volume_hard_button_sounds_summary">Enable/Disable hardware volume button system sound</string>
+    <string name="cfx_system_volume_panel_controls_summary">Customize the system volume panel</string>
+    <string name="cfx_system_volume_panel_controls_title">Volume panel</string>
+    <string name="cfx_system_volume_link_notification_summary">Notification and ringtone are linked when enabled</string>
+    <string name="cfx_system_volume_link_notification_title">Link notification volume</string>
+    <!-- end volume -->
     <!-- End system -->
 
 </resources>
