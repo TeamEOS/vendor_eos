@@ -59,6 +59,8 @@
     <string name="cfx_style_navbar_glass_summary">Apply transparency to system bars</string>
     <string name="cfx_style_navbar_glass_level_title">Glass effect</string>
     <string name="cfx_style_navbar_glass_level_summary">Set transparency level for launcher glass effect</string>
+    <string name="cfx_style_expanded_desktop_title">Expanded Desktop</string>
+    <string name="cfx_sytle_expanded_desktop_summary">Hide interface bars</string>
     <!-- Style **END** -->
 
     <!-- System **START** -->
@@ -80,6 +82,16 @@
     <string name="cfx_system_volume_link_notification_summary">Notification and ringtone are linked when enabled</string>
     <string name="cfx_system_volume_link_notification_title">Link notification volume</string>
     <!-- end volume -->
+    <!-- Power menu -->
+    <string name="cfx_power_menu_title">Power menu</string>
+    <string name="cfx_power_menu_item_reboot">Reboot</string>
+    <string name="cfx_power_menu_item_reboot_advanced">Advanced reboot</string>
+    <string name="cfx_power_menu_item_screenshot">Screenshot</string>
+    <string name="cfx_power_menu_item_expanded_desktop">Expanded desktop</string>
+    <string name="cfx_power_menu_item_airplane_mode">Airplane mode</string>
+    <string name="cfx_power_menu_item_sound_panel">Sound panel</string>
+    <!--  end power menu -->
+
     <!-- End system -->
 
 </resources>

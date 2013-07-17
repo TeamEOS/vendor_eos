@@ -1,9 +1,12 @@
 package com.cfx.settings;
 
 import android.os.Bundle;
+import android.os.UserHandle;
 import android.view.MenuItem;
 import android.app.Fragment;
 import android.app.Activity;
+import android.app.FragmentManager;
+import android.content.Intent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +18,7 @@ public class Main extends Activity implements OnActivityRequestedListener {
 	static final String INTENT_INTERFACE = "intent_interface";
 	static final String INTENT_SYSTEM = "intent_system";
 	static final String INTENT_STYLE = "intent_style";
+	static boolean cameFromSettings = false;
 
 	List<String> mFragmentsTitleList;
 
@@ -24,31 +28,36 @@ public class Main extends Activity implements OnActivityRequestedListener {
 			savedInstanceState.remove("android:fragments");
 		}
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.main);
 
 		mFragmentsTitleList = new ArrayList<String>();
+		String targetFrag = "";
 		Bundle b = getIntent().getExtras();
 		if (b != null) {
 			String target = b.getString(KEY_TARGET_FRAGMENT);
 			if (target != null) {
-				String theTag;
 				if (INTENT_INTERFACE.equals(target)) {
-					theTag = getString(R.string.interface_settings_title);
+					targetFrag = getString(R.string.interface_settings_title);
 				} else if (INTENT_SYSTEM.equals(target)) {
-					theTag = getString(R.string.system_settings_title);
+					targetFrag = getString(R.string.system_settings_title);
 				} else if (INTENT_STYLE.equals(target)) {
-					theTag = getString(R.string.style_settings_title);
+					targetFrag = getString(R.string.style_settings_title);
 				} else {
 					// fallthru -- should never get here
-					theTag = getString(R.string.interface_settings_title);
+					targetFrag = getString(R.string.interface_settings_title);
 				}
-				onActivityRequested(theTag);
+				cameFromSettings = true;
 			}
 		} else {
-			setContentView(R.layout.main);
-			mFragmentsTitleList.add(getString(R.string.app_name));
-			getFragmentManager().beginTransaction()
-					.add(R.id.container, MainFragment.newInstance()).commit();
+			targetFrag = getString(R.string.app_name);
+			cameFromSettings = false;
 		}
+		Fragment f = getFragmentByTitle(targetFrag);
+		// Bundle args = f.getArguments();
+		// if (args == null) args = new Bundle();
+		// args.putBoolean("started_from_shortcut", cameFromSettings);
+		// f.setArguments(args);
+		initializeFragment(f, targetFrag);
 	}
 
 	@Override
@@ -68,7 +77,15 @@ public class Main extends Activity implements OnActivityRequestedListener {
 			mFragmentsTitleList.remove(mFragmentsTitleList.size() - 1);
 			updateActionBarTitle();
 		} else {
-			finish();
+			if (cameFromSettings) {
+				Intent settingsIntent = new Intent().setAction(
+						android.provider.Settings.ACTION_SETTINGS).setFlags(
+						Intent.FLAG_ACTIVITY_NEW_TASK
+								| Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				startActivityAsUser(settingsIntent, new UserHandle(
+						UserHandle.USER_CURRENT));
+				finish();
+			}
 		}
 	}
 
@@ -89,16 +106,33 @@ public class Main extends Activity implements OnActivityRequestedListener {
 		updateActionBarTitle();
 	}
 
+	private void initializeFragment(Fragment f, String title) {
+		getFragmentManager().beginTransaction().add(R.id.container, f).commit();
+		mFragmentsTitleList.add(title);
+		updateActionBarTitle();
+	}
+
+	Fragment getFragmentByTitle(String title) {
+		if ((getString(R.string.interface_settings_title)).equals(title)) {
+			return InterfaceSettings.newInstance();
+		} else if ((getString(R.string.style_settings_title)).equals(title)) {
+			return StyleSettings.newInstance();
+		} else if ((getString(R.string.system_settings_title)).equals(title)) {
+			return SystemSettings.newInstance();
+		} else if (getString(R.string.cfx_lcd_density_wizard_title).equals(
+				title)) {
+			return DensityChanger.newInstance();
+		} else if (getString(R.string.app_name).equals(title)) {
+			return MainFragment.newInstance();
+		} else if (getString(R.string.cfx_power_menu_title).equals(title)) {
+			return PowerMenu.newInstance();
+		} else {
+			return MainFragment.newInstance();
+		}
+	}
+
 	@Override
 	public void onActivityRequested(String tag) {
-		if ((getString(R.string.interface_settings_title)).equals(tag)) {
-			replaceFragment(InterfaceSettings.newInstance(), tag);
-		} else if ((getString(R.string.style_settings_title)).equals(tag)) {
-			replaceFragment(StyleSettings.newInstance(), tag);
-		} else if ((getString(R.string.system_settings_title)).equals(tag)) {
-			replaceFragment(SystemSettings.newInstance(), tag);
-		} else if (getString(R.string.cfx_lcd_density_wizard_title).equals(tag)) {
-			replaceFragment(DensityChanger.newInstance(), tag);
-		}
+		replaceFragment(getFragmentByTitle(tag), tag);
 	}
 }
