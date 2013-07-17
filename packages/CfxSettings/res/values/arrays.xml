@@ -63,15 +63,4 @@
         <item>3</item>
     </string-array>
 
-    <string-array name="style_expanded_desktop_entries">
-        <item>Disabled</item>
-        <item>Statusbar doesn\'t hide</item>
-        <item>Hide statusbar</item>
-    </string-array>
-    <string-array name="style_expanded_desktop_values">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-    </string-array>
-
 </resources>

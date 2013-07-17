@@ -15,7 +15,6 @@ public class SystemSettings extends CFXPreferenceFragment {
 	private static final String SCREEN_PLUG = "cfx_system_power_unplug_screen_off";
 	private static final String CRT_OFF = "cfx_system_power_crt_screen_off";
 	private static final String CRT_ON = "cfx_system_power_crt_screen_on";
-	private static final String POWER_MENU = "cfx_power_menu_title";
 
 	OnActivityRequestedListener mListener;
 
@@ -38,8 +37,6 @@ public class SystemSettings extends CFXPreferenceFragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.system_settings);
-		
-		mListener = (OnActivityRequestedListener)getActivity();
 
 		mVolumePanelStyle = (ListPreference) findPreference(VOLUME_OVERLAY);
 		mVolumePanelStyle.setValue(String.valueOf(Settings.System.getInt(
@@ -140,16 +137,6 @@ public class SystemSettings extends CFXPreferenceFragment {
 				return true;
 			}
 		});
-
-		findPreference(POWER_MENU).setOnPreferenceClickListener(
-				new Preference.OnPreferenceClickListener() {
-
-					@Override
-					public boolean onPreferenceClick(Preference preference) {
-						mListener.onActivityRequested(getString(R.string.cfx_power_menu_title));
-						return true;
-					}
-				});
 	}
 
 }

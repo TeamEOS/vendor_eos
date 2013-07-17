@@ -51,12 +51,5 @@
             android:summary="@string/cfx_system_power_crt_screen_on_summary"
             android:title="@string/cfx_system_power_crt_screen_on_title" />
     </PreferenceCategory>
-    <PreferenceCategory
-        android:key="cfx_power_menu"
-        android:title="@string/cfx_power_menu_title" >
-        <Preference
-            android:key="cfx_power_menu_title"
-            android:title="@string/cfx_power_menu_title" />
-    </PreferenceCategory>
 
 </PreferenceScreen>

@@ -1,7 +1,6 @@
 package com.cfx.settings;
 
 import org.codefirex.utils.CFXConstants;
-import org.codefirex.utils.CFXUtils;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -9,7 +8,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.UserHandle;
 import android.preference.CheckBoxPreference;
-import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.provider.Settings;
@@ -23,14 +21,10 @@ public class StyleSettings extends CFXPreferenceFragment {
 	}
 
 	static final String STYLE_GLASS_KEY = "cfx_style_navbar_glass";
-	static final String ED_SINGLE = "style_expanded_desktop_enabled";
-	static final String ED_DUAL = "style_expanded_desktop_options";
 
 	ContentResolver mResolver;
 	Context mContext;
 	CheckBoxPreference mGlassStyleBar;
-	CheckBoxPreference mExpandedSingle;
-	ListPreference mExpandedDual;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -38,18 +32,6 @@ public class StyleSettings extends CFXPreferenceFragment {
 		addPreferencesFromResource(R.xml.style_settings);
 		mContext = (Context) getActivity();
 		mResolver = getActivity().getContentResolver();
-
-		// Expanded desktop: use checkbox for no bars, list for dual bar options
-		boolean mHasDualBars = CFXUtils.hasNavBar(mContext)
-				|| CFXUtils.hasSystemBar(mContext);
-		mExpandedSingle = (CheckBoxPreference) findPreference(ED_SINGLE);
-		mExpandedDual = (ListPreference) findPreference(ED_DUAL);
-
-		if (mHasDualBars) {
-			getPreferenceScreen().removePreference(mExpandedSingle);
-		} else {
-			getPreferenceScreen().removePreference(mExpandedDual);
-		}
 
 		mGlassStyleBar = (CheckBoxPreference) findPreference(STYLE_GLASS_KEY);
 
@@ -74,44 +56,6 @@ public class StyleSettings extends CFXPreferenceFragment {
 						return true;
 					}
 				});
-
-		if (mExpandedDual != null) {
-			mExpandedDual.setValue(String.valueOf(Settings.System.getInt(
-					mResolver, Settings.System.EXPANDED_DESKTOP_STYLE, 0)));
-			mExpandedDual
-					.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-
-						@Override
-						public boolean onPreferenceChange(
-								Preference preference, Object newValue) {
-							int val = Integer.parseInt(((String) newValue)
-									.toString());
-							Settings.System
-									.putInt(mResolver,
-											Settings.System.EXPANDED_DESKTOP_STYLE,
-											val);
-							return true;
-						}
-					});
-		}
-
-		if (mExpandedSingle != null) {
-			mExpandedSingle.setChecked(Settings.System.getInt(mResolver,
-					Settings.System.EXPANDED_DESKTOP_STYLE, 0) == 1);
-			mExpandedSingle
-					.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-
-						@Override
-						public boolean onPreferenceChange(
-								Preference preference, Object newValue) {
-							Settings.System
-									.putInt(mResolver,
-											Settings.System.EXPANDED_DESKTOP_STYLE,
-											((Boolean) newValue).booleanValue() ? 1
-													: 0);
-							return true;
-						}
-					});
-		}
 	}
+
 }

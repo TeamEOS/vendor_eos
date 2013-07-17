@@ -14,14 +14,14 @@
     <application
         android:configChanges="keyboardHidden|orientation|screenSize"
         android:icon="@drawable/ic_launcher_codefirex"
-        android:label="@string/app_name"
-        android:allowBackup="false" >
+        android:label="@string/app_name" >
         <activity
             android:name="com.cfx.settings.Main"
             android:label="@string/app_name"
             android:theme="@style/PagerTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
