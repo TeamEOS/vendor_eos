@@ -93,7 +93,6 @@ PRODUCT_COPY_FILES += \
 # Required cfX packages
 PRODUCT_PACKAGES += \
     Camera \
-    CFXSettings \
     Development \
     Email \
     LatinIME \
