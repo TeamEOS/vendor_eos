@@ -36,7 +36,6 @@ LOCAL_OVERRIDES_PACKAGES += \
     QuickSearchBox
 
 LOCAL_OVERRIDES_PACKAGES += \
-    LatinIME \
     PinyinIME \
     OpenWnn \
     libWnnEngDic \
