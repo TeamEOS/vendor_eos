@@ -18,6 +18,7 @@ LOCAL_OVERRIDES_PACKAGES += \
     LiveWallpapersPicker \
     Calculator \
     Calendar \
+    CMFileManager \
     DeskClock \
     Apollo \
     Basic \
@@ -42,30 +43,6 @@ LOCAL_OVERRIDES_PACKAGES += \
     libWnnJpnDic \
     libwnndict \
     libfwdlockengine
-
-# Extra tools in cfX
-LOCAL_OVERRIDES_PACKAGES += \
-    openvpn \
-    e2fsck \
-    mke2fs \
-    tune2fs \
-    bash \
-    vim \
-    nano \
-    htop \
-    powertop \
-    lsof \
-    systembinsh
-
-# Openssh
-LOCAL_OVERRIDES_PACKAGES += \
-    scp \
-    sftp \
-    ssh \
-    sshd \
-    sshd_config \
-    ssh-keygen \
-    start-ssh
 
 # rsync
 LOCAL_OVERRIDES_PACKAGES += \
