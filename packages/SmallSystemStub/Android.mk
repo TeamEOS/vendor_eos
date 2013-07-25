@@ -22,6 +22,7 @@ LOCAL_OVERRIDES_PACKAGES := \
     Basic \
     VideoEditor \
     VoiceDialer \
+    VoicePlus \
     SoundRecorder \
     ZeroXBenchmark \
     SpareParts \
@@ -39,9 +40,7 @@ LOCAL_OVERRIDES_PACKAGES := \
     libWnnJpnDic \
     libwnndict \
     libfwdlockengine \
-    rsync \
-    babel
-
+    rsync
 
 LOCAL_SDK_VERSION := current
 
