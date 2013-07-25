@@ -107,6 +107,7 @@ PRODUCT_PACKAGES += \
     audio_effects.conf \
     Apollo \
     Basic \
+    Babel \
     CMFileManager \
     VideoEditor \
     VoiceDialer \

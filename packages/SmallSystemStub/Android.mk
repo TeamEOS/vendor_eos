@@ -11,9 +11,7 @@ LOCAL_OVERRIDES_PACKAGES := \
     NoiseField \
     Galaxy4 \
     VisualizationWallpapers \
-    PhaseBeam
-
-LOCAL_OVERRIDES_PACKAGES += \
+    PhaseBeam \
     LiveWallpapers \
     LiveWallpapersPicker \
     Calculator \
@@ -34,19 +32,16 @@ LOCAL_OVERRIDES_PACKAGES += \
     MusicFX \
     Email2 \
     Exchange2 \
-    QuickSearchBox
-
-LOCAL_OVERRIDES_PACKAGES += \
+    QuickSearchBox \
     PinyinIME \
     OpenWnn \
     libWnnEngDic \
     libWnnJpnDic \
     libwnndict \
-    libfwdlockengine
+    libfwdlockengine \
+    rsync \
+    babel
 
-# rsync
-LOCAL_OVERRIDES_PACKAGES += \
-    rsync
 
 LOCAL_SDK_VERSION := current
 
