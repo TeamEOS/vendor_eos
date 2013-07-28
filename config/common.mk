@@ -94,6 +94,7 @@ PRODUCT_PACKAGES += \
     Camera \
     Development \
     Email \
+    init.superuser.rc \
     LatinIME \
     Launcher2 \
     LockClock \
