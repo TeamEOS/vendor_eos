@@ -24,12 +24,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Disable ADB authentication
 ADDITIONAL_DEFAULT_PROPERTIES += ro.adb.secure=0
 
-# Proprietary LatinIME Gesture Support
-PRODUCT_COPY_FILES += \
-    vendor/cfx/prebuilt/common/lib/libjni_latinime.so:obj/lib/libjni_latinime.so \
-    vendor/cfx/prebuilt/common/lib/libjni_latinime.so:system/lib/libjni_latinime.so \
-    vendor/cfx/prebuilt/common/lib/libjni_latinime.so:system/lib/libjni_latinimegoogle.so
-
 # Backup Tool
 PRODUCT_COPY_FILES += \
 	vendor/cfx/prebuilt/common/bin/backuptool.sh:system/bin/backuptool.sh \
