@@ -108,6 +108,11 @@ PRODUCT_PACKAGES += \
     VoiceDialer \
     SoundRecorder
 
+# CM Hardware Abstraction Framework
+PRODUCT_PACKAGES += \
+    org.cyanogenmod.hardware \
+    org.cyanogenmod.hardware.xml
+
 # Extra tools in eos
 PRODUCT_PACKAGES += \
     openvpn \
