@@ -154,3 +154,6 @@ PRODUCT_PROPERTY_OVERRIDES += ro.modversion=$(BUILD_NUMBER)
 
 # T-Mobile Theme Engine
 $(call inherit-product, vendor/cfx/config/themes_common.mk)
+
+# global sepolicy
+-include vendor/cfx/sepolicy/sepolicy.mk
