@@ -92,7 +92,6 @@ PRODUCT_PACKAGES += \
     LatinIME \
     Launcher2 \
     LockClock \
-    PermissionsManager \
     SpareParts \
     Superuser \
     su
@@ -105,7 +104,6 @@ PRODUCT_PACKAGES += \
     CMFileManager \
     VideoEditor \
     VoiceDialer \
-    VoicePlus \
     SoundRecorder \
     ZeroXBenchmark \
 
