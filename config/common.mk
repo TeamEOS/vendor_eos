@@ -148,3 +148,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGE_OVERLAYS += vendor/cfx/overlay/dictionaries
 PRODUCT_PACKAGE_OVERLAYS += vendor/cfx/overlay/common
+
+# Set valid modversion
+PRODUCT_PROPERTY_OVERRIDES += ro.modversion=$(BUILD_NUMBER)
