@@ -89,6 +89,17 @@ PRODUCT_PACKAGES += \
     KernelControls
 endif
 
+# FM Radio support
+ifeq ($(BOARD_HAVE_FM_RADIO),true)
+  PRODUCT_PACKAGES += \
+    FmRadio \
+    libanalogradiobroadcasting
+
+  PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/com.stericsson.hardware.fm.transmitter.xml:system/etc/permissions/com.stericsson.hardware.fm.transmitter.xml \
+    frameworks/native/data/etc/com.stericsson.hardware.fm.receiver.xml:system/etc/permissions/com.stericsson.hardware.fm.receiver.xml
+endif
+
 # Required cfX packages
 PRODUCT_PACKAGES += \
     Camera \
