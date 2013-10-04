@@ -103,6 +103,7 @@ endif
 # Required cfX packages
 PRODUCT_PACKAGES += \
     Camera \
+    CFXTools \
     Development \
     Email \
     LatinIME \
