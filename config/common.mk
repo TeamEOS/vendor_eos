@@ -92,8 +92,7 @@ endif
 # FM Radio support
 ifeq ($(BOARD_HAVE_FM_RADIO),true)
   PRODUCT_PACKAGES += \
-    FmRadio \
-    libanalogradiobroadcasting
+    FmRadio
 
   PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/com.stericsson.hardware.fm.transmitter.xml:system/etc/permissions/com.stericsson.hardware.fm.transmitter.xml \
