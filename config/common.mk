@@ -15,12 +15,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.android.dateformat=MM-dd-yyyy \
     ro.com.android.dataroaming=false
 
-# cfX File Contexts
-#ifeq ($(HAVE_SELINUX),true)
-#PRODUCT_COPY_FILES += \
-#    vendor/cfx/prebuilt/common/root/file_contexts:root/file_contexts
-#endif
-
 # Disable ADB authentication
 ADDITIONAL_DEFAULT_PROPERTIES += ro.adb.secure=0
 
@@ -45,7 +39,7 @@ PRODUCT_COPY_FILES += \
     vendor/cfx/prebuilt/common/etc/init.cfx.rc:root/init.cfx.rc
 
 # Don't copy memory tweaks on low ram devices (<786M)
-ifneq ($(TARGET_IS_LOW_RAM),true)
+ifeq ($(strip $(TARGET_IS_LOW_RAM)),)
 PRODUCT_COPY_FILES += \
     vendor/cfx/prebuilt/common/etc/init.memory.rc:root/init.memory.rc
 endif
