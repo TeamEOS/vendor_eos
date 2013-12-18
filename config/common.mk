@@ -123,12 +123,6 @@ PRODUCT_PACKAGES += \
     SoundRecorder \
     ZeroXBenchmark \
 
-# Theme Chooser
-PRODUCT_PACKAGES += \
-    ThemeManager \
-    ThemeChooser \
-    com.tmobile.themes
-
 # Extra tools in cfX
 PRODUCT_PACKAGES += \
     openvpn \
@@ -162,3 +156,6 @@ PRODUCT_PACKAGE_OVERLAYS += vendor/cfx/overlay/common
 
 # Set valid modversion
 PRODUCT_PROPERTY_OVERRIDES += ro.modversion=$(BUILD_NUMBER)
+
+# T-Mobile Theme Engine
+$(call inherit-product, vendor/cfx/config/themes_common.mk)
