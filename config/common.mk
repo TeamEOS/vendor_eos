@@ -145,6 +145,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     rsync
 
+# emoji
+PRODUCT_PACKAGES += \
+    libemoji
+
 PRODUCT_PACKAGE_OVERLAYS += vendor/cfx/overlay/dictionaries
 PRODUCT_PACKAGE_OVERLAYS += vendor/cfx/overlay/common
 
