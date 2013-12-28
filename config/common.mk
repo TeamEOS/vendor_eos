@@ -97,6 +97,7 @@ endif
 PRODUCT_PACKAGES += \
     Camera \
     CFXTools \
+    CFXControls \
     Development \
     Email \
     LatinIME \
