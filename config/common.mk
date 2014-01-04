@@ -95,13 +95,17 @@ endif
 
 # Required cfX packages
 PRODUCT_PACKAGES += \
+    audio_effects.conf \
+    BluetoothExt \
     Camera \
     CFXTools \
     CFXControls \
     Development \
+    DSPManager\
     Email \
     LatinIME \
     Launcher2 \
+    libcyanogen-dsp \
     LockClock \
     SpareParts \
     Superuser \
@@ -109,7 +113,6 @@ PRODUCT_PACKAGES += \
 
 # Optional cfX packages
 PRODUCT_PACKAGES += \
-    audio_effects.conf \
     Apollo \
     Basic \
     CMFileManager \
