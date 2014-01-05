@@ -41,26 +41,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     vendor/eos/prebuilt/common/etc/init.eos.rc:root/init.eos.rc
 
-# Compcache/Zram support
-PRODUCT_COPY_FILES += \
-    vendor/eos/prebuilt/common/bin/compcache:system/bin/compcache \
-    vendor/eos/prebuilt/common/bin/handle_compcache:system/bin/handle_compcache
-
-# mounts
-PRODUCT_COPY_FILES += \
-    vendor/eos/prebuilt/common/bin/sysrw:system/bin/sysrw \
-    vendor/eos/prebuilt/common/bin/sysro:system/bin/sysro \
-    vendor/eos/prebuilt/common/bin/rootrw:system/bin/rootrw \
-    vendor/eos/prebuilt/common/bin/rootro:system/bin/rootro
-
-# swap support
-PRODUCT_COPY_FILES += \
-    vendor/eos/prebuilt/common/bin/handle_swap:system/bin/handle_swap
-
-# Nam configuration script
-PRODUCT_COPY_FILES += \
-    vendor/eos/prebuilt/common/bin/modelid_cfg.sh:system/bin/modelid_cfg.sh
-
 # Bring in camera effects
 PRODUCT_COPY_FILES +=  \
     vendor/eos/prebuilt/common/media/LMprec_508.emd:system/media/LMprec_508.emd \
