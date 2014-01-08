@@ -113,9 +113,9 @@ PRODUCT_PACKAGES += \
 
 # Optional cfX packages
 PRODUCT_PACKAGES += \
+    AndroidFileExplorer \
     Apollo \
     Basic \
-    CMFileManager \
     VideoEditor \
     VoiceDialer \
     SoundRecorder \
