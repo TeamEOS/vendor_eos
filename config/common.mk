@@ -109,10 +109,10 @@ PRODUCT_PACKAGES += \
 
 # Optional cfX packages
 PRODUCT_PACKAGES += \
+    AndroidFileExplorer \
     audio_effects.conf \
     Apollo \
     Basic \
-    CMFileManager \
     VideoEditor \
     VoiceDialer \
     SoundRecorder \
