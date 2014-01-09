@@ -102,7 +102,6 @@ PRODUCT_PACKAGES += \
     Email \
     LatinIME \
     Launcher2 \
-    LockClock \
     SpareParts \
     Superuser \
     su
@@ -111,8 +110,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     AndroidFileExplorer \
     audio_effects.conf \
-    Apollo \
     Basic \
+    Music \
     VideoEditor \
     VoiceDialer \
     SoundRecorder \
