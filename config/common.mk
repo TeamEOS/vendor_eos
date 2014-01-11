@@ -77,12 +77,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     vendor/cfx/prebuilt/common/etc/mkshrc:system/etc/mkshrc
 
-# Some devices may have wonky hotplugs and not want this
-ifneq ($(TARGET_NO_KERNEL_CONTROLS),true)
-PRODUCT_PACKAGES += \
-    KernelControls
-endif
-
 # FM Radio support
 ifeq ($(BOARD_HAVE_FM_RADIO),true)
   PRODUCT_PACKAGES += \
