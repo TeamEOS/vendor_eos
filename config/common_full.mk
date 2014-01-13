@@ -11,3 +11,7 @@ PRODUCT_PACKAGES += \
     LiveWallpapersPicker \
     VisualizationWallpapers \
     PhaseBeam
+
+ifeq ($(strip $(BOARD_DISABLE_LAUNCHER3)),)
+PRODUCT_PACKAGES += Launcher3
+endif
