@@ -87,6 +87,10 @@ ifeq ($(BOARD_HAVE_FM_RADIO),true)
     frameworks/native/data/etc/com.stericsson.hardware.fm.receiver.xml:system/etc/permissions/com.stericsson.hardware.fm.receiver.xml
 endif
 
+# Terminal Emulator prebuilt library
+PRODUCT_COPY_FILES +=  \
+    vendor/cfx/prebuilt/common/lib/libjackpal-androidterm4.so:system/lib/libjackpal-androidterm4.so \
+
 # Required cfX packages
 PRODUCT_PACKAGES += \
     BluetoothExt \
@@ -105,7 +109,6 @@ PRODUCT_PACKAGES += \
 
 # Optional cfX packages
 PRODUCT_PACKAGES += \
-    AndroidFileExplorer \
     audio_effects.conf \
     Basic \
     Music \
@@ -159,3 +162,6 @@ PRODUCT_PROPERTY_OVERRIDES += ro.modversion=$(BUILD_NUMBER)
 
 # T-Mobile Theme Engine
 $(call inherit-product, vendor/cfx/config/themes_common.mk)
+
+# Open Source prebuilts
+$(call inherit-product, vendor/cfx/config/prebuilt_apps_common.mk)
