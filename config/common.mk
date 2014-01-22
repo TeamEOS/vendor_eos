@@ -96,7 +96,6 @@ PRODUCT_PACKAGES += \
     BluetoothExt \
     Camera \
     CFXTools \
-    CFXControls \
     Development \
     DSPManager\
     Email \
