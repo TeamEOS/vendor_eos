@@ -12,6 +12,7 @@ on post-fs-data
 # include additional memory tweaks
     import /init.memory.rc
 
+on boot
     # Run sysinit
     start sysinit
 
