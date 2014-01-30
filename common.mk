@@ -47,8 +47,16 @@ PRODUCT_PACKAGES += \
     AndroidFileExplorer \
     Launcher3
 
+# Terminal Emulator
 PRODUCT_COPY_FILES += \
     vendor/eos/proprietary/terminalemulator/libjackpal-androidterm4.so:system/lib/libjackpal-androidterm4.so
+
+# PlayStation
+PRODUCT_PACKAGES += \
+    com.playstation.playstationcertified
+
+PRODUCT_COPY_FILES +=  \
+    vendor/cfx/prebuilt/common/etc/permissions/com.playstation.playstationcertified.xml:system/etc/permissions/com.playstation.playstationcertified.xml
 
 #Bring in camera media effects
 $(call inherit-product-if-exists, frameworks/base/data/videos/VideoPackage2.mk)
