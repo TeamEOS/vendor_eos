@@ -91,6 +91,13 @@ endif
 PRODUCT_COPY_FILES +=  \
     vendor/cfx/prebuilt/common/lib/libjackpal-androidterm4.so:system/lib/libjackpal-androidterm4.so \
 
+# PlayStation
+PRODUCT_PACKAGES += \
+    com.playstation.playstationcertified
+
+PRODUCT_COPY_FILES +=  \
+    vendor/cfx/prebuilt/common/etc/permissions/com.playstation.playstationcertified.xml:system/etc/permissions/com.playstation.playstationcertified.xml
+
 # Required cfX packages
 PRODUCT_PACKAGES += \
     BluetoothExt \
