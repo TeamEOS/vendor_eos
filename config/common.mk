@@ -15,6 +15,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Disable ADB authentication
 ADDITIONAL_DEFAULT_PROPERTIES += ro.adb.secure=0
 
+# Thank you, please drive thru!
+PRODUCT_PROPERTY_OVERRIDES += persist.sys.dun.override=0
+
 # Backup Tool
 PRODUCT_COPY_FILES += \
 	vendor/eos/prebuilt/common/bin/backuptool.sh:system/bin/backuptool.sh \
