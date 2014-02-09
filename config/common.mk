@@ -96,6 +96,7 @@ PRODUCT_PACKAGES += \
     BluetoothExt \
     Camera \
     CFXTools \
+    CFXWeather \
     Development \
     DSPManager\
     Email \
@@ -103,7 +104,6 @@ PRODUCT_PACKAGES += \
     Launcher2 \
     libcyanogen-dsp \
     SpareParts \
-    Superuser \
     su
 
 # Optional cfX packages
