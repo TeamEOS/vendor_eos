@@ -1,0 +1,11 @@
+#!/system/bin/sh
+# CFX perms
+# set permissions needed for CFX features
+
+# O-touch
+if [ -e /proc/touchpad/enable ];
+then
+   chown root:root /proc/touchpad/enable
+   chmod 666 /proc/touchpad/enable
+   chown system:system /proc/touchpad/enable
+fi;

@@ -25,6 +25,8 @@ PRODUCT_COPY_FILES += \
 # init.d support
 PRODUCT_COPY_FILES += \
     vendor/cfx/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
+    vendor/cfx/prebuilt/common/etc/init.d/01fastcharge:system/etc/init.d/01fastcharge \
+    vendor/cfx/prebuilt/common/etc/init.d/02oppo:system/etc/init.d/02oppo \
     vendor/cfx/prebuilt/common/bin/sysinit:system/bin/sysinit
 
 # userinit support
