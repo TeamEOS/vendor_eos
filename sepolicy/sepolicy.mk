@@ -1,10 +1,10 @@
 #
 # This policy configuration will be used by all products that
-# inherit from CFX
+# inherit from eos
 # 
 
 BOARD_SEPOLICY_DIRS += \
-    vendor/cfx/sepolicy
+    vendor/eos/sepolicy
 
 BOARD_SEPOLICY_UNION += \
     file.te \

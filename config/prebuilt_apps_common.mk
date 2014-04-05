@@ -8,4 +8,4 @@ PRODUCT_PACKAGES += \
 
 # Terminal Emulator prebuilt library
 PRODUCT_COPY_FILES +=  \
-    vendor/cfx/prebuilt/common/lib/libjackpal-androidterm4.so:system/lib/libjackpal-androidterm4.so \
+    vendor/eos/prebuilt/common/lib/libjackpal-androidterm4.so:system/lib/libjackpal-androidterm4.so \
