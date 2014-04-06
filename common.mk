@@ -17,7 +17,7 @@
 # This file includes all definitions that apply to ALL eos builds
 
 ADDITIONAL_DEFAULT_PROPERTIES += \
-    ro.adb.secure=1
+    ro.adb.secure=0
 
 PRODUCT_PACKAGES += \
     TerminalEmulator \
