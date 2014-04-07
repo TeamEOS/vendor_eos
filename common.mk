@@ -41,7 +41,9 @@ PRODUCT_PACKAGES += \
     sftp \
     libbt-vendor \
     ssh-keygen \
-    libemoji
+    libemoji \
+    audio_effects.conf \
+    BluetoothExt
 
 PRODUCT_COPY_FILES += \
     vendor/eos/proprietary/terminalemulator/libjackpal-androidterm4.so:system/lib/libjackpal-androidterm4.so
