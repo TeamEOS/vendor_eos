@@ -21,7 +21,6 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
 
 PRODUCT_PACKAGES += \
     TerminalEmulator \
-    SuperSU \
     busybox \
     thtt \
     ntfs-3g.probe \
@@ -48,8 +47,7 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_COPY_FILES += \
     vendor/eos/filesystem_overlay/etc/permissions/com.tmobile.software.themes.xml:system/etc/permissions/com.tmobile.software.themes.xml \
-    vendor/eos/proprietary/terminalemulator/libjackpal-androidterm4.so:system/lib/libjackpal-androidterm4.so \
-    vendor/eos/proprietary/supersu/su:system/xbin/su \
+    vendor/eos/proprietary/terminalemulator/libjackpal-androidterm4.so:system/lib/libjackpal-androidterm4.so
 
 #Bring in camera media effects
 $(call inherit-product-if-exists, frameworks/base/data/videos/VideoPackage2.mk)
