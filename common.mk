@@ -55,11 +55,11 @@ $(call inherit-product-if-exists, vendor/eos/filesystem_overlay/overlay.mk)
 DEVICE_PACKAGE_OVERLAYS += vendor/eos/resource_overlay
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.eos.majorversion=3
+    ro.eos.majorversion=4
 
 ifeq ($(EOS_RELEASE),)
     PRODUCT_BUILD_PROP_OVERRIDES += \
-    BUILD_DISPLAY_ID="EOS JDQ39 Nightly $(EOS_BUILD_NUMBER)"
+    BUILD_DISPLAY_ID="EOS KVT49L Nightly $(EOS_BUILD_NUMBER)"
 else
     PRODUCT_BUILD_PROP_OVERRIDES += \
     BUILD_DISPLAY_ID="EOS Stable release $(EOS_RELEASE)"
