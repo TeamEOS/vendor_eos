@@ -22,7 +22,6 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
 PRODUCT_PACKAGES += \
     TerminalEmulator \
     SuperSU \
-    GooManager \
     busybox \
     thtt \
     ntfs-3g.probe \
@@ -64,23 +63,6 @@ ifeq ($(EOS_RELEASE),)
 else
     PRODUCT_BUILD_PROP_OVERRIDES += \
     BUILD_DISPLAY_ID="EOS Stable release $(EOS_RELEASE)"
-endif
-
-#### Goo Manager support
-## If EOS_RELEASE is not defined by the user, assume the build is a nightly release.
-## If EOS_RELEASE is defined, use the environment variable EOS_RELEASE_GOOBUILD as the build number.
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.goo.developerid=teameos \
-    ro.goo.board=$(subst full_,,$(TARGET_PRODUCT)) \
-
-ifeq ($(EOS_RELEASE),)
-	PRODUCT_PROPERTY_OVERRIDES += \
-	ro.goo.rom=eosJB42Nightlies \
-	ro.goo.version=$(shell date +%s)
-else
-	PRODUCT_PROPERTY_OVERRIDES += \
-	ro.goo.rom=eos \
-	ro.goo.version=$(EOS_RELEASE_GOOBUILD)
 endif
 
 $(call inherit-product, vendor/eos/bootanimations/bootanimation.mk)
