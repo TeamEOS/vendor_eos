@@ -43,6 +43,7 @@ PRODUCT_PACKAGES += \
     dropbear \
     scp \
     sftp \
+    libbt-vendor \
     ssh-keygen
 
 PRODUCT_COPY_FILES += \
