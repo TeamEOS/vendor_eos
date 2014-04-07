@@ -40,7 +40,8 @@ PRODUCT_PACKAGES += \
     scp \
     sftp \
     libbt-vendor \
-    ssh-keygen
+    ssh-keygen \
+    libemoji
 
 PRODUCT_COPY_FILES += \
     vendor/eos/proprietary/terminalemulator/libjackpal-androidterm4.so:system/lib/libjackpal-androidterm4.so
