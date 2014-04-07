@@ -27,6 +27,9 @@ PRODUCT_PACKAGES += \
     ntfs-3g.probe \
     ntfsfix \
     ntfs-3g \
+    fsck.exfat \
+    mount.exfat \
+    mkfs.exfat \
     PhaseBeam \
     HoloSpiral \
     ThemeChooser \
