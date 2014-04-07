@@ -43,12 +43,22 @@ chgrp system /sys/block/mmcblk0/queue/scheduler
 chmod 664 /sys/block/mmcblk0/queue/scheduler
 
 # Sweep2Wake if kernel supports it
-chgrp system /sys/android_touch/sweep2wake
-chmod 664 /sys/android_touch/sweep2wake
+if [ -e /sys/android_touch/sweep2wake ]; then
+    chgrp system /sys/android_touch/sweep2wake
+    chmod 664 /sys/android_touch/sweep2wake
+fi
 
 # USB fast charge, we just set perms. This is likely
 # not something we want to set on boot
-chgrp system /sys/kernel/fast_charge/force_fast_charge
-chmod 664 /sys/kernel/fast_charge/force_fast_charge
+if [ -e /sys/kernel/fast_charge/force_fast_charge ]; then
+    chgrp system /sys/kernel/fast_charge/force_fast_charge
+    chmod 664 /sys/kernel/fast_charge/force_fast_charge
+fi
 
-
+# Support for secondary touchpads with a control
+# interface in /proc/touchpad/enable
+if [ -e /proc/touchpad/enable ]; then
+    chown root:root /proc/touchpad/enable
+    chmod 666 /proc/touchpad/enable
+    chgrp system /proc/touchpad/enable
+fi
