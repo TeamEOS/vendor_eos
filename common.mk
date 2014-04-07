@@ -44,7 +44,8 @@ PRODUCT_PACKAGES += \
     libemoji \
     audio_effects.conf \
     BluetoothExt \
-    AndroidFileExplorer
+    AndroidFileExplorer \
+    Launcher3
 
 PRODUCT_COPY_FILES += \
     vendor/eos/proprietary/terminalemulator/libjackpal-androidterm4.so:system/lib/libjackpal-androidterm4.so
