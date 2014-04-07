@@ -31,11 +31,7 @@ PRODUCT_PACKAGES += \
     mkfs.exfat \
     PhaseBeam \
     HoloSpiral \
-    ThemeChooser \
-    ThemeManager \
-    com.tmobile.themes \
     fstrim \
-    EosControlCenter \
     libnl \
     iw \
     tcpdump \
@@ -47,7 +43,6 @@ PRODUCT_PACKAGES += \
     ssh-keygen
 
 PRODUCT_COPY_FILES += \
-    vendor/eos/filesystem_overlay/etc/permissions/com.tmobile.software.themes.xml:system/etc/permissions/com.tmobile.software.themes.xml \
     vendor/eos/proprietary/terminalemulator/libjackpal-androidterm4.so:system/lib/libjackpal-androidterm4.so
 
 #Bring in camera media effects
