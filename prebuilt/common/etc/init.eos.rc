@@ -1,4 +1,4 @@
-# codefireX Extras
+# Eos Extras
 
 on init
     export TERMINFO /system/etc/terminfo
@@ -7,10 +7,6 @@ on init
     # Disabled virtual memory randomization
     # (if randomization is enabled the AEM-JIT will have a lower cache hit rate)
     write /proc/sys/kernel/randomize_va_space 0
-
-on post-fs-data
-# include additional memory tweaks
-    import /init.memory.rc
 
 on boot
     # Run sysinit

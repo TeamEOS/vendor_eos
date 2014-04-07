@@ -1,5 +1,5 @@
-# Inherit common cfX stuff
-$(call inherit-product, vendor/cfx/config/common.mk)
+# Inherit common eos stuff
+$(call inherit-product, vendor/eos/config/common.mk)
 
 PRODUCT_PACKAGES += \
   Mms

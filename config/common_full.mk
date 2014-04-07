@@ -1,5 +1,5 @@
 # Inherit common cfX stuff
-$(call inherit-product, vendor/cfx/config/common.mk)
+$(call inherit-product, vendor/eos/config/common.mk)
 
 # Optional cfX packages
 PRODUCT_PACKAGES += \
