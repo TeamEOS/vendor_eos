@@ -2,6 +2,6 @@
 #
 # Print startup info
 #
-L="log -p i -t cfx"
+L="log -p i -t eos"
 
-$L "Welcome to codefireX";
+$L "Welcome to TeamEOS";
