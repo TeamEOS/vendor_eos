@@ -1,7 +1,7 @@
-# Inherit common cfX stuff
+# Inherit common EOS config
 $(call inherit-product, vendor/eos/config/common.mk)
 
-# Optional cfX packages
+# Optional EOS packages
 PRODUCT_PACKAGES += \
     HoloSpiralWallpaper \
     MagicSmokeWallpapers \

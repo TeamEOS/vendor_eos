@@ -1,6 +1,6 @@
 #!/system/bin/sh
-# CFX perms
-# set permissions needed for CFX features
+# EOS perms
+# set permissions needed for EOS features
 
 # O-touch
 if [ -e /proc/touchpad/enable ];

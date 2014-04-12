@@ -1,4 +1,4 @@
-# Inherit common cfX stuff
+# Inherit common EOS  stuff
 $(call inherit-product, vendor/eos/config/common_full.mk)
 
 ifeq ($(TARGET_SCREEN_WIDTH) $(TARGET_SCREEN_HEIGHT),$(space))
