@@ -77,6 +77,13 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES +=  \
     vendor/eos/prebuilt/common/etc/permissions/com.playstation.playstationcertified.xml:system/etc/permissions/com.playstation.playstationcertified.xml
 
+# Supersu support
+PRODUCT_COPY_FILES += \
+    vendor/eos/prebuilt/common/apk/Superuser.apk:system/app/Superuser.apk \
+    vendor/eos/prebuilt/common/etc/init.d/99SuperSUDaemon:system/etc/init.d/99SuperSUDaemon \
+    vendor/eos/prebuilt/common/xbin/daemonsu:system/xbin/daemonsu \
+    vendor/eos/prebuilt/common/xbin/su:system/xbin/su
+    
 # Required eos packages
 PRODUCT_PACKAGES += \
     BluetoothExt \
