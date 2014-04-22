@@ -20,6 +20,7 @@ PRODUCT_COPY_FILES += \
 	vendor/eos/prebuilt/common/bin/backuptool.sh:system/bin/backuptool.sh \
 	vendor/eos/prebuilt/common/bin/backuptool.functions:system/bin/backuptool.functions \
 	vendor/eos/prebuilt/common/bin/50-hosts.sh:system/addon.d/50-hosts.sh \
+	vendor/eos/prebuilt/common/bin/99-supersu.sh:system/addon.d/99-supersu.sh \
 	vendor/eos/prebuilt/common/bin/blacklist:system/addon.d/blacklist
 
 # init.d support
