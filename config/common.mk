@@ -142,6 +142,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libemoji
 
+# msim video tele
+PRODUCT_PACKAGES += \
+    libimscamera_jni \
+    libvt_jni
+
 PRODUCT_PACKAGE_OVERLAYS += vendor/eos/overlay/dictionaries
 PRODUCT_PACKAGE_OVERLAYS += vendor/eos/overlay/common
 
