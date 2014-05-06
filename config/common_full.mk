@@ -15,3 +15,11 @@ PRODUCT_PACKAGES += \
 ifeq ($(strip $(BOARD_DISABLE_LAUNCHER3)),)
 PRODUCT_PACKAGES += Launcher3
 endif
+
+# Stagefright FFMPEG plugin
+PRODUCT_PACKAGES += \
+    libstagefright_soft_ffmpegadec \
+    libstagefright_soft_ffmpegvdec \
+    libFFmpegExtractor \
+    libnamparser
+
