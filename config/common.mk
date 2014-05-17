@@ -147,6 +147,10 @@ PRODUCT_PACKAGES += \
     libimscamera_jni \
     libvt_jni
 
+# GDX gfx and perfomance suite native library
+PRODUCT_PACKAGES += \
+    libgdx
+
 PRODUCT_PACKAGE_OVERLAYS += vendor/eos/overlay/dictionaries
 PRODUCT_PACKAGE_OVERLAYS += vendor/eos/overlay/common
 
