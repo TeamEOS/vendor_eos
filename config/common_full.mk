@@ -13,7 +13,7 @@ PRODUCT_PACKAGES += \
     PhaseBeam
 
 ifeq ($(strip $(BOARD_DISABLE_LAUNCHER3)),)
-PRODUCT_PACKAGES += Launcher3
+PRODUCT_PACKAGES += Trebuchet
 endif
 
 # Stagefright FFMPEG plugin
