@@ -125,7 +125,9 @@ PRODUCT_PACKAGES += \
     mkfs.exfat \
     ntfsfix \
     ntfs-3g \
-    systembinsh
+    systembinsh \
+    libcurl \
+    curl
 
 # Openssh
 PRODUCT_PACKAGES += \
