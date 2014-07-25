@@ -111,6 +111,14 @@ on boot
     # Disable extended JNI checks, should speed things up
     setprop dalvik.vm.checkjni false
 
+# allow system to modify various kernel features
+    # fastcharge
+    chown system system /sys/kernel/fast_charge/force_fast_charge
+    # oppo
+    chown root root /proc/touchpad/enable
+    chmod 666 /proc/touchpad/enable
+    chown system system /proc/touchpad/enable
+
 # adb over network
 on property:service.adb.tcp.port=5555
     stop adbd
