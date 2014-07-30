@@ -39,6 +39,13 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     vendor/eos/prebuilt/common/etc/init.eos.rc:root/init.eos.rc
 
+# mounts
+PRODUCT_COPY_FILES += \
+    vendor/eos/prebuilt/common/bin/sysrw:system/bin/sysrw \
+    vendor/eos/prebuilt/common/bin/sysro:system/bin/sysro \
+    vendor/eos/prebuilt/common/bin/rootrw:system/bin/rootrw \
+    vendor/eos/prebuilt/common/bin/rootro:system/bin/rootro
+
 # Bring in camera effects
 PRODUCT_COPY_FILES +=  \
     vendor/eos/prebuilt/common/media/LMprec_508.emd:system/media/LMprec_508.emd \
