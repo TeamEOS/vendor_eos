@@ -77,6 +77,7 @@ PRODUCT_PACKAGES += \
     BluetoothExt \
     Camera \
     EOSTools \
+    EOSWallpapers \
     EOSWeather \
     DSPManager\
     Email \
