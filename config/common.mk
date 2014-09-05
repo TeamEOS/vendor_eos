@@ -82,7 +82,8 @@ PRODUCT_PACKAGES += \
     Email \
     LatinIME \
     Launcher2 \
-    libcyanogen-dsp
+    libcyanogen-dsp \
+    SlimFileManager
 
 # Optional eos packages
 PRODUCT_PACKAGES += \
