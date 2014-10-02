@@ -78,6 +78,7 @@ PRODUCT_PACKAGES += \
     Camera \
     EOSWallpapers \
     EOSWeather \
+    EOSUpdater \
     DSPManager\
     Email \
     LatinIME \
