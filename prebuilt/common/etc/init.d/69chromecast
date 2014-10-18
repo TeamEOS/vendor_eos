@@ -1,0 +1,63 @@
+#!/system/bin/sh
+#
+# Copyright (C) 2014 Team Eos
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# Function:
+# inject true or false into gapps dbase to override 
+# Chromecast mirror capabilities
+
+
+# logger
+LOG="log -p i -t chromecast_init"
+# Settings flag path
+FLAG="/data/data/com.android.settings/app_flags/chromecast_enabled"
+# target gapps database
+DBASE="/data/data/com.google.android.gsf/databases/gservices.db"
+# sqlite3 path
+SQLITE=`which sqlite3`
+# build property -- if not enabled exit early
+PROP="ro.enable.chromecast.mirror"
+
+TEST=`getprop $PROP`;
+
+if [ "$TEST" == "true" ];
+then
+   $LOG "Chromecast feature enabled";
+   if [ -e $DBASE ];
+   $LOG "User has gapps installed";
+   then
+     if [ -e $FLAG ];
+     then
+        $LOG "Settings flag was found. Injecting value of true";
+        $SQLITE $DBASE 'CREATE TABLE IF NOT EXISTS overrides (name, value);'; 
+        $SQLITE $DBASE "INSERT INTO overrides (name, value) 
+                        SELECT 'gms:cast:mirroring_enabled','true'
+                        WHERE NOT EXISTS (SELECT * FROM overrides WHERE name = 'gms:cast:mirroring_enabled');";
+        $SQLITE $DBASE "INSERT INTO overrides (name, value) 
+                        SELECT 'gms:cast:remote_display_enabled','true'
+                        WHERE NOT EXISTS (SELECT * FROM overrides WHERE name = 'gms:cast:remote_display_enabled');";
+        $SQLITE $DBASE 'UPDATE overrides SET value="true" WHERE name="gms:cast:mirroring_enabled";';
+        $SQLITE $DBASE 'UPDATE overrides SET value="true" WHERE name="gms:cast:remote_display_enabled";';
+     else
+        $LOG "Settings flag not found found. Injecting value of false";
+        $SQLITE $DBASE 'UPDATE overrides SET value="false" WHERE name="gms:cast:mirroring_enabled";';
+        $SQLITE $DBASE 'UPDATE overrides SET value="false" WHERE name="gms:cast:remote_display_enabled";';
+     fi;
+   else
+     $LOG "Gapps not installed. Aborting"
+   fi;
+else
+   $LOG "Chromecast feature is not available";
+fi;

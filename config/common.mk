@@ -35,6 +35,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     vendor/eos/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit
 
+# chromecast support
+PRODUCT_COPY_FILES += \
+    vendor/eos/prebuilt/common/etc/init.d/69chromecast:system/etc/init.d/69chromecast
+
 # eos-specific init file
 PRODUCT_COPY_FILES += \
     vendor/eos/prebuilt/common/etc/init.eos.rc:root/init.eos.rc
