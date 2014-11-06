@@ -26,6 +26,10 @@ PRODUCT_COPY_FILES += \
 	vendor/eos/prebuilt/common/bin/99-supersu.sh:system/addon.d/99-supersu.sh \
 	vendor/eos/prebuilt/common/bin/blacklist:system/addon.d/blacklist
 
+# Terminal Emulator prebuilt library
+PRODUCT_COPY_FILES +=  \
+    vendor/eos/prebuilt/common/lib/libjackpal-androidterm4.so:system/lib/libjackpal-androidterm4.so \
+
 # init.d support
 PRODUCT_COPY_FILES += \
     vendor/eos/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
@@ -88,7 +92,8 @@ PRODUCT_PACKAGES += \
     LatinIME \
     Launcher2 \
     libcyanogen-dsp \
-    SlimFileManager
+    SlimFileManager \
+    Superuser
 
 # Optional eos packages
 PRODUCT_PACKAGES += \
@@ -97,7 +102,8 @@ PRODUCT_PACKAGES += \
     Music \
     VideoEditor \
     VoiceDialer \
-    SoundRecorder
+    SoundRecorder \
+    TerminalEmulator
 
 # CM Hardware Abstraction Framework
 PRODUCT_PACKAGES += \
@@ -161,6 +167,3 @@ PRODUCT_PROPERTY_OVERRIDES += ro.modversion=$(BUILD_NUMBER)
 
 # T-Mobile Theme Engine
 $(call inherit-product, vendor/eos/config/themes_common.mk)
-
-# Open Source prebuilts
-$(call inherit-product, vendor/eos/config/prebuilt_apps_common.mk)
