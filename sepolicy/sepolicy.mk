@@ -1,7 +1,6 @@
 #
 # This policy configuration will be used by all products that
-# inherit from EOS
-# 
+#
 
 BOARD_SEPOLICY_DIRS += \
     vendor/eos/sepolicy
@@ -11,10 +10,7 @@ BOARD_SEPOLICY_UNION += \
     file_contexts \
     fs_use \
     genfs_contexts \
-    seapp_contexts \
     installd.te \
-    netd.te \
-    system.te \
-    ueventd.te \
+    seapp_contexts \
     vold.te \
     mac_permissions.xml

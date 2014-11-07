@@ -12,10 +12,6 @@ PRODUCT_PACKAGES += \
     VisualizationWallpapers \
     PhaseBeam
 
-ifeq ($(strip $(BOARD_DISABLE_LAUNCHER3)),)
-PRODUCT_PACKAGES += Trebuchet
-endif
-
 # Stagefright FFMPEG plugin
 PRODUCT_PACKAGES += \
     libstagefright_soft_ffmpegadec \
