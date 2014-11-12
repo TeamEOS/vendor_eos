@@ -32,9 +32,6 @@ ADDITIONAL_DEFAULT_PROPERTIES += ro.adb.secure=0
 # Thank you, please drive thru!
 PRODUCT_PROPERTY_OVERRIDES += persist.sys.dun.override=0
 
-# SELinux filesystem labels
-PRODUCT_COPY_FILES += \
-    vendor/eos/prebuilt/common/etc/init.d/50selinuxrelabel:system/etc/init.d/50selinuxrelabel
 
 # Backup Tool
 PRODUCT_COPY_FILES += \
@@ -46,7 +43,7 @@ PRODUCT_COPY_FILES += \
 
 # Terminal Emulator prebuilt library
 PRODUCT_COPY_FILES +=  \
-    vendor/eos/prebuilt/common/lib/libjackpal-androidterm4.so:system/lib/libjackpal-androidterm4.so \
+    vendor/eos/prebuilt/common/lib/libjackpal-androidterm4.so:system/app/TerminalEmulator/lib/arm/libjackpal-androidterm4.so
 
 # init.d support
 PRODUCT_COPY_FILES += \
@@ -103,7 +100,7 @@ PRODUCT_PACKAGES += \
     LatinIME \
     Launcher2 \
     libcyanogen-dsp \
-    EOSFileManager \
+    SlimFileManager \
     Superuser
 
 # Optional eos packages
@@ -137,11 +134,19 @@ PRODUCT_PACKAGES += \
     mount.exfat \
     fsck.exfat \
     mkfs.exfat \
+    mkfs.f2fs \
+    fsck.f2fs \
+    fibmap.f2fs \
     ntfsfix \
     ntfs-3g \
     systembinsh \
     libcurl \
-    curl
+    curl \
+    gdbserver \
+    micro_bench \
+    oprofiled \
+    sqlite3 \
+    strace
 
 # Openssh
 PRODUCT_PACKAGES += \
