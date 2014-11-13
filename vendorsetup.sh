@@ -14,5 +14,7 @@
 # limitations under the License.
 #
 
+add_lunch_combo eos_dlx-userdebug
+add_lunch_combo eos_grouper-userdebug
 add_lunch_combo eos_hammerhead-userdebug
 add_lunch_combo eos_m8-userdebug
