@@ -15,3 +15,4 @@
 #
 
 add_lunch_combo eos_hammerhead-userdebug
+add_lunch_combo eos_m8-userdebug
