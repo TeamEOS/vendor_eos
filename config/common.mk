@@ -26,6 +26,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.debug.alloc=0
 
+# Disable multithreaded dexopt by default
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.dalvik.multithread=false
+
 # Disable ADB authentication
 ADDITIONAL_DEFAULT_PROPERTIES += ro.adb.secure=0
 
@@ -40,6 +44,10 @@ PRODUCT_COPY_FILES += \
 	vendor/eos/prebuilt/common/bin/50-hosts.sh:system/addon.d/50-hosts.sh \
 	vendor/eos/prebuilt/common/bin/99-supersu.sh:system/addon.d/99-supersu.sh \
 	vendor/eos/prebuilt/common/bin/blacklist:system/addon.d/blacklist
+
+# Signature compatibility validation
+PRODUCT_COPY_FILES += \
+    vendor/eos/prebuilt/common/bin/otasigcheck.sh:system/bin/otasigcheck.sh
 
 # Terminal Emulator prebuilt library
 PRODUCT_COPY_FILES +=  \
@@ -78,6 +86,10 @@ PRODUCT_COPY_FILES +=  \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml
 
+# Enable wireless Xbox 360 controller support
+PRODUCT_COPY_FILES += \
+    frameworks/base/data/keyboards/Vendor_045e_Product_028e.kl:system/usr/keylayout/Vendor_045e_Product_0719.kl
+
 # Don't export PS1 in /system/etc/mkshrc.
 PRODUCT_COPY_FILES += \
     vendor/eos/prebuilt/common/etc/mkshrc:system/etc/mkshrc
@@ -113,7 +125,7 @@ PRODUCT_PACKAGES += \
     SoundRecorder \
     TerminalEmulator
 
-# CM Hardware Abstraction Framework
+# EOS Hardware Abstraction Framework
 PRODUCT_PACKAGES += \
     org.cyanogenmod.hardware \
     org.cyanogenmod.hardware.xml
@@ -183,3 +195,113 @@ PRODUCT_PACKAGE_OVERLAYS += vendor/eos/overlay/common
 
 # Set valid modversion
 PRODUCT_PROPERTY_OVERRIDES += ro.modversion=$(BUILD_NUMBER)
+
+PRODUCT_VERSION_MAJOR = 5
+PRODUCT_VERSION_MINOR = 0
+PRODUCT_VERSION_MAINTENANCE = 0-RC0
+
+# Set EOS_BUILDTYPE from the env RELEASE_TYPE, for jenkins compat
+
+ifndef EOS_BUILDTYPE
+    ifdef RELEASE_TYPE
+        # Starting with "EOS_" is optional
+        RELEASE_TYPE := $(shell echo $(RELEASE_TYPE) | sed -e 's|^EOS_||g')
+        EOS_BUILDTYPE := $(RELEASE_TYPE)
+    endif
+endif
+
+# Filter out random types, so it'll reset to UNOFFICIAL
+ifeq ($(filter RELEASE NIGHTLY SNAPSHOT EXPERIMENTAL,$(EOS_BUILDTYPE)),)
+    EOS_BUILDTYPE :=
+endif
+
+ifdef EOS_BUILDTYPE
+    ifneq ($(EOS_BUILDTYPE), SNAPSHOT)
+        ifdef EOS_EXTRAVERSION
+            # Force build type to EXPERIMENTAL
+            EOS_BUILDTYPE := EXPERIMENTAL
+            # Remove leading dash from EOS_EXTRAVERSION
+            EOS_EXTRAVERSION := $(shell echo $(EOS_EXTRAVERSION) | sed 's/-//')
+            # Add leading dash to EOS_EXTRAVERSION
+            EOS_EXTRAVERSION := -$(EOS_EXTRAVERSION)
+        endif
+    else
+        ifndef EOS_EXTRAVERSION
+            # Force build type to EXPERIMENTAL, SNAPSHOT mandates a tag
+            EOS_BUILDTYPE := EXPERIMENTAL
+        else
+            # Remove leading dash from EOS_EXTRAVERSION
+            EOS_EXTRAVERSION := $(shell echo $(EOS_EXTRAVERSION) | sed 's/-//')
+            # Add leading dash to EOS_EXTRAVERSION
+            EOS_EXTRAVERSION := -$(EOS_EXTRAVERSION)
+        endif
+    endif
+else
+    # If EOS_BUILDTYPE is not defined, set to UNOFFICIAL
+    EOS_BUILDTYPE := UNOFFICIAL
+    EOS_EXTRAVERSION :=
+endif
+
+ifeq ($(EOS_BUILDTYPE), UNOFFICIAL)
+    ifneq ($(TARGET_UNOFFICIAL_BUILD_ID),)
+        EOS_EXTRAVERSION := -$(TARGET_UNOFFICIAL_BUILD_ID)
+    endif
+endif
+
+ifeq ($(EOS_BUILDTYPE), RELEASE)
+    ifndef TARGET_VENDOR_RELEASE_BUILD_ID
+        EOS_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)$(PRODUCT_VERSION_DEVICE_SPECIFIC)-$(EOS_BUILD)
+    else
+        ifeq ($(TARGET_BUILD_VARIANT),user)
+            EOS_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(TARGET_VENDOR_RELEASE_BUILD_ID)-$(EOS_BUILD)
+        else
+            EOS_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)$(PRODUCT_VERSION_DEVICE_SPECIFIC)-$(EOS_BUILD)
+        endif
+    endif
+else
+    ifeq ($(PRODUCT_VERSION_MINOR),0)
+        EOS_VERSION := $(PRODUCT_VERSION_MAJOR)-$(shell date -u +%Y%m%d)-$(EOS_BUILDTYPE)$(EOS_EXTRAVERSION)-$(EOS_BUILD)
+    else
+        EOS_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(shell date -u +%Y%m%d)-$(EOS_BUILDTYPE)$(EOS_EXTRAVERSION)-$(EOS_BUILD)
+    endif
+endif
+
+PRODUCT_PROPERTY_OVERRIDES += \
+  ro.eos.version=$(EOS_VERSION) \
+  ro.eos.releasetype=$(EOS_BUILDTYPE) \
+  ro.modversion=$(EOS_VERSION)
+
+-include vendor/eos-priv/keys/keys.mk
+
+EOS_DISPLAY_VERSION := $(EOS_VERSION)
+
+ifneq ($(PRODUCT_DEFAULT_DEV_CERTIFICATE),)
+ifneq ($(PRODUCT_DEFAULT_DEV_CERTIFICATE),build/target/product/security/testkey)
+  ifneq ($(EOS_BUILDTYPE), UNOFFICIAL)
+    ifndef TARGET_VENDOR_RELEASE_BUILD_ID
+      ifneq ($(EOS_EXTRAVERSION),)
+        # Remove leading dash from EOS_EXTRAVERSION
+        EOS_EXTRAVERSION := $(shell echo $(EOS_EXTRAVERSION) | sed 's/-//')
+        TARGET_VENDOR_RELEASE_BUILD_ID := $(EOS_EXTRAVERSION)
+      else
+        TARGET_VENDOR_RELEASE_BUILD_ID := $(shell date -u +%Y%m%d)
+      endif
+    else
+      TARGET_VENDOR_RELEASE_BUILD_ID := $(TARGET_VENDOR_RELEASE_BUILD_ID)
+    endif
+    EOS_DISPLAY_VERSION=$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(TARGET_VENDOR_RELEASE_BUILD_ID)
+  endif
+endif
+endif
+
+# by default, do not update the recovery with system updates
+PRODUCT_PROPERTY_OVERRIDES += persist.sys.recovery_update=false
+
+PRODUCT_PROPERTY_OVERRIDES += \
+  ro.eos.display.version=$(EOS_DISPLAY_VERSION)
+
+-include $(WORKSPACE)/build_env/image-auto-bits.mk
+
+-include vendor/eospriv/product.mk
+
+$(call inherit-product-if-exists, vendor/extra/product.mk)
