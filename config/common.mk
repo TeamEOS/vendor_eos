@@ -95,12 +95,9 @@ PRODUCT_COPY_FILES += \
 
 # Supersu support
 PRODUCT_COPY_FILES += \
-    vendor/eos/prebuilt/common/apk/Superuser.apk:system/app/Superuser/Superuser.apk \
-    vendor/eos/prebuilt/common/etc/init.d/99SuperSUDaemon:system/etc/init.d/99SuperSUDaemon \
-    vendor/eos/prebuilt/common/bin/99-supersu.sh:system/addon.d/99-supersu.sh \
-    vendor/eos/prebuilt/common/xbin/daemonsu:system/xbin/daemonsu \
-    vendor/eos/prebuilt/common/xbin/su:system/xbin/su
-
+    vendor/eos/prebuilt/common/bin/suinstaller.sh:system/bin/suinstaller.sh \
+    vendor/eos/prebuilt/common/supersu.zip:system/supersu.zip
+    
 # Required eos packages
 PRODUCT_PACKAGES += \
     BluetoothExt \
