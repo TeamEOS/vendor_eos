@@ -42,7 +42,6 @@ PRODUCT_COPY_FILES += \
 	vendor/eos/prebuilt/common/bin/backuptool.sh:system/bin/backuptool.sh \
 	vendor/eos/prebuilt/common/bin/backuptool.functions:system/bin/backuptool.functions \
 	vendor/eos/prebuilt/common/bin/50-hosts.sh:system/addon.d/50-hosts.sh \
-	vendor/eos/prebuilt/common/bin/99-supersu.sh:system/addon.d/99-supersu.sh \
 	vendor/eos/prebuilt/common/bin/blacklist:system/addon.d/blacklist
 
 # Signature compatibility validation
@@ -96,10 +95,12 @@ PRODUCT_COPY_FILES += \
 
 # Supersu support
 PRODUCT_COPY_FILES += \
+    vendor/eos/prebuilt/common/apk/Superuser.apk:system/app/Superuser/Superuser.apk \
     vendor/eos/prebuilt/common/etc/init.d/99SuperSUDaemon:system/etc/init.d/99SuperSUDaemon \
+    vendor/eos/prebuilt/common/bin/99-supersu.sh:system/addon.d/99-supersu.sh \
     vendor/eos/prebuilt/common/xbin/daemonsu:system/xbin/daemonsu \
     vendor/eos/prebuilt/common/xbin/su:system/xbin/su
-    
+
 # Required eos packages
 PRODUCT_PACKAGES += \
     BluetoothExt \
@@ -112,8 +113,7 @@ PRODUCT_PACKAGES += \
     LatinIME \
     Launcher2 \
     libcyanogen-dsp \
-    SlimFileManager \
-    Superuser
+    SlimFileManager
 
 # Optional eos packages
 PRODUCT_PACKAGES += \
