@@ -16,6 +16,7 @@
 
 add_lunch_combo eos_bacon-userdebug
 add_lunch_combo eos_dlx-userdebug
+add_lunch_combo eos_flounder-userdebug
 add_lunch_combo eos_grouper-userdebug
 add_lunch_combo eos_hammerhead-userdebug
 add_lunch_combo eos_m7-userdebug
