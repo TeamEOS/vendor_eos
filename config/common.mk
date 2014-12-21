@@ -106,7 +106,8 @@ PRODUCT_PACKAGES += \
     LatinIME \
     Launcher2 \
     libcyanogen-dsp \
-    SlimFileManager
+    SlimFileManager \
+    LockClock
 
 # Optional eos packages
 PRODUCT_PACKAGES += \
