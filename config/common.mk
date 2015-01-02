@@ -101,11 +101,10 @@ PRODUCT_PACKAGES += \
     EOSWallpapers \
     EOSWeather \
     EOSUpdater \
-    DSPManager\
+    AudioFX \
     Email \
     LatinIME \
     Launcher2 \
-    libcyanogen-dsp \
     SlimFileManager \
     LockClock
 
@@ -113,7 +112,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     audio_effects.conf \
     Basic \
-    Music \
+    Eleven \
     VideoEditor \
     VoiceDialer \
     SoundRecorder \
