@@ -106,7 +106,8 @@ PRODUCT_PACKAGES += \
     LatinIME \
     Launcher2 \
     SlimFileManager \
-    LockClock
+    LockClock \
+    libpcre
 
 # Optional eos packages
 PRODUCT_PACKAGES += \
@@ -117,6 +118,11 @@ PRODUCT_PACKAGES += \
     VoiceDialer \
     SoundRecorder \
     TerminalEmulator
+
+# Theme Engine support
+PRODUCT_PACKAGES += \
+    ThemeChooser \
+    ThemesProvider
 
 # EOS Hardware Abstraction Framework
 PRODUCT_PACKAGES += \
