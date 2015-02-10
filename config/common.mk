@@ -93,20 +93,18 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     vendor/eos/prebuilt/common/bin/suinstaller.sh:system/bin/suinstaller.sh \
     vendor/eos/prebuilt/common/supersu.zip:system/supersu.zip
-    
+
 # Required eos packages
 PRODUCT_PACKAGES += \
     BluetoothExt \
     Camera \
     Development \
-    EOSWallpapers \
-    EOSWeather \
+    EOSWallpaperClient \
     EOSUpdater \
     AudioFX \
     Email \
     LatinIME \
     Launcher2 \
-    SlimFileManager \
     LockClock \
     libpcre
 
