@@ -14,4 +14,11 @@
     <allow-all />
     <seinfo value="release" />
   </signer>
+
+  <!-- CMUpdater -->
+  <signer signature="@RELEASE" >
+    <package name="org.teameos.updater" >
+      <seinfo value="eosupdater" />
+    </package>
+  </signer>
 </policy>
