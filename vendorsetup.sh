@@ -24,3 +24,4 @@ add_lunch_combo eos_m7spr-userdebug
 add_lunch_combo eos_m7vzw-userdebug
 add_lunch_combo eos_m8-userdebug
 add_lunch_combo eos_shamu-userdebug
+add_lunch_combo eos_yuga-userdebug
