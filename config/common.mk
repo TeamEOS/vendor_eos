@@ -123,6 +123,9 @@ PRODUCT_PACKAGES += \
     ThemeChooser \
     ThemesProvider
 
+PRODUCT_COPY_FILES += \
+    vendor/eos/config/permissions/org.cyanogenmod.theme.xml:system/etc/permissions/org.cyanogenmod.theme.xml
+
 # EOS Hardware Abstraction Framework
 PRODUCT_PACKAGES += \
     org.cyanogenmod.hardware \
