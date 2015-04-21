@@ -103,7 +103,8 @@ PRODUCT_PACKAGES += \
     LatinIME \
     Launcher2 \
     LockClock \
-    libpcre
+    libpcre \
+    Profiles
 
 # Optional eos packages
 PRODUCT_PACKAGES += \
