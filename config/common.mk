@@ -107,7 +107,6 @@ PRODUCT_PACKAGES += \
 
 # Optional eos packages
 PRODUCT_PACKAGES += \
-    audio_effects.conf \
     Basic \
     Eleven \
     VideoEditor \
