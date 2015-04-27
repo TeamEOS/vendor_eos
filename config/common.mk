@@ -185,6 +185,12 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libgdx
 
+# CM Platform Library
+PRODUCT_PACKAGES += \
+    org.cyanogenmod.platform-res \
+    org.cyanogenmod.platform \
+    org.cyanogenmod.platform.xml
+
 # easy way to extend to add more packages
 -include vendor/extra/product.mk
 
