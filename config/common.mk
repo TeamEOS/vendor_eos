@@ -26,9 +26,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.debug.alloc=0
 
-# Disable ADB authentication
-ADDITIONAL_DEFAULT_PROPERTIES += ro.adb.secure=0
-
 # Thank you, please drive thru!
 PRODUCT_PROPERTY_OVERRIDES += persist.sys.dun.override=0
 
@@ -253,6 +250,8 @@ ifeq ($(EOS_BUILDTYPE), UNOFFICIAL)
     ifneq ($(TARGET_UNOFFICIAL_BUILD_ID),)
         EOS_EXTRAVERSION := -$(TARGET_UNOFFICIAL_BUILD_ID)
     endif
+    # Disable ADB authentication on unofficial builds
+    ADDITIONAL_DEFAULT_PROPERTIES += ro.adb.secure=0
 endif
 
 ifeq ($(EOS_BUILDTYPE), RELEASE)
