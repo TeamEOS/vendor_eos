@@ -101,7 +101,7 @@ PRODUCT_PACKAGES += \
     AudioFX \
     Email \
     LatinIME \
-    Launcher2 \
+    Launcher3 \
     LockClock \
     libpcre \
     Profiles
@@ -111,7 +111,6 @@ PRODUCT_PACKAGES += \
     Basic \
     Eleven \
     VideoEditor \
-    VoiceDialer \
     SoundRecorder \
     TerminalEmulator
 
