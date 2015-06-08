@@ -15,16 +15,22 @@
 #
 
 add_lunch_combo eos_bacon-userdebug
+add_lunch_combo eos_d850-userdebug
+add_lunch_combo eos_d851-userdebug
+add_lunch_combo eos_d852-userdebug
+add_lunch_combo eos_d855-userdebug
 add_lunch_combo eos_dlx-userdebug
 add_lunch_combo eos_flounder-userdebug
 add_lunch_combo eos_grouper-userdebug
 add_lunch_combo eos_hammerhead-userdebug
 add_lunch_combo eos_lettuce-userdebug
+add_lunch_combo eos_ls990-userdebug
 add_lunch_combo eos_m7-userdebug
 add_lunch_combo eos_m7spr-userdebug
 add_lunch_combo eos_m7vzw-userdebug
 add_lunch_combo eos_m8-userdebug
 add_lunch_combo eos_odin-userdebug
 add_lunch_combo eos_shamu-userdebug
+add_lunch_combo eos_vs985-userdebug
 add_lunch_combo eos_wx_na_wf-userdebug
 add_lunch_combo eos_yuga-userdebug
