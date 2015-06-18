@@ -175,6 +175,13 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libemoji
 
+# Stagefright FFMPEG plugin
+PRODUCT_PACKAGES += \
+    libstagefright_soft_ffmpegadec \
+    libstagefright_soft_ffmpegvdec \
+    libFFmpegExtractor \
+    media_codecs_ffmpeg.xml
+
 # msim video tele
 PRODUCT_PACKAGES += \
     libimscamera_jni \
