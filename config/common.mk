@@ -95,7 +95,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     BluetoothExt \
     Camera \
-    Development \
     EOSWallpaperClient \
     EOSUpdater \
     AudioFX \
