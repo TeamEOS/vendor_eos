@@ -43,7 +43,8 @@ PRODUCT_COPY_FILES += \
 
 # Terminal Emulator prebuilt library
 PRODUCT_COPY_FILES +=  \
-    vendor/eos/prebuilt/common/lib/libjackpal-androidterm5.so:system/app/TerminalEmulator/lib/arm/libjackpal-androidterm5.so
+    vendor/eos/prebuilt/common/lib/libjackpal-androidterm5.so:system/app/TerminalEmulator/lib/arm/libjackpal-androidterm5.so \
+    vendor/eos/prebuilt/common/lib/libjackpal-termexec2.so:system/app/TerminalEmulator/lib/arm/libjackpal-termexec2.so
 
 # init.d support
 PRODUCT_COPY_FILES += \
