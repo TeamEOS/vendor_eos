@@ -34,6 +34,7 @@ add_lunch_combo eos_manta-userdebug
 add_lunch_combo eos_odin-userdebug
 add_lunch_combo eos_shamu-userdebug
 add_lunch_combo eos_vs985-userdebug
+add_lunch_combo eos_wx_na_do-userdebug
 add_lunch_combo eos_wx_na_wf-userdebug
 add_lunch_combo eos_yuga-userdebug
 add_lunch_combo eos_r5-userdebug
