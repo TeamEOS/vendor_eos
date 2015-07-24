@@ -38,3 +38,4 @@ add_lunch_combo eos_wx_na_do-userdebug
 add_lunch_combo eos_wx_na_wf-userdebug
 add_lunch_combo eos_yuga-userdebug
 add_lunch_combo eos_r5-userdebug
+add_lunch_combo eos_t0lte-userdebug
