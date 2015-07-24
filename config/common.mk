@@ -249,12 +249,6 @@ ifdef EOS_BUILDTYPE
             EOS_EXTRAVERSION := -$(EOS_EXTRAVERSION)
         endif
     endif
-    # Release and nightly should be dex preopt
-    ifneq ($(filter RELEASE NIGHTLY,$(EOS_BUILDTYPE)),)
-      ifeq ($(WITH_DEXPREOPT),)
-        WITH_DEXPREOPT := true
-      endif # dexpreopt not set
-    endif # eos build type release or nightly
 else
     # If EOS_BUILDTYPE is not defined, set to UNOFFICIAL
     EOS_BUILDTYPE := UNOFFICIAL
