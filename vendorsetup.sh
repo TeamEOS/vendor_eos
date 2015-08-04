@@ -25,6 +25,7 @@ add_lunch_combo eos_flounder-userdebug
 add_lunch_combo eos_grouper-userdebug
 add_lunch_combo eos_hammerhead-userdebug
 add_lunch_combo eos_lettuce-userdebug
+add_lunch_combo eos_ls970-userdebug
 add_lunch_combo eos_ls990-userdebug
 add_lunch_combo eos_m7-userdebug
 add_lunch_combo eos_m7spr-userdebug
