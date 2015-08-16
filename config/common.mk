@@ -105,7 +105,7 @@ PRODUCT_PACKAGES += \
     Basic \
     libemoji \
     libgdx \
-    Eleven \
+    Jive \
     VideoEditor \
     SoundRecorder \
     TerminalEmulator
