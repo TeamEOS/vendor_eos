@@ -155,7 +155,8 @@ PRODUCT_PACKAGES += \
     micro_bench \
     oprofiled \
     sqlite3 \
-    strace
+    strace \
+    iw
 
 # Openssh
 PRODUCT_PACKAGES += \
