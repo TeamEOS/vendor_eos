@@ -18,5 +18,9 @@ PRODUCT_PACKAGES += \
     libstagefright_soft_ffmpegadec \
     libstagefright_soft_ffmpegvdec \
     libFFmpegExtractor \
-    libnamparser
+    libnamparser \
+    vim \
+    zip \
+    unrar \
+    curl
 
