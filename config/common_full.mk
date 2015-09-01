@@ -10,7 +10,8 @@ PRODUCT_PACKAGES += \
     LiveWallpapers \
     LiveWallpapersPicker \
     VisualizationWallpapers \
-    PhaseBeam
+    PhaseBeam \
+    CMSettingsProvider
 
 # Stagefright FFMPEG plugin
 PRODUCT_PACKAGES += \
