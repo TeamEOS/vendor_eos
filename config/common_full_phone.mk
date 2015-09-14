@@ -1,16 +1,10 @@
 # Inherit common eos stuff
 $(call inherit-product, vendor/eos/config/common_full.mk)
 
-# World APN list
-PRODUCT_COPY_FILES += \
-    vendor/eos/prebuilt/common/etc/apns-conf.xml:system/etc/apns-conf.xml
-
-# Selective SPN list for operator number who has the problem.
-PRODUCT_COPY_FILES += \
-    vendor/eos/prebuilt/common/etc/selective-spn-conf.xml:system/etc/selective-spn-conf.xml
-
-# Telephony packages
+# Required Eos packages
 PRODUCT_PACKAGES += \
-    Mms \
-    Stk \
-    CellBroadcastReceiver
+    LatinIME
+
+# Include Eos LatinIME dictionaries
+PRODUCT_PACKAGE_OVERLAYS += vendor/eos/overlay/dictionaries
+$(call inherit-product, vendor/eos/config/telephony.mk)

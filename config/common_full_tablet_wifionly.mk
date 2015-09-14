@@ -1,7 +1,9 @@
 # Inherit common EOS  stuff
 $(call inherit-product, vendor/eos/config/common_full.mk)
 
-ifeq ($(TARGET_SCREEN_WIDTH) $(TARGET_SCREEN_HEIGHT),$(space))
-    PRODUCT_COPY_FILES += \
-        vendor/eos/prebuilt/common/bootanimation/720.zip:system/media/bootanimation.zip
-endif
+# Required Eos packages
+PRODUCT_PACKAGES += \
+    LatinIME
+
+# Include Eos LatinIME dictionaries
+PRODUCT_PACKAGE_OVERLAYS += vendor/eos/overlay/dictionaries

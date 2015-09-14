@@ -22,10 +22,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.build.selinux=1
 
-# Disable excessive dalvik debug messages
-PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.debug.alloc=0
-
 # Thank you, please drive thru!
 PRODUCT_PROPERTY_OVERRIDES += persist.sys.dun.override=0
 
@@ -55,10 +51,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     vendor/eos/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit
 
-# chromecast support
-PRODUCT_COPY_FILES += \
-    vendor/eos/prebuilt/common/etc/init.d/69chromecast:system/etc/init.d/69chromecast
-
 # eos-specific init file
 PRODUCT_COPY_FILES += \
     vendor/eos/prebuilt/common/etc/init.eos.rc:root/init.eos.rc
@@ -83,9 +75,12 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     frameworks/base/data/keyboards/Vendor_045e_Product_028e.kl:system/usr/keylayout/Vendor_045e_Product_0719.kl
 
-# Don't export PS1 in /system/etc/mkshrc.
+# This is Eos, just using some CM things!
 PRODUCT_COPY_FILES += \
-    vendor/eos/prebuilt/common/etc/mkshrc:system/etc/mkshrc
+    vendor/eos/config/permissions/com.cyanogenmod.android.xml:system/etc/permissions/com.cyanogenmod.android.xml
+
+# T-Mobile theme engine
+include vendor/eos/config/themes_common.mk
 
 # Supersu support
 PRODUCT_COPY_FILES += \
@@ -100,29 +95,28 @@ PRODUCT_PACKAGES += \
     EOSUpdater \
     AudioFX \
     Email \
-    LatinIME \
     Launcher3 \
     LockClock \
     libpcre \
     Profiles
 
-# Optional eos packages
+# Optional Eos packages
 PRODUCT_PACKAGES += \
     Basic \
+    libemoji \
+    libgdx \
     Eleven \
     VideoEditor \
     SoundRecorder \
     TerminalEmulator
 
-# Theme Engine support
+# CM Platform Library
 PRODUCT_PACKAGES += \
-    ThemeChooser \
-    ThemesProvider
+    org.cyanogenmod.platform-res \
+    org.cyanogenmod.platform \
+    org.cyanogenmod.platform.xml
 
-PRODUCT_COPY_FILES += \
-    vendor/eos/config/permissions/org.cyanogenmod.theme.xml:system/etc/permissions/org.cyanogenmod.theme.xml
-
-# EOS Hardware Abstraction Framework
+# CM Hardware Abstraction Framework
 PRODUCT_PACKAGES += \
     org.cyanogenmod.hardware \
     org.cyanogenmod.hardware.xml
@@ -130,12 +124,10 @@ PRODUCT_PACKAGES += \
 # Extra tools in EOS
 PRODUCT_PACKAGES += \
     libsepol \
-    openvpn \
     e2fsck \
     mke2fs \
     tune2fs \
     bash \
-    vim \
     nano \
     htop \
     powertop \
@@ -150,7 +142,6 @@ PRODUCT_PACKAGES += \
     ntfs-3g \
     systembinsh \
     libcurl \
-    curl \
     gdbserver \
     micro_bench \
     oprofiled \
@@ -172,43 +163,17 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     rsync
 
-# emoji
-PRODUCT_PACKAGES += \
-    libemoji
-
 # Stagefright FFMPEG plugin
 PRODUCT_PACKAGES += \
     libffmpeg_extractor \
     libffmpeg_omx \
     media_codecs_ffmpeg.xml
 
-# msim video tele
 PRODUCT_PROPERTY_OVERRIDES += \
     media.sf.omx-plugin=libffmpeg_omx.so \
     media.sf.extractor-plugin=libffmpeg_extractor.so
 
-PRODUCT_PACKAGES += \
-    libimscamera_jni \
-    libvt_jni
-
-# GDX gfx and perfomance suite native library
-PRODUCT_PACKAGES += \
-    libgdx
-
-# CM Platform Library
-PRODUCT_PACKAGES += \
-    org.cyanogenmod.platform-res \
-    org.cyanogenmod.platform \
-    org.cyanogenmod.platform.xml
-
-# easy way to extend to add more packages
--include vendor/extra/product.mk
-
-PRODUCT_PACKAGE_OVERLAYS += vendor/eos/overlay/dictionaries
 PRODUCT_PACKAGE_OVERLAYS += vendor/eos/overlay/common
-
-# Set valid modversion
-PRODUCT_PROPERTY_OVERRIDES += ro.modversion=$(BUILD_NUMBER)
 
 PRODUCT_VERSION_MAJOR = 5
 PRODUCT_VERSION_MINOR = 0
@@ -287,8 +252,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
   ro.eos.releasetype=$(EOS_BUILDTYPE) \
   ro.modversion=$(EOS_VERSION)
 
--include vendor/eos-priv/keys/keys.mk
-
 EOS_DISPLAY_VERSION := $(EOS_VERSION)
 
 ifneq ($(PRODUCT_DEFAULT_DEV_CERTIFICATE),)
@@ -313,11 +276,34 @@ endif
 # by default, do not update the recovery with system updates
 PRODUCT_PROPERTY_OVERRIDES += persist.sys.recovery_update=false
 
+ifndef CM_PLATFORM_SDK_VERSION
+  # This is the canonical definition of the SDK version, which defines
+  # the set of APIs and functionality available in the platform.  It
+  # is a single integer that increases monotonically as updates to
+  # the SDK are released.  It should only be incremented when the APIs for
+  # the new release are frozen (so that developers don't write apps against
+  # intermediate builds).
+  CM_PLATFORM_SDK_VERSION := 2
+endif
+
+ifndef CM_PLATFORM_REV
+  # For internal SDK revisions that are hotfixed/patched
+  # Reset after each CM_PLATFORM_SDK_VERSION release
+  # If you are doing a release and this is NOT 0, you are almost certainly doing it wrong
+  CM_PLATFORM_REV := 0
+endif
+
 PRODUCT_PROPERTY_OVERRIDES += \
   ro.eos.display.version=$(EOS_DISPLAY_VERSION)
 
+# CyanogenMod Platform SDK Version
+PRODUCT_PROPERTY_OVERRIDES += \
+  ro.cm.build.version.plat.sdk=$(CM_PLATFORM_SDK_VERSION)
+
+# CyanogenMod Platform Internal
+PRODUCT_PROPERTY_OVERRIDES += \
+  ro.cm.build.version.plat.rev=$(CM_PLATFORM_REV)
+
 -include $(WORKSPACE)/build_env/image-auto-bits.mk
 
--include vendor/eospriv/product.mk
-
-$(call inherit-product-if-exists, vendor/extra/product.mk)
+$(call prepend-product-if-exists, vendor/extra/product.mk)

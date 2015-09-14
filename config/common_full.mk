@@ -1,21 +1,24 @@
-# Inherit common EOS config
+# Inherit common Eos config
 $(call inherit-product, vendor/eos/config/common.mk)
 
-# Optional EOS packages
+# Optional Eos packages
 PRODUCT_PACKAGES += \
-    HoloSpiralWallpaper \
-    MagicSmokeWallpapers \
-    NoiseField \
     Galaxy4 \
+    HoloSpiralWallpaper \
     LiveWallpapers \
     LiveWallpapersPicker \
+    MagicSmokeWallpapers \
+    NoiseField \
+    PhaseBeam \
     VisualizationWallpapers \
-    PhaseBeam
+    PhotoTable \
+    SoundRecorder \
+    PhotoPhase \
+    CMSettingsProvider
 
-# Stagefright FFMPEG plugin
+# Extra tools in Eos
 PRODUCT_PACKAGES += \
-    libstagefright_soft_ffmpegadec \
-    libstagefright_soft_ffmpegvdec \
-    libFFmpegExtractor \
-    libnamparser
-
+    vim \
+    zip \
+    unrar \
+    curl
