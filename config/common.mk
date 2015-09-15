@@ -110,6 +110,10 @@ PRODUCT_PACKAGES += \
     SoundRecorder \
     TerminalEmulator
 
+# Eos Utils Library
+PRODUCT_PACKAGES += \
+    org.teameos.utils
+
 # CM Platform Library
 PRODUCT_PACKAGES += \
     org.cyanogenmod.platform-res \
