@@ -108,7 +108,8 @@ PRODUCT_PACKAGES += \
     Jive \
     VideoEditor \
     SoundRecorder \
-    TerminalEmulator
+    TerminalEmulator \
+    TeamEOSArt
 
 # Eos Utils Library
 PRODUCT_PACKAGES += \
