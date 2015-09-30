@@ -105,10 +105,11 @@ PRODUCT_PACKAGES += \
     Basic \
     libemoji \
     libgdx \
-    Eleven \
+    Jive \
     VideoEditor \
     SoundRecorder \
-    TerminalEmulator
+    TerminalEmulator \
+    TeamEOSArt
 
 # Eos Utils Library
 PRODUCT_PACKAGES += \
