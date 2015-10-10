@@ -111,6 +111,10 @@ PRODUCT_PACKAGES += \
     TerminalEmulator \
     TeamEOSArt
 
+# Pre-M vendor blobs link against this
+PRODUCT_PACKAGES += \
+    libstlport
+
 # Eos Utils Library
 PRODUCT_PACKAGES += \
     org.teameos.utils
