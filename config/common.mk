@@ -102,7 +102,8 @@ PRODUCT_PACKAGES += \
     VideoEditor \
     SoundRecorder \
     TerminalEmulator \
-    TeamEOSArt
+    TeamEOSArt \
+    Chromium
 
 # Pre-M vendor blobs link against this
 PRODUCT_PACKAGES += \
