@@ -50,7 +50,7 @@ PRODUCT_COPY_FILES += \
 
 # eos-specific init file
 PRODUCT_COPY_FILES += \
-    vendor/eos/prebuilt/common/etc/init.eos.rc:root/init.eos.rc
+    vendor/eos/ramdisk/init.eos.rc:root/init.eos.rc
 
 # mounts
 PRODUCT_COPY_FILES += \
