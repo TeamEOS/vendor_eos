@@ -98,7 +98,7 @@ PRODUCT_PACKAGES += \
     Basic \
     libemoji \
     libgdx \
-    Jive \
+    org.teameos.wallpapers \
     VideoEditor \
     SoundRecorder \
     TerminalEmulator \
