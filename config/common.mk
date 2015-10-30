@@ -98,11 +98,11 @@ PRODUCT_PACKAGES += \
     Basic \
     libemoji \
     libgdx \
-    org.teameos.wallpapers \
+    Jive \
     VideoEditor \
     SoundRecorder \
     TerminalEmulator \
-    TeamEOSArt \
+    org.teameos.wallpapers \
     Chromium
 
 # Pre-M vendor blobs link against this
