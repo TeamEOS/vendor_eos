@@ -1,10 +1,10 @@
-# Inherit common CM stuff
-$(call inherit-product, vendor/cm/config/common.mk)
+# Inherit common EOS stuff
+$(call inherit-product, vendor/eos/config/common.mk)
 
-# Include CM audio files
-include vendor/cm/config/cm_audio.mk
+# Include EOS audio files
+include vendor/eos/config/eos_audio.mk
 
-# Optional CM packages
+# Optional EOS packages
 PRODUCT_PACKAGES += \
     Galaxy4 \
     HoloSpiralWallpaper \
@@ -17,7 +17,7 @@ PRODUCT_PACKAGES += \
     SoundRecorder \
     PhotoPhase
 
-# Extra tools in CM
+# Extra tools in EOS
 PRODUCT_PACKAGES += \
     vim \
     zip \
