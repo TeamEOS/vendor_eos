@@ -61,11 +61,6 @@ endif
 PRODUCT_COPY_FILES += \
     vendor/eos/prebuilt/common/etc/init.eos.rc:root/init.eos.rc
 
-# Bring in camera effects
-PRODUCT_COPY_FILES +=  \
-    vendor/eos/prebuilt/common/media/LMprec_508.emd:system/media/LMprec_508.emd \
-    vendor/eos/prebuilt/common/media/PFFprec_600.emd:system/media/PFFprec_600.emd
-
 # Copy over added mimetype supported in libcore.net.MimeUtils
 PRODUCT_COPY_FILES += \
     vendor/eos/prebuilt/common/lib/content-types.properties:system/lib/content-types.properties
@@ -82,9 +77,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     vendor/eos/config/permissions/com.cyanogenmod.android.xml:system/etc/permissions/com.cyanogenmod.android.xml
 
-# T-Mobile theme engine
-include vendor/eos/config/themes_common.mk
-
 # Optional Eos packages
 PRODUCT_PACKAGES += \
     Jive \
@@ -96,6 +88,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     org.teameos.utils
 
+# Theme engine
+include vendor/eos/config/themes_common.mk
+
 # Required EOS packages
 PRODUCT_PACKAGES += \
     Development \
@@ -104,8 +99,6 @@ PRODUCT_PACKAGES += \
 
 # Optional EOS packages
 PRODUCT_PACKAGES += \
-    VoicePlus \
-    Basic \
     libemoji \
     Terminal
 
