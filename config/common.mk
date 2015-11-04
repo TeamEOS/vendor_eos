@@ -77,6 +77,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     vendor/eos/config/permissions/com.cyanogenmod.android.xml:system/etc/permissions/com.cyanogenmod.android.xml
 
+# Allow tethering without provisioning app
+PRODUCT_PROPERTY_OVERRIDES += \
+    net.tethering.noprovisioning=true
+
 # Optional Eos packages
 PRODUCT_PACKAGES += \
     Jive \
@@ -86,6 +90,9 @@ PRODUCT_PACKAGES += \
 
 # Eos Utils Library
 PRODUCT_PACKAGES += \
+    org.teameos.utils
+
+PRODUCT_BOOT_JARS += \
     org.teameos.utils
 
 # Theme engine
@@ -107,10 +114,8 @@ PRODUCT_PACKAGES += \
     Launcher3 \
     Trebuchet \
     AudioFX \
-    CMFileManager \
     Eleven \
     LockClock \
-    CyanogenSetupWizard \
     CMSettingsProvider
 
 # EOS Platform Library
