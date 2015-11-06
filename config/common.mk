@@ -116,7 +116,8 @@ PRODUCT_PACKAGES += \
     AudioFX \
     Eleven \
     LockClock \
-    CMSettingsProvider
+    CMSettingsProvider \
+    ExactCalculator
 
 # EOS Platform Library
 PRODUCT_PACKAGES += \
