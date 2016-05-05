@@ -38,3 +38,4 @@ add_lunch_combo eos_shieldtablet-userdebug
 add_lunch_combo eos_vs985-userdebug
 add_lunch_combo eos_yuga-userdebug
 add_lunch_combo eos_r5-userdebug
+add_lunch_combo eos_t0lte-userdebug
